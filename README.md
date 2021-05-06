@@ -1,4 +1,4 @@
-# Cpdea Community Project Repository
+# Codea Community Project Repository
 Repository of projects created by the community of the iOS app ‘Codea’
 
 # Getting Started
