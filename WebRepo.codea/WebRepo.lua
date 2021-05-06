@@ -359,10 +359,18 @@ function launchProject(projectName)
             --
             -- NOTE: Assets used in these projects must use assets from the bundle.
             --       Assets read from elsewhere should not be assumed to exist!
-            code = string.gsub(code, "asset%.([^,]+)", "asset .. \"" .. project_path .. "%1\"")
+            code = string.gsub(code, "asset%.([^,)]+)", "asset .. \"" .. project_path .. "%1\"")
+            code = string.gsub(code, "saveText%(\"Project:\"", "saveText(asset .. \"" .. project_path .. "\"")
+            code = string.gsub(code, "saveImage%(\"Project:\"", "saveImage(asset .. \"" .. project_path .. "\"")
             
             -- Load the file
-            load(code)()
+            local fn, err = load(code)
+            if fn == nil then
+                print(err)
+                return
+            end
+
+            fn()
         end
         
         -- Run the loaded project's setup() function
