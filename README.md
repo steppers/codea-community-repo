@@ -12,7 +12,7 @@ To top it all off, if there's an update to the WebRepo project, it'll update its
 To submit a project and have it added to the repo, please export your project from within Codea to generate a .zip file, the zip file will then need to be extracted to produce a single '.codea' project bundle.
 
 Once you have the project bundle please do one of the following:
- - Submit a pull request containing the bundle. Someone with write access to the repository should be able to take it from there.
+ - Submit a pull request containing the bundle. Someone with write access to the repository should be able to take it from there. (Easiest for large projects > 10MB)
  - Send me a direct message on [Codea.io](https://codea.io/talk/profile/36722/Steppers)
 
 As only I currently have write access to the repository please be patient when it comes to submitting apps. I hope to bring others on board too if this gets enough interest.
