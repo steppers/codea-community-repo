@@ -17,13 +17,18 @@ function setup()
         -- Download or update all projects
         local projects = getProjects()
         for _,v in pairs(projects) do
-            parameter.action(v.name, function()
-                downloadProject(v.name, function(success)
-                    if success then
-                        launchProject(v.name)
-                    end
+            
+            -- Ignore the WebRepo project itself
+            -- We'll automatically update ourselves below anyway
+            if v.name ~= "WebRepo" then
+                parameter.action(v.name, function()
+                    downloadProject(v.name, function(success)
+                        if success then
+                            launchProject(v.name)
+                        end
+                    end)
                 end)
-            end)
+            end
         end
         
         -- Update ourselves
