@@ -9,7 +9,7 @@ Simple as that! You should now have access to many user created Codea projects a
 To top it all off, if there's an update to the WebRepo project, it'll update itself automatically!
 
 # Submitting a project
-To submit a project and have it added to the repo, please export your project from within Codea to generate a .zip file, the zip file will then need to be extracted to produce a single '.codea' project bundle.
+To submit a project and have it added to the repo, please export your project from within Codea to generate a .zip file, the zip file will then need to be extracted to produce a single '.codea' project bundle (using the zip file itself is on the agenda).
 
 Once you have the project bundle please do one of the following:
  - Submit a pull request containing the bundle. Someone with write access to the repository should be able to take it from there. (Easiest for large projects > 10MB)
