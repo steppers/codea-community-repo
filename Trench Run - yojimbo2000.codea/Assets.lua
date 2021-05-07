@@ -78,8 +78,8 @@ function buildAssets()
 end
 
 function loadModel(v)
-    v.obj = readText(asset..v.name.."_obj")
-    v.mtl = readText(asset..v.name.."_mtl")
+    v.obj = readText(asset..v.name.."_obj.txt")
+    v.mtl = readText(asset..v.name.."_mtl.txt")
     if v.texture then 
         local trim = v.texture:match("(.-)%..-$")
         v.texture = readImage(asset..trim) 
