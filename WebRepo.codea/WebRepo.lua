@@ -15,19 +15,26 @@ local GITHUB_REPO = "codea-community-repo"
 local GITHUB_API_URL = "https://api.github.com/repos/" .. GITHUB_USER .. "/" .. GITHUB_REPO .. "/contents/"
 local GITHUB_BLOB_URL = "https://api.github.com/repos/" .. GITHUB_USER .. "/" .. GITHUB_REPO .. "/git/blobs/"
 
-local http_params = {
-    ["method"] = "GET",
-    ["headers"] = {
-        ["Accept"] = "application/vnd.github.v3+json"
-    }
-}
+local http_params = nil
+local http_params_hash = nil
 
-local http_params_hash = {
-    ["method"] = "HEAD",
-    ["headers"] = {
-        ["Accept"] = "application/vnd.github.v3+json"
+function generateHTTPParams(token)
+    http_params = {
+        ["method"] = "GET",
+        ["headers"] = {
+            ["Authorization"] = "token " .. token,
+            ["Accept"] = "application/vnd.github.v3+json"
+        }
     }
-}
+    
+    http_params_hash = {
+        ["method"] = "HEAD",
+        ["headers"] = {
+            ["Authorization"] = "token " .. token,
+            ["Accept"] = "application/vnd.github.v3+json"
+        }
+    }
+end
 
 
 
@@ -190,7 +197,11 @@ end
 --------------------------------------------------------------------------------
 
 -- Initialises the WebRepo library with previously cached data
-function initWebRepo()
+function initWebRepo(token)
+    
+    -- Make sure our request parameters are up to date
+    generateHTTPParams(token)
+    
     -- Download status.lua from the repo and run it
     getFile("status.lua", function(data)
         if data then
@@ -217,7 +228,7 @@ function initWebRepo()
             local hash_root = "sha:" .. proj.path
             local d = listLocalData()
             for _,key in pairs(d) do
-                if string.find(key, hash_root) then
+                if string.find(key, hash_root, 1, true) then
                     saveLocalData(key, nil)
                 end
             end
@@ -233,10 +244,6 @@ end
 function updateWebRepo(cb)
     -- Directories in the root contain projects
     getDirJson("", function(j)
-        -- Check that we received a response
-        if j == nil then
-            return
-        end
 
         -- Remove any projects that are not currently installed.
         -- These will be re-added below and projects that are no
@@ -245,6 +252,12 @@ function updateWebRepo(cb)
             if not proj.installed then
                 project_list[proj.name] = nil
             end
+        end
+        
+        -- Check that we received a response
+        if j == nil then
+            cb() -- We tried...
+            return
         end
         
         -- Iterate over the dir entries
