@@ -154,6 +154,13 @@ local function getProject(path, cb, sha)
     
     -- Retrieve directory info
     getDirJson(path, function(info)
+        
+        -- Nil check
+        if info == nil then
+            cb(false)
+            return
+        end
+        
         for _,entry in pairs(info) do
             if entry.type == "file" then
                 -- Check hash
@@ -244,15 +251,6 @@ end
 function updateWebRepo(cb)
     -- Directories in the root contain projects
     getDirJson("", function(j)
-
-        -- Remove any projects that are not currently installed.
-        -- These will be re-added below and projects that are no
-        -- longer available will stay removed.
-        for _,proj in pairs(project_list) do
-            if not proj.installed then
-                project_list[proj.name] = nil
-            end
-        end
         
         -- Check that we received a response
         if j == nil then
@@ -319,8 +317,14 @@ function downloadProject(projectName, cb)
     getProject(project_list[projectName].path, function(success)
         if success then
             project_list[projectName].installed = true
+            cb(true)
+        -- Succeed if the project was already installed
+        elseif project_list[projectName].installed then
+            cb(true)
+        else
+            print("There was a problem downloading the project. Please check your internet connection.")
+            cb(false)
         end
-        cb(success)
     end, project_list[projectName].sha)
 end
 
