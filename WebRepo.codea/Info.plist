@@ -8,7 +8,7 @@
 		<string>WebRepo</string>
 		<string>PList</string>
 		<string>Browser</string>
-		<string>APIUpdater</string>
+		<string>APIOverrides</string>
 		<string>github_oauth</string>
 		<string>zzlib</string>
 		<string>inflate</string>
