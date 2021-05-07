@@ -15,6 +15,7 @@ local GITHUB_REPO = "codea-community-repo"
 local GITHUB_BRANCH = "main"
 local GITHUB_API_URL = "https://api.github.com/repos/" .. GITHUB_USER .. "/" .. GITHUB_REPO .. "/contents/"
 local GITHUB_BLOB_URL = "https://api.github.com/repos/" .. GITHUB_USER .. "/" .. GITHUB_REPO .. "/git/blobs/"
+local GITHUB_RAW_URL = "https://github.com/" .. GITHUB_USER .. "/" .. GITHUB_REPO .. "/blob/" .. GITHUB_BRANCH .. "/"
 
 local http_params = nil
 local http_params_hash = nil
@@ -119,6 +120,27 @@ local function getBlob(sha, cb)
     http.request(GITHUB_BLOB_URL .. sha, on_success, on_fail, http_params)
 end
 
+-- Downloads the raw unencoded file at 'path'
+local function getRaw(path, cb)
+    
+    -- Replace spaces in path with '%20'
+    path = string.gsub(path, " ", "%%20")
+    
+    local function on_success(data, status, headers)
+        if status == 200 then
+            cb(data)
+        else
+            cb(nil)
+        end
+    end
+    
+    local function on_fail(error)
+        cb(nil)
+    end
+    
+    http.request(GITHUB_RAW_URL .. path .. "?raw=true", on_success, on_fail, http_params)
+end
+
 -- Downloads a file, regardless of the hash and does not cache the response
 --
 -- The callback will be called passing the file data (as a base64 encoded string)
@@ -217,13 +239,11 @@ local function getProjectZip(name, cb, sha)
     end
     
     -- Download the project's zip file
-    getFile(path, function(data)
+    getRaw(path, function(data)
         if data == nil then
             cb(false)
             return
         end
-        
-        data = mime.unb64(data)
         
         local files = zzlib.listzip(data)
         
@@ -445,7 +465,7 @@ function launchProject(projectName)
         --- TODO: other callbacks
         
         -- Clear parameters & log
-        -- output.clear()
+        output.clear()
         parameter.clear()
         
         -- Load lua files in the project specified order
