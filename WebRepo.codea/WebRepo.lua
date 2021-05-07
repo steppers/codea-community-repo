@@ -289,8 +289,15 @@ function initWebRepo(token)
             proj.installed = false
             proj.upToDate = false
             
-            -- Clear hash
-            saveLocalData("sha:" .. proj.path, nil)
+            -- Clear hashes
+            local hash_root = "sha:" .. proj.path
+            local d = listLocalData()
+            for _,key in pairs(d) do
+                if string.find(key, hash_root, 1, true) then
+                    saveLocalData(key, nil)
+                end
+            end
+            saveLocalData(hash_root, nil)
         end
     end
 end
