@@ -12,7 +12,7 @@ local mime = require("mime")
 --------------------------------------------------------------------------------
 local GITHUB_USER = "steppers"
 local GITHUB_REPO = "codea-community-repo"
-local GITHUB_BRANCH = "main"
+local GITHUB_BRANCH = "dev"
 local GITHUB_API_URL = "https://api.github.com/repos/" .. GITHUB_USER .. "/" .. GITHUB_REPO .. "/contents/"
 local GITHUB_BLOB_URL = "https://api.github.com/repos/" .. GITHUB_USER .. "/" .. GITHUB_REPO .. "/git/blobs/"
 local GITHUB_RAW_URL = "https://github.com/" .. GITHUB_USER .. "/" .. GITHUB_REPO .. "/blob/" .. GITHUB_BRANCH .. "/"
@@ -204,6 +204,11 @@ local function getProjectBundle(name, cb, sha)
                             local asset_path = asset .. "/../" .. entry.path
                             data = mime.unb64(data)
                             
+                            -- Update API usages
+                            if string.sub(entry.path, -4, -1) == ".lua" then
+                                data = updateAPI(data)
+                            end
+                            
                             -- Write directly to the file
                             local file = io.open(asset_path.path, "w")
                             file:write(data)
@@ -256,6 +261,11 @@ local function getProjectZip(name, cb, sha)
             local is_proj_file = string.find(filepath, project_path, 1, true) == 1
             if string.sub(filepath, -1, -1) ~= "/" and is_proj_file then
                 local file_data = zzlib.unzip(data, filepath)
+                
+                -- Update API usages
+                if string.sub(filepath, -4, -1) == ".lua" then
+                    file_data = updateAPI(file_data)
+                end
                 
                 -- Write directly to the file
                 local asset_path = asset .. "/../" .. filepath
@@ -466,6 +476,7 @@ function launchProject(projectName)
         
         -- Clear parameters & log
         output.clear()
+        -- output.clear()
         parameter.clear()
         
         -- Load lua files in the project specified order
@@ -481,13 +492,16 @@ function launchProject(projectName)
             -- NOTE: Assets used in these projects must use assets from the bundle.
             --       Assets read from elsewhere should not be assumed to exist!
             
+            -- Replace 'asset.documents' with random nonsense so we avoid replacing it by accident
+            code = string.gsub(code, "asset.documents", "3g287truhdn7kubn43")
+            
             -- 'asset .. "/explosion"' -> 'asset .. "/../demo.codea/" .. "/explosion"'
-            code = string.gsub(code, "asset *%.%. *([^,)]+)", "asset .. \"" .. project_path .. "\" .. %1")
+            code = string.gsub(code, "asset *%.%.", "asset .. \"" .. project_path .. "\" .. ")
             -- 'asset.explosion' -> 'asset .. "/../demo.codea/explosion"'
             code = string.gsub(code, "asset%.([^,)]+)", "asset .. \"" .. project_path .. "%1\"")
-            -- '"Project:explosion"' -> 'asset .. "/../demo.codea/explosion"
-            code = string.gsub(code, "\"Project:\"", "asset .. \"" .. project_path .. "\"")
-            code = string.gsub(code, "\"Project:", "asset .. \"" .. project_path)
+            
+            -- Reinstate 'asset.documents'
+            code = string.gsub(code, "3g287truhdn7kubn43", "asset.documents")
             
             -- Load the file
             local fn, err = load(code)
