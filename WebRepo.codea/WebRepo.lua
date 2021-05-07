@@ -12,6 +12,7 @@ local mime = require("mime")
 --------------------------------------------------------------------------------
 local GITHUB_USER = "steppers"
 local GITHUB_REPO = "codea-community-repo"
+local GITHUB_BRANCH = "main" -- Change to 'sub' to test projects in submission
 local GITHUB_API_URL = "https://api.github.com/repos/" .. GITHUB_USER .. "/" .. GITHUB_REPO .. "/contents/"
 local GITHUB_BLOB_URL = "https://api.github.com/repos/" .. GITHUB_USER .. "/" .. GITHUB_REPO .. "/git/blobs/"
 
@@ -73,7 +74,7 @@ local function getObjSHA(path, cb)
     -- Replace spaces in path with '%20'
     path = string.gsub(path, " ", "%%20")
     
-    http.request(GITHUB_API_URL .. path, on_success, on_fail, http_params_hash)
+    http.request(GITHUB_API_URL .. path .. "?ref=" .. GITHUB_BRANCH, on_success, on_fail, http_params_hash)
 end
 
 -- Callback is called with table containing repo directory entries, or nil if
@@ -94,7 +95,7 @@ local function getDirJson(path, cb)
     -- Replace spaces in path with '%20'
     path = string.gsub(path, " ", "%%20")
     
-    http.request(GITHUB_API_URL .. path, on_success, on_fail, http_params)
+    http.request(GITHUB_API_URL .. path .. "?ref=" .. GITHUB_BRANCH, on_success, on_fail, http_params)
 end
 
 -- Downloads data associated with the specified SHA.
@@ -318,7 +319,7 @@ function downloadProject(projectName, cb)
         if success then
             project_list[projectName].installed = true
             cb(true)
-        -- Succeed if the project was already installed
+            -- Succeed if the project was already installed
         elseif project_list[projectName].installed then
             cb(true)
         else
@@ -376,9 +377,14 @@ function launchProject(projectName)
             --
             -- NOTE: Assets used in these projects must use assets from the bundle.
             --       Assets read from elsewhere should not be assumed to exist!
+            
+            -- 'asset .. "/explosion"' -> 'asset .. "/../demo.codea/" .. "/explosion"'
+            code = string.gsub(code, "asset *%.%. *([^,)]+)", "asset .. \"" .. project_path .. "\" .. %1")
+            -- 'asset.explosion' -> 'asset .. "/../demo.codea/explosion"'
             code = string.gsub(code, "asset%.([^,)]+)", "asset .. \"" .. project_path .. "%1\"")
-            code = string.gsub(code, "saveText%(\"Project:\"", "saveText(asset .. \"" .. project_path .. "\"")
-            code = string.gsub(code, "saveImage%(\"Project:\"", "saveImage(asset .. \"" .. project_path .. "\"")
+            -- '"Project:explosion"' -> 'asset .. "/../demo.codea/explosion"
+            code = string.gsub(code, "\"Project:\"", "asset .. \"" .. project_path .. "\"")
+            code = string.gsub(code, "\"Project:", "asset .. \"" .. project_path)
             
             -- Load the file
             local fn, err = load(code)
@@ -386,7 +392,7 @@ function launchProject(projectName)
                 print(err)
                 return
             end
-
+            
             fn()
         end
         
