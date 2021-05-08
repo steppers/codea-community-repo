@@ -84,13 +84,31 @@ local function doGraphicsAPI(path, restore)
     
     sprite = function(asset_key, x, y, w, h)
         if type(asset_key) ~= "string" then
-            return sprite_codea(asset_key, x, y, w, h)
+            if w and h then
+                return sprite_codea(asset_key, x, y, w, h)
+            elseif w then
+                return sprite_codea(asset_key, x, y, w)
+            else
+                return sprite_codea(asset_key, x, y)
+            end
         else -- Old API style
             asset_key, n = string.gsub(asset_key, "Project:", "", 1)
             if n == 1 then
-                return sprite_codea(asset .. asset_key, x, y, w, h)
+                if w and h then
+                    return sprite_codea(asset .. asset_key, x, y, w, h)
+                elseif w then
+                    return sprite_codea(asset .. asset_key, x, y, w)
+                else
+                    return sprite_codea(asset .. asset_key, x, y)
+                end
             else
-                return sprite_codea(asset_key, x, y, w, h)
+                if w and h then
+                    return sprite_codea(asset_key, x, y, w, h)
+                elseif w then
+                    return sprite_codea(asset_key, x, y, w)
+                else
+                    return sprite_codea(asset_key, x, y)
+                end
             end
         end
     end
