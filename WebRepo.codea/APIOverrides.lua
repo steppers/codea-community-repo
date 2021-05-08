@@ -5,6 +5,10 @@
 
 local asset_codea = asset
 local sprite_codea = sprite
+local readText_codea = readText
+local saveText_codea = saveText
+local readImage_codea = readImage
+local saveImage_codea = saveImage
 
 -- Handle storage API overrides
 local function doStorageAPI(path)
@@ -21,14 +25,75 @@ local function doStorageAPI(path)
             return asset_codea .. path .. r
         end
     })
+
+    readText = function(asset_key)
+        if type(asset_key) ~= "string" then
+            return readText_codea(asset_key)
+        else -- Old API style
+            asset_key, n = string.gsub(asset_key, "Project:", "", 1)
+            if n == 1 then
+                return readText_codea(asset .. asset_key .. ".txt")
+            else
+                return readText_codea(asset_key)
+            end            
+        end
+    end
+
+    saveText = function(asset_key, data)
+        if type(asset_key) ~= "string" then
+            return saveText_codea(asset_key, data)
+        else -- Old API style
+            asset_key, n = string.gsub(asset_key, "Project:", "", 1)
+            if n == 1 then
+                return saveText_codea(asset .. asset_key .. ".txt", data)
+            else
+                return saveText_codea(asset_key, data)
+            end
+        end
+    end
+    
+    readImage = function(asset_key)
+        if type(asset_key) ~= "string" then
+            return readImage_codea(asset_key)
+        else -- Old API style
+            asset_key, n = string.gsub(asset_key, "Project:", "", 1)
+            if n == 1 then
+                return readImage_codea(asset .. asset_key)
+            else
+                return readImage_codea(asset_key)
+            end
+        end
+    end
+    
+    saveImage = function(asset_key, data)
+        if type(asset_key) ~= "string" then
+            return saveImage_codea(asset_key, data)
+        else -- Old API style
+            asset_key, n = string.gsub(asset_key, "Project:", "", 1)
+            if n == 1 then
+                return saveImage_codea(asset .. asset_key, data)
+            else
+                return saveImage_codea(asset_key, data)
+            end
+        end
+    end
     
 end
 
 local function doGraphicsAPI(path, restore)
     
-    --sprite = function(img, x, y, w, h)
-        --print(type(img))
-    --end
+    sprite = function(asset_key, x, y, w, h)
+        if type(asset_key) ~= "string" then
+            return sprite_codea(asset_key, x, y, w, h)
+        else -- Old API style
+            asset_key, n = string.gsub(asset_key, "Project:", "", 1)
+            if n == 1 then
+                return sprite_codea(asset .. asset_key, x, y, w, h)
+            else
+                return sprite_codea(asset_key, x, y, w, h)
+            end
+        end
+    end
     
 end
 
