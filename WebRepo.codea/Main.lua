@@ -16,22 +16,6 @@ function setup()
         
         -- Update our cached list of available projects
         updateWebRepo(function()
-            -- Download or update all projects
-            local projects = getProjects()
-            for _,v in pairs(projects) do
-                
-                -- Ignore the WebRepo project itself
-                -- We'll automatically update ourselves below anyway
-                if v.name ~= "WebRepo" then
-                    parameter.action(v.name, function()
-                        downloadProject(v.name, function(success)
-                            if success then
-                                launchProject(v.name)
-                            end
-                        end)
-                    end)
-                end
-            end
             
             -- Update ourselves
             if projectCanBeUpdated("WebRepo") then
@@ -40,6 +24,21 @@ function setup()
                         viewer.restart()
                     end
                 end)
+            end
+            
+            -- List available projects
+            local projects = getProjects()
+            for _,v in pairs(projects) do
+                -- Ignore hidden projects
+                if not v.hidden then
+                    parameter.action(v.display_name, function()
+                        downloadProject(v.project_name, function(success)
+                            if success then
+                                launchProject(v.project_name)
+                            end
+                        end)
+                    end)
+                end
             end
         end)
     end)

@@ -46,6 +46,7 @@ end
 -- Local Variables
 --------------------------------------------------------------------------------
 local project_list = {}
+local metadata = {}
 
 
 
@@ -305,7 +306,7 @@ function initWebRepo(token)
     
     -- Check Projects are still installed
     for _,proj in pairs(project_list) do
-        if not hasProject(proj.name) then
+        if not hasProject(proj.project_name) then
             proj.installed = false
             proj.upToDate = false
             
@@ -327,66 +328,101 @@ end
 --
 -- Callback is called if/when the update completes
 function updateWebRepo(cb)
-    -- Directories in the root contain projects
-    getDirJson("", function(j)
-        
-        -- Check that we received a response
-        if j == nil then
-            cb() -- We tried...
-            return
-        end
-        
-        -- Mark all projects as unavailable unless they've been installed
-        -- This ensures projects that are no longer on the server are not
-        -- provided
-        for k,proj in pairs(project_list) do
-            if not proj.installed then
-                project_list[k] = nil
-            end
-        end
-        
-        -- Iterate over the dir entries
-        for _,v in pairs(j) do
+
+    -- Get metadata from the repo
+    getRaw("metadata.json", function(data)
+        if data then
             
-            -- zip files contain projects
-            if v.type == "file" and string.find(v.name, ".zip") ~= nil then
+            -- Save metadata
+            saveLocalData("metadata", data)
+            metadata = json.decode(data)
+            
+            -- Directories in the root contain projects
+            getDirJson("", function(j)
                 
-                -- Strip bundle suffix
-                v.name = string.gsub(v.name, ".zip", "", 1)
+                -- Check that we received a response
+                if j == nil then
+                    cb() -- We tried...
+                    return
+                end
                 
-                -- Add this project to the list
-                local hash = readLocalData("sha:" .. v.path)
-                project_list[v.name] = {
-                    ["name"] = v.name,
-                    ["path"] = v.path,
-                    ["sha"] = v.sha,
-                    ["installed"] = (hash ~= nil),
-                    ["upToDate"] = (hash == v.sha),
-                    ["iszip"] = true
-                }
-            elseif v.type == "dir" and string.find(v.name, ".codea") ~= nil then
+                -- Mark all projects as unavailable unless they've been installed
+                -- This ensures projects that are no longer on the server are not
+                -- provided
+                for k,proj in pairs(project_list) do
+                    if not proj.installed then
+                        project_list[k] = nil
+                    end
+                end
                 
-                -- Strip bundle suffix
-                v.name = string.gsub(v.name, ".codea", "", 1)
+                -- Iterate over the entries
+                for _,v in pairs(j) do
+                    
+                    -- zip files contain projects
+                    if v.type == "file" and string.find(v.name, ".zip") ~= nil then
+                        
+                        -- Strip bundle suffix
+                        v.name = string.gsub(v.name, ".zip", "", 1)
+                        
+                        local meta = metadata[v.name]
+                        if meta then                        
+                            -- Add this project to the list
+                            local hash = readLocalData("sha:" .. v.path)
+                            project_list[v.name] = {
+                                ["display_name"] = meta.name,
+                                ["project_name"] = v.name,
+                                ["path"] = v.path,
+                                ["sha"] = v.sha,
+                                ["installed"] = (hash ~= nil),
+                                ["upToDate"] = (hash == v.sha),
+                                ["iszip"] = true,
+                                ["desc"] = meta.desc,
+                                ["author"] = meta.author,
+                                ["version"] = meta.version,
+                                ["hidden"] = meta.hidden,
+                            }
+                        end
+                    elseif v.type == "dir" and string.find(v.name, ".codea") ~= nil then
+                        
+                        -- Strip bundle suffix
+                        v.name = string.gsub(v.name, ".codea", "", 1)
+                        
+                        local meta = metadata[v.name]
+                        if meta then                        
+                            -- Add this project to the list
+                            local hash = readLocalData("sha:" .. v.path)
+                            project_list[v.name] = {
+                                ["display_name"] = meta.name,
+                                ["project_name"] = v.name,
+                                ["path"] = v.path,
+                                ["sha"] = v.sha,
+                                ["installed"] = (hash ~= nil),
+                                ["upToDate"] = (hash == v.sha),
+                                ["iszip"] = true,
+                                ["desc"] = meta.desc,
+                                ["author"] = meta.author,
+                                ["version"] = meta.version,
+                                ["hidden"] = meta.hidden,
+                            }
+                        end
+                    end
+                end
                 
-                -- Add this project to the list
-                local hash = readLocalData("sha:" .. v.path)
-                project_list[v.name] = {
-                    ["name"] = v.name,
-                    ["path"] = v.path,
-                    ["sha"] = v.sha,
-                    ["installed"] = (hash ~= nil),
-                    ["upToDate"] = (hash == v.sha),
-                    ["iszip"] = false
-                }
+                -- Save the project list to disk
+                saveLocalData("project_list", json.encode(project_list))
+                
+                -- Inform the caller that we've updated the project list
+                if cb then cb() end
+            end)
+        else
+            mdj = readLocalData("metadata")
+            if mdj then
+                metadata = json.decode(mdj)
             end
+            
+            -- run callback
+            if cb then cb() end
         end
-        
-        -- Save the project list to disk
-        saveLocalData("project_list", json.encode(project_list))
-        
-        -- Inform the caller that we've updated the project list
-        if cb then cb() end
     end)
 end
 
