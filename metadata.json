@@ -42,4 +42,10 @@
     "author":"Steppers",
     "version":"1.0"
   },
+  "Lightsaber - Simeon":{
+    "name":"Lightsaber",
+    "desc":"Lightsaber Demo",
+    "author":"Simeon",
+    "version":"1.0"
+  },
 }
