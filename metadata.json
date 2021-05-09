@@ -1,13 +1,11 @@
 {
   "WebRepo":{
-    "name":"WebRepo",
     "author":"Steppers",
     "hidden":true,
     "version":"1.0a3",
     "desc":"Access Codea Community Repo"
   },
   "HelloWorld":{
-    "name":"HelloWorld",
     "version":"1.0",
     "author":"Steppers",
     "desc":"Small test program"
