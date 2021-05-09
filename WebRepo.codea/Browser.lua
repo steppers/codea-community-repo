@@ -39,27 +39,39 @@ function Browser:reinit(projects)
     end
 end
 
-function Browser:draw()    
+function Browser:draw()
+    self.display_width = WIDTH - layout.safeArea.left - layout.safeArea.right
+    self.display_height = HEIGHT - layout.safeArea.bottom - layout.safeArea.top
+    
+    self.num_x = math.ceil(self.display_width / 450)
+    self.app_width = self.display_width / self.num_x
+    
     -- Draw project browser
     pushStyle()
     pushMatrix()
     
-    local display_width = WIDTH
-    local display_height = HEIGHT - layout.safeArea.bottom - layout.safeArea.top
-    
     rectMode(CORNER)
     textMode(CORNER)
-    
-    local num_x = math.ceil(display_width / 400)
-    local app_width = display_width / num_x
     
     local x = 0
     local y = (HEIGHT - layout.safeArea.top - app_height) + self.scroll
     for i,e in ipairs(self.all_entries) do
-        e:draw(x * app_width, y, app_width, app_height)
+        
+        -- Fade the project listing as it scrolls offscreen
+        local alpha = 255
+        local fade_y_max = HEIGHT - layout.safeArea.top - app_height
+        local fade_y_min = layout.safeArea.bottom
+        if y > fade_y_max then
+            alpha = 255 * ((fade_y_max - y)/app_height)
+        elseif y < fade_y_min then
+            alpha = 255 * ((y - fade_y_min)/app_height)
+        end
+        
+        -- Draw listing
+        e:draw(x * self.app_width + layout.safeArea.left, y, self.app_width, app_height, alpha)
         
         x = x + 1
-        if x == num_x then
+        if x == self.num_x then
             x = 0
             y = y - app_height
         end
@@ -71,13 +83,10 @@ end
 
 function Browser:tap(pos)
     -- Determine which project (if any) we've tapped
-    local num_x = math.ceil(WIDTH / 400)
-    local app_width = WIDTH / num_x
+    local tapped_app_x = math.floor((pos.x-layout.safeArea.left) / self.app_width)
+    local tapped_app_y = math.floor(((HEIGHT-layout.safeArea.top-pos.y) + self.scroll) / app_height)
     
-    local tapped_app_x = math.floor(pos.x / app_width)
-    local tapped_app_y = math.floor(((HEIGHT-pos.y) + self.scroll) / app_height)
-    
-    local app_index = (tapped_app_y * num_x) + tapped_app_x + 1
+    local app_index = (tapped_app_y * self.num_x) + tapped_app_x + 1
 
     -- Is this app index valid?
     if app_index > #self.all_entries then
@@ -101,8 +110,7 @@ function Browser:pan(pos, delta, state)
     end
     
     -- Calculate the maximum scroll
-    local num_x = math.ceil(WIDTH / 400)
-    local max_scroll = math.max((math.ceil(#self.all_entries / num_x) * app_height) - HEIGHT, 0)
+    local max_scroll = math.max((math.ceil(#self.all_entries / self.num_x) * app_height) - self.display_height, 0)
     
     if self.scroll > max_scroll then
         self.scroll = max_scroll
