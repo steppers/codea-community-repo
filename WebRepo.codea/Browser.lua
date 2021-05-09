@@ -62,9 +62,9 @@ function Browser:draw()
         local fade_y_max = HEIGHT - layout.safeArea.top - app_height
         local fade_y_min = layout.safeArea.bottom
         if y > fade_y_max then
-            alpha = 255 * ((fade_y_max - y)/app_height)
+            alpha = 255 * ((fade_y_max + app_height - y)/app_height)
         elseif y < fade_y_min then
-            alpha = 255 * ((y - fade_y_min)/app_height)
+            alpha = 255 * ((y - (fade_y_min - app_height))/app_height)
         end
         
         -- Draw listing
