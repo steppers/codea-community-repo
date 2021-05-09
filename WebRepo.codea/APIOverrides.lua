@@ -83,6 +83,10 @@ end
 local function doGraphicsAPI(path, restore)
     
     sprite = function(asset_key, x, y, w, h)
+        -- Defaults
+        x = x or 0
+        y = y or 0
+        
         if type(asset_key) ~= "string" then
             if w and h then
                 return sprite_codea(asset_key, x, y, w, h)
