@@ -21,7 +21,7 @@ function setup()
             if projectCanBeUpdated("WebRepo") then
                 downloadProject("WebRepo", function(success)
                     if success then
-                        viewer.restart()
+                        viewer.close()
                     end
                 end)
             end
