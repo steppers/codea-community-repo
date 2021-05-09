@@ -398,7 +398,7 @@ function updateWebRepo(cb)
                                 ["sha"] = v.sha,
                                 ["installed"] = (hash ~= nil),
                                 ["upToDate"] = (hash == v.sha),
-                                ["iszip"] = true,
+                                ["iszip"] = false,
                                 ["desc"] = meta.desc,
                                 ["author"] = meta.author,
                                 ["version"] = meta.version,
