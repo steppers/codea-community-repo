@@ -99,4 +99,12 @@ function Browser:pan(pos, delta, state)
     if self.scroll < 0 then
         self.scroll = 0
     end
+    
+    -- Calculate the maximum scroll
+    local num_x = math.ceil(WIDTH / 400)
+    local max_scroll = math.max((math.ceil(#self.all_entries / num_x) * app_height) - HEIGHT, 0)
+    
+    if self.scroll > max_scroll then
+        self.scroll = max_scroll
+    end
 end

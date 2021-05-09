@@ -41,19 +41,6 @@ function setup()
             -- List available projects
             local projects = getProjects()
             app_browser:reinit(projects)
-            
-            for _,v in pairs(projects) do
-                -- Ignore hidden projects
-                if not v.hidden then
-                    parameter.action(v.display_name, function()
-                        downloadProject(v.project_name, function(success)
-                            if success then
-                                launchProject(v.project_name)
-                            end
-                        end)
-                    end)
-                end
-            end
         end)
     end)
 end

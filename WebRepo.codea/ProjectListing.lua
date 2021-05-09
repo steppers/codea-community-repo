@@ -16,7 +16,7 @@ function ProjectListing:draw(x, y, w, h)
     
     local icon_offset_y = padding
     local title_offset_y = h - 22 - padding
-    local desc_offset_y = (h - fontSize()) / 2
+    local desc_offset_y = (h - fontSize() - 4) / 2
     local author_offset_y = padding
     
     -- Fade the project listing as it scrolls offscreen
