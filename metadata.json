@@ -84,4 +84,10 @@
     "author":"UberGoober",
     "version":"1.0"
   },
+  "Galaxian - krdavis":{
+    "name":"Galaxian",
+    "desc":"Galaxian Clone",
+    "author":"krdavis",
+    "version":"1.2"
+  },
 }

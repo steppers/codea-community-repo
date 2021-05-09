@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Buffer Order</key>
+	<array>
+		<string>Global</string>
+		<string>Main</string>
+		<string>BadGuySprite</string>
+		<string>PlayerSprite</string>
+		<string>PlayerMissileSprite</string>
+		<string>EnemyMissileSprite</string>
+		<string>ExplosionPieceSprite</string>
+		<string>Score300Sprite</string>
+		<string>Button</string>
+		<string>Rectangle</string>
+	</array>
+</dict>
+</plist>
