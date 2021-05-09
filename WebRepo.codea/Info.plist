@@ -6,12 +6,14 @@
 	<array>
 		<string>Main</string>
 		<string>WebRepo</string>
-		<string>PList</string>
 		<string>Browser</string>
+		<string>ProjectListing</string>
 		<string>APIOverrides</string>
+		<string>Gestures</string>
+		<string>PList</string>
+		<string>inflate</string>
 		<string>github_oauth</string>
 		<string>zzlib</string>
-		<string>inflate</string>
 	</array>
 </dict>
 </plist>

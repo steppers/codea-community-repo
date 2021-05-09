@@ -12,7 +12,7 @@ local mime = require("mime")
 --------------------------------------------------------------------------------
 local GITHUB_USER = "steppers"
 local GITHUB_REPO = "codea-community-repo"
-local GITHUB_BRANCH = "main"
+local GITHUB_BRANCH = "dev"
 local GITHUB_API_URL = "https://api.github.com/repos/" .. GITHUB_USER .. "/" .. GITHUB_REPO .. "/contents/"
 local GITHUB_BLOB_URL = "https://api.github.com/repos/" .. GITHUB_USER .. "/" .. GITHUB_REPO .. "/git/blobs/"
 local GITHUB_RAW_URL = "https://github.com/" .. GITHUB_USER .. "/" .. GITHUB_REPO .. "/blob/" .. GITHUB_BRANCH .. "/"
@@ -227,7 +227,7 @@ local function getProjectBundle(name, cb, sha)
     end)
 end
 
--- Downloads and caches a project recursively
+-- Downloads and caches a project bundle
 local function getProjectZip(name, cb, sha)
     
     local path = name .. ".zip"
@@ -253,6 +253,7 @@ local function getProjectZip(name, cb, sha)
         end
         
         for _,filepath in pairs(files) do
+            
             -- The first part of the filepath must be the same as the project path
             local is_proj_file = string.find(filepath, project_path, 1, true) == 1
             if string.sub(filepath, -1, -1) ~= "/" and is_proj_file then
@@ -306,6 +307,10 @@ function initWebRepo(token)
     
     -- Check Projects are still installed
     for _,proj in pairs(project_list) do
+        
+        -- Nothing is being downloaded at init
+        proj.downloading = false
+        
         if not hasProject(proj.project_name) then
             proj.installed = false
             proj.upToDate = false
@@ -375,6 +380,7 @@ function updateWebRepo(cb)
                                 ["sha"] = v.sha,
                                 ["installed"] = (hash ~= nil),
                                 ["upToDate"] = (hash == v.sha),
+                                ["downloading"] = false,
                                 ["iszip"] = true,
                                 ["desc"] = meta.desc,
                                 ["author"] = meta.author,
@@ -398,6 +404,7 @@ function updateWebRepo(cb)
                                 ["sha"] = v.sha,
                                 ["installed"] = (hash ~= nil),
                                 ["upToDate"] = (hash == v.sha),
+                                ["downloading"] = false,
                                 ["iszip"] = false,
                                 ["desc"] = meta.desc,
                                 ["author"] = meta.author,
@@ -453,7 +460,14 @@ function downloadProject(projectName, cb)
         downloadFunc = getProjectZip
     end
     
+    -- Mark as being downloaded
+    project_list[projectName].downloading = true
+    
     downloadFunc(projectName, function(success)
+        
+        -- No longer being downloaded
+        project_list[projectName].downloading = false
+        
         if success then
             project_list[projectName].installed = true
             cb(true)
@@ -534,6 +548,11 @@ end
 -- Returns true if the specified project is currently downloaded
 function projectIsInstalled(projectName)
     return project_list[projectName].installed
+end
+
+-- Returns true if the specified project is currently downloading
+function projectIsDownloading(projectName)
+    return project_list[projectName].downloading
 end
 
 -- Returns table containing metadata for the specified project
