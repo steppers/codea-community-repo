@@ -4,7 +4,7 @@ function ProjectListing:init(metadata)
     self.meta = metadata
 end
 
-function ProjectListing:draw(x, y, w, h)
+function ProjectListing:draw(x, y, w, h, alpha)
     
     -- Offscreen?
     if y < -h or y > HEIGHT then
@@ -19,11 +19,6 @@ function ProjectListing:draw(x, y, w, h)
     local desc_offset_y = (h - fontSize() - 4) / 2
     local author_offset_y = padding
     
-    -- Fade the project listing as it scrolls offscreen
-    local alpha = 255
-    if y > HEIGHT - h then
-        alpha = 255 * ((HEIGHT - y)/h)
-    end
     tint(255, alpha)
     
     -- Draw the icon

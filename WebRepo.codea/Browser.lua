@@ -56,7 +56,19 @@ function Browser:draw()
     local x = 0
     local y = (HEIGHT - layout.safeArea.top - app_height) + self.scroll
     for i,e in ipairs(self.all_entries) do
-        e:draw(x * self.app_width + layout.safeArea.left, y, self.app_width, app_height)
+        
+        -- Fade the project listing as it scrolls offscreen
+        local alpha = 255
+        local fade_y_max = HEIGHT - layout.safeArea.top - app_height
+        local fade_y_min = layout.safeArea.bottom
+        if y > fade_y_max then
+            alpha = 255 * ((fade_y_max - y)/app_height)
+        elseif y < fade_y_min then
+            alpha = 255 * ((y - fade_y_min)/app_height)
+        end
+        
+        -- Draw listing
+        e:draw(x * self.app_width + layout.safeArea.left, y, self.app_width, app_height, alpha)
         
         x = x + 1
         if x == self.num_x then
