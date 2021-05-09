@@ -48,7 +48,12 @@ end
 function draw()
     background(0)
 
-    app_browser:draw()
+    if projectIsDownloading("WebRepo") then
+        textMode(CENTER)
+        text("Autoupdating WebRepo Project", WIDTH/2, HEIGHT/2)
+    else
+        app_browser:draw()
+    end
 
     updateAccessToken()
 end

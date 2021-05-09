@@ -542,16 +542,19 @@ end
 -- Returns true if the specified project has an update available
 -- in the repo
 function projectCanBeUpdated(projectName)
+    if project_list[projectName] == nil then return false end
     return not project_list[projectName].upToDate
 end
 
 -- Returns true if the specified project is currently downloaded
 function projectIsInstalled(projectName)
+    if project_list[projectName] == nil then return false end
     return project_list[projectName].installed
 end
 
 -- Returns true if the specified project is currently downloading
 function projectIsDownloading(projectName)
+    if project_list[projectName] == nil then return false end
     return project_list[projectName].downloading
 end
 
