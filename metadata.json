@@ -1,13 +1,39 @@
 {
   "WebRepo":{
+    "name":"Web Repo",
+    "desc":"Access Codea Community Repo",
     "author":"Steppers",
-    "hidden":true,
     "version":"1.0a3",
-    "desc":"Access Codea Community Repo"
+    "hidden":true,
   },
   "HelloWorld":{
+    "name":"Hello World",
     "version":"1.0",
     "author":"Steppers",
     "desc":"Small test program"
+  },
+  "Foggy - West & UberGoober":{
+    "name":"Foggy",
+    "version":"1.0",
+    "author":"West & UberGoober",
+    "desc":"Basic Side Scroller"
+  },
+  "Fish - West":{
+    "name":"Fish",
+    "version":"1.0",
+    "author":"West",
+    "desc":"Fishtank demo"
+  },
+  "Plane Crazy - Mark":{
+    "name":"Plane Crazy",
+    "version":"1.0",
+    "author":"Mark",
+    "desc":"Game"
+  },
+  "Trench Run - yojimbo2000":{
+    "name":"TrenchRun",
+    "version":"1.0",
+    "author":"yojimbo2000",
+    "desc":"X-Wing Trench Run"
   }
 }
