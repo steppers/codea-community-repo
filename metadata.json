@@ -35,5 +35,11 @@
     "version":"1.0",
     "author":"yojimbo2000",
     "desc":"X-Wing Trench Run"
-  }
+  },
+  "TexturePacker":{
+    "name":"Sprite Packer",
+    "desc":"Sprite Packing Tool",
+    "author":"Steppers",
+    "version":"1.0"
+  },
 }
