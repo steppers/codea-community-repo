@@ -49,8 +49,10 @@ function draw()
     background(0)
 
     if projectIsDownloading("WebRepo") then
+        fill(255)
         textMode(CENTER)
-        text("Autoupdating WebRepo Project", WIDTH/2, HEIGHT/2)
+        textAlign(CENTER)
+        text("Autoupdating\nWebRepo Project", WIDTH/2, HEIGHT/2)
     else
         app_browser:draw()
     end
