@@ -53,14 +53,14 @@ function Browser:draw()
     rectMode(CORNER)
     textMode(CORNER)
     
-    local x = layout.safeArea.left
+    local x = 0
     local y = (HEIGHT - layout.safeArea.top - app_height) + self.scroll
     for i,e in ipairs(self.all_entries) do
-        e:draw(x * self.app_width, y, self.app_width, app_height)
+        e:draw(x * self.app_width + layout.safeArea.left, y, self.app_width, app_height)
         
         x = x + 1
         if x == self.num_x then
-            x = layout.safeArea.left
+            x = 0
             y = y - app_height
         end
     end
