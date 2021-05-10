@@ -18,6 +18,11 @@ Once you have your project's zip file please do one of the following:
  - Submit a pull request containing the file. Someone with write access to the repository should be able to take it from there. (Easiest for large projects > 10MB)
  - Send me a direct message on [Codea.io](https://codea.io/talk/profile/36722/Steppers)
 
+I'll also need to know the following:
+ - Display Name (Displayed within the WebRepo App)
+ - Short description (~6-8 words)
+ - Creator (Visible in the app and can be multiple people)
+
 As only I currently have write access to the repository please be patient when it comes to submitting apps. I hope to bring others on board too if this gets enough interest.
 
 Please note that attempts to submit malicious, unethical or innappropriate content will be ignored.
