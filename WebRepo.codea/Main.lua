@@ -5,6 +5,10 @@ saveProjectData("Description",  "Load & run Codea projects from the internet!")
 saveProjectData("Version",      "1.0")
 saveProjectData("Date",         "06-May-2021")
 
+-- Change this to 'main' for release builds.
+-- 'dev' will prevent the autoupdate of this project.
+GITHUB_BRANCH = "main"
+
 local app_browser = nil
 
 -- Perform the initial Web Repo setup and provide the user
@@ -30,7 +34,7 @@ function setup()
         updateWebRepo(function()
             
             -- Update ourselves
-            if projectCanBeUpdated("WebRepo") then
+            if projectCanBeUpdated("WebRepo") and GITHUB_BRANCH ~= "dev" then
                 downloadProject("WebRepo", function(success)
                     if success then
                         viewer.close()

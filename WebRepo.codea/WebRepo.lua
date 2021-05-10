@@ -12,7 +12,6 @@ local mime = require("mime")
 --------------------------------------------------------------------------------
 local GITHUB_USER = "steppers"
 local GITHUB_REPO = "codea-community-repo"
-local GITHUB_BRANCH = "main"
 local GITHUB_API_URL = "https://api.github.com/repos/" .. GITHUB_USER .. "/" .. GITHUB_REPO .. "/contents/"
 local GITHUB_BLOB_URL = "https://api.github.com/repos/" .. GITHUB_USER .. "/" .. GITHUB_REPO .. "/git/blobs/"
 local GITHUB_RAW_URL = "https://github.com/" .. GITHUB_USER .. "/" .. GITHUB_REPO .. "/blob/" .. GITHUB_BRANCH .. "/"
