@@ -39,6 +39,10 @@ function ProjectListing:draw(x, y, w, h, alpha)
     -- Draw the description & author
     fill(195, alpha)
     fontSize(17)
-    text(self.meta.desc, x + h, y + desc_offset_y)
+    local desc = self.meta.desc
+    if self.meta.is_library then
+        desc = "[Lib] " .. desc
+    end
+    text(desc, x + h, y + desc_offset_y)
     text(self.meta.author, x + h, y + author_offset_y)
 end

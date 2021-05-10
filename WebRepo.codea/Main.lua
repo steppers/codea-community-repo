@@ -50,7 +50,7 @@ function setup()
 end
 
 function draw()
-    background(0)
+    background(32)
 
     if projectIsDownloading("WebRepo") then
         fill(255)
@@ -70,4 +70,8 @@ end
 
 function pan(pos, delta, state)
     app_browser:pan(pos, delta, state)
+end
+
+function keyboard(key)
+    app_browser:keyboard(key)
 end
