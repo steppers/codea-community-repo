@@ -12,11 +12,11 @@
     "author":"Steppers",
     "desc":"Small test program"
   },
-  "Foggy - West & UberGoober":{
+  "Foggy - West ft UberGoober":{
     "name":"Foggy",
+    "desc":"Basic Side Scroller",
+    "author":"West ft. UberGoober",
     "version":"1.0",
-    "author":"West & UberGoober",
-    "desc":"Basic Side Scroller"
   },
   "Fish - West":{
     "name":"Fish",
@@ -31,7 +31,7 @@
     "desc":"Game"
   },
   "Trench Run - yojimbo2000":{
-    "name":"TrenchRun",
+    "name":"Trench Run",
     "version":"1.0",
     "author":"yojimbo2000",
     "desc":"X-Wing Trench Run"
@@ -73,7 +73,7 @@
     "version":"1.0"
   },
   "Trench Run - West":{
-    "name":"Trench Run (West)",
+    "name":"Trench Run",
     "desc":"",
     "author":"West",
     "version":"1.0"
