@@ -2,7 +2,9 @@
 Repository of projects created by the community of the iOS app [Codea](https://codea.io)
 
 ### This is currently in pre-release
-Although much of the functionality is currently present it lacks a user friendly UI and projects are instead listed directly in the sidebar. Tapping on a project will immediately commence the download and once complete will launch the project.
+Although much of the functionality is currently present. Tapping on a project will immediately commence the download and once complete will launch the project.
+
+![iPad](https://github.com/steppers/codea-community-repo/raw/main/screenshots/1.0a5_ipad.PNG)
 
 # Getting Started
 To get started using the repository, download the [WebRepo project](https://github.com/steppers/codea-community-repo/releases) to your iOS device and run it from within Codea.
