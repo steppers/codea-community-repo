@@ -1,13 +1,13 @@
 -- WebRepo
 
+-- Change this to 'main' for release builds.
+-- 'dev' will prevent the autoupdate of this project.
+GITHUB_BRANCH = "dev"
+
 saveProjectData("Author",       "Steppers")
 saveProjectData("Description",  "Load & run Codea projects from the internet!")
 saveProjectData("Version",      "1.0")
 saveProjectData("Date",         "06-May-2021")
-
--- Change this to 'main' for release builds.
--- 'dev' will prevent the autoupdate of this project.
-GITHUB_BRANCH = "main"
 
 local app_browser = nil
 
@@ -16,7 +16,7 @@ local app_browser = nil
 function setup()
 
     -- Go fullscreen now we have a UI
-    viewer.mode = FULLSCREEN
+    --viewer.mode = FULLSCREEN
 
     -- Initialise the App browser
     app_browser = Browser()
@@ -31,7 +31,8 @@ function setup()
         app_browser = Browser(projects)
         
         -- Update our cached list of available projects
-        updateWebRepo(function()
+        -- callback called for each project updated
+        updateWebRepo(function(project)
             
             -- Update ourselves
             if projectCanBeUpdated("WebRepo") and GITHUB_BRANCH ~= "dev" then
@@ -42,9 +43,8 @@ function setup()
                 end)
             end
             
-            -- List available projects
-            local projects = getProjects()
-            app_browser:reinit(projects)
+            -- List new project
+            app_browser:addProject(project)
         end)
     end)
 end

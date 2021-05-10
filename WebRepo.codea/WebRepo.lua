@@ -18,13 +18,17 @@ local GITHUB_RAW_URL = "https://github.com/" .. GITHUB_USER .. "/" .. GITHUB_REP
 
 local http_params = nil
 local http_params_hash = nil
+local api_token = ""
 
 function generateHTTPParams(token)
+    api_token = token
+    
     http_params = {
         ["method"] = "GET",
         ["headers"] = {
             ["Authorization"] = "token " .. token,
-            ["Accept"] = "application/vnd.github.v3+json"
+            ["Accept"] = "application/vnd.github.v3+json",
+            ["User-Agent"] = "CodeaWebRepo"
         }
     }
     
@@ -55,6 +59,91 @@ local metadata = {}
 -- Private implementation
 --------------------------------------------------------------------------------
 
+-- Makes a http request and caches the response if requested
+-- Callback is passed the received data or nil
+local function make_request(path, callback, cache)
+    
+    -- Replace spaces in path with '%20'
+    path = string.gsub(path, " ", "%%20")
+    
+    local function on_success(data, status, headers)
+        if status == 200 then -- New response
+            if cache then
+                saveLocalData("sha:/" .. path, headers.Etag)
+                saveLocalData("http:" .. path, data)
+            end
+            
+            callback(data)
+        elseif status == 304 then -- Response changed
+            callback(readLocalData("http:" .. path))
+        else
+            callback(nil)
+        end
+    end
+    
+    local function on_fail(err)
+        if string.find(err, "304") ~= nil then
+            callback(readLocalData("http:" .. path))
+            return
+        end
+        callback(nil)
+    end
+    
+    -- Only counts towards our rate limit if the response has changed
+    local http_params = {
+        ["method"] = "GET",
+        ["headers"] = {
+            ["If-None-Match"] = readLocalData("sha:/" .. path),
+            ["Authorization"] = "token " .. api_token
+        }
+    }
+    
+    -- Make the request
+    local url = GITHUB_API_URL .. path .. "?ref=" .. GITHUB_BRANCH
+    http.request(url, on_success, on_fail, http_params)
+end
+
+local function download_file(path, callback, cache)
+    -- Replace spaces in path with '%20'
+    path = string.gsub(path, " ", "%%20")
+    
+    local function on_success(data, status, headers)
+        if status == 200 then -- New response
+            if cache then
+                saveLocalData("sha:/" .. path, headers.Etag)
+                saveLocalData("http:" .. path, data)
+            end
+            
+            callback(data)
+        elseif status == 304 then -- Response changed
+            callback(readLocalData("http:" .. path))
+        else
+            callback(nil)
+        end
+    end
+    
+    local function on_fail(err)
+        if string.find(err, "304") ~= nil then
+            callback(readLocalData("http:" .. path))
+            return
+        end
+        callback(nil)
+    end
+    
+    -- Only counts towards our rate limit if the response has changed
+    local http_params = {
+        ["method"] = "GET",
+        ["headers"] = {
+            ["If-None-Match"] = readLocalData("sha:/" .. path),
+            ["Authorization"] = "token " .. api_token
+        }
+    }
+    
+    -- Make the request
+    local url = GITHUB_RAW_URL .. path .. "?raw=true"
+    http.request(url, on_success, on_fail, http_params)
+end
+
 -- Callback is called passing the hash of the object or nil if the request failed
 -- for any reason
 local function getObjSHA(path, cb)
@@ -77,7 +166,7 @@ local function getObjSHA(path, cb)
         cb(nil)
     end
     
-    http.request(GITHUB_API_URL .. path .. "?ref=" .. GITHUB_BRANCH, on_success, on_fail, http_params_hash)
+    --http.request(GITHUB_API_URL .. path .. "?ref=" .. GITHUB_BRANCH, on_success, on_fail, http_params_hash)
 end
 
 -- Callback is called with table containing repo directory entries, or nil if
@@ -98,7 +187,7 @@ local function getDirJson(path, cb)
     -- Replace spaces in path with '%20'
     path = string.gsub(path, " ", "%%20")
     
-    http.request(GITHUB_API_URL .. path .. "?ref=" .. GITHUB_BRANCH, on_success, on_fail, http_params)
+    --http.request(GITHUB_API_URL .. path .. "?ref=" .. GITHUB_BRANCH, on_success, on_fail, http_params)
 end
 
 -- Downloads data associated with the specified SHA.
@@ -117,7 +206,7 @@ local function getBlob(sha, cb)
         cb(nil)
     end
     
-    http.request(GITHUB_BLOB_URL .. sha, on_success, on_fail, http_params)
+    --http.request(GITHUB_BLOB_URL .. sha, on_success, on_fail, http_params)
 end
 
 -- Downloads the raw unencoded file at 'path'
@@ -138,7 +227,7 @@ local function getRaw(path, cb)
         cb(nil)
     end
     
-    http.request(GITHUB_RAW_URL .. path .. "?raw=true", on_success, on_fail, http_params)
+    --http.request(GITHUB_RAW_URL .. path .. "?raw=true", on_success, on_fail, http_params)
 end
 
 -- Downloads a file, regardless of the hash and does not cache the response
@@ -289,16 +378,16 @@ function initWebRepo(token)
     generateHTTPParams(token)
     
     -- Download status.lua from the repo and run it
-    getFile("status.lua", function(data)
+    download_file("status.lua", function(data)
         if data then
-            local fn = load(mime.unb64(data))
+            local fn = load(data)
             if fn then fn() else
                 print("status.lua failed to load correctly!")
             end
         else
             print("Codea Web Repository is currently unavailable")
         end
-    end)
+    end, true)
     
     -- Load the project list from disk
     local pl = readLocalData("project_list")
@@ -332,106 +421,69 @@ end
 --
 -- Callback is called if/when the update completes
 function updateWebRepo(cb)
-
-    -- Get metadata from the repo
-    getRaw("metadata.json", function(data)
-        if data then
-            
-            -- Save metadata
-            saveLocalData("metadata", data)
-            metadata = json.decode(data)
-            
-            -- Directories in the root contain projects
-            getDirJson("", function(j)
-                
-                -- Check that we received a response
-                if j == nil then
-                    cb() -- We tried...
-                    return
-                end
-                
-                -- Mark all projects as unavailable unless they've been installed
-                -- This ensures projects that are no longer on the server are not
-                -- provided
-                for k,proj in pairs(project_list) do
-                    if not proj.installed then
-                        project_list[k] = nil
-                    end
-                end
-                
-                -- Iterate over the entries
-                for _,v in pairs(j) do
-                    
-                    -- zip files contain projects
-                    if v.type == "file" and string.find(v.name, ".zip") ~= nil then
-                        
-                        -- Strip bundle suffix
-                        v.name = string.gsub(v.name, ".zip", "", 1)
-                        
-                        local meta = metadata[v.name]
-                        if meta then                        
-                            -- Add this project to the list
-                            local hash = readLocalData("sha:" .. v.path)
-                            project_list[v.name] = {
-                                ["display_name"] = meta.name,
-                                ["project_name"] = v.name,
-                                ["path"] = v.path,
-                                ["sha"] = v.sha,
-                                ["installed"] = (hash ~= nil),
-                                ["upToDate"] = (hash == v.sha),
-                                ["downloading"] = false,
-                                ["iszip"] = true,
-                                ["desc"] = meta.desc,
-                                ["author"] = meta.author or "Unknown",
-                                ["version"] = meta.version or "1.0",
-                                ["hidden"] = meta.hidden or false,
-                                ["is_library"] = meta.is_library or false,
-                            }
-                        end
-                    elseif v.type == "dir" and string.find(v.name, ".codea") ~= nil then
-                        
-                        -- Strip bundle suffix
-                        v.name = string.gsub(v.name, ".codea", "", 1)
-                        
-                        local meta = metadata[v.name]
-                        if meta then                        
-                            -- Add this project to the list
-                            local hash = readLocalData("sha:" .. v.path)
-                            project_list[v.name] = {
-                                ["display_name"] = meta.name,
-                                ["project_name"] = v.name,
-                                ["path"] = v.path,
-                                ["sha"] = v.sha,
-                                ["installed"] = (hash ~= nil),
-                                ["upToDate"] = (hash == v.sha),
-                                ["downloading"] = false,
-                                ["iszip"] = false,
-                                ["desc"] = meta.desc,
-                                ["author"] = meta.author or "Unknown",
-                                ["version"] = meta.version or "1.0",
-                                ["hidden"] = meta.hidden or false,
-                                ["is_library"] = meta.is_library or false,
-                            }
-                        end
-                    end
-                end
-                
-                -- Save the project list to disk
-                saveLocalData("project_list", json.encode(project_list))
-                
-                -- Inform the caller that we've updated the project list
-                if cb then cb() end
-            end)
-        else
-            mdj = readLocalData("metadata")
-            if mdj then
-                metadata = json.decode(mdj)
-            end
-            
-            -- run callback
-            if cb then cb() end
+    
+    -- Get root directory listing
+    make_request("", function(data)
+        
+        if data == nil then
+            return -- We tried
         end
-    end)
+        
+        -- Decode the json from the Github API
+        data = json.decode(data)
+        
+        -- Mark all projects as unavailable unless they've been installed
+        -- This ensures projects that are no longer on the server are not
+        -- provided
+        for k,proj in pairs(project_list) do
+            if not proj.installed then
+                project_list[k] = nil
+            end
+        end
+        
+        for _,entry in pairs(data) do
+            
+            -- Found a project bundle?
+            if entry.type == "dir" and string.find(entry.name, ".codea") ~= nil then
+                
+                -- Strip bundle suffix
+                entry.name = string.gsub(entry.name, ".codea", "", 1)
+                
+                local hash = readLocalData("sha:" .. entry.path)
+                
+                -- Download the metadata file
+                download_file(entry.path .. "/Info.plist", function(data)
+                    if data == nil then
+                        return
+                    end
+                    
+                    data = parsePList(data)
+                    
+                    -- Add this project to the list
+                    project_list[entry.name] = {
+                        ["display_name"] = entry.name,
+                        ["project_name"] = entry.name,
+                        ["path"] = entry.path,
+                        ["sha"] = entry.sha,
+                        ["installed"] = (hash ~= nil),
+                        ["upToDate"] = (hash == entry.sha),
+                        ["downloading"] = false,
+                        ["iszip"] = false,
+                        ["desc"] = data.description or "",
+                        ["author"] = data.author or "Unknown",
+                        ["version"] = data.version or "1.0",
+                        ["hidden"] = data.hidden or false,
+                        ["is_library"] = data.is_library or false,
+                    }
+                    
+                    if cb then cb(project_list[entry.name]) end
+                end)
+            end
+        end
+        
+        -- Save the project list to disk
+        saveLocalData("project_list", json.encode(project_list))
+    end, true)
 end
 
 -- Downloads the specified project, or updates it if required
@@ -567,4 +619,16 @@ end
 -- Returns an array of projects (installed or not)
 function getProjects()
     return project_list
+end
+
+local defaultProjectIcon = readImage(asset.builtin.UI.Grey_Panel)
+function getProjectIcon(projectName)
+    if project_list[projectName] == nil then return nil end
+    if project_list[projectName].iszip then
+        return defaultProjectIcon
+    end
+    
+    return defaultProjectIcon
+    -- Do we have the icon cached already?
+    -- if readLocalData("sha_icon:" .. projectName)
 end

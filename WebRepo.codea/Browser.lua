@@ -23,6 +23,34 @@ function Browser:init(projects)
     end
 end
 
+function Browser:addProject(project)
+    if not project.hidden then
+        table.insert(self.all_entries, ProjectListing(project))
+    end
+    
+    -- Sort into alphabetical order
+    table.sort(self.all_entries, function(a, b)
+        return a.meta.display_name < b.meta.display_name
+    end)
+end
+
+-- Rare occurance, slow
+function Browser:removeProject(projectName)
+    local old_entries = self.all_entries
+    self.all_entries = {}
+    
+    for _,v in pairs(old_entries) do
+        if v.meta.project_name ~= projectName then
+            table.insert(self.all_entries, ProjectListing(v))
+        end
+    end
+    
+    -- Sort into alphabetical order
+    table.sort(self.all_entries, function(a, b)
+        return a.meta.display_name < b.meta.display_name
+    end)
+end
+
 function Browser:reinit(projects)
     self.all_entries = {}
     self.recents = {}
