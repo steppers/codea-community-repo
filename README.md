@@ -34,3 +34,6 @@ As only I currently have write access to the repository please be patient when i
 Please note that attempts to submit malicious, unethical or innappropriate content will be ignored.
 
 ![iPad](https://github.com/steppers/codea-community-repo/raw/main/screenshots/1.0a5_iphone.JPG)
+
+# Adding a project (For Contributors)
+TODO
