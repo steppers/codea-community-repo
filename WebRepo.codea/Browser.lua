@@ -96,7 +96,8 @@ function Browser:tap(pos)
     -- Download or launch the project
     local proj = self.all_entries[app_index]
     if proj then
-        if projectIsInstalled(proj.meta.project_name)then
+        -- Only non-library projects can be launched
+        if projectIsInstalled(proj.meta.project_name) and not proj.meta.is_library then
             launchProject(proj.meta.project_name)
         elseif not projectIsDownloading(proj.meta.project_name) then
             downloadProject(proj.meta.project_name, nil)

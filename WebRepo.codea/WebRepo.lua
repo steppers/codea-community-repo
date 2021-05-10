@@ -383,9 +383,10 @@ function updateWebRepo(cb)
                                 ["downloading"] = false,
                                 ["iszip"] = true,
                                 ["desc"] = meta.desc,
-                                ["author"] = meta.author,
-                                ["version"] = meta.version,
-                                ["hidden"] = meta.hidden,
+                                ["author"] = meta.author or "Unknown",
+                                ["version"] = meta.version or "1.0",
+                                ["hidden"] = meta.hidden or false,
+                                ["is_library"] = meta.is_library or false,
                             }
                         end
                     elseif v.type == "dir" and string.find(v.name, ".codea") ~= nil then
@@ -407,9 +408,10 @@ function updateWebRepo(cb)
                                 ["downloading"] = false,
                                 ["iszip"] = false,
                                 ["desc"] = meta.desc,
-                                ["author"] = meta.author,
-                                ["version"] = meta.version,
-                                ["hidden"] = meta.hidden,
+                                ["author"] = meta.author or "Unknown",
+                                ["version"] = meta.version or "1.0",
+                                ["hidden"] = meta.hidden or false,
+                                ["is_library"] = meta.is_library or false,
                             }
                         end
                     end
