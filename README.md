@@ -21,7 +21,7 @@ Once you have your project's zip file please do one of the following:
 I'll also need to know the following:
  - Display Name (Displayed within the WebRepo App)
  - Short description (~6-8 words)
- - Creator (Visible in the app and can be multiple people)
+ - Creator(s) (Visible in the WebRepo App)
 
 As only I currently have write access to the repository please be patient when it comes to submitting apps. I hope to bring others on board too if this gets enough interest.
 
