@@ -22,6 +22,7 @@ I'll also need to know the following:
  - Display Name (Displayed within the WebRepo App)
  - Short description (~6-8 words)
  - Creator(s) (Visible in the WebRepo App)
+ - Link to Codea.io forum discussion related to the project
 
 As only I currently have write access to the repository please be patient when it comes to submitting apps. I hope to bring others on board too if this gets enough interest.
 
