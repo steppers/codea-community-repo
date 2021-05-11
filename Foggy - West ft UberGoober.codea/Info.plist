@@ -11,9 +11,9 @@
 	<key>Version</key>
 	<string>1.0</string>
 	<key>Hidden</key>
-	</false>
+	<false/>
 	<key>Library</key>
-	</false>
+	<false/>
 	<key>Icon</key>
 	<string>Icon.png</string>
 	<key>Buffer Order</key>
