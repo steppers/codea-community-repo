@@ -17,7 +17,11 @@ function drawProjectListing(meta, x, y, w, h, alpha)
     
     -- Draw the icon
     spriteMode(CORNER)
-    sprite(asset.builtin.UI.Grey_Panel, x + padding, y + padding, icon_size, icon_size)
+    if meta.icon then -- Downloaded icon
+        sprite(meta.icon, x + padding, y + padding, icon_size, icon_size)
+    else -- Or default blank icon
+        sprite(asset.builtin.UI.Grey_Panel, x + padding, y + padding, icon_size, icon_size)
+    end
     
     -- Draw the title
     if meta.installed then

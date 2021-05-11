@@ -11,16 +11,8 @@ local app_browser = nil
 local webrepo = nil
 
 local webrepoDelegate = {}
-function webrepoDelegate.onMetadataUpdated(metadata)
+function webrepoDelegate.onMetadataAdded(metadata)
     app_browser:addProject(metadata)
-end
-
-function webrepoDelegate.onProjectDownloaded(project_name, project_info)
-    
-end
-
-function webrepoDelegate.onProjectUpdated(project_name, project_info)
-    
 end
 
 -- Perform the initial Web Repo setup and provide the user
@@ -38,9 +30,9 @@ function setup()
         -- Initialise Github API lib
         local github = GithubAPI(token, GITHUB_USER, GITHUB_REPO, GITHUB_BRANCH)
         
-        -- Initialise the WebRepo
+        -- Initialise the WebRepo and set it in the browser
         webrepo = WebRepo(github, webrepoDelegate)
-        app_browser:setWebRepo(webrepo)
+        app_browser.webrepo = webrepo
         
         --[[
         if webrepo:updateAvailableFor("WebRepo") and GITHUB_BRANCH ~= "dev" then

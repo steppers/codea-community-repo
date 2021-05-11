@@ -12,7 +12,7 @@ function WebRepo:init(api, delegate)
         
         -- Inform our delegate so all the cached projects can be listed
         for _,v in pairs(self.metadata) do
-            self.delegate.onMetadataUpdated(v)
+            self.delegate.onMetadataAdded(v)
         end
     end
     
@@ -20,8 +20,8 @@ function WebRepo:init(api, delegate)
 end
 
 function WebRepo:updateListings()
-    self.api:getContent("/", function(data)
-        for _,v in pairs(data) do
+    self.api:getContent("/", function(content)
+        for _,v in pairs(content) do
             
             -- We only care about .codea project bundles
             if string.find(v.name, ".codea") and v.type == "dir" then
@@ -39,7 +39,7 @@ function WebRepo:updateListings()
                             error("Failed to get Info.plist for " .. v.path)
                         end
                         
-                        data = parsePList(data)
+                        data = parsePList(data)            
                         
                         -- Update the metadata
                         local metadata = self.metadata[v.name] or {}
@@ -52,7 +52,9 @@ function WebRepo:updateListings()
                         metadata.version = data.Version or "1.0"
                         metadata.hidden = data.Hidden or false
                         metadata.library = data.Library or false
-                        metadata.icon = data.Icon or nil
+                        metadata.icon = nil
+                        metadata.icon_path = data.Icon or nil
+                        metadata.icon_downloading = false
                         
                         -- Inform our delegate that the metadata has been added
                         -- if the metadata already exists we've just updated it above
@@ -81,6 +83,14 @@ function WebRepo:flushMetadata()
 end
 
 function WebRepo:downloadProject(project_meta)
+    
+    -- Get the contents of the project
+    self.api:getContent(project_meta.path, function(content)
+        for _,v in pairs(content) do
+            print(v.name)
+        end
+    end)
+    
     print("Downloading", project_meta.name)
 end
 
@@ -94,6 +104,32 @@ end
 
 function WebRepo:launchProject(project_meta)
     print("Launching:", project_meta.name)
+end
+
+function WebRepo:getProjectIcon(project_meta)
+    -- Early out
+    if project_meta.icon or project_meta.icon_path == nil or project_meta.icon_downloading then
+        return
+    end
+    
+    -- If it's installed grab the icon from the installed project
+    if project_meta.installed then
+        project_meta.icon = readImage(asset .. "/../" .. project_meta.path .. "/" ..project_meta.icon_path)
+        return
+    end
+    
+    -- Set flag
+    project_meta.icon_downloading = true
+    
+    -- Get the icon file
+    self.api:getFile(project_meta.path .. "/" .. project_meta.icon_path, function(data)
+        if not data then
+            error("Failed to get Icon for " .. project_meta.path)
+        end
+        
+        project_meta.icon = data
+        project_meta.icon_downloading = false
+    end)
 end
 
 function WebRepoDelegate(t)

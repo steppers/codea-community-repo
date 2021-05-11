@@ -11,10 +11,6 @@ function Browser:init()
     self.webrepo = nil
 end
 
-function Browser:setWebRepo(webrepo)
-    self.webrepo = webrepo
-end
-
 function Browser:addProject(project_metadata)
     if not project_metadata.hidden then
         table.insert(self.all_entries, project_metadata)
@@ -63,6 +59,14 @@ function Browser:draw()
             alpha = 255 * ((y - (fade_y_min - app_height))/app_height)
         end
         
+        -- Download the icon
+        -- if #self.all_entries < 100 or (y > -app_height*3 and y < HEIGHT + app_height*2) then
+        if y > -app_height*3 and y < HEIGHT + app_height*2 then
+            self.webrepo:getProjectIcon(e)
+        else
+            e.icon = nil -- Free the icon
+        end
+            
         -- Draw listing
         drawProjectListing(e, x * self.app_width + layout.safeArea.left, y, self.app_width, app_height, alpha)
         
