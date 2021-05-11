@@ -3,68 +3,25 @@ Browser = class()
 local app_height = 80
 local search_bar_height = 52
 
-function Browser:init(projects)
+function Browser:init()
     self.all_entries = {}
     self.recents = {}
     self.scroll = 0
     self.search_bar = SearchBar()
-    
-    if projects then
-        for _,v in pairs(projects) do
-            if not v.hidden then
-                table.insert(self.all_entries, ProjectListing(v))
-            end
-        end
+    self.webrepo = nil
+end
+
+function Browser:setWebRepo(webrepo)
+    self.webrepo = webrepo
+end
+
+function Browser:addProject(project_metadata)
+    if not project_metadata.hidden then
+        table.insert(self.all_entries, project_metadata)
         
         -- Sort into alphabetical order
         table.sort(self.all_entries, function(a, b)
-            return a.meta.display_name < b.meta.display_name
-        end)
-    end
-end
-
-function Browser:addProject(project)
-    if not project.hidden then
-        table.insert(self.all_entries, ProjectListing(project))
-    end
-    
-    -- Sort into alphabetical order
-    table.sort(self.all_entries, function(a, b)
-        return a.meta.display_name < b.meta.display_name
-    end)
-end
-
--- Rare occurance, slow
-function Browser:removeProject(projectName)
-    local old_entries = self.all_entries
-    self.all_entries = {}
-    
-    for _,v in pairs(old_entries) do
-        if v.meta.project_name ~= projectName then
-            table.insert(self.all_entries, ProjectListing(v))
-        end
-    end
-    
-    -- Sort into alphabetical order
-    table.sort(self.all_entries, function(a, b)
-        return a.meta.display_name < b.meta.display_name
-    end)
-end
-
-function Browser:reinit(projects)
-    self.all_entries = {}
-    self.recents = {}
-    
-    if projects then
-        for _,v in pairs(projects) do
-            if not v.hidden then
-                table.insert(self.all_entries, ProjectListing(v))
-            end
-        end
-        
-        -- Sort into alphabetical order
-        table.sort(self.all_entries, function(a, b)
-            return a.meta.display_name < b.meta.display_name
+            return a.name < b.name
         end)
     end
 end
@@ -94,7 +51,7 @@ function Browser:draw()
     
     local x = 0
     local y = self.browser_top - app_height + self.scroll
-    for i,e in ipairs(self.all_entries) do
+    for _,e in ipairs(self.all_entries) do
         
         -- Fade the project listing as it scrolls offscreen
         local alpha = 255
@@ -107,7 +64,7 @@ function Browser:draw()
         end
         
         -- Draw listing
-        e:draw(x * self.app_width + layout.safeArea.left, y, self.app_width, app_height, alpha)
+        drawProjectListing(e, x * self.app_width + layout.safeArea.left, y, self.app_width, app_height, alpha)
         
         x = x + 1
         if x == self.num_x then
@@ -149,10 +106,10 @@ function Browser:tap(pos)
     local proj = self.all_entries[app_index]
     if proj then
         -- Only non-library projects can be launched
-        if projectIsInstalled(proj.meta.project_name) and not proj.meta.is_library then
-            launchProject(proj.meta.project_name)
-        elseif not projectIsDownloading(proj.meta.project_name) then
-            downloadProject(proj.meta.project_name, nil)
+        if proj.installed and not proj.library then
+            self.webrepo:launchProject(proj)
+        elseif not proj.downloading then
+            self.webrepo:downloadProject(proj, nil)
         end
     end
 end

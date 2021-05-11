@@ -1,10 +1,4 @@
-ProjectListing = class()
-
-function ProjectListing:init(metadata)
-    self.meta = metadata
-end
-
-function ProjectListing:draw(x, y, w, h, alpha)
+function drawProjectListing(meta, x, y, w, h, alpha)
     
     -- Offscreen?
     if y < -h or y > HEIGHT then
@@ -26,23 +20,23 @@ function ProjectListing:draw(x, y, w, h, alpha)
     sprite(asset.builtin.UI.Grey_Panel, x + padding, y + padding, icon_size, icon_size)
     
     -- Draw the title
-    if self.meta.installed then
+    if meta.installed then
         fill(22, 255, 0)
-    elseif self.meta.downloading then
+    elseif meta.downloading then
         fill(255, 0, 224)
     else
         fill(0, 255, 224, alpha)
     end    
     fontSize(22)
-    text(self.meta.display_name, x + h, y + title_offset_y)
+    text(meta.name, x + h, y + title_offset_y)
     
     -- Draw the description & author
     fill(195, alpha)
     fontSize(17)
-    local desc = self.meta.desc
-    if self.meta.is_library then
+    local desc = meta.desc
+    if meta.library then
         desc = "[Lib] " .. desc
     end
     text(desc, x + h, y + desc_offset_y)
-    text(self.meta.author, x + h, y + author_offset_y)
+    text(meta.author, x + h, y + author_offset_y)
 end

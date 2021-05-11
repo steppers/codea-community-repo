@@ -4,63 +4,70 @@
 -- 'dev' will prevent the autoupdate of this project.
 GITHUB_BRANCH = "dev"
 
-saveProjectData("Author",       "Steppers")
-saveProjectData("Description",  "Load & run Codea projects from the internet!")
-saveProjectData("Version",      "1.0")
-saveProjectData("Date",         "06-May-2021")
+GITHUB_USER = "steppers"
+GITHUB_REPO = "codea-community-repo"
 
 local app_browser = nil
+local webrepo = nil
+
+local webrepoDelegate = {}
+function webrepoDelegate.onMetadataUpdated(metadata)
+    app_browser:addProject(metadata)
+end
+
+function webrepoDelegate.onProjectDownloaded(project_name, project_info)
+    
+end
+
+function webrepoDelegate.onProjectUpdated(project_name, project_info)
+    
+end
 
 -- Perform the initial Web Repo setup and provide the user
 -- with the project selection UI
 function setup()
-
+    
     -- Go fullscreen now we have a UI
     --viewer.mode = FULLSCREEN
-
-    -- Initialise the App browser
+    
+    -- Initialise the App browser so the search bar appears
     app_browser = Browser()
     
     getAccessToken(function(token)
         
-        -- Initialise the web repo system
-        initWebRepo(token)
+        -- Initialise Github API lib
+        local github = GithubAPI(token, GITHUB_USER, GITHUB_REPO, GITHUB_BRANCH)
         
-        -- List available projects
-        local projects = getProjects()
-        app_browser = Browser(projects)
+        -- Initialise the WebRepo
+        webrepo = WebRepo(github, webrepoDelegate)
+        app_browser:setWebRepo(webrepo)
         
-        -- Update our cached list of available projects
-        -- callback called for each project updated
-        updateWebRepo(function(project)
-            
-            -- Update ourselves
-            if projectCanBeUpdated("WebRepo") and GITHUB_BRANCH ~= "dev" then
-                downloadProject("WebRepo", function(success)
-                    if success then
-                        viewer.close()
-                    end
-                end)
-            end
-            
-            -- List new project
-            app_browser:addProject(project)
-        end)
+        --[[
+        if webrepo:updateAvailableFor("WebRepo") and GITHUB_BRANCH ~= "dev" then
+            webrepo:downloadProject("WebRepo", function(success)
+                if success then
+                    viewer.close()
+                end
+            end)
+        end
+        ]]
     end)
 end
 
 function draw()
     background(32)
-
+    
+    --[[
     if projectIsDownloading("WebRepo") then
         fill(255)
         textMode(CENTER)
         textAlign(CENTER)
         text("Autoupdating\nWebRepo Project", WIDTH/2, HEIGHT/2)
     else
+    ]]
         app_browser:draw()
-    end
-
+    --end
+    
     updateAccessToken()
 end
 
