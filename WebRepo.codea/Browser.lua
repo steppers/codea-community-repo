@@ -62,13 +62,13 @@ function Browser:draw()
         -- Download the icon
         -- if #self.all_entries < 100 or (y > -app_height*3 and y < HEIGHT + app_height*2) then
         if y > -app_height*3 and y < HEIGHT + app_height*2 then
-            self.webrepo:getProjectIcon(e)
+            self.webrepo:initProjectIcon(e)
         else
-            e.icon = nil -- Free the icon
+            self.webrepo:freeProjectIcon(e) -- Free the icon
         end
             
         -- Draw listing
-        drawProjectListing(e, x * self.app_width + layout.safeArea.left, y, self.app_width, app_height, alpha)
+        self:drawProjectListing(e, x * self.app_width + layout.safeArea.left, y, self.app_width, app_height, alpha)
         
         x = x + 1
         if x == self.num_x then
@@ -83,6 +83,54 @@ function Browser:draw()
     
     popMatrix()
     popStyle()
+end
+
+function Browser:drawProjectListing(meta, x, y, w, h, alpha)
+    
+    -- Offscreen?
+    if y < -h or y > HEIGHT then
+        return
+    end
+    
+    local padding = 7
+    local icon_size = h - (padding*2)
+    
+    local icon_offset_y = padding
+    local title_offset_y = h - 22 - padding
+    local desc_offset_y = (h - fontSize() - 4) / 2
+    local author_offset_y = padding
+    
+    tint(255, alpha)
+    
+    -- Draw the icon
+    spriteMode(CORNER)
+    local icon = self.webrepo:getProjectIcon(meta)
+    if icon then -- Downloaded icon
+        sprite(icon, x + padding, y + padding, icon_size, icon_size)
+    else -- Or default blank icon
+        sprite(asset.builtin.UI.Grey_Panel, x + padding, y + padding, icon_size, icon_size)
+    end
+    
+    -- Draw the title
+    if meta.installed then
+        fill(22, 255, 0)
+    elseif meta.downloading then
+        fill(255, 0, 224)
+    else
+        fill(0, 255, 224, alpha)
+    end    
+    fontSize(22)
+    text(meta.name, x + h, y + title_offset_y)
+    
+    -- Draw the description & author
+    fill(195, alpha)
+    fontSize(17)
+    local desc = meta.desc
+    if meta.library then
+        desc = "[Lib] " .. desc
+    end
+    text(desc, x + h, y + desc_offset_y)
+    text(meta.author, x + h, y + author_offset_y)
 end
 
 function Browser:tap(pos)

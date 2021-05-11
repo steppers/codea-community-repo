@@ -4,6 +4,7 @@ function WebRepo:init(api, delegate)
     self.api = api
     self.delegate = delegate
     self.metadata = {}
+    self.icons = {}
     
     -- Load our cached app metadata
     local mdjson = readText(asset.documents .. "webrepocache.json")
@@ -12,6 +13,12 @@ function WebRepo:init(api, delegate)
         
         -- Inform our delegate so all the cached projects can be listed
         for _,v in pairs(self.metadata) do
+            
+            -- Clear values that should be reset at launch
+            v.downloading = false
+            v.icon_downloading = false
+            v.icon_index = nil
+            
             self.delegate.onMetadataAdded(v)
         end
     end
@@ -52,7 +59,7 @@ function WebRepo:updateListings()
                         metadata.version = data.Version or "1.0"
                         metadata.hidden = data.Hidden or false
                         metadata.library = data.Library or false
-                        metadata.icon = nil
+                        metadata.icon_index = nil
                         metadata.icon_path = data.Icon or nil
                         metadata.icon_downloading = false
                         
@@ -106,16 +113,20 @@ function WebRepo:launchProject(project_meta)
     print("Launching:", project_meta.name)
 end
 
-function WebRepo:getProjectIcon(project_meta)
+function WebRepo:initProjectIcon(project_meta)
     -- Early out
-    if project_meta.icon or project_meta.icon_path == nil or project_meta.icon_downloading then
+    if project_meta.icon_index or project_meta.icon_path == nil or project_meta.icon_downloading then
         return
     end
     
     -- If it's installed grab the icon from the installed project
     if project_meta.installed then
-        project_meta.icon = readImage(asset .. "/../" .. project_meta.path .. "/" ..project_meta.icon_path)
-        return
+        table.insert(self.icons, {
+            icon = readImage(asset .. "/../" .. project_meta.path .. "/" ..project_meta.icon_path),
+            meta = project_meta
+        })
+        project_meta.icon_index = #self.icons
+        return 
     end
     
     -- Set flag
@@ -127,9 +138,32 @@ function WebRepo:getProjectIcon(project_meta)
             error("Failed to get Icon for " .. project_meta.path)
         end
         
-        project_meta.icon = data
+        table.insert(self.icons, {
+            icon = data,
+            meta = project_meta
+        })
+        project_meta.icon_index = #self.icons
         project_meta.icon_downloading = false
     end)
+end
+
+function WebRepo:freeProjectIcon(project_meta)
+    -- Remove the last icon
+    local last = table.remove(self.icons)
+    
+    -- Are we done?
+    if last.meta == project_meta then
+        return
+    end
+    
+    -- Move the last element into the removal index
+    self.icons[project_meta.icon_index] = last
+end
+
+function WebRepo:getProjectIcon(project_meta)
+    if project_meta.icon_index then
+        return self.icons[project_meta.icon_index].icon
+    end
 end
 
 function WebRepoDelegate(t)
