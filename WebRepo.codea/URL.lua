@@ -45,7 +45,7 @@ function URLRequest:issue(callback, cache_to_use)
             -- Check the rate limit header
             local rate_limit = response.headers["X-RateLimit-Remaining"]
             if rate_limit and tonumber(rate_limit) < 50 then
-                print("Approaching Github API Rate Limit! (<50 left)")
+                viewer.alert("Approaching Github API Rate Limit! (<50 left)")
             end
             
             -- Cache the result
