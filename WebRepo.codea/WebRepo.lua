@@ -25,6 +25,7 @@ function WebRepo:init(api, delegate)
             v.downloading = false
             v.icon_downloading = false
             v.icon_index = nil
+            v.filtered = false
             
             -- Check if we should autoupdate
             if v.update_available and v.path == "WebRepo.codea" and GITHUB_BRANCH == "main" then
@@ -74,6 +75,7 @@ function WebRepo:updateListings()
                         metadata.icon_index = nil
                         metadata.icon_path = data.Icon or nil
                         metadata.icon_downloading = false
+                        metadata.filtered = false
                         
                         -- Adjust icon name if we haven't explicitly specified in the plist
                         if metadata.icon_path and string.sub(metadata.icon_path, -4, -1) ~= ".png" then

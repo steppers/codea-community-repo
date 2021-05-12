@@ -7,7 +7,7 @@ function Browser:init()
     self.all_entries = {}
     self.recents = {}
     self.scroll = 0
-    self.search_bar = SearchBar()
+    self.search_bar = SearchBar(self.all_entries)
     self.webrepo = nil
 end
 
@@ -49,31 +49,35 @@ function Browser:draw()
     local y = self.browser_top - app_height + self.scroll
     for _,e in ipairs(self.all_entries) do
         
-        -- Fade the project listing as it scrolls offscreen
-        local alpha = 255
-        local fade_y_max = self.browser_top - app_height
-        local fade_y_min = layout.safeArea.bottom
-        if y > fade_y_max then
-            alpha = 255 * ((fade_y_max + app_height - y)/app_height)
-        elseif y < fade_y_min then
-            alpha = 255 * ((y - (fade_y_min - app_height))/app_height)
-        end
-        
-        -- Download the icon
-        -- if #self.all_entries < 100 or (y > -app_height*3 and y < HEIGHT + app_height*2) then
-        if y > -app_height*3 and y < HEIGHT + app_height*2 then
-            self.webrepo:initProjectIcon(e)
-        else
-            self.webrepo:freeProjectIcon(e) -- Free the icon
-        end
+        -- Ignore filtered projects
+        if not e.filtered then
             
-        -- Draw listing
-        self:drawProjectListing(e, x * self.app_width + layout.safeArea.left, y, self.app_width, app_height, alpha)
-        
-        x = x + 1
-        if x == self.num_x then
-            x = 0
-            y = y - app_height
+            -- Fade the project listing as it scrolls offscreen
+            local alpha = 255
+            local fade_y_max = self.browser_top - app_height
+            local fade_y_min = layout.safeArea.bottom
+            if y > fade_y_max then
+                alpha = 255 * ((fade_y_max + app_height - y)/app_height)
+            elseif y < fade_y_min then
+                alpha = 255 * ((y - (fade_y_min - app_height))/app_height)
+            end
+            
+            -- Download the icon
+            -- if #self.all_entries < 100 or (y > -app_height*3 and y < HEIGHT + app_height*2) then
+            if y > -app_height*3 and y < HEIGHT + app_height*2 then
+                self.webrepo:initProjectIcon(e)
+            else
+                self.webrepo:freeProjectIcon(e) -- Free the icon
+            end
+            
+            -- Draw listing
+            self:drawProjectListing(e, x * self.app_width + layout.safeArea.left, y, self.app_width, app_height, alpha)
+            
+            x = x + 1
+            if x == self.num_x then
+                x = 0
+                y = y - app_height
+            end
         end
     end
     
@@ -148,7 +152,7 @@ function Browser:tap(pos)
     local tapped_app_y = math.floor(((self.browser_top-pos.y) + self.scroll) / app_height)
     
     local app_index = (tapped_app_y * self.num_x) + tapped_app_x + 1
-
+    
     -- Is this app index valid?
     if app_index > #self.all_entries then
         return
