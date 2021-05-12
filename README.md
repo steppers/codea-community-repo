@@ -33,6 +33,7 @@ You'll also need to provide the following:
  - Version string
  - Is the project a library (Can it be run standalone?)
  - Link to Codea.io forum discussion related to the project
+ - A LICENSE.txt file if you wish one to be included with your project
 
 As only I currently have write access to the repository please be patient when it comes to submitting apps. I hope to bring others on board too if this gets enough interest.
 
