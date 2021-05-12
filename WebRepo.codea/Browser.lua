@@ -113,11 +113,11 @@ function Browser:drawProjectListing(meta, x, y, w, h, alpha)
     
     -- Draw the title
     if meta.installed then
-        fill(22, 255, 0)
+        fill(22, 255, 0, alpha)
     elseif meta.downloading then
-        fill(255, 0, 224)
+        fill(255, 0, 224, alpha)
     else
-        fill(34, 165, 241)
+        fill(34, 165, 241, alpha)
     end    
     fontSize(22)
     text(meta.name, x + h, y + title_offset_y)
