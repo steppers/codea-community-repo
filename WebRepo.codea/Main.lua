@@ -15,6 +15,13 @@ function webrepoDelegate.onMetadataAdded(metadata)
     app_browser:addProject(metadata)
 end
 
+function webrepoDelegate.onProjectDownloaded(metadata)
+    -- If we autoupdate ourself, close so we can reload
+    if metadata.path == "WebRepo.codea" then
+        viewer.close()
+    end
+end
+
 -- Perform the initial Web Repo setup and provide the user
 -- with the project selection UI
 function setup()
@@ -39,16 +46,19 @@ end
 function draw()
     background(32)
     
-    --[[
-    if projectIsDownloading("WebRepo") then
-        fill(255)
-        textMode(CENTER)
-        textAlign(CENTER)
-        text("Autoupdating\nWebRepo Project", WIDTH/2, HEIGHT/2)
+    if webrepo then
+        local own_meta = webrepo:getProjectMetadata("WebRepo.codea")
+        if own_meta and own_meta.downloading then
+            fill(255)
+            textMode(CENTER)
+            textAlign(CENTER)
+            text("Autoupdating\nWebRepo Project", WIDTH/2, HEIGHT/2)
+        else
+            app_browser:draw()
+        end
     else
-    ]]
         app_browser:draw()
-    --end
+    end
     
     updateAccessToken()
 end

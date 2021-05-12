@@ -11,7 +11,7 @@
 	<key>Version</key>
 	<string>1.0</string>
 	<key>Hidden</key>
-	<false/>
+	<true/>
 	<key>Library</key>
 	<false/>
 	<key>Buffer Order</key>

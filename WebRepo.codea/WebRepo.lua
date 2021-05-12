@@ -18,12 +18,18 @@ function WebRepo:init(api, delegate)
             local editor_name = string.gsub(v.path, ".codea", "")
             if v.installed and not hasProject(editor_name) then
                 v.installed = false
+                v.sha = nil
             end
             
             -- Clear values that should be reset at launch
             v.downloading = false
             v.icon_downloading = false
             v.icon_index = nil
+            
+            -- Check if we should autoupdate
+            if v.update_available and v.path == "WebRepo.codea" then
+                self:downloadProject(v)
+            end
             
             self.delegate.onMetadataAdded(v)
         end
@@ -69,8 +75,7 @@ function WebRepo:updateListings()
                         metadata.icon_path = data.Icon or nil
                         metadata.icon_downloading = false
                         
-                        -- Adjust icon path if we haven't explicitly specified
-                        -- the extensionin the plist
+                        -- Adjust icon name if we haven't explicitly specified in the plist
                         if metadata.icon_path and string.sub(metadata.icon_path, -4, -1) ~= ".png" then
                             if ContentScaleFactor == 2 then
                                 metadata.icon_path = metadata.icon_path .. "@2x.png"
@@ -92,22 +97,17 @@ function WebRepo:updateListings()
                             self.delegate.onMetadataAdded(metadata)
                         end
                         
+                        -- If this project has an update, do it automatically
+                        if v.name == "WebRepo.codea" then
+                            self:downloadProject(metadata)
+                        end
+                        
                         -- Flush the new metadata to disk
                         self:flushMetadata()
                     end)
                 end
             end
         end
-        
-        --[[
-        if webrepo:updateAvailableFor("WebRepo") and GITHUB_BRANCH ~= "dev" then
-            webrepo:downloadProject("WebRepo", function(success)
-                if success then
-                    viewer.close()
-                end
-            end)
-        end
-        ]]
     end)
 end
 
@@ -135,6 +135,9 @@ function WebRepo:downloadProject(project_meta)
             project_meta.installed = true
             project_meta.update_available = false
             self:flushMetadata()
+            
+            -- Inform the delegate
+            self.delegate.onProjectDownloaded(project_meta)
         end
     end
     
@@ -286,6 +289,11 @@ function WebRepo:getProjectIcon(project_meta)
     if project_meta.icon_index then
         return self.icons[project_meta.icon_index].icon
     end
+end
+
+-- e.g getProjectMetadata("WebRepo.codea")
+function WebRepo:getProjectMetadata(project_path)
+    return self.metadata[project_path]
 end
 
 function WebRepoDelegate(t)
