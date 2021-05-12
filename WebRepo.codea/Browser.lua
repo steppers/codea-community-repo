@@ -135,7 +135,7 @@ end
 
 function Browser:tap(pos)
     -- Tapped on the search bar?
-    if pos.y > HEIGHT - search_bar_height then
+    if pos.y > self.display_top - search_bar_height then
         self.search_bar:select(true)
         return
     end
