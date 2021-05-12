@@ -90,10 +90,8 @@ local function validateToken(token, callback)
         function(error)
             if string.find(error, "401", 1, true) then
                 newToken(callback)
-            elseif string.find(error, "offline", 1, true) then
-                callback(token) -- Assume it's ok, we can't do much else
             else
-                print("newToken()", error)
+                callback(token) -- Assume it's ok, we can't do much else
             end
         end,
         params)
