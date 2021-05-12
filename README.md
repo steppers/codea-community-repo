@@ -52,6 +52,7 @@ If you have any questions do feel free to send me a message at [Codea.io](https:
 ### Testing the .codea bundle
 Do not commit untested projects to the 'main' branch as this will be immediately available to users.
 - Commit the .codea bundle to the 'sub' branch, making sure the branch is up to date with 'main' beforehand
-- In Codea open your copy of the WebRepo project and change the value of `GITHUB_BRANCH` on the 'Main' tab to `sub`. This should disable autoupdates for your local copy and direct all requests to the submission testing branch.
+- In Codea open your copy of the WebRepo project and change the value of `GITHUB_BRANCH` on the 'Main' tab to `"sub"`. This should disable autoupdates for your local copy and direct all requests to the submission testing branch.
 - When running the WebRepo project the new submission should now be available to download. Download it and ensure the project does not crash when launched. If assets are missing you may be missing the downloadable asset packs in Codea.
 - If all is well the 'sub' branch can then be merged into 'main' to make the project available to all users.
+- You can then swap your local copy of WebRepo back to using `GITHUB_BRANCH = "main"`
