@@ -69,6 +69,16 @@ function WebRepo:updateListings()
                         metadata.icon_path = data.Icon or nil
                         metadata.icon_downloading = false
                         
+                        -- Adjust icon path if we haven't explicitly specified
+                        -- the extensionin the plist
+                        if metadata.icon_path and string.sub(metadata.icon_path, -4, -1) ~= ".png" then
+                            if ContentScaleFactor == 2 then
+                                metadata.icon_path = metadata.icon_path .. "@2x.png"
+                            else
+                                metadata.icon_path = metadata.icon_path .. ".png"
+                            end
+                        end
+                        
                         -- Inform our delegate that the metadata has been added
                         -- if the metadata already exists we've just updated it above
                         -- so the project browser will update automatically

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Name</key>
+	<string>Fett Assault</string>
+	<key>Author</key>
+	<string>West</string>
+	<key>Description</key>
+	<string>Sidescroller</string>
+	<key>Version</key>
+	<string>1.0</string>
+	<key>Hidden</key>
+	<false/>
+	<key>Library</key>
+	<false/>
+	<key>Icon</key>
+	<string>Icon.png</string>
+	<key>Buffer Order</key>
+	<array>
+		<string>Main</string>
+	</array>
+</dict>
+</plist>
