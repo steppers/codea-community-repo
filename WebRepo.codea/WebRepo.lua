@@ -27,7 +27,7 @@ function WebRepo:init(api, delegate)
             v.icon_index = nil
             
             -- Check if we should autoupdate
-            if v.update_available and v.path == "WebRepo.codea" then
+            if v.update_available and v.path == "WebRepo.codea" and GITHUB_BRANCH == "main" then
                 self:downloadProject(v)
             end
             
@@ -98,7 +98,7 @@ function WebRepo:updateListings()
                         end
                         
                         -- If this project has an update, do it automatically
-                        if v.name == "WebRepo.codea" then
+                        if v.name == "WebRepo.codea" and GITHUB_BRANCH == "main" then
                             self:downloadProject(metadata)
                         end
                         

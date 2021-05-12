@@ -2,7 +2,7 @@
 
 -- Change this to 'main' for release builds.
 -- 'dev' will prevent the autoupdate of this project.
-GITHUB_BRANCH = "dev"
+GITHUB_BRANCH = "main"
 
 GITHUB_USER = "steppers"
 GITHUB_REPO = "codea-community-repo"
