@@ -14,6 +14,8 @@
 	<true/>
 	<key>Library</key>
 	<false/>
+	<key>Icon</key>
+	<string>Icon@2x.png</string>
 	<key>Buffer Order</key>
 	<array>
 		<string>Main</string>
@@ -28,6 +30,7 @@
 		<string>inflate</string>
 		<string>github_oauth</string>
 		<string>zzlib</string>
+		<string>fzy</string>
 	</array>
 </dict>
 </plist>

@@ -5,18 +5,20 @@ local search_bar_height = 52
 
 function Browser:init()
     self.all_entries = {}
-    self.recents = {}
+    self.displayed_entries = {}
     self.scroll = 0
-    self.search_bar = SearchBar(self.all_entries)
+    self.scroll_velocity = 0
+    self.search_bar = SearchBar(self.all_entries, self.displayed_entries)
     self.webrepo = nil
 end
 
 function Browser:addProject(project_metadata)
     if not project_metadata.hidden then
         table.insert(self.all_entries, project_metadata)
+        table.insert(self.displayed_entries, project_metadata)
         
         -- Sort into alphabetical order
-        table.sort(self.all_entries, function(a, b)
+        table.sort(self.displayed_entries, function(a, b)
             return a.name < b.name
         end)
     end
@@ -45,39 +47,47 @@ function Browser:draw()
     self.browser_top = self.display_top - search_bar_height -- 52 for search bar
     self.browser_height = self.display_height - search_bar_height -- 52 for search bar
     
+    -- Update scroll with velocity
+    self.scroll = self.scroll + self.scroll_velocity * DeltaTime
+    if self.scroll < 0 then
+        self.scroll = 0
+    end
+    -- Limit the maximum scroll
+    local max_scroll = math.max((math.ceil(#self.displayed_entries / self.num_x) * app_height) - self.browser_height, 0)
+    if self.scroll > max_scroll then
+        self.scroll = max_scroll
+        self.scroll_velocity = 0
+    end
+    
     local x = 0
     local y = self.browser_top - app_height + self.scroll
-    for _,e in ipairs(self.all_entries) do
+    for _,e in ipairs(self.displayed_entries) do
+            
+        -- Fade the project listing as it scrolls offscreen
+        local alpha = 255
+        local fade_y_max = self.browser_top - app_height
+        local fade_y_min = layout.safeArea.bottom
+        if y > fade_y_max then
+            alpha = 255 * ((fade_y_max + app_height - y)/app_height)
+        elseif y < fade_y_min then
+            alpha = 255 * ((y - (fade_y_min - app_height))/app_height)
+        end
         
-        -- Ignore filtered projects
-        if not e.filtered then
-            
-            -- Fade the project listing as it scrolls offscreen
-            local alpha = 255
-            local fade_y_max = self.browser_top - app_height
-            local fade_y_min = layout.safeArea.bottom
-            if y > fade_y_max then
-                alpha = 255 * ((fade_y_max + app_height - y)/app_height)
-            elseif y < fade_y_min then
-                alpha = 255 * ((y - (fade_y_min - app_height))/app_height)
-            end
-            
-            -- Download the icon
-            -- if #self.all_entries < 100 or (y > -app_height*3 and y < HEIGHT + app_height*2) then
-            if y > -app_height*3 and y < HEIGHT + app_height*2 then
-                self.webrepo:initProjectIcon(e)
-            else
-                self.webrepo:freeProjectIcon(e) -- Free the icon
-            end
-            
-            -- Draw listing
-            self:drawProjectListing(e, x * self.app_width + layout.safeArea.left, y, self.app_width, app_height, alpha)
-            
-            x = x + 1
-            if x == self.num_x then
-                x = 0
-                y = y - app_height
-            end
+        -- Download the icon
+        -- if #self.all_entries < 100 or (y > -app_height*3 and y < HEIGHT + app_height*2) then
+        if y > -app_height*3 and y < HEIGHT + app_height*2 then
+            self.webrepo:initProjectIcon(e)
+        else
+            self.webrepo:freeProjectIcon(e) -- Free the icon
+        end
+        
+        -- Draw listing
+        self:drawProjectListing(e, x * self.app_width + layout.safeArea.left, y, self.app_width, app_height, alpha)
+        
+        x = x + 1
+        if x == self.num_x then
+            x = 0
+            y = y - app_height
         end
     end
     
@@ -141,6 +151,9 @@ function Browser:tap(pos)
     -- Tapped on the search bar?
     if pos.y > self.display_top - search_bar_height then
         self.search_bar:select(true)
+        
+        -- Stop scrolling
+        self.scroll_velocity = 0
         return
     end
     
@@ -154,12 +167,12 @@ function Browser:tap(pos)
     local app_index = (tapped_app_y * self.num_x) + tapped_app_x + 1
     
     -- Is this app index valid?
-    if app_index > #self.all_entries then
+    if app_index > #self.displayed_entries then
         return
     end
     
     -- Download or launch the project
-    local proj = self.all_entries[app_index]
+    local proj = self.displayed_entries[app_index]
     if proj then
         -- Only non-library projects can be launched
         if proj.installed and not proj.library then
@@ -170,7 +183,21 @@ function Browser:tap(pos)
     end
 end
 
-function Browser:pan(pos, delta)
+function Browser:pan(pos, delta, velocity, state)
+    if state == ENDED then
+        self.scroll_velocity = velocity.y
+        
+        -- Slow down scroll over 1 second
+        self.scroll_tween = tween(1, self, { scroll_velocity = 0 })
+        tween.play(self.scroll_tween)
+    else
+        if self.scroll_tween then
+            tween.stop(self.scroll_tween)
+            self.scroll_tween = nil
+        end
+        self.scroll_velocity = 0
+    end
+        
     self.scroll = self.scroll + delta.y
     
     if self.scroll < 0 then
@@ -178,7 +205,7 @@ function Browser:pan(pos, delta)
     end
     
     -- Calculate the maximum scroll
-    local max_scroll = math.max((math.ceil(#self.all_entries / self.num_x) * app_height) - self.browser_height, 0)
+    local max_scroll = math.max((math.ceil(#self.displayed_entries / self.num_x) * app_height) - self.browser_height, 0)
     
     if self.scroll > max_scroll then
         self.scroll = max_scroll
@@ -189,5 +216,6 @@ function Browser:pan(pos, delta)
 end
 
 function Browser:keyboard(key)
+    self.scroll = 0
     self.search_bar:keyboard(key)
 end

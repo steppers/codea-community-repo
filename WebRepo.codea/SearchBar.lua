@@ -1,44 +1,37 @@
 SearchBar = class()
 
 -- Sets the 'filtered' flag on entries that do not match 'str' using a fuzzy match
-local function filter(entries, str)
-    for _,v in ipairs(entries) do
+local function filter(all_entries, displayed_entries, str)
+    for k in pairs (displayed_entries) do
+        displayed_entries[k] = nil
+    end
+    
+    for _,v in ipairs(all_entries) do
         
         -- Search name, description and author for matches
         if fzy.has_match(str, v.name) then
-            v.filtered = false
             v.filter_score = fzy.score(str, v.name)
+            table.insert(displayed_entries, v)
             
         elseif fzy.has_match(str, v.desc) then
-            v.filtered = false
             v.filter_score = fzy.score(str, v.desc)
+            table.insert(displayed_entries, v)
             
         elseif fzy.has_match(str, v.author) then
-            v.filtered = false
             v.filter_score = fzy.score(str, v.author)
-            
-        else
-            v.filtered = true
-            v.filter_score = nil
+            table.insert(displayed_entries, v)
         end
     end
     
     -- Sort by fzy score
-    table.sort(entries, function(a, b)
-        if a.filtered then
-            return false
-        end
-        
-        if b.filtered then
-            return true
-        end
-        
+    table.sort(displayed_entries, function(a, b)
         return a.filter_score > b.filter_score
     end)
 end
 
-function SearchBar:init(browser_entries)
+function SearchBar:init(browser_entries, displayed_entries)
     self.browser_entries = browser_entries
+    self.displayed_entries = displayed_entries
     self.typing = false
     self.buffer = "Search"
     self.buffer_selected = false
@@ -111,15 +104,18 @@ function SearchBar:keyboard(key)
         
         -- Clear filters
         for _,v in ipairs(self.browser_entries) do
-            v.filtered = false
             v.filter_score = nil
         end
         
+        for k,v in pairs (self.browser_entries) do
+            self.displayed_entries[k] = v
+        end
+        
         -- Sort back into alphabetical order
-        table.sort(self.browser_entries, function(a, b)
+        table.sort(self.displayed_entries, function(a, b)
             return a.name < b.name
         end)
     else
-        filter(self.browser_entries, self.buffer)
+        filter(self.browser_entries, self.displayed_entries, self.buffer)
     end
 end

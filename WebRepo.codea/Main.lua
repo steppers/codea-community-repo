@@ -67,8 +67,8 @@ function tap(pos)
     app_browser:tap(pos)
 end
 
-function pan(pos, delta, state)
-    app_browser:pan(pos, delta)
+function pan(pos, delta, velocity, state)
+    app_browser:pan(pos, delta, velocity, state)
 end
 
 function keyboard(key)
