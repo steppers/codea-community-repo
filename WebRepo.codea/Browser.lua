@@ -117,7 +117,7 @@ function Browser:drawProjectListing(meta, x, y, w, h, alpha)
     elseif meta.downloading then
         fill(255, 0, 224)
     else
-        fill(0, 255, 224, alpha)
+        fill(34, 165, 241)
     end    
     fontSize(22)
     text(meta.name, x + h, y + title_offset_y)

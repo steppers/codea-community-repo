@@ -20,7 +20,7 @@ end
 function setup()
     
     -- Go fullscreen now we have a UI
-    --viewer.mode = FULLSCREEN
+    viewer.mode = FULLSCREEN
     
     -- Initialise the App browser so the search bar appears
     app_browser = Browser()
@@ -33,16 +33,6 @@ function setup()
         -- Initialise the WebRepo and set it in the browser
         webrepo = WebRepo(github, webrepoDelegate)
         app_browser.webrepo = webrepo
-        
-        --[[
-        if webrepo:updateAvailableFor("WebRepo") and GITHUB_BRANCH ~= "dev" then
-            webrepo:downloadProject("WebRepo", function(success)
-                if success then
-                    viewer.close()
-                end
-            end)
-        end
-        ]]
     end)
 end
 

@@ -4,8 +4,14 @@
 URLRequest = class()
 
 function URLRequest:init(url, headers, method)
-    -- Replace spaces in path with '%20'
-    self.url = string.gsub(url, " ", "%%20")
+    -- Escape special characters
+    self.url = string.gsub(url, "%%", "%%25")
+    self.url = string.gsub(self.url, " ", "%%20")
+    self.url = string.gsub(self.url, "!", "%%21")
+    self.url = string.gsub(self.url, "#", "%%23")
+    self.url = string.gsub(self.url, "%$", "%%24")
+    self.url = string.gsub(self.url, "@", "%%40")
+    
     self.headers = headers or {}
     self.method = method or "GET"
 end
@@ -55,6 +61,7 @@ function URLRequest:issue(callback, cache_to_use)
     
     local function onFailure(err)
         if cached_response == nil then
+            print(self.url, err)
             callback(nil)
         end
         callback(cached_response)
