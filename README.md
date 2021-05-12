@@ -14,7 +14,7 @@ To top it all off, if there's an update to the WebRepo project, it'll update its
 To download a project, simply tap it. The title will turn purple to let you know it's downloading, then green when it's finished.
 To run a project that's been downloaded, either launch it using the WebRepo project or directly in Codea like any other project.
 
-![iPad](https://github.com/steppers/codea-community-repo/raw/main/screenshots/1.0a5_ipad.PNG)
+![iPad](https://github.com/steppers/codea-community-repo/raw/main/screenshots/1.0_ipad.jpg)
 
 # Submitting a project
 To submit a project and have it added to the repo, please export your project from within Codea to generate a .zip file.
@@ -31,9 +31,9 @@ I'll also need to know the following:
 
 As only I currently have write access to the repository please be patient when it comes to submitting apps. I hope to bring others on board too if this gets enough interest.
 
-Please note that attempts to submit malicious, unethical or innappropriate content will be ignored.
+Please note that attempts to submit illegal, malicious, unethical or innappropriate content will be ignored.
 
-![iPad](https://github.com/steppers/codea-community-repo/raw/main/screenshots/1.0a5_iphone.JPG)
+![iPhone](https://github.com/steppers/codea-community-repo/raw/main/screenshots/1.0_iphone.jpg)
 
 # Adding a project (For Contributors)
 TODO
