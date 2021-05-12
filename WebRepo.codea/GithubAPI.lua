@@ -53,6 +53,8 @@ function GithubAPI:getFile(path, callback)
         if response then
             -- Send data to the callback
             callback(response.data)
+        else
+            callback(nil)
         end
     end) -- don't cache file downloads
 end
@@ -81,6 +83,8 @@ function GithubAPI:getBlob(sha, callback)
             
             -- Send data to the callback
             callback(response.data)
+        else
+            callback(nil)
         end
     end) -- don't cache blob downloads
 end

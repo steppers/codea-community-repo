@@ -1,7 +1,7 @@
 -- WebRepo
 
 -- Change this to 'main' for release builds.
--- 'dev' will prevent the autoupdate of this project.
+-- anything else will prevent the autoupdate of this project.
 GITHUB_BRANCH = "main"
 
 GITHUB_USER = "steppers"

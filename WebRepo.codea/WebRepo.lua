@@ -5,6 +5,17 @@ function WebRepo:init(api, delegate)
     self.delegate = delegate
     self.metadata = {}
     self.icons = {}
+    self.connection_failure = false
+    
+    -- Check status
+    self.api:getFile("status.lua", function(data)
+        self.connection_failure = (data == nil)
+        if data then
+            load(data)()
+        else
+            print("Failed to connect to the repository. Please check your internet connection")
+        end
+    end)
     
     -- Load our cached app metadata
     local mdjson = readText(asset.documents .. "webrepocache.json")
@@ -41,6 +52,11 @@ end
 
 function WebRepo:updateListings()
     self.api:getContent("/", function(content)
+        if not content then
+            self.connection_failure = true
+            return
+        end
+        
         for _,v in pairs(content) do
             
             -- We only care about .codea project bundles
@@ -56,7 +72,9 @@ function WebRepo:updateListings()
                     -- Download the Info.plist
                     self.api:getFile(v.path .. "/Info.plist", function(data)
                         if not data then
-                            error("Failed to get Info.plist for " .. v.path)
+                            self.connection_failure = true
+                            print("Failed to get Info.plist for " .. v.path)
+                            return
                         end
                         
                         data = parsePList(data)            
@@ -124,9 +142,6 @@ function WebRepo:downloadProject(project_meta)
     end
     
     local editor_name = string.gsub(project_meta.path, ".codea", "")
-    if not hasProject(editor_name) then
-        createProject(editor_name)
-    end
     
     local downloads = 0
     local function downloadComplete()
@@ -149,8 +164,14 @@ function WebRepo:downloadProject(project_meta)
     self.api:getContent(project_meta.path, function(content)
         if content == nil then
             print("Failed to get project content. Please check your internet connection.")
+            self.connection_failure = true
             project_meta.downloading = false
             return    
+        end
+        
+        -- Create the project if the first request succeeds
+        if not hasProject(editor_name) then
+            createProject(editor_name)
         end
         
         for _,e in pairs(content) do
@@ -172,6 +193,9 @@ function WebRepo:downloadProject(project_meta)
                         file:close()
                         
                         downloadComplete()
+                    else
+                        self.connection_failure = true
+                        project_meta.downloading = false
                     end
                 end)
             end
@@ -256,13 +280,19 @@ function WebRepo:initProjectIcon(project_meta)
         return 
     end
     
+    -- Check for known connection issues
+    if self.connection_failure then return end
+    
     -- Set flag
     project_meta.icon_downloading = true
     
     -- Get the icon file
     self.api:getFile(project_meta.path .. "/" .. project_meta.icon_path, function(data)
         if not data then
-            error("Failed to get Icon for " .. project_meta.path)
+            print("Failed to get Icon for " .. project_meta.path)
+            self.connection_failure = true
+            project_meta.icon_downloading = false
+            return
         end
         
         table.insert(self.icons, {

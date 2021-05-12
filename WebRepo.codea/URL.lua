@@ -61,7 +61,6 @@ function URLRequest:issue(callback, cache_to_use)
     
     local function onFailure(err)
         if cached_response == nil then
-            print(self.url, err)
             callback(nil)
         end
         callback(cached_response)

@@ -174,11 +174,23 @@ function Browser:tap(pos)
     -- Download or launch the project
     local proj = self.displayed_entries[app_index]
     if proj then
-        -- Only non-library projects can be launched
-        if proj.installed and not proj.library then
-            self.webrepo:launchProject(proj)
-        elseif not proj.downloading then
-            self.webrepo:downloadProject(proj, nil)
+        
+        if self.webrepo.connection_failure then
+            -- Offline
+            
+            if proj.installed and not proj.library then
+                self.webrepo:launchProject(proj)
+            end
+        else
+            -- Online
+            
+            if not proj.downloading then -- Do nothing if downloading
+                if proj.update_available then
+                    self.webrepo:downloadProject(proj, nil)
+                elseif proj.installed and not proj.library then
+                    self.webrepo:launchProject(proj)
+                end
+            end
         end
     end
 end
