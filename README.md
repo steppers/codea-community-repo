@@ -6,11 +6,10 @@ To get started using the repository, download the [WebRepo project](https://gith
 
 Simple as that! You should now have access to many user created Codea projects available to Download, Run & Edit all from within Codea itself.
 
+- To download a project, simply tap it. The title will turn purple to let you know it's downloading, then green when it's finished.
+- To run a project that's been downloaded, either tap it in the WebRepo project or run it in Codea like any other project.
+
 To top it all off, if there's an update to the WebRepo project, it'll update itself automatically!
-
-To download a project, simply tap it. The title will turn purple to let you know it's downloading, then green when it's finished.
-
-To run a project that's been downloaded, either tap it in the WebRepo project or directly in Codea like any other project.
 
 ![iPad](https://github.com/steppers/codea-community-repo/raw/main/screenshots/1.0_ipad.jpg)
 
