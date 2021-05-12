@@ -17,7 +17,7 @@ To run a project that's been downloaded, either tap it in the WebRepo project or
 # Extra things
 Deleting a project can only be done from outside of the WebRepo project currently but there are plans to add the functionality in the future.
 
-![iPhone](https://github.com/steppers/codea-community-repo/raw/main/screenshots/1.0_iphone.jpg)
+<img src="https://github.com/steppers/codea-community-repo/raw/main/screenshots/1.0_iphone.jpg" alt="iPhone" width="200"/>
 
 # Submitting a project
 Please ensure you have set an icon for your project if you do not wish me to do it for you.
