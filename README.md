@@ -26,7 +26,7 @@ Once you have your project's zip file please do one of the following:
  - Submit a pull request containing the file. Someone with write access to the repository should be able to take it from there. (Easiest for large projects > 10MB)
  - Send me a direct message on [Codea.io](https://codea.io/talk/profile/36722/Steppers) and we can take it from there.
 
-I'll also need to know the following:
+You'll also need to provide the following:
  - Name as you wish for the project to appear in the project browser
  - Short description (~6-8 words)
  - Author(s) (Visible in the WebRepo App)
@@ -40,4 +40,17 @@ Please note that attempts to submit illegal, malicious, unethical or innappropri
 
 
 # Adding a project (For Contributors)
-TODO
+If you have any questions do feel free to send me a message at [Codea.io](https://codea.io/talk/messages/inbox)
+
+### Preparing the .codea bundle
+- Please ensure the data requested above has been provided.
+- Extract the zip file to reveal the .codea project. This can be opened as a folder in many applications to view the contents of the bundle (Textastic & Working Copy can do this).
+- Add the additional data provided by the user to the project's Info.plist file (see other projects for an example).
+- Ensure a project icon has been provided in the .codea bundle and that the corresponding entry in Info.plist is set correctly.
+
+### Testing the .codea bundle
+Do not commit untested projects to the 'main' branch as this will be immediately available to users.
+- Commit the .codea bundle to the 'sub' branch, making sure the branch is up to date with 'main' beforehand
+- In Codea open your copy of the WebRepo project and change the value of `GITHUB_BRANCH` on the 'Main' tab to `sub`. This should disable autoupdates for your local copy and direct all requests to the submission testing branch.
+- When running the WebRepo project the new submission should now be available to download. Download it and ensure the project does not crash when launched. If assets are missing you may be missing the downloadable asset packs in Codea.
+- If all is well the 'sub' branch can then be merged into 'main' to make the project available to all users.
