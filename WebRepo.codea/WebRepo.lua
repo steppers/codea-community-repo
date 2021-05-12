@@ -180,8 +180,6 @@ function WebRepo:downloadProject(project_meta)
             if e.type == "file" then
                 downloads = downloads + 1
                 
-                -- TODO: compare hashes
-                
                 -- Get the blob
                 self.api:getBlob(e.sha, function(data)
                     if data then
