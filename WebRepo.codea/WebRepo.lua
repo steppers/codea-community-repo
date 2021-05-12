@@ -281,6 +281,9 @@ function WebRepo:freeProjectIcon(project_meta)
     -- Remove the last icon
     local last = table.remove(self.icons)
     
+    -- Update the element we just removed
+    last.meta.icon_index = project_meta.icon_index
+    
     -- Are we done?
     if last.meta ~= project_meta then
     
