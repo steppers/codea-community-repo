@@ -53,9 +53,6 @@ function GithubAPI:getFile(path, callback)
         if response then
             -- Send data to the callback
             callback(response.data)
-            
-            -- Flush the cache
-            URLCache.shared:flush()
         end
     end) -- don't cache file downloads
 end
@@ -84,9 +81,6 @@ function GithubAPI:getBlob(sha, callback)
             
             -- Send data to the callback
             callback(response.data)
-            
-            -- Flush the cache
-            URLCache.shared:flush()
         end
     end) -- don't cache blob downloads
 end
