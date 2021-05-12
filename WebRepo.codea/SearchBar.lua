@@ -12,7 +12,7 @@ function SearchBar:draw(y, w, h)
     -- Draw background
     fill(96)
     rectMode(CORNER)
-    rect(0, y, WIDTH, h + 1)
+    rect(0, y, WIDTH, h + 100)
     
     y = y + 6
     h = h - 12
