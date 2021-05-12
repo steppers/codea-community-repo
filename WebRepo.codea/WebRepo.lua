@@ -273,6 +273,11 @@ function WebRepo:initProjectIcon(project_meta)
 end
 
 function WebRepo:freeProjectIcon(project_meta)
+    -- Check we have an icon to free
+    if project_meta.icon_index == nil then
+        return
+    end
+    
     -- Remove the last icon
     local last = table.remove(self.icons)
     
