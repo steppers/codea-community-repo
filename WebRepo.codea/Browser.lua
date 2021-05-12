@@ -170,7 +170,7 @@ function Browser:tap(pos)
     end
 end
 
-function Browser:pan(pos, delta, state)
+function Browser:pan(pos, delta)
     self.scroll = self.scroll + delta.y
     
     if self.scroll < 0 then

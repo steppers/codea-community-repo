@@ -68,9 +68,14 @@ function tap(pos)
 end
 
 function pan(pos, delta, state)
-    app_browser:pan(pos, delta, state)
+    app_browser:pan(pos, delta)
 end
 
 function keyboard(key)
     app_browser:keyboard(key)
+end
+
+function scroll(gesture)
+    -- Send scroll events to the browser so we can scroll with a mouse
+    app_browser:pan(gesture.location, gesture.delta)
 end
