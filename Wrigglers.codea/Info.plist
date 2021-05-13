@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Name</key>
+	<string>Wrigglers</string>
+	<key>Author</key>
+	<string>JakAttak ft. West, Jmv38 & UberGoober</string>
+	<key>Description</key>
+	<string>Swipe around and watch them wriggle!</string>
+	<key>Version</key>
+	<string>1.0</string>
+	<key>Hidden</key>
+	<false/>
+	<key>Library</key>
+	<false/>
+	<key>Icon</key>
+	<string>Icon@2x.png</string>
+	<key>Link</key>
+	<string>https://www.codea.io/talk/discussion/4760/reverse-bounce</string>
+	<key>Buffer Order</key>
+	<array>
+		<string>Main</string>
+		<string>W</string>
+	</array>
+</dict>
+</plist>
