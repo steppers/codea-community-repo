@@ -144,6 +144,9 @@ function WebRepo:updateListings()
                 v.on_server = nil
             end
         end
+        
+        -- Flush the new metadata to disk
+        self:flushMetadata()
     end)
 end
 
