@@ -18,6 +18,8 @@
 	<string>Icon.png</string>
 	<key>Link</key>
 	<string>https://codea.io/talk/discussion/7554/topdown-shooter-splitscreen-multiplayer-full-code-art-shared-inside</string>
+	<key>Platform</key>
+	<string>ipad</string>
 	<key>Buffer Order</key>
 	<array>
 		<string>Animation</string>
