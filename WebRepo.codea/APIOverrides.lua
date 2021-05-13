@@ -3,6 +3,7 @@
 -- Global overrides of various Codea APIs to ensure the app runs correctly in
 -- our nested environment
 
+local mesh_codea = mesh
 local asset_codea = asset
 local sprite_codea = sprite
 local readText_codea = readText
@@ -25,6 +26,40 @@ local function doStorageAPI(path)
             return asset_codea .. path .. r
         end
     })
+    
+    -- Overriden mesh objects to direct mesh.texture
+    -- assignment to the correct file in the launched
+    -- project.
+    mesh = function()
+        return setmetatable({ _internal = mesh_codea() }, {
+            __index = function(t, k)
+                local v = t._internal[k]
+                
+                -- If we're accessing a mesh function
+                -- we need to make sure we pass the correct
+                -- value for 'self' and not the wrapper
+                if type(v) == "function" then
+                    return function(_, ...)
+                        return t._internal[k](t._internal, ...)
+                    end
+                end
+                
+                return v
+            end,
+            __newindex = function(t, k, v)
+                -- If we're trying to set the texture with a string use our
+                -- readImage override so we get the correct asset
+                --
+                -- If for some reason the project tries to read the
+                -- texture it'll be an image though rather than an
+                -- asset string so bear that in mind
+                if k == "texture" and type(v) == "string" then 
+                    v = readImage(v)
+                end
+                t._internal[k] = v
+            end
+        })
+    end
 
     readText = function(asset_key)
         if type(asset_key) ~= "string" then
