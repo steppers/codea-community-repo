@@ -137,13 +137,15 @@ function Browser:drawProjectListing(meta, x, y, w, h, alpha)
     text(meta.name, x + h, y + title_offset_y)
     
     -- Draw the description & author
+    textWrapWidth(w - h)
     fill(195, alpha)
-    fontSize(17)
+    fontSize(15)
     local desc = meta.desc
     if meta.library then
         desc = "[Lib] " .. desc
     end
     text(desc, x + h, y + desc_offset_y)
+    fontSize(14)
     text(meta.author, x + h, y + author_offset_y)
 end
 
