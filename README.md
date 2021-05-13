@@ -30,6 +30,7 @@ You'll also need to provide the following:
  - Short description (~6-8 words)
  - Author(s) (Visible in the WebRepo App)
  - Version string
+ - Is your project designed to run on iPad, iPhone or both?
  - Is the project a library (Can it be run standalone?)
  - Link to Codea.io forum discussion related to the project
  - A LICENSE.txt file if you wish one to be included with your project
