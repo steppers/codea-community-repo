@@ -121,10 +121,22 @@ end
 
 -- Initialises all overrides
 function overrideAPI(path)
-    doStorageAPI(path)
-    doGraphicsAPI(path)
     
     -- Nil out user defined callbacks
     setup = nil
     draw = function() background(0, 0, 0) end
+    
+    -- Nil out Codea input callbacks WebRepo uses itself
+    touched = nil
+    keyboard = nil
+    scroll = nil
+    
+    -- Nil out our custom input callbacks
+    tap = nil
+    pan = nil
+    press = nil
+    
+    -- Setup overrides for the nested environment
+    doStorageAPI(path)
+    doGraphicsAPI(path)
 end
