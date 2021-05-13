@@ -15,6 +15,10 @@ function webrepoDelegate.onMetadataAdded(metadata)
     app_browser:addProject(metadata)
 end
 
+function webrepoDelegate.onMetadataRemoved(metadata)
+    app_browser:removeProject(metadata)
+end
+
 function webrepoDelegate.onProjectDownloaded(metadata)
     -- If we autoupdate ourself, close so we can reload
     if metadata.path == "WebRepo.codea" then

@@ -65,6 +65,11 @@ function WebRepo:updateListings()
                 -- Check if we already have metadata for this project
                 local current_metadata = self.metadata[v.name]
                 
+                -- Flag the project as being on the serve
+                if current_metadata then
+                    current_metadata.on_server = true
+                end
+                
                 -- Only download metadata if we don't have any yet or the
                 -- sha hash has changed
                 if current_metadata == nil or current_metadata.sha ~= v.sha then
@@ -94,6 +99,7 @@ function WebRepo:updateListings()
                         metadata.icon_path = data.Icon or nil
                         metadata.icon_downloading = false
                         metadata.filtered = false
+                        metadata.on_server = true
                         
                         -- Adjust icon name if we haven't explicitly specified in the plist
                         if metadata.icon_path and string.sub(metadata.icon_path, -4, -1) ~= ".png" then
@@ -126,6 +132,16 @@ function WebRepo:updateListings()
                         self:flushMetadata()
                     end)
                 end
+            end
+        end
+        
+        -- Remove projects that are no longer on the server
+        for k,v in pairs(self.metadata) do
+            if not v.on_server then
+                self.metadata[v] = nil
+                self.delegate.onMetadataRemoved(v)
+            else
+                v.on_server = nil
             end
         end
     end)
@@ -316,7 +332,7 @@ function WebRepo:freeProjectIcon(project_meta)
     
     -- Are we done?
     if last.meta ~= project_meta then
-    
+        
         -- Move the last element into the removal index
         self.icons[project_meta.icon_index] = last
     end

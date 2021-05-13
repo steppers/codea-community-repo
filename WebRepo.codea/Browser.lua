@@ -24,6 +24,26 @@ function Browser:addProject(project_metadata)
     end
 end
 
+function Browser:removeProject(project_metadata)
+    -- Search for the project to remove.
+    -- This is slow but hopefully we won't have to do this often
+    if not project_metadata.hidden then
+        for i,v in ipairs(self.all_entries) do
+            if v == project_metadata then
+                table.remove(self.all_entries, i)
+                break
+            end
+        end
+        
+        for i,v in ipairs(self.displayed_entries) do
+            if v == project_metadata then
+                table.remove(self.displayed_entries, i)
+                break
+            end
+        end
+    end
+end
+
 function Browser:draw()
     self.display_left = layout.safeArea.left
     self.display_right = WIDTH - layout.safeArea.right
