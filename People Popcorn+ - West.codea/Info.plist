@@ -20,5 +20,7 @@
 	<string>People Popcorn+ (iPhone)</string>
 	<key>Version</key>
 	<string>1.0</string>
+	<key>Platform</key>
+	<string>iphone</string>
 </dict>
 </plist>
