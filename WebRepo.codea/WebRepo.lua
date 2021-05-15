@@ -266,6 +266,9 @@ function WebRepo:launchProject(project_meta)
                 return
             end
             
+            -- Adjust code
+            code = adjustCode(code)
+            
             -- Load the file
             local fn, err = load(code)
             if fn == nil then
