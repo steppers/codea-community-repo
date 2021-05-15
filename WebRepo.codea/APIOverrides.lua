@@ -38,6 +38,18 @@ local orientation_rot_map = {
         [PORTRAIT] = 0,
         [PORTRAIT_UPSIDE_DOWN] = 0
     },
+    [PORTRAIT] = {
+        [LANDSCAPE_LEFT] = -90,
+        [LANDSCAPE_RIGHT] = 90,
+        [PORTRAIT] = 0,
+        [PORTRAIT_UPSIDE_DOWN] = 180
+    },
+    [PORTRAIT_UPSIDE_DOWN] = {
+        [LANDSCAPE_LEFT] = 90,
+        [LANDSCAPE_RIGHT] = -90,
+        [PORTRAIT] = 180,
+        [PORTRAIT_UPSIDE_DOWN] = 0
+    },
     [LANDSCAPE_ANY] = {
         [LANDSCAPE_LEFT] = 0,
         [LANDSCAPE_RIGHT] = 0,
@@ -279,8 +291,6 @@ local function doGraphicsAPI(path, restore)
         -- Override the WIDTH & HEIGHT values
         WIDTH = orientation_width
         HEIGHT = orientation_height
-        
-        print("so", WIDTH, HEIGHT)
     end
     
     perspective = function(fov, aspect, near, far)
