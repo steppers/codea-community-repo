@@ -1,6 +1,16 @@
 -- supportedOrientations
 --
 -- Implementation of the old supportedImplementations function
+--
+-- Usage:
+--      Call supportedOrientations(lock) with the desired orientation
+--      lock. Choose from the following:
+--          PORTRAIT_ANY
+--          LANDSCAPE_ANY
+--          PORTRAIT
+--          PORTRAIT_UPSIDE_DOWN
+--          LANDSCAPE_LEFT
+--          LANDSCAPE_RIGHT
 
 -- Save original Codea values
 local setContext_codea = setContext
