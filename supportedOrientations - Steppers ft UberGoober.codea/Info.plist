@@ -5,7 +5,7 @@
 	<key>Name</key>
 	<string>supportedOrientations</string>
 	<key>Author</key>
-	<string>Steppers</string>
+	<string>Steppers ft. UberGoober</string>
 	<key>Description</key>
 	<string>Implementation of the old API</string>
 	<key>Version</key>
@@ -14,11 +14,16 @@
 	<false/>
 	<key>Library</key>
 	<true/>
+	<key>Executable</key>
+	<true/>
 	<key>Link</key>
 	<string></string>
+	<key>Icon</key>
+	<string>Icon@2x.png</string>
 	<key>Buffer Order</key>
 	<array>
 		<string>supportedOrientations</string>
+		<string>Main</string>
 	</array>
 </dict>
 </plist>

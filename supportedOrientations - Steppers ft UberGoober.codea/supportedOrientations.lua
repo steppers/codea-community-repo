@@ -240,11 +240,16 @@ end
 -- provided implementations automatically.
 local G_shadow = {
     draw = function()
+    
+        -- No user implementation
+        if _so_draw == nil then
+            return
+        end
         
         -- Just call the project provided impl.
         -- if we have no lock
         if orientation == nil then
-            if _so_draw then _so_draw() end
+            _so_draw()
             return
         end
         
@@ -256,7 +261,7 @@ local G_shadow = {
         setContext_codea(orientation_fb, true)
         
         -- Draw into framebuffer
-        if _so_draw then _so_draw() end
+        _so_draw()
         
         -- Draw to display buffer
         setContext_codea()
@@ -284,9 +289,14 @@ local G_shadow = {
     end,
     
     touched = function(touch)
+        -- No user implementation
+        if _so_touched == nil then
+            return
+        end
+    
         -- No transformation needed
         if orientation == nil or orientation == CurrentOrientation then
-            return _so_touched(touch)
+            _so_touched(touch)
         end
         
         -- Transform touch values
