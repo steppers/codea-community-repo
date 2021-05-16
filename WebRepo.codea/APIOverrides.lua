@@ -21,10 +21,10 @@ local function doStorageAPI(path)
             if asset_codea[k] ~= nil then
                 return asset_codea[k]
             end
-            return asset_codea .. path .. k
+            return asset_codea.documents .. path .. k
         end,
         __concat = function(l, r)
-            return asset_codea .. path .. r
+            return asset_codea.documents .. path .. r
         end
     })
 
@@ -78,6 +78,20 @@ local function doStorageAPI(path)
                 return saveImage_codea(asset_key, data)
             end
         end
+    end
+    
+    -- Parse project Data.plist
+    local data_plist = readText(asset .. path .. "Data.plist")
+    if data_plist ~= nil then
+        data_plist = parsePList(data_plist)
+    end
+    
+    saveProjectData = function(key, value)
+        -- Do nothing
+    end
+    
+    readProjectData = function(key, default)
+        return data_plist[key] or default
     end
     
 end

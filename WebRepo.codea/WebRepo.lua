@@ -37,6 +37,7 @@ function WebRepo:init(api, delegate)
             v.icon_downloading = false
             v.icon_index = nil
             v.filtered = false
+            v.executable = v.executable or not v.library
             
             -- Check if we should autoupdate
             if v.update_available and v.path == "WebRepo.codea" and GITHUB_BRANCH == "main" then
@@ -203,7 +204,7 @@ function WebRepo:downloadProject(project_meta)
                 -- Get the blob
                 self.api:getBlob(e.sha, function(data)
                     if data then
-                        local asset_path = asset .. "/../" .. e.path
+                        local asset_path = asset.documents .. e.path
                         
                         -- Write directly to the file
                         local file = io.open(asset_path.path, "w")
@@ -229,28 +230,15 @@ function WebRepo:launchProject(project_meta)
     if project_meta.installed then
         
         -- Path to the project's bundle
-        local project_path = "/../" .. project_meta.path .. "/"
+        local project_path = project_meta.path .. "/"
         
         -- Parse project Info.plist
-        local plist = readText(asset .. project_path .. "Info.plist")
+        local plist = readText(asset.documents .. project_path .. "Info.plist")
         if plist == nil then
-            print("Unable to open Info.plist in " .. projectName)
+            error("Unable to open Info.plist in " .. project_meta.name)
             return
         end
         plist = parsePList(plist)
-        
-        -- Parse project Data.plist
-        local data_plist = readText(asset .. project_path .. "Data.plist")
-        if data_plist ~= nil then
-            data_plist = parsePList(data_plist)
-        end
-        
-        -- Override Codea storage APIs
-        saveProjectData = function(key, value) end -- Do nothing
-        readProjectData = function(key, default)
-            return data_plist[key] or default
-        end
-        -- TODO: implement the rest
         
         -- Override Codea API
         overrideAPI(project_path)
@@ -261,9 +249,9 @@ function WebRepo:launchProject(project_meta)
         
         -- Load lua files in the project specified order
         for _,tab in ipairs(plist["Buffer Order"]) do
-            local code = readText(asset .. tab .. ".lua")
+            local code = readText(asset.documents .. project_path .. tab .. ".lua")
             if code == nil then
-                print("Unable to load " .. tab .. ".lua in " .. projectName)
+                error("Unable to load " .. tab .. ".lua in " .. project_meta.name)
                 return
             end
             
