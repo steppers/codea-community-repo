@@ -18,7 +18,7 @@
 	<string></string>
 	<key>Buffer Order</key>
 	<array>
-		<string>Main</string>
+		<string>supportedOrientations</string>
 	</array>
 </dict>
 </plist>
