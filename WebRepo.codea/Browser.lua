@@ -209,7 +209,7 @@ function Browser:tap(pos)
             if not proj.downloading then -- Do nothing if downloading
                 if proj.update_available then
                     self.webrepo:downloadProject(proj, nil)
-                elseif proj.installed and not proj.library then
+                elseif proj.installed and proj.executable then
                     self.webrepo:launchProject(proj)
                 end
             end

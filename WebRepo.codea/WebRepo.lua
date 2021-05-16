@@ -95,6 +95,7 @@ function WebRepo:updateListings()
                         metadata.version = data.Version or "1.0"
                         metadata.hidden = data.Hidden or false
                         metadata.library = data.Library or false
+                        metadata.executable = data.Executable or metadata.library
                         metadata.icon_index = nil
                         metadata.icon_path = data.Icon or nil
                         metadata.icon_downloading = false
@@ -265,9 +266,6 @@ function WebRepo:launchProject(project_meta)
                 print("Unable to load " .. tab .. ".lua in " .. projectName)
                 return
             end
-            
-            -- Adjust code
-            code = adjustCode(code)
             
             -- Load the file
             local fn, err = load(code)
