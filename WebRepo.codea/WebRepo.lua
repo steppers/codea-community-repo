@@ -96,7 +96,7 @@ function WebRepo:updateListings()
                         metadata.version = data.Version or "1.0"
                         metadata.hidden = data.Hidden or false
                         metadata.library = data.Library or false
-                        metadata.executable = data.Executable or metadata.library
+                        metadata.executable = data.Executable or not metadata.library
                         metadata.icon_index = nil
                         metadata.icon_path = data.Icon or nil
                         metadata.icon_downloading = false
