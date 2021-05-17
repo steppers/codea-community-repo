@@ -56,6 +56,9 @@ function wrapGlobalFunc(global_name, wrapper)
     remap[global_name] = "_wrap_" .. global_name
     shadow[global_name] = wrapper
     shadow["_wrap_" .. global_name] = rawget(_G, global_name)
+    
+    -- Make sure the raw global is not set
+    rawset(_G, global_name, nil)
 end
 
 -- Returns the function currently wrapped for the specified global
