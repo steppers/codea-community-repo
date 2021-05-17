@@ -25,7 +25,9 @@
 		<string>Browser</string>
 		<string>SearchBar</string>
 		<string>APIOverrides</string>
+		<string>GlobalOverrides</string>
 		<string>Gestures</string>
+		<string>supportedOrientations</string>
 		<string>PList</string>
 		<string>github_oauth</string>
 		<string>fzy</string>

@@ -97,6 +97,7 @@ function WebRepo:updateListings()
                         metadata.hidden = data.Hidden or false
                         metadata.library = data.Library or false
                         metadata.executable = data.Executable or not metadata.library
+                        metadata.platform = data.Platform or nil
                         metadata.icon_index = nil
                         metadata.icon_path = data.Icon or nil
                         metadata.icon_downloading = false
@@ -110,6 +111,12 @@ function WebRepo:updateListings()
                             else
                                 metadata.icon_path = metadata.icon_path .. ".png"
                             end
+                        end
+                        
+                        if metadata.platform == "iphone" then
+                            metadata.name = metadata.name .. " (iPhone)"
+                        elseif metadata.platform == "ipad" then
+                            metadata.name = metadata.name .. " (iPad)"
                         end
                         
                         -- Inform our delegate that the metadata has been added
@@ -246,6 +253,9 @@ function WebRepo:launchProject(project_meta)
         -- Clear parameters & log
         output.clear()
         parameter.clear()
+        
+        -- Any project we run should know it's launched using WebRepo
+        _WEB_REPO_LAUNCH_ = true
         
         -- Load lua files in the project specified order
         for _,tab in ipairs(plist["Buffer Order"]) do
