@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>Name</key>
-	<string>Global Function Wrapper</string>
+	<string>Global Overrides</string>
 	<key>Author</key>
 	<string>Steppers</string>
 	<key>Description</key>
-	<string>Global function call intercepts</string>
+	<string>Wrap global functions and override variables</string>
 	<key>Version</key>
 	<string>1.0</string>
 	<key>Hidden</key>
@@ -18,11 +18,9 @@
 	<false/>
 	<key>Link</key>
 	<string></string>
-	<key>Icon</key>
-	<string>Icon.png</string>
 	<key>Buffer Order</key>
 	<array>
-		<string>GlobalFuncWrapper</string>
+		<string>GlobalOverrides</string>
 	</array>
 </dict>
 </plist>
