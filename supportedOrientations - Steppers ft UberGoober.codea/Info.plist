@@ -6,7 +6,7 @@
 	<string>Steppers ft. UberGoober</string>
 	<key>Buffer Order</key>
 	<array>
-		<string>GlobalFuncWrapper</string>
+		<string>GlobalOverrides</string>
 		<string>supportedOrientations</string>
 		<string>Main</string>
 	</array>

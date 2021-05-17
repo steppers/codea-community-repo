@@ -12,12 +12,17 @@
 --          LANDSCAPE_LEFT
 --          LANDSCAPE_RIGHT
 
+-- If run as part of a project launched through WebRepo
+-- don't continue. WebRepo provides this already
+if _WEB_REPO_LAUNCH_ then
+    return
+end
+
 -- Save original Codea values
 local setContext_codea = setContext
 local perspective_codea = perspective
 local ortho_codea = ortho
 local layout_codea = layout
-local viewer_codea = viewer
 local sprite_codea = sprite
 
 local WIDTH_codea = WIDTH
@@ -75,7 +80,7 @@ local orientation_fb = nil
 
 -- Translate a position into framebuffer space
 local function toFB(pos)
-    pos = pos - vec2(WIDTH_codea/2, HEIGHT_codea/2)
+    pos = pos - vec2(getOverriddenGlobal("WIDTH")/2, getOverriddenGlobal("HEIGHT")/2)
     pos = pos:rotate(math.rad(-orientation_rot))
     pos = pos + vec2(orientation_width/2, orientation_height/2)
     return pos
@@ -144,10 +149,6 @@ local function drawWrapper()
         return
     end
     
-    -- Override the WIDTH & HEIGHT values
-    WIDTH = orientation_width
-    HEIGHT = orientation_height
-    
     -- Set framebuffer
     setContext_codea(orientation_fb, true)
     
@@ -168,7 +169,7 @@ local function drawWrapper()
     viewMatrix(matrix())
     
     -- Transform
-    translate(WIDTH_codea/2, HEIGHT_codea/2)
+    translate(getOverriddenGlobal("WIDTH")/2, getOverriddenGlobal("HEIGHT")/2)
     rotate(orientation_rot)
     
     -- Draw framebuffer
@@ -222,16 +223,8 @@ local function touchedWrapper(touch)
 end
 
 local function sizeChangedWrapper(newWidth, newHeight)
-    -- Update true res
-    WIDTH_codea = newWidth
-    HEIGHT_codea = newHeight
-    
     -- adjust the orientation rotation if set
     updateOrientationLock()
-    
-    -- Override the WIDTH & HEIGHT values
-    WIDTH = orientation_width
-    HEIGHT = orientation_height
     
     -- Call wrapped function
     if _wrap_sizeChanged then _wrap_sizeChanged(orientation_width, orientation_height) end
@@ -249,8 +242,8 @@ function supportedOrientations(orientations)
     wrapGlobalFunc("sizeChanged", sizeChangedWrapper)
     
     -- Override the WIDTH & HEIGHT values
-    WIDTH = orientation_width
-    HEIGHT = orientation_height
+    overrideGlobal("WIDTH", orientation_width)
+    overrideGlobal("HEIGHT", orientation_height)
     
     -- Overridden CurrentTouch object to apply orientation
     -- transforms
@@ -264,10 +257,10 @@ function supportedOrientations(orientations)
             end
             
             if k == "x" then
-                return toFB(v.pos).x
+                return toFB(CurrentTouch_codea.pos).x
                 
             elseif k == "y" then
-                return toFB(v.pos).y
+                return toFB(CurrentTouch_codea.pos).y
                 
             elseif k == "pos" or k == "prevPos" or k == "precisePos" or k == "precisePrevPos" then
                 return toFB(v)
@@ -291,9 +284,9 @@ function supportedOrientations(orientations)
     -- a locked orientation resolution
     perspective = function(fov, aspect, near, far)
         if fov == nil then
-            perspective_codea(45, orientation_width/orientation_height)
+            perspective_codea(45, WIDTH/HEIGHT)
         elseif aspect == nil then
-            perspective_codea(fov, orientation_width/orientation_height)
+            perspective_codea(fov, WIDTH/HEIGHT)
         else
             perspective_codea(fov, aspect, near, far)
         end
@@ -303,7 +296,7 @@ function supportedOrientations(orientations)
     -- a locked orientation resolution
     ortho = function(left, right, bottom, top, near, far)
         if left == nil then
-            ortho_codea(0, orientation_width, 0, orientation_height, -10, 10)
+            ortho_codea(0, WIDTH, 0, HEIGHT, -10, 10)
         else
             ortho_codea(left, right, bottom, top, near, far)
         end
@@ -323,22 +316,4 @@ function supportedOrientations(orientations)
             setContext_codea(img, useDepth)
         end
     end
-    
-    -- Setting the mode on the viewer resets the WIDTH & HEIGHT
-    -- variables so we need to intercept it
-    viewer = setmetatable({}, {
-        __index = function(t, k)
-            return viewer_codea[k]
-        end,
-        __newindex = function(t, k, v)
-            viewer_codea[k] = v
-            
-            -- If we're setting the mode, set the
-            -- WIDTH & HEIGHT again
-            if k == "mode" then
-                WIDTH = orientation_width
-                HEIGHT = orientation_height
-            end
-        end,
-    })
 end
