@@ -1,5 +1,7 @@
 -- Copyright 2019 Théo Arrouye
 
+supportedOrientations(PORTRAIT)
+
 function setup()
     touchTimes = {}
     displayMode(FULLSCREEN_NO_BUTTONS)
