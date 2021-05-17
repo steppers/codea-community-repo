@@ -7,7 +7,7 @@
 	<key>Author</key>
 	<string>Steppers</string>
 	<key>Description</key>
-	<string>Wrap global functions and override variables</string>
+	<string>Global variable intercepts</string>
 	<key>Version</key>
 	<string>1.0</string>
 	<key>Hidden</key>
