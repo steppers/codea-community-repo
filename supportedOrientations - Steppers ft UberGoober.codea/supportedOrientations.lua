@@ -130,12 +130,123 @@ local function updateOrientationLock()
     orientation_rot = orientation_rot_map[orientation][CurrentOrientation]
 end
 
+local function drawWrapper()
+    
+    -- No user implementation
+    if _wrap_draw == nil then
+        return
+    end
+    
+    -- Just call the project provided impl.
+    -- if we have no lock
+    if orientation == nil then
+        _wrap_draw()
+        return
+    end
+    
+    -- Override the WIDTH & HEIGHT values
+    WIDTH = orientation_width
+    HEIGHT = orientation_height
+    
+    -- Set framebuffer
+    setContext_codea(orientation_fb, true)
+    
+    -- Draw into framebuffer
+    _wrap_draw()
+    
+    -- Draw to display buffer
+    setContext_codea()
+    
+    -- Blit the backbuffer with the locked rotation
+    -- Push style & matrix
+    pushMatrix()
+    pushStyle()
+    
+    -- Reset matrices
+    resetMatrix()
+    ortho_codea()
+    viewMatrix(matrix())
+    
+    -- Transform
+    translate(WIDTH_codea/2, HEIGHT_codea/2)
+    rotate(orientation_rot)
+    
+    -- Draw framebuffer
+    spriteMode(CENTER)
+    sprite_codea(orientation_fb, 0, 0)
+    
+    popStyle()
+    popMatrix()
+end
+
+local function touchedWrapper(touch)
+    -- No user implementation
+    if _wrap_touched == nil then
+        return
+    end
+    
+    -- No transformation needed
+    if orientation == nil or orientation == CurrentOrientation then
+        _wrap_touched(touch)
+        return
+    end
+    
+    -- Transform touch values
+    local pos = toFB(touch.pos)
+    local prevPos = toFB(touch.prevPos)
+    local precisePos = toFB(touch.precisePos)        
+    local precisePrevPos = toFB(touch.precisePos)
+    local delta = touch.delta:rotate(math.rad(-orientation_rot))
+    
+    local t = {
+        x = pos.x,
+        y = pos.y,
+        pos = pos,
+        prevPos = prevPos,
+        precisePos = precisePos,
+        precisePrevPos = precisePrevPos,
+        delta = delta,
+    }
+    
+    -- Fallback to the original touch object
+    t = setmetatable(t, {
+        __index = function(t, k)
+            return touch[k]
+        end,
+        __newindex = function(t, k, v)
+            touch[k] = v
+        end
+    })
+    
+    _wrap_touched(t)
+end
+
+local function sizeChangedWrapper(newWidth, newHeight)
+    -- Update true res
+    WIDTH_codea = newWidth
+    HEIGHT_codea = newHeight
+    
+    -- adjust the orientation rotation if set
+    updateOrientationLock()
+    
+    -- Override the WIDTH & HEIGHT values
+    WIDTH = orientation_width
+    HEIGHT = orientation_height
+    
+    -- Call wrapped function
+    if _wrap_sizeChanged then _wrap_sizeChanged(orientation_width, orientation_height) end
+end
+
 -- Our implementation
 function supportedOrientations(orientations)
     
     -- Initialise the orientation lock
     orientation = orientations
     initOrientationLock()
+    
+    wrapGlobalFunc("draw", drawWrapper)
+    wrapGlobalFunc("touched", touchedWrapper)
+    wrapGlobalFunc("sizeChanged", sizeChangedWrapper)
     
     -- Override the WIDTH & HEIGHT values
     WIDTH = orientation_width
@@ -231,137 +342,3 @@ function supportedOrientations(orientations)
         end,
     })
 end
-
--- The functions contained within this table
--- are used rather than the project provided
--- ones which are remapped to '_so_<function_name>'
---
--- This is done in order to wrap the project
--- provided implementations automatically.
-local G_shadow = {
-    draw = function()
-    
-        -- No user implementation
-        if _so_draw == nil then
-            return
-        end
-        
-        -- Just call the project provided impl.
-        -- if we have no lock
-        if orientation == nil then
-            _so_draw()
-            return
-        end
-        
-        -- Override the WIDTH & HEIGHT values
-        WIDTH = orientation_width
-        HEIGHT = orientation_height
-        
-        -- Set framebuffer
-        setContext_codea(orientation_fb, true)
-        
-        -- Draw into framebuffer
-        _so_draw()
-        
-        -- Draw to display buffer
-        setContext_codea()
-        
-        -- Blit the backbuffer with the locked rotation
-        -- Push style & matrix
-        pushMatrix()
-        pushStyle()
-        
-        -- Reset matrices
-        resetMatrix()
-        ortho_codea()
-        viewMatrix(matrix())
-        
-        -- Transform
-        translate(WIDTH_codea/2, HEIGHT_codea/2)
-        rotate(orientation_rot)
-        
-        -- Draw framebuffer
-        spriteMode(CENTER)
-        sprite_codea(orientation_fb, 0, 0)
-        
-        popStyle()
-        popMatrix()
-    end,
-    
-    touched = function(touch)
-        -- No user implementation
-        if _so_touched == nil then
-            return
-        end
-    
-        -- No transformation needed
-        if orientation == nil or orientation == CurrentOrientation then
-            _so_touched(touch)
-        end
-        
-        -- Transform touch values
-        local pos = toFB(touch.pos)
-        local prevPos = toFB(touch.prevPos)
-        local precisePos = toFB(touch.precisePos)        
-        local precisePrevPos = toFB(touch.precisePos)
-        local delta = touch.delta:rotate(math.rad(-orientation_rot))
-        
-        local t = {
-            x = pos.x,
-            y = pos.y,
-            pos = pos,
-            prevPos = prevPos,
-            precisePos = precisePos,
-            precisePrevPos = precisePrevPos,
-            delta = delta,
-        }
-        
-        -- Fallback to the original touch object
-        t = setmetatable(t, {
-            __index = function(t, k)
-                return touch[k]
-            end,
-            __newindex = function(t, k, v)
-                touch[k] = v
-            end
-        })
-        
-        _so_touched(t)
-    end,
-    
-    sizeChanged = function(newWidth, newHeight)
-        -- Update true res
-        WIDTH_codea = newWidth
-        HEIGHT_codea = newHeight
-        
-        -- adjust the orientation rotation if set
-        updateOrientationLock()
-        
-        -- Override the WIDTH & HEIGHT values
-        WIDTH = orientation_width
-        HEIGHT = orientation_height
-        
-        -- Call wrapped function
-        if _so_sizeChanged then _so_sizeChanged(orientation_width, orientation_height) end
-    end
-}
-
--- Global remappings
-local remap = {
-    ["draw"] = "_so_draw",
-    ["touched"] = "_so_touched",
-    ["sizeChanged"] = "_so_sizeChanged"
-}
-
--- Set the metatable of the global table
--- We can then apply remappings
-setmetatable(_G, {
-    __index = function(t, k)
-        return rawget(G_shadow, k)
-    end,
-    __newindex = function(t, k, v)
-        k = remap[k] or k
-        rawset(G_shadow, k, v)
-    end
-})
-
