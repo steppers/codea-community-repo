@@ -17,7 +17,7 @@
 	<key>Link</key>
 	<string>https://codea.io/talk/</string>
 	<key>Icon</key>
-	<string>Icon.png</string>
+	<string>Icon</string>
 	<key>Buffer Order</key>
 	<array>
 		<string>Main</string>
