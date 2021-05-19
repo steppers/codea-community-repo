@@ -72,8 +72,10 @@ function WebRepo:updateListings()
                     -- Flag the project as being on the server
                     current_metadata.on_server = true
                     
-                    -- Mark the project as requiring a metadata refresh
-                    current_metadata.refresh = current_metadata.refresh or shouldReloadMetadata
+                    if v.name ~= "WebRepo.codea" then
+                        -- Mark the project as requiring a metadata refresh
+                        current_metadata.refresh = current_metadata.refresh or shouldReloadMetadata
+                    end
                 end
                 
                 -- Only download metadata if we don't have any yet or the
