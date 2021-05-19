@@ -7,6 +7,7 @@ function setup()
     createLightConditions()
     createMaterialsForGlows()
     createStartingSpheres()   
+    createExplosions()
     createParameters()
     createPresets()
     createShip()
@@ -22,6 +23,9 @@ function createStartConditions()
     hgx=Gravity.x
     speed,ey,ang=0,45,0
     cameraX,cameraZ=-205,-205
+    currentPresets = "dave1707"
+    use3DShip = false
+    use3DExplosions = false
 end
 
 function createScene()
@@ -70,6 +74,11 @@ function createStartingSpheres()
     end
 end
 
+function createExplosions()
+    explosion = Explosion(scene)
+    explosion2 = Explosion(scene)
+end
+
 function createParameters()
     parameter.integer("presets",1,2,1, function(value)
         if value == 1 then
@@ -78,8 +87,21 @@ function createParameters()
             uberGooberPresets()
         end
     end)
+    parameter.boolean("use3DShip", false, function(value)
+        if value == true then
+            ship.scale = vec3(1,1,1) * 0.018
+        else
+            ship.scale = vec3(0,0,0)
+        end
+    end)
+    parameter.boolean("use3DExplosions", false, function(value)
+        if value == true then
+            use3DExplosions = true
+        else
+            use3DExplosions = false
+        end
+    end)
     parameter.watch("currentPresets")
-    currentPresets = "dave1707"
     parameter.boolean("greenBallDiffusionToggle", false, function(value)
         for k, v in pairs(tab) do
             if v.type == 2 then
@@ -139,47 +161,58 @@ function createPresets()
         yellowBallDiffusionToggle = false
         yellowBallDiffusion = color(255, 247, 0)
         setMaterialForSphereType(3, yellowNormalMaterial)
-        skyColor = vec3(0.35,0.37,0.42)
-        horizonColor = color(71, 104, 195)
+        skyMaterial = scene.sky.material
+        skyMaterial.horizon = color(0, 203, 255, 255)    
+        horizonColor = color(0, 203, 255, 255)    
         sunIntensity = 1
         sunPosX = 45
         sunPosY = 0
         sunPosZ = 45
+        use3DShip = false
+        ship.scale = vec3(0,0,0)
+        use3DExplosions = false
     end
     uberGooberPresets = function()
         currentPresets = "UberGoober"
-        
         greenBallDiffusionToggle = true
         greenBallDiffusion = vec3(55/255, 250/255, 90/255) * 3.75
         setMaterialForSphereType(2, greenGlowyMaterial)
         greenGlowyMaterial.diffuse = greenBallDiffusion
-        
         yellowBallDiffusionToggle = true
         yellowBallDiffusion = vec3(255/255, 225/255, 120/255) * 9.75
         setMaterialForSphereType(3, yellowGlowyMaterial)
         yellowGlowyMaterial.diffuse = yellowBallDiffusion
-        
         skyColor = color(25)
         horizonColor = color(30, 39, 66)    
         sunIntensity = 3
         sunPosX = -8
         sunPosY = -95
         sunPosZ = -83
+        use3DShip = true
+        ship.scale = vec3(1,1,1) * 0.018
+        use3DExplosions = true
     end
 end
 
 function createShip()
     ship = scene:entity()
     ship.model = craft.model(asset.builtin.SpaceKit.spaceCraft6_obj)
-    ship.scale = ship.scale * 0.018
+    print(ship.scale)
+    if use3DShip then
+        ship.scale = ship.scale * 0.018
+    else
+        ship.scale = ship.scale * 0.0
+    end
     ship.parent = scene.camera
     ship.position = ship.position + vec3(0,-HEIGHT*0.0003,HEIGHT*0.0015)    
 end
 
 function update(dt)
     scene:update(dt)
-    scene.camera.position = vec3(cameraX,1,cameraZ)
-    scene.camera.eulerAngles=vec3(0,ey,0)
+    if not hitRed then
+        scene.camera.position = vec3(cameraX,1,cameraZ)
+        scene.camera.eulerAngles=vec3(0,ey,0)
+    end
     scene.sun.rotation = quat.eulerAngles(sunPosX, sunPosY, sunPosZ)
     scene.sky.material.sky = skyColor
     scene.sky.material.horizon = horizonColor
@@ -187,27 +220,27 @@ function update(dt)
 end
 
 function draw()
-    background(0)
+    update(DeltaTime)
+    scene:draw()  
+    if paused then  
+        text("PAUSED",WIDTH/2,HEIGHT*.7)
+        text("Triple tap to restart.",WIDTH/2,HEIGHT*.7-20)
+    else
+        if not hitRed then
+        text("Triple tap to pause.",WIDTH/2,HEIGHT-10)
+        end
+        updateCameraPos()        
+        checkCollisions()
+        checkTilt() 
+        drawShip()
+        drawShipLevels()
+    end
     if youLost then
         youLostFunc()
     elseif hitRed then
         hitRedFunc()
     elseif youWon then
         youWonFunc()
-    else  
-        update(DeltaTime)
-        scene:draw()  
-        if paused then  
-            text("PAUSED",WIDTH/2,HEIGHT*.7)
-            text("Triple tap to restart.",WIDTH/2,HEIGHT*.7-20)
-        else
-            text("Triple tap to pause.",WIDTH/2,HEIGHT-10)
-            updateCameraPos()        
-            checkCollisions()
-            checkTilt()  
-            drawShip()
-            drawShipLevels()
-        end
     end
 end
 
@@ -228,6 +261,15 @@ function touched(t)
                 cameraX,cameraZ=-205,-205
                 ships=ships-1
                 speed,ey,ang=0,45,0
+                if use3DShip then
+                    ship.scale = vec3(1,1,1) * 0.018
+                end
+                if explosion.pt then
+                    explosion.pt:destroy()
+                end
+                if explosion2.pt then
+                    explosion2.pt:destroy()
+                end
             end
         else
             ang=0
@@ -239,6 +281,7 @@ function touched(t)
 end
 
 function youLostFunc()
+    background(0)
     fill(255,0,0)
     text("YOU LOST!",WIDTH/2,HEIGHT/2+100)
     text("Hold the ipad level then",WIDTH/2,HEIGHT/2+50)
@@ -246,13 +289,25 @@ function youLostFunc()
 end
 
 function hitRedFunc()
-    sprite(asset.builtin.Tyrian_Remastered.Explosion_Huge,WIDTH/2,HEIGHT/2,500,500)
+    hgx=Gravity.x
+    speed = 0
+    if use3DExplosions then
+        explosion:draw()
+        explosion2:draw()
+    else
+        background(0)
+        sprite(asset.builtin.Tyrian_Remastered.Explosion_Huge,WIDTH/2,HEIGHT/2,500,500)
+    end
     fill(255,0,0)
+    if use3DExplosions then
+        fill(230, 236, 67)
+    end
     text("Hold the ipad level then",WIDTH/2,HEIGHT/2+50)
     text("Double tap the screen to continue.",WIDTH/2,HEIGHT/2)
 end
 
 function youWonFunc()
+    background(0)
     fill(255,0,0)
     text("YOU WON!",WIDTH/2,HEIGHT/2+100)
     text("Hold the ipad level then",WIDTH/2,HEIGHT/2+50)
@@ -283,7 +338,14 @@ function checkCollisions()
                 if ships==0 then
                     youLost=true
                 else
-                    hitRed=true
+                    hitRed = true
+                    ship.scale = vec3(0,0,0)
+                    if use3DExplosions then
+                        explosion:explodeAt(b.ent.position, vec3(1,1,1) * 0.5)
+                        explosion2:explodeAt(b.ent.position, vec3(1,1,1) * 0.5)
+                    end
+                    scene.camera.position = b.ent.position + vec3(0, 3, -11)
+                    scene.camera.eulerAngles=vec3(12, 0, math.random(-38, 3))
                 end                
                 sound(SOUND_EXPLODE, 27037)
             end
@@ -347,7 +409,7 @@ function checkCollisions()
     if redBalls+greenBalls+yellowBalls==0 then
         youWon=true
     end
-    if speed==0 then
+    if speed==0 and not hitRed then
         text("Tap screen to start.",WIDTH/2,HEIGHT*.75)
     end
 end
@@ -362,18 +424,24 @@ function checkTilt()
 end
 
 function drawShip()
-    pushMatrix()
-    translate(WIDTH/2,HEIGHT*0.255)
-    rotate(ang*-30)
-    --sprite(asset.builtin.Tyrian_Remastered.Boss_A,0,0,300)
-    fill(255,0,0)
-    text(redBalls,-40,0)
-    fill(0,255,0)
-    text(greenBalls,0,0)
-    fill(255,255,0)
-    text(yellowBalls,40,0)    
-    translate()
-    popMatrix()
+    if not hitRed then
+        pushMatrix()
+        translate(WIDTH/2,HEIGHT*0.255)
+        rotate(ang*-30)
+        
+        if not use3DShip then
+            sprite(asset.builtin.Tyrian_Remastered.Boss_A,0,0,300)
+        end
+        fill(255,0,0)
+        text(redBalls,-40,0)
+        fill(0,255,0)
+        text(greenBalls,0,0)
+        fill(255,255,0)
+        text(yellowBalls,40,0)   
+        
+        translate()
+        popMatrix()
+    end 
     ship.eulerAngles = vec3(0,-135, -ang*20)
     ship.eulerAngles = vec3(0,180, -ang*30)
 end
