@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Name</key>
+	<string>Soft Shadows</string>
+	<key>Author</key>
+	<string>Steppers</string>
+	<key>Description</key>
+	<string>Soft Shadows Demo</string>
+	<key>Version</key>
+	<string>1.0</string>
+	<key>Hidden</key>
+	<false/>
+	<key>Library</key>
+	<false/>
+	<key>Icon</key>
+	<string>Icon.png</string>
+	<key>Link</key>
+	<string>https://codea.io/talk/discussion/11682/fish</string>
+	<key>Buffer Order</key>
+	<array>
+		<string>Main</string>
+		<string>Shaders</string>
+		<string>Plane</string>
+		<string>Cube</string>
+		<string>Transform</string>
+	</array>
+</dict>
+</plist>
