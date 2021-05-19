@@ -24,7 +24,7 @@ function setup()
     
     -- Parameters
     shadowedFlatShader.pass1_samples = 32
-    parameter.integer("Pass 1 Samples", 1, 256, 32, function(v)
+    parameter.integer("Pass 1 Samples", 0, 256, 32, function(v)
         shadowedFlatShader.pass1_samples = v
     end)
     shadowedFlatShader.pass2_samples = 128
@@ -32,7 +32,7 @@ function setup()
         shadowedFlatShader.pass2_samples = v
     end)
     shadowedFlatShader.scale = 0.5
-    parameter.number("Scale", 0, 10.0, 0.5, function(v)
+    parameter.number("Scale", 0, 2.0, 0.5, function(v)
         shadowedFlatShader.scale = v
     end)
     shadowedFlatShader.intensity = 0.9
