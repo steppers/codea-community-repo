@@ -22,6 +22,7 @@ end
 function webrepoDelegate.onProjectDownloaded(metadata)
     -- If we autoupdate ourself, close so we can reload
     if metadata.path == "WebRepo.codea" then
+        saveLocalData("shouldRefreshMetadata", true)
         viewer.close()
     end
 end

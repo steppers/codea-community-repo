@@ -58,6 +58,8 @@ function WebRepo:updateListings()
             return
         end
         
+        local shouldReloadMetadata = readLocalData("shouldRefreshMetadata")
+        
         for _,v in pairs(content) do
             
             -- We only care about .codea project bundles
@@ -66,14 +68,17 @@ function WebRepo:updateListings()
                 -- Check if we already have metadata for this project
                 local current_metadata = self.metadata[v.name]
                 
-                -- Flag the project as being on the serve
                 if current_metadata then
+                    -- Flag the project as being on the server
                     current_metadata.on_server = true
+                    
+                    -- Mark the project as requiring a metadata refresh
+                    current_metadata.refresh = current_metadata.refresh or shouldReloadMetadata
                 end
                 
                 -- Only download metadata if we don't have any yet or the
                 -- sha hash has changed
-                if current_metadata == nil or current_metadata.sha ~= v.sha then
+                if current_metadata == nil or current_metadata.sha ~= v.sha or current_metadata.refresh then
                     
                     -- Download the Info.plist
                     self.api:getFile(v.path .. "/Info.plist", function(data)
@@ -156,6 +161,9 @@ function WebRepo:updateListings()
         
         -- Flush the new metadata to disk
         self:flushMetadata()
+        
+        -- We've now marked all the metadata to be refreshed
+        saveLocalData("shouldRefreshMetadata", false)
     end)
 end
 
