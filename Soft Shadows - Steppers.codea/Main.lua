@@ -22,6 +22,24 @@ function setup()
     shadowShader = ShadowMapShader()
     shadowedFlatShader = RenderShader()
     
+    -- Parameters
+    shadowedFlatShader.pass1_samples = 32
+    parameter.integer("Pass 1 Samples", 1, 256, 32, function(v)
+        shadowedFlatShader.pass1_samples = v
+    end)
+    shadowedFlatShader.pass2_samples = 128
+    parameter.integer("Pass 2 Samples", 1, 256, 128, function(v)
+        shadowedFlatShader.pass2_samples = v
+    end)
+    shadowedFlatShader.scale = 0.5
+    parameter.number("Scale", 0, 10.0, 0.5, function(v)
+        shadowedFlatShader.scale = v
+    end)
+    shadowedFlatShader.intensity = 0.9
+    parameter.number("Shadow Intensity", 0, 1.0, 0.9, function(v)
+        shadowedFlatShader.intensity = v
+    end)
+    
     -- Generate the fix matrix
     ortho(-1, 1, -1, 1, -1, 1)
     local fixMatrix = projectionMatrix()

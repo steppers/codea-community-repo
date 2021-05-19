@@ -75,13 +75,13 @@ local render_fs_source = [[
 
     uniform lowp sampler2D shadowMap;
 
+    uniform int pass1_samples;// = 32;
+    uniform int pass2_samples;// = 128;
+    uniform float scale;// = 0.5;
+    uniform float intensity;// = 0.9;
+
     varying vec3 vFragPosInShadow;
     varying vec4 vColor;
-
-    const int pass1_samples = 32;
-    const int pass2_samples = 128;
-    const float scale = 0.5;
-    const float intensity = 0.9;
 
     // https://aras-p.info/blog/2009/07/30/encoding-floats-to-rgba-the-final/
     float DecodeFloatRGBA( vec4 rgba ) {
