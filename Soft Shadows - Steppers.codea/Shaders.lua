@@ -78,7 +78,10 @@ local render_fs_source = [[
     varying vec3 vFragPosInShadow;
     varying vec4 vColor;
 
-    const int num_samples = 64;
+    const int pass1_samples = 32;
+    const int pass2_samples = 128;
+    const float scale = 0.5;
+    const float intensity = 0.9;
 
     // https://aras-p.info/blog/2009/07/30/encoding-floats-to-rgba-the-final/
     float DecodeFloatRGBA( vec4 rgba ) {
@@ -111,9 +114,9 @@ local render_fs_source = [[
 
         float average_occluder_depth = 0.0;
         float occluders = 0.0;
-        for (int i = 0; i < 32; ++i)
+        for (int i = 0; i < pass1_samples; ++i)
         {
-            vec2 offset = VogelDiskSample(i, 32, noise);
+            vec2 offset = VogelDiskSample(i, pass1_samples, noise);
             float shadowDepth = DecodeFloatRGBA(texture2D(shadowMap, vFragPosInShadow.xy + offset*0.02));
             if (shadowDepth > vFragPosInShadow.z) {
                 occluders += 1.0;
@@ -124,21 +127,21 @@ local render_fs_source = [[
 
         float penumbra = (average_occluder_depth - vFragPosInShadow.z) / vFragPosInShadow.z;
         penumbra *= penumbra;
-        penumbra = clamp(0.5 * penumbra, 0.0, 1.0);
+        penumbra = clamp(scale * penumbra, 0.0, 1.0);
 
         float shadow = 0.0;
-        for (int i = 0; i < 128; ++i)
+        for (int i = 0; i < pass2_samples; ++i)
         {
-            vec2 offset = VogelDiskSample(i, 128, noise);
+            vec2 offset = VogelDiskSample(i, pass2_samples, noise);
             float shadowDepth = DecodeFloatRGBA(texture2D(shadowMap, vFragPosInShadow.xy + (offset*penumbra)));
         
             if (shadowDepth > vFragPosInShadow.z)
             {
-                shadow += 1.0;
+                shadow += intensity;
             }
         }
 
-        shadow = 1.0 - (shadow / 128.0);
+        shadow = 1.0 - (shadow / float(pass2_samples));
         
         gl_FragColor = vColor * shadow;
     }
