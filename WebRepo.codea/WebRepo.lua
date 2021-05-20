@@ -112,6 +112,7 @@ function WebRepo:updateListings()
                         metadata.icon_downloading = false
                         metadata.filtered = false
                         metadata.on_server = true
+                        metadata.refresh = false
                         
                         -- Adjust icon name if we haven't explicitly specified in the plist
                         if metadata.icon_path and string.sub(metadata.icon_path, -4, -1) ~= ".png" then
