@@ -97,7 +97,7 @@ function WebRepo:updateListings()
                         metadata.name = data.Name or "Unnamed"
                         metadata.path = v.path
                         metadata.sha = v.sha
-                        metadata.update_available = true -- Update is available if we made it here
+                        metadata.update_available = (current_metadata == nil or current_metadata.sha ~= v.sha)
                         metadata.desc = data.Description or "No description available"
                         metadata.author = data.Author or "Unknown"
                         metadata.version = data.Version or "1.0"
