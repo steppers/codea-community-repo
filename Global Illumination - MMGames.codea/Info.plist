@@ -16,6 +16,8 @@
 	<false/>
 	<key>Link</key>
 	<string>https://codea.io/talk/discussion/7672/update-global-illumination</string>
+	<key>Icon</key>
+	<string>Icon.png</string>
 	<key>Buffer Order</key>
 	<array>
 		<string>Main</string>
