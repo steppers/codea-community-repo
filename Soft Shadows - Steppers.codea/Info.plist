@@ -17,7 +17,7 @@
 	<key>Icon</key>
 	<string>Icon.png</string>
 	<key>Link</key>
-	<string>https://codea.io/talk/discussion/11682/fish</string>
+	<string>https://codea.io/talk/discussion/11746/soft-shadows-meshes-and-framebuffers</string>
 	<key>Buffer Order</key>
 	<array>
 		<string>Main</string>

@@ -143,7 +143,8 @@ local render_fs_source = [[
 
         shadow = 1.0 - (shadow / float(pass2_samples));
         
-        gl_FragColor = vColor * shadow;
+        // Maintain the alpha channel
+        gl_FragColor = vec4(vColor.rgb * shadow, vColor.a);
     }
 ]]
 
