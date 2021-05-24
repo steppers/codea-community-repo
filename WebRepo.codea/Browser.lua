@@ -147,12 +147,7 @@ function Browser:drawProjectListing(meta, x, y, w, h, alpha)
     
     -- Draw the icon
     spriteMode(CORNER)
-    local icon = self.webrepo:getProjectIcon(meta)
-    if icon then -- Downloaded icon
-        sprite(icon, icon_x, icon_y, icon_size, icon_size)
-    else -- Or default blank icon
-        sprite(asset.builtin.UI.Grey_Panel, icon_x, icon_y, icon_size, icon_size)
-    end
+    sprite(self.webrepo:getProjectIcon(meta), icon_x, icon_y, icon_size, icon_size)
     
     -- Draw download progress
     if meta.downloading then

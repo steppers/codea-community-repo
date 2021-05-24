@@ -62,12 +62,7 @@ function ProjectPanel:draw()
     rect(5, -5, PANEL_W-10, PANEL_H)
     
     -- Draw app Icon
-    local icon = self.webrepo:getProjectIcon(self.metadata)
-    if icon then -- Downloaded icon
-        sprite(icon, PADDING, PANEL_H - PADDING - ICON_SIZE, ICON_SIZE, ICON_SIZE)
-    else -- Or default blank icon
-        sprite(asset.builtin.UI.Grey_Panel, PADDING, PANEL_H - PADDING - ICON_SIZE, ICON_SIZE, ICON_SIZE)
-    end
+    sprite(self.webrepo:getProjectIcon(self.metadata), PADDING, PANEL_H - PADDING - ICON_SIZE, ICON_SIZE, ICON_SIZE)
     
     -- Draw Title
     textWrapWidth(0)

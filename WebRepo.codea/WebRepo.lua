@@ -379,9 +379,11 @@ end
 function WebRepo:getProjectIcon(project_meta)
     if project_meta.icon_index then
         return self.icons[project_meta.icon_index].icon
+    else
+        return asset.builtin.Blocks.Missing
     end
 end
-
+    
 -- e.g getProjectMetadata("WebRepo.codea")
 function WebRepo:getProjectMetadata(project_path)
     return self.metadata[project_path]
