@@ -11,7 +11,7 @@ Simple as that! You should now have access to many user created Codea projects a
 
 To top it all off, if there's an update to the WebRepo project, it'll update itself automatically!
 
-![iPad](https://github.com/steppers/codea-community-repo/raw/main/screenshots/1.0_ipad.jpg)
+![iPad](https://github.com/steppers/codea-community-repo/raw/main/screenshots/1.2_ipad.PNG)
 
 # Extra things
 Deleting a project can only be done from outside of the WebRepo project currently but there are plans to add the functionality in the future.
