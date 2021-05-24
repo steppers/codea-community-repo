@@ -95,7 +95,7 @@ function ProjectPanel:draw()
         
         -- Draw Update button
         if self.metadata.update_available then
-            self.update_btn:reinit(PANEL_W/2 - 60, button_y, BUTTON_WIDTH, 36)
+            self.update_btn:reinit(PANEL_W/2 - BUTTON_WIDTH/2, button_y, BUTTON_WIDTH, 36)
             self.update_btn:draw()
         end
     else
@@ -233,7 +233,7 @@ function ProjectPanel:open(project_metadata)
     local button_y = PANEL_H - (PADDING*2 + ICON_SIZE)
     
     self.launch_btn = Button("Launch", PADDING, button_y, BUTTON_WIDTH, 36, color(22, 178, 94), color(255))          
-    self.update_btn = Button("Update", PANEL_W/2 - 60, button_y, BUTTON_WIDTH, 36, color(0, 155, 255), color(255))
+    self.update_btn = Button("Update", PANEL_W/2 - BUTTON_WIDTH/2, button_y, BUTTON_WIDTH, 36, color(0, 155, 255), color(255))
     self.delete_btn = Button("Delete", PANEL_W - BUTTON_WIDTH - PADDING*2, PADDING + 36, BUTTON_WIDTH, 36, color(255, 0, 56), color(255))
     self.install_btn = Button("Install", PADDING, button_y, BUTTON_WIDTH, 36, color(0, 155, 255), color(255))
     self.forum_btn = Button("Forum", PANEL_W - PADDING*2 - BUTTON_WIDTH, button_y, BUTTON_WIDTH, 36, color(0, 155, 255), color(255))
