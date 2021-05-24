@@ -9,9 +9,7 @@
 	<key>Description</key>
 	<string>Soft Shadows Demo</string>
 	<key>LongDescription</key>
-	<string>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ornare metus sed commodo interdum. Integer euismod sed ante id pellentesque. Donec sit amet tincidunt nunc. Nulla facilisi. Suspendisse gravida risus vel eros aliquet, at mollis ligula bibendum. Ut id tincidunt turpis, ut bibendum leo. Fusce a metus rutrum, placerat diam sit amet, imperdiet enim. Aenean finibus varius blandit. Proin lacinia lorem vehicula mi rhoncus, iaculis vestibulum justo aliquam. Aenean varius, dolor ac sagittis pulvinar, tellus dui tristique mi, vitae dignissim nunc turpis eu mi.
-
-Mauris sit amet risus ut libero laoreet rhoncus. Suspendisse justo nibh, scelerisque vitae iaculis eu, aliquet et nisl. Donec venenatis sodales tincidunt. Aenean at velit justo. Nunc ut euismod justo. Proin auctor scelerisque pretium. Vivamus sed sagittis velit, id efficitur diam. Aenean eu velit ultrices lectus rhoncus sagittis.</string>
+	<string>A (pretty bad) soft shadow implementation using shadow maps encoded in Codea's RGBA framebuffer textures.</string>
 	<key>Version</key>
 	<string>1.0</string>
 	<key>Hidden</key>

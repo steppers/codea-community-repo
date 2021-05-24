@@ -8,6 +8,8 @@
 	<string>West</string>
 	<key>Description</key>
 	<string>Simple Platformer</string>
+	<key>LongDescription</key>
+	<string>Simple motion controlled Star Wars themed platformer</string>
 	<key>Version</key>
 	<string>1.0</string>
 	<key>Hidden</key>

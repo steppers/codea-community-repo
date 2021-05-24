@@ -8,6 +8,8 @@
 	<string>West</string>
 	<key>Description</key>
 	<string>Matching card game</string>
+	<key>LongDescription</key>
+	<string>A Star Wars themed matching card game</string>
 	<key>Version</key>
 	<string>1.0</string>
 	<key>Hidden</key>

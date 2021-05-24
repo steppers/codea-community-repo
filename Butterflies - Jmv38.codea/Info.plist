@@ -8,6 +8,8 @@
 	<string>Jmv38</string>
 	<key>Description</key>
 	<string>Mesh demo</string>
+	<key>LongDescription</key>
+	<string>Colorful Mesh Demo. Tap to interact with the butterflies!</string>
 	<key>Version</key>
 	<string>1.0</string>
 	<key>Hidden</key>

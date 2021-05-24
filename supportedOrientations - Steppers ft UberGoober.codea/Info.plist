@@ -12,6 +12,8 @@
 	</array>
 	<key>Description</key>
 	<string>Implementation of the old API</string>
+	<key>LongDescription</key>
+	<string>An implementation of the old Codea API allowing projects to lock the device in a specific orientation. All you need to do is add this project as a dependency of your own project, et voila! supportedOrientations is available once again.</string>
 	<key>Executable</key>
 	<true/>
 	<key>Hidden</key>

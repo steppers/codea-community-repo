@@ -23,6 +23,8 @@
 		<string>GithubAPI</string>
 		<string>URL</string>
 		<string>Browser</string>
+		<string>ProjectPanel</string>
+		<string>Button</string>
 		<string>SearchBar</string>
 		<string>APIOverrides</string>
 		<string>GlobalOverrides</string>

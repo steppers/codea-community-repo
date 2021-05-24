@@ -8,6 +8,8 @@
 	<string>Yojimbo2000</string>
 	<key>Description</key>
 	<string>Pre-Craft animating 3D figure</string>
+	<key>LongDescription</key>
+	<string>3D Skeletal animation demo with model skinning</string>
 	<key>Version</key>
 	<string>1.0</string>
 	<key>Hidden</key>

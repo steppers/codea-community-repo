@@ -44,7 +44,7 @@ function setup()
         
         -- Initialise the WebRepo and set it in the browser
         webrepo = WebRepo(github, webrepoDelegate)
-        app_browser.webrepo = webrepo
+        app_browser:setWebRepo(webrepo)
     end)
 end
 

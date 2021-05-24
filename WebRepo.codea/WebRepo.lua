@@ -101,6 +101,7 @@ function WebRepo:updateListings()
                         metadata.sha = v.sha
                         metadata.update_available = is_update
                         metadata.desc = data.Description or "No description available"
+                        metadata.long_desc = data.LongDescription or metadata.desc
                         metadata.author = data.Author or "Unknown"
                         metadata.version = data.Version or "1.0"
                         metadata.hidden = data.Hidden or false
@@ -110,6 +111,7 @@ function WebRepo:updateListings()
                         metadata.icon_index = nil
                         metadata.icon_path = data.Icon or nil
                         metadata.icon_downloading = false
+                        metadata.link = data.Link
                         metadata.filtered = false
                         metadata.on_server = true
                         metadata.refresh = false
@@ -184,14 +186,19 @@ function WebRepo:downloadProject(project_meta)
     
     local editor_name = string.gsub(project_meta.path, ".codea", "")
     
+    local total_downloads = 0
     local downloads = 0
     local function downloadComplete()
         downloads = downloads - 1
-        -- TODO: Add rough progress
+
+        -- Calculate a rough progress value        
+        project_meta.download_progress = (total_downloads - downloads) / total_downloads
+
         if downloads == 0 then
             project_meta.downloading = false
             project_meta.installed = true
             project_meta.update_available = false
+            project_meta.download_progress = nil
             self:flushMetadata()
             
             -- Inform the delegate
@@ -239,15 +246,28 @@ function WebRepo:downloadProject(project_meta)
                 end)
             end
         end
+        
+        -- Track the total number of downloads
+        total_downloads = downloads
     end)
 end
 
 function WebRepo:deleteProject(project_meta)
     
+    -- Update metadata
+    project_meta.installed = false
+    project_meta.update_available = true
+    
+    -- delete it
+    local editor_name = string.gsub(project_meta.path, ".codea", "")
+    deleteProject(editor_name)
+    
+    -- Flush the metadata
+    self:flushMetadata()
 end
 
 function WebRepo:launchProject(project_meta)
-    if project_meta.installed then
+    if project_meta.installed and project_meta.executable then
         
         -- Path to the project's bundle
         local project_path = project_meta.path .. "/"

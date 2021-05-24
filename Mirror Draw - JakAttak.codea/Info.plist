@@ -8,6 +8,8 @@
 	<string>JakAttak</string>
 	<key>Description</key>
 	<string>Make beautiful patterns with ease!</string>
+	<key>LongDescription</key>
+	<string>NOTE: This only works well on iPhone in my experience.</string>
 	<key>Version</key>
 	<string>1.0</string>
 	<key>Platform</key>

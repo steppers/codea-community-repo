@@ -7,7 +7,9 @@
 	<key>Author</key>
 	<string>West</string>
 	<key>Description</key>
-	<string>Sidescroller</string>
+	<string>Sidescroller Game</string>
+	<key>LongDescription</key>
+	<string>Simple Star Wars themed sidescroller game</string>
 	<key>Version</key>
 	<string>1.0</string>
 	<key>Hidden</key>

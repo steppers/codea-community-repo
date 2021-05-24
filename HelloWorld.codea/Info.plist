@@ -8,6 +8,8 @@
 	<string>Steppers</string>
 	<key>Description</key>
 	<string>Test Application</string>
+	<key>LongDescription</key>
+	<string>Very simple test project</string>
 	<key>Version</key>
 	<string>1.0</string>
 	<key>Hidden</key>

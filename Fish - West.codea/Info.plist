@@ -8,6 +8,8 @@
 	<string>West</string>
 	<key>Description</key>
 	<string>Mesh Demo</string>
+	<key>LongDescription</key>
+	<string>Mesh Demo. Tap to interact with the Fish!</string>
 	<key>Version</key>
 	<string>1.0</string>
 	<key>Hidden</key>

@@ -8,6 +8,8 @@
 	<string>West</string>
 	<key>Description</key>
 	<string>Stop the fish getting squashed</string>
+	<key>LongDescription</key>
+	<string>Stop the fish getting squashed. Underwater demo game</string>
 	<key>Version</key>
 	<string>1.0</string>
 	<key>Hidden</key>

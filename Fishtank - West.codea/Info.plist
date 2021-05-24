@@ -8,6 +8,8 @@
 	<string>West</string>
 	<key>Description</key>
 	<string>Simple Multiplane Fishtank Demo</string>
+	<key>LongDescription</key>
+	<string>Simple Multiplane Fishtank Demo. Utilising parallax background effects and motion control.</string>
 	<key>Version</key>
 	<string>1.0</string>
 	<key>Hidden</key>

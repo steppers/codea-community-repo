@@ -8,6 +8,8 @@
 	<string>Steppers</string>
 	<key>Description</key>
 	<string>Global variable intercepts</string>
+	<key>LongDescription</key>
+	<string>Library enabling users to override global variables and wrap global functions</string>
 	<key>Version</key>
 	<string>1.0</string>
 	<key>Hidden</key>

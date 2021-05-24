@@ -1,6 +1,9 @@
 Browser = class()
 
-local app_height = 80
+local app_width = 150
+local app_height = 150
+local app_icon_scale = 0.5
+local app_font_scale = 0.11
 local search_bar_height = 52
 
 function Browser:init()
@@ -9,7 +12,13 @@ function Browser:init()
     self.scroll = 0
     self.scroll_velocity = 0
     self.search_bar = SearchBar(self.all_entries, self.displayed_entries)
+    self.project_panel = ProjectPanel()
     self.webrepo = nil
+end
+
+function Browser:setWebRepo(webrepo)
+    self.webrepo = webrepo
+    self.project_panel.webrepo = webrepo
 end
 
 function Browser:addProject(project_metadata)
@@ -53,7 +62,7 @@ function Browser:draw()
     self.display_height = HEIGHT - layout.safeArea.bottom - layout.safeArea.top
     
     -- Calculate the number of apps we can fit per row & their size
-    self.num_x = math.ceil(self.display_width / 450)
+    self.num_x = math.ceil(self.display_width / app_width)
     self.app_width = self.display_width / self.num_x
     
     -- Draw project browser
@@ -73,29 +82,29 @@ function Browser:draw()
         self.scroll = 0
     end
     -- Limit the maximum scroll
-    local max_scroll = math.max((math.ceil(#self.displayed_entries / self.num_x) * app_height) - self.browser_height, 0)
+    local max_scroll = math.max((math.ceil(#self.displayed_entries / self.num_x) * app_width) - self.browser_height, 0)
     if self.scroll > max_scroll then
         self.scroll = max_scroll
         self.scroll_velocity = 0
     end
     
     local x = 0
-    local y = self.browser_top - app_height + self.scroll
+    local y = self.browser_top - app_width + self.scroll
     for _,e in ipairs(self.displayed_entries) do
             
         -- Fade the project listing as it scrolls offscreen
         local alpha = 255
-        local fade_y_max = self.browser_top - app_height
+        local fade_y_max = self.browser_top - app_width
         local fade_y_min = layout.safeArea.bottom
         if y > fade_y_max then
-            alpha = 255 * ((fade_y_max + app_height - y)/app_height)
+            alpha = 255 * ((fade_y_max + app_width - y)/app_width)
         elseif y < fade_y_min then
-            alpha = 255 * ((y - (fade_y_min - app_height))/app_height)
+            alpha = 255 * ((y - (fade_y_min - app_width))/app_width)
         end
         
         -- Download the icon
-        -- if #self.all_entries < 100 or (y > -app_height*3 and y < HEIGHT + app_height*2) then
-        if y > -app_height*3 and y < HEIGHT + app_height*2 then
+        -- if #self.all_entries < 100 or (y > -app_width*3 and y < HEIGHT + app_width*2) then
+        if y > -app_width*3 and y < HEIGHT + app_width*2 then
             self.webrepo:initProjectIcon(e)
         else
             self.webrepo:freeProjectIcon(e) -- Free the icon
@@ -115,6 +124,9 @@ function Browser:draw()
     self.search_bar_y = self.display_top - search_bar_height
     self.search_bar:draw(self.search_bar_y, math.min(WIDTH - 40, 500), search_bar_height)
     
+    -- Draw project panel
+    self.project_panel:draw()
+    
     popMatrix()
     popStyle()
 end
@@ -127,12 +139,9 @@ function Browser:drawProjectListing(meta, x, y, w, h, alpha)
     end
     
     local padding = 7
-    local icon_size = h - (padding*2)
-    
-    local icon_offset_y = padding
-    local title_offset_y = h - 22 - padding
-    local desc_offset_y = (h - fontSize() - 4) / 2
-    local author_offset_y = padding
+    local icon_size = w * app_icon_scale
+    local icon_x = x + (w - icon_size)/2
+    local icon_y = y + w - padding - icon_size
     
     tint(255, alpha)
     
@@ -140,22 +149,36 @@ function Browser:drawProjectListing(meta, x, y, w, h, alpha)
     spriteMode(CORNER)
     local icon = self.webrepo:getProjectIcon(meta)
     if icon then -- Downloaded icon
-        sprite(icon, x + padding, y + padding, icon_size, icon_size)
+        sprite(icon, icon_x, icon_y, icon_size, icon_size)
     else -- Or default blank icon
-        sprite(asset.builtin.UI.Grey_Panel, x + padding, y + padding, icon_size, icon_size)
+        sprite(asset.builtin.UI.Grey_Panel, icon_x, icon_y, icon_size, icon_size)
+    end
+    
+    -- Draw download progress
+    if meta.downloading then
+        pushStyle()
+        local progress = meta.download_progress or 0
+        resetStyle()
+        fill(0, 255, 4, 118)
+        rect(icon_x, icon_y, icon_size * progress, icon_size)
+        popStyle()
     end
     
     -- Draw the title
     if meta.installed then
         fill(22, 255, 0, alpha)
-    elseif meta.downloading then
-        fill(255, 0, 224, alpha)
     else
-        fill(34, 165, 241, alpha)
+        fill(222)
     end    
-    fontSize(22)
-    text(meta.name, x + h, y + title_offset_y)
+    fontSize(w * app_font_scale)
+    textMode(CENTER)
+    textAlign(CENTER)
+    textWrapWidth(w - padding*2)
+    local _,th = textSize(meta.name)
+    local title_y = icon_y - th/2 - 3
+    text(meta.name, x + w/2, title_y)
     
+    --[[
     -- Draw the description & author
     textWrapWidth(w - h)
     fill(195, alpha)
@@ -167,9 +190,16 @@ function Browser:drawProjectListing(meta, x, y, w, h, alpha)
     text(desc, x + h, y + desc_offset_y)
     fontSize(14)
     text(meta.author, x + h, y + author_offset_y)
+    ]]
 end
 
 function Browser:tap(pos)
+    
+    -- Pass to the project panel
+    if self.project_panel:tap(pos) then
+        return
+    end
+    
     -- Tapped on the search bar?
     if pos.y > self.display_top - search_bar_height then
         self.search_bar:select(true)
@@ -197,6 +227,11 @@ function Browser:tap(pos)
     local proj = self.displayed_entries[app_index]
     if proj then
         
+        -- Open the project panel and stop the scolling
+        self.project_panel:open(proj)
+        self.scroll_velocity = 0
+        
+        --[[
         if self.webrepo.connection_failure then
             -- Offline
             
@@ -214,10 +249,17 @@ function Browser:tap(pos)
                 end
             end
         end
+        ]]
     end
 end
 
 function Browser:pan(pos, delta, velocity, state)
+    
+    -- Ignore if the project panel handles it
+    if self.project_panel:pan(pos, delta, velocity, state) then
+        return
+    end
+    
     if state == ENDED then
         self.scroll_velocity = velocity.y
         
@@ -239,7 +281,7 @@ function Browser:pan(pos, delta, velocity, state)
     end
     
     -- Calculate the maximum scroll
-    local max_scroll = math.max((math.ceil(#self.displayed_entries / self.num_x) * app_height) - self.browser_height, 0)
+    local max_scroll = math.max((math.ceil(#self.displayed_entries / self.num_x) * app_width) - self.browser_height, 0)
     
     if self.scroll > max_scroll then
         self.scroll = max_scroll

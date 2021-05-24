@@ -8,6 +8,8 @@
 	<string>Xavier</string>
 	<key>Description</key>
 	<string>Splitscreen Topdown shooter game</string>
+	<key>LongDescription</key>
+	<string>Splitscreen Topdown shooter game. The game starts in the map editor which should allow you to create your own maps. A demo map has been included however and should load when the project is run.</string>
 	<key>Version</key>
 	<string>1.0</string>
 	<key>Hidden</key>

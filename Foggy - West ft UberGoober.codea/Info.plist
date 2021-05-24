@@ -7,7 +7,9 @@
 	<key>Author</key>
 	<string>West ft. UberGoober</string>
 	<key>Description</key>
-	<string>Basic Side Scroller</string>
+	<string>Basic Side Scroller Game</string>
+	<key>LongDescription</key>
+	<string>Basic Side Scroller Game</string>
 	<key>Version</key>
 	<string>1.0</string>
 	<key>Hidden</key>

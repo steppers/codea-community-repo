@@ -8,6 +8,8 @@
 	<string>West</string>
 	<key>Description</key>
 	<string>Mesh demo, swipe to cut</string>
+	<key>LongDescription</key>
+	<string>Mesh demo, swipe to cut. A fruit ninja like mechanic</string>
 	<key>Version</key>
 	<string>1.0</string>
 	<key>Hidden</key>
