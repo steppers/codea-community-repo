@@ -11,7 +11,7 @@ Simple as that! You should now have access to many user created Codea projects a
 
 To top it all off, if there's an update to the WebRepo project, it'll update itself automatically!
 
-![iPad](https://github.com/steppers/codea-community-repo/raw/main/screenshots/1.2_ipad2.PNG)
+![iPad](https://github.com/steppers/codea-community-repo/raw/main/screenshots/1.2_ipad.PNG)
 
 # Submitting a project
 Please ensure you have set an icon for your project if you do not wish me to do it for you.
@@ -26,6 +26,7 @@ Once we have everything we’ll test the project to make sure everything works w
 
 Please note that attempts to submit illegal, malicious, unethical or innappropriate content will be ignored.
 
+![iPad](https://github.com/steppers/codea-community-repo/raw/main/screenshots/1.2_ipad2.PNG)
 
 # Adding a project (For Contributors)
 If you have any questions do feel free to send me a message at [Codea.io](https://codea.io/talk/messages/inbox)
