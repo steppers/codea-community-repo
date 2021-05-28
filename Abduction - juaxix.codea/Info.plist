@@ -18,6 +18,8 @@
 	<false/>
 	<key>Icon</key>
 	<string>Icon@2x.png</string>
+	<key>Link</key>
+	<string>https://codea.io/talk/discussion/84/abduction-game-source-code</string>
 	<key>Buffer Order</key>
 	<array>
 		<string>Main</string>
