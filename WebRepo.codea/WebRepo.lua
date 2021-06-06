@@ -290,6 +290,28 @@ function WebRepo:launchProject(project_meta)
         -- Any project we run should know it's launched using WebRepo
         _WEB_REPO_LAUNCH_ = true
         
+        -- Load dependencies in the project specified order
+        for _,dep in ipairs(plist["Dependencies"]) do
+            local tabs = listProjectTabs(dep)
+            if tabs == nil then
+                error("Unable to load dependency " .. dep .. " in " .. project_meta.name)
+            end
+            
+            -- Load each tab from the dependency project
+            for _,tab in pairs(tabs) do
+                local code = readProjectTab(dep .. ":" .. tab)
+                
+                -- Load the file
+                local fn, err = load(code)
+                if fn == nil then
+                    error("Error in dependency (" .. dep .. "): " .. err)
+                    return
+                end
+                
+                fn()
+            end
+        end
+        
         -- Load lua files in the project specified order
         for _,tab in ipairs(plist["Buffer Order"]) do
             local code = readText(asset.documents .. project_path .. tab .. ".lua")
