@@ -293,7 +293,7 @@ function WebRepo:launchProject(project_meta)
         -- Load dependencies in the project specified order
         for _,dep in ipairs(plist["Dependencies"]) do
             local tabs = listProjectTabs(dep)
-            if tabs == nil then
+            if tabs == nil or #tabs == 0 then
                 error("Unable to load dependency " .. dep .. " in " .. project_meta.name)
             end
             
