@@ -2,14 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>Addons</key>
-	<array>
-		<string>Craft</string>
-	</array>
 	<key>Buffer Order</key>
 	<array>
-		<string>Main</string>
 		<string>Grid</string>
+		<string>Main</string>
 	</array>
 	<key>Dependencies</key>
 	<array>
