@@ -6,14 +6,14 @@
 	<array>
 		<string>Craft</string>
 	</array>
+	<key>Buffer Order</key>
+	<array>
+		<string>Main</string>
+		<string>Grid</string>
+	</array>
 	<key>Dependencies</key>
 	<array>
 		<string>Craft:Cameras</string>
-	</array>
-	<key>Buffer Order</key>
-	<array>
-		<string>Grid</string>
-		<string>Main</string>
 	</array>
 	<key>Name</key>
 	<string>WorldGrid</string>
