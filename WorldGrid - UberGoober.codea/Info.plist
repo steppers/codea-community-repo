@@ -13,9 +13,9 @@
 	<key>Version</key>
 	<string>1.0</string>
 	<key>Library</key>
-	<YES/>
+	<true/>
 	<key>Executable</key>
-	<YES/>
+	<true/>
 	<key>Hidden</key>
 	<false/>
 	<key>Link</key>
