@@ -26,11 +26,11 @@
 	<key>Version</key>
 	<string></string>
 	<key>Library</key>
-	</YES>
+	<YES/>
 	<key>Executable</key>
-	</YES>
+	<YES/>
 	<key>Hidden</key>
-	</false>
+	<false/>
 	<key>Link</key>
 	<string>https://codea.io/talk/discussion/11807/worldgrid-tool-for-adding-an-x-y-z-grid-along-craft-coordinates-to-help-with-positioning#latest</string>
 	<key>Icon</key>
