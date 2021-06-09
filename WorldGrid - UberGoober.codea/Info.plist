@@ -26,9 +26,9 @@
 	<key>Version</key>
 	<string></string>
 	<key>Library</key>
-	</YES>
+	</true>
 	<key>Executable</key>
-	</YES>
+	</true>
 	<key>Hidden</key>
 	</false>
 	<key>Link</key>
