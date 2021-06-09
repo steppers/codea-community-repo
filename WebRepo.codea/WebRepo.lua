@@ -289,27 +289,55 @@ function WebRepo:launchProject(project_meta)
         
         -- Any project we run should know it's launched using WebRepo
         _WEB_REPO_LAUNCH_ = true
+            
+        -- Override Codea API
+        overrideAPI(project_path)
+        
+        -- Recursively loads a project and it's dependencies
+        local function loadDependency(project)
+            
+            -- Get the tabs of the dependency
+            local tabs = listProjectTabs(project)
+            if tabs == nil or #tabs == 0 then
+                error("Unable to load dependency " .. project)
+            end
+            
+            -- Load the dependency's plist
+            local project_path = string.gsub(project, ":", "/") .. ".codea/"
+            local plist = readText(asset.documents .. project_path .. "Info.plist")
+            if plist == nil then
+                error("Unable to open Info.plist in " .. project_path)
+                return
+            end
+            plist = parsePList(plist)
+            
+            -- Load each sub dependency recursively
+            if plist["Dependencies"] then
+                for _,dep in ipairs(plist["Dependencies"]) do
+                    loadDependency(dep)
+                end
+            end
+                
+            -- Load each tab from the dependency project
+            for _,tab in pairs(tabs) do
+                if tab ~= "Main" then -- Ignore 'Main' tabs 
+                    local code = readProjectTab(project .. ":" .. tab)
+                    
+                    -- Load the file
+                    local fn, err = load(code)
+                    if fn == nil then
+                        error("Error in dependency (" .. project .. "): " .. err)
+                        return
+                    end
+                    
+                    fn()
+                end
+            end
+        end
         
         -- Load dependencies in the project specified order
         for _,dep in ipairs(plist["Dependencies"]) do
-            local tabs = listProjectTabs(dep)
-            if tabs == nil or #tabs == 0 then
-                error("Unable to load dependency " .. dep .. " in " .. project_meta.name)
-            end
-            
-            -- Load each tab from the dependency project
-            for _,tab in pairs(tabs) do
-                local code = readProjectTab(dep .. ":" .. tab)
-                
-                -- Load the file
-                local fn, err = load(code)
-                if fn == nil then
-                    error("Error in dependency (" .. dep .. "): " .. err)
-                    return
-                end
-                
-                fn()
-            end
+            loadDependency(dep)
         end
         
         -- Load lua files in the project specified order
