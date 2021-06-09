@@ -11,7 +11,7 @@
 	<key>LongDescription</key>
 	<string>Shouldn’t Codea have a 3D grid? Everybody has a 3D grid! Don’t let it feel left out. Adapted from built in grid class from Voxel Editor.</string>
 	<key>Version</key>
-	<string></string>
+	<string>1.0</string>
 	<key>Library</key>
 	<YES/>
 	<key>Executable</key>
