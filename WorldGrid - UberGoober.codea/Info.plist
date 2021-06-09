@@ -12,8 +12,8 @@
 	</array>
 	<key>Buffer Order</key>
 	<array>
-		<string>Main</string>
 		<string>Grid</string>
+		<string>Main</string>
 	</array>
 	<key>Name</key>
 	<string>WorldGrid</string>
