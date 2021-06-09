@@ -2,15 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>Buffer Order</key>
-	<array>
-		<string>Grid</string>
-		<string>Main</string>
-	</array>
-	<key>Dependencies</key>
-	<array>
-		<string>Craft:Cameras</string>
-	</array>
 	<key>Name</key>
 	<string>WorldGrid</string>
 	<key>Author</key>
@@ -33,5 +24,14 @@
 	<string>Icon.png</string>
 	<key>Platform</key>
 	<string>Both</string>
+	<key>Buffer Order</key>
+	<array>
+		<string>Grid</string>
+		<string>Main</string>
+	</array>
+	<key>Dependencies</key>
+	<array>
+		<string>Craft:Cameras</string>
+	</array>
 </dict>
 </plist>
