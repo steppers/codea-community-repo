@@ -34,7 +34,7 @@
 	<key>Link</key>
 	<string>https://codea.io/talk/discussion/11807/worldgrid-tool-for-adding-an-x-y-z-grid-along-craft-coordinates-to-help-with-positioning#latest</string>
 	<key>Icon</key>
-	<string></string>
+	<string>Icon.png</string>
 	<key>Platform</key>
 	<string>Both</string>
 </dict>
