@@ -2,19 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>Addons</key>
-	<array>
-		<string>Craft</string>
-	</array>
-	<key>Dependencies</key>
-	<array>
-		<string>Craft:Cameras</string>
-	</array>
-	<key>Buffer Order</key>
-	<array>
-		<string>Main</string>
-		<string>Grid</string>
-	</array>
 	<key>Name</key>
 	<string>WorldGrid</string>
 	<key>Author</key>
@@ -24,18 +11,29 @@
 	<key>LongDescription</key>
 	<string>Shouldn’t Codea have a 3D grid? Everybody has a 3D grid! Don’t let it feel left out. Adapted from built in grid class from Voxel Editor.</string>
 	<key>Version</key>
-	<string></string>
-	<key>Library</key>
-	<YES/>
-	<key>Executable</key>
-	<YES/>
-	<key>Hidden</key>
-	<false/>
+	<string>1.0</string>
 	<key>Link</key>
 	<string>https://codea.io/talk/discussion/11807/worldgrid-tool-for-adding-an-x-y-z-grid-along-craft-coordinates-to-help-with-positioning#latest</string>
+	<key>Library</key>
+	<true/>
+	<key>Executable</key>
+	<true/>
+	<key>Hidden</key>
+	<false/>
 	<key>Icon</key>
-	<string></string>
-	<key>Platform</key>
-	<string>Both</string>
+	<string>Icon.png</string>
+	<key>Addons</key>
+	<array>
+		<string>Craft</string>
+	</array>
+	<key>Buffer Order</key>
+	<array>
+		<string>Main</string>
+		<string>Grid</string>
+	</array>
+	<key>Dependencies</key>
+	<array>
+		<string>Craft:Cameras</string>
+	</array>
 </dict>
 </plist>
