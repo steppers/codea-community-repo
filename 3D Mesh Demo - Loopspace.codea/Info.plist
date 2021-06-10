@@ -15,7 +15,7 @@
 	<key>Link</key>
 	<string>https://codea.io/talk</string>
 	<key>Library</key>
-	<true/>
+	<false/>
 	<key>Executable</key>
 	<true/>
 	<key>Hidden</key>
