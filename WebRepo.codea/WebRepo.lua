@@ -336,10 +336,12 @@ function WebRepo:launchProject(project_meta)
         end
         
         -- Load dependencies in the project specified order
-        for _,dep in ipairs(plist["Dependencies"]) do
-            loadDependency(dep)
+        if plist["Dependencies"] then
+            for _,dep in ipairs(plist["Dependencies"]) do
+                loadDependency(dep)
+            end
         end
-        
+            
         -- Load lua files in the project specified order
         for _,tab in ipairs(plist["Buffer Order"]) do
             local code = readText(asset.documents .. project_path .. tab .. ".lua")
