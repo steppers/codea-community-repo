@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Name</key>
+	<string>3D Mesh Demo</string>
+	<key>Author</key>
+	<string>Loopspace</string>
+	<key>Description</key>
+	<string>Pre-Craft Mesh Demo</string>
+	<key>LongDescription</key>
+	<string>Builds a model from first principles and shows how to manipulate the model, also adds wire-framing. Pre-Craft.</string>
+	<key>Version</key>
+	<string>1.0</string>
+	<key>Link</key>
+	<string>https://codea.io/talk</string>
+	<key>Library</key>
+	<false/>
+	<key>Executable</key>
+	<true/>
+	<key>Hidden</key>
+	<false/>
+	<key>Icon</key>
+	<string>Icon@2x.png</string>
+	<key>Addons</key>
+	<array>
+		<string>Craft</string>
+	</array>
+	<key>Buffer Order</key>
+	<array>
+		<string>Main</string>
+	</array>
+</dict>
+</plist>
