@@ -11,9 +11,9 @@
 	<key>LongDescription</key>
 	<string>Builds a model from first principles and shows how to manipulate the model, also adds wire-framing. Pre-Craft.</string>
 	<key>Version</key>
-	<string>1</string>
+	<string>1.0</string>
 	<key>Link</key>
-	<string></string>
+	<string>https://codea.io/talk</string>
 	<key>Library</key>
 	<true/>
 	<key>Executable</key>
