@@ -1,0 +1,28 @@
+{
+    "variants": {
+		"facing=down,short=false,type=normal": { "model": "block/_bdc/pistons/heads/normal_d" },
+        "facing=up,short=false,type=normal": { "model": "block/_bdc/pistons/heads/normal_u" },
+        "facing=north,short=false,type=normal": { "model": "block/_bdc/pistons/heads/normal_n" },
+        "facing=south,short=false,type=normal": { "model": "block/_bdc/pistons/heads/normal_s" },
+        "facing=west,short=false,type=normal": { "model": "block/_bdc/pistons/heads/normal_w" },
+        "facing=east,short=false,type=normal": { "model": "block/_bdc/pistons/heads/normal_e" },
+        "facing=down,short=false,type=sticky": { "model": "block/_bdc/pistons/heads/sticky_d" },
+        "facing=up,short=false,type=sticky": { "model": "block/_bdc/pistons/heads/sticky_u" },
+        "facing=north,short=false,type=sticky": { "model": "block/_bdc/pistons/heads/sticky_n" },
+        "facing=south,short=false,type=sticky": { "model": "block/_bdc/pistons/heads/sticky_s" },
+        "facing=west,short=false,type=sticky": { "model": "block/_bdc/pistons/heads/sticky_w" },
+        "facing=east,short=false,type=sticky": { "model": "block/_bdc/pistons/heads/sticky_e" },
+        "facing=down,short=true,type=normal": { "model": "block/_bdc/pistons/heads/normal_short_d" },
+        "facing=up,short=true,type=normal": { "model": "block/_bdc/pistons/heads/normal_short_u" },
+        "facing=north,short=true,type=normal": { "model": "block/_bdc/pistons/heads/normal_short_n" },
+        "facing=south,short=true,type=normal": { "model": "block/_bdc/pistons/heads/normal_short_s" },
+        "facing=west,short=true,type=normal": { "model": "block/_bdc/pistons/heads/normal_short_w" },
+        "facing=east,short=true,type=normal": { "model": "block/_bdc/pistons/heads/normal_short_e" },
+        "facing=down,short=true,type=sticky": { "model": "block/_bdc/pistons/heads/sticky_short_d" },
+        "facing=up,short=true,type=sticky": { "model": "block/_bdc/pistons/heads/sticky_short_u" },
+        "facing=north,short=true,type=sticky": { "model": "block/_bdc/pistons/heads/sticky_short_n" },
+        "facing=south,short=true,type=sticky": { "model": "block/_bdc/pistons/heads/sticky_short_s" },
+        "facing=west,short=true,type=sticky": { "model": "block/_bdc/pistons/heads/sticky_short_w" },
+        "facing=east,short=true,type=sticky": { "model": "block/_bdc/pistons/heads/sticky_short_e" }
+    }
+}

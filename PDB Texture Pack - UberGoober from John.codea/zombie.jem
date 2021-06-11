@@ -1,0 +1,19 @@
+{
+  "models": 
+  [
+    {
+      "model": "alex_right_arm.jpm",
+      "part": "right_arm", 
+	  "attach": true,
+      "translate": [ 7, 10, -8],
+      "rotate": [0, 0, 0]
+    },
+	{
+      "model": "alex_left_arm.jpm",
+      "part": "left_arm", 
+	  "attach": true,
+      "translate": [ 8, 10, -8],
+      "rotate": [0, 0, 0]
+    }
+  ]
+}

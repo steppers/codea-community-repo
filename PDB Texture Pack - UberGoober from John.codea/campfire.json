@@ -1,0 +1,10 @@
+{
+	"__comment": "Designed by Sphax",
+	"parent": "block/template_campfire",
+	"textures": {
+		"particle": "block/campfire_log",
+		"log": "block/campfire_log_lit",
+		"fire1": "block/fire_0",
+		"fire2": "block/fire_1"
+	}
+}

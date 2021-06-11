@@ -1,0 +1,130 @@
+{
+"__comment": "Designed by Sphax with BDcraft Cubik PRO 0.76 Beta - http://bdcraft.net",
+"ambientocclusion": false,
+"textures": {
+    "particle": "block/oak_door_top",
+    "top": "block/oak_door_top"
+},
+"elements": [ 
+{
+    "from": [ 0.75, 6.25, 3 ],
+    "to": [ 2.25, 7.75, 13 ],
+    "faces": {
+        "down":  { "uv": [ 3.5, 4, 4.5, 14 ], "texture": "#top" },
+        "up":    { "uv": [ 3.5, 4, 4.5, 14 ], "texture": "#top" },
+        "west":  { "uv": [ 3, 4, 5, 14 ], "rotation": 90, "texture": "#top" },
+        "east":  { "uv": [ 3, 4, 5, 14 ], "rotation": 90, "texture": "#top" }
+    }
+},
+{
+    "from": [ 1, 2, 7.25 ],
+    "to": [ 2, 12, 8.75 ],
+    "faces": {
+        "north": { "uv": [ 4.5, 4, 3.5, 14 ], "texture": "#top" },
+        "south": { "uv": [ 3.5, 4, 4.5, 14 ], "texture": "#top" },
+        "west":  { "uv": [ 3, 4, 5, 14 ], "texture": "#top" },
+        "east":  { "uv": [ 5, 4, 3, 14 ], "texture": "#top" }
+    }
+},
+{
+    "from": [ 0.5, 2, 13 ],
+    "to": [ 2.5, 12, 16 ],
+    "faces": {
+        "north": { "uv": [ 16, 4, 14, 14 ], "texture": "#top" },
+        "south": { "uv": [ 14, 4, 16, 14 ], "texture": "#top" },
+        "west":  { "uv": [ 13, 4, 16, 14 ], "texture": "#top" },
+        "east":  { "uv": [ 16, 4, 13, 14 ], "texture": "#top" }
+    }
+},
+{
+    "from": [ 0.5, 0, 0 ],
+    "to": [ 2.5, 2, 16 ],
+    "faces": {
+        "up":    { "uv": [ 14, 4, 16, 14 ], "texture": "#top" },
+        "north": { "uv": [ 0, 14, 0.5, 16 ], "texture": "#top" },
+        "south": { "uv": [ 14, 12, 16, 14 ], "texture": "#top" },
+        "west":  { "uv": [ 0, 14, 16, 16 ], "texture": "#top" },
+        "east":  { "uv": [ 16, 14, 0, 16 ], "texture": "#top" }
+    }
+},
+{
+    "from": [ 0.5, 2, 0 ],
+    "to": [ 2.5, 12, 3 ],
+    "faces": {
+        "north": { "uv": [ 0, 4, 0.5, 14 ], "texture": "#top" },
+        "south": { "uv": [ 14, 4, 16, 14 ], "texture": "#top" },
+        "west":  { "uv": [ 0, 4, 3, 14 ], "texture": "#top" },
+        "east":  { "uv": [ 3, 4, 0, 14 ], "texture": "#top" }
+    }
+},
+{
+    "from": [ 0.5, 12, 0 ],
+    "to": [ 2.5, 16, 16 ],
+    "faces": {
+        "down":  { "uv": [ 14, 4, 16, 14 ], "texture": "#top" },
+        "up":    { "uv": [ 14, 4, 16, 14 ], "texture": "#top" },
+        "north": { "uv": [ 0, 0, 0.5, 4 ], "texture": "#top" },
+        "south": { "uv": [ 14, 4, 16, 6.5 ], "texture": "#top" },
+        "west":  { "uv": [ 0, 0, 16, 4 ], "texture": "#top" },
+        "east":  { "uv": [ 16, 0, 0, 4 ], "texture": "#top" }
+    }
+},
+{
+    "from": [ 0, 0, 0 ],
+    "to": [ 3, 1, 2 ],
+    "faces": {
+        "up":    { "uv": [ 0, 15, 2, 15.5 ], "texture": "#top" },
+        "north": { "uv": [ 0, 15, 0.5, 16 ], "texture": "#top" },
+        "south": { "uv": [ 1.5, 15, 2, 16 ], "texture": "#top" },
+        "west":  { "uv": [ 0, 15, 2, 16 ], "texture": "#top" },
+        "east":  { "uv": [ 2, 15, 0, 16 ], "texture": "#top" }
+    }
+},
+{
+    "from": [ 0, 10, 0 ],
+    "to": [ 3, 12, 2 ],
+    "faces": {
+        "down":  { "uv": [ 2, 6, 0, 5.5 ], "texture": "#top" },
+        "up":    { "uv": [ 0, 4, 2, 4.5 ], "texture": "#top" },
+        "north": { "uv": [ 0, 4, 0.5, 6 ], "texture": "#top" },
+        "south": { "uv": [ 1.5, 4, 2, 6 ], "texture": "#top" },
+        "west":  { "uv": [ 0, 4, 2, 6 ], "texture": "#top" },
+        "east":  { "uv": [ 2, 4, 0, 6 ], "texture": "#top" }
+    }
+},
+{
+    "__comment": "DoorMiddle",
+    "from": [ 0, 0, 13.5 ],
+    "to": [ 3, 1, 14 ],
+    "faces": {
+        "up":    { "uv": [ 0, 4, 2, 4.5 ], "texture": "#top" },
+        "north": { "uv": [ 0, 4, 0.5, 5 ], "texture": "#top" },
+        "south": { "uv": [ 1.5, 4, 2, 5 ], "texture": "#top" }
+    }
+},
+{
+    "__comment": "DoorE",
+    "from": [ 3, 0, 12.5 ],
+    "to": [ 3.5, 1, 14 ],
+    "faces": {
+        "up":    { "uv": [ 0, 4, 2, 4.5 ], "texture": "#top" },
+        "north": { "uv": [ 0, 4, 0.5, 5 ], "texture": "#top" },
+        "south": { "uv": [ 1.5, 4, 2, 5 ], "texture": "#top" },
+        "west":  { "uv": [ 0, 4, 2, 5 ], "texture": "#top" },
+        "east":  { "uv": [ 2, 4, 0, 5 ], "texture": "#top" }
+    }
+},
+{
+    "__comment": "DoorW",
+    "from": [ -0.5, 0, 12.5 ],
+    "to": [ 0, 1, 14 ],
+    "faces": {
+        "up":    { "uv": [ 0, 4, 2, 4.5 ], "texture": "#top" },
+        "north": { "uv": [ 0, 4, 0.5, 5 ], "texture": "#top" },
+        "south": { "uv": [ 1.5, 4, 2, 5 ], "texture": "#top" },
+        "west":  { "uv": [ 0, 4, 2, 5 ], "texture": "#top" },
+        "east":  { "uv": [ 2, 4, 0, 5 ], "texture": "#top" }
+    }
+}
+]
+}

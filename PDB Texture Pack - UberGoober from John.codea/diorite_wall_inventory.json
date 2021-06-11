@@ -1,0 +1,7 @@
+{
+    "parent": "block/wall_inventory",
+    "textures": {
+        "wall": "block/diorite",
+        "wall_top": "block/polished_diorite"
+    }
+}

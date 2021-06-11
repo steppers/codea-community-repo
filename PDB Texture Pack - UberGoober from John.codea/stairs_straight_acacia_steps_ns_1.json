@@ -1,0 +1,6 @@
+{
+    "parent": "block/_bdc/plank/_all/stairs_straight_steps_ns_1",
+    "textures": {
+        "plank": "block/acacia_planks"
+    }
+}

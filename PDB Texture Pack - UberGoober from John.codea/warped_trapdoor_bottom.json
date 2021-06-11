@@ -1,0 +1,73 @@
+{
+	"__comment": "Designed by Sphax with Cubik Studio for PureBDcraft - https://BDcraft.net",
+	"parent": "block/thin_block",
+	"ambientocclusion": false,
+	"textures": {
+		"particle": "#texture",
+		"texture": "block/warped_trapdoor",
+		"edge": "block/_bdc/crimson_warped_trapdoor_side"
+	},
+	"elements": [ 	 
+		{
+			"__comment": "thickness",
+			"from": [ 0, 0, 0 ],
+			"to": [ 16, 2, 3 ],
+			"faces": {
+				"south": { "uv": [ 0, 2, 16, 4 ], "texture": "#edge" }
+			}
+		},
+		{
+			"__comment": "thickness1",
+			"from": [ 0, 0, 13 ],
+			"to": [ 16, 2, 16 ],
+			"faces": {
+				"north": { "uv": [ 0, 2, 16, 4 ], "texture": "#edge" }
+			}
+		},
+		{
+			"__comment": "thickness2",
+			"from": [ 0, 0, 3 ],
+			"to": [ 3, 2, 13 ],
+			"faces": {
+				"east": { "uv": [ 2, 2, 14, 4 ], "texture": "#edge" }
+			}
+		},
+		{
+			"__comment": "thickness3",
+			"from": [ 13, 0, 3 ],
+			"to": [ 16, 2, 13 ],
+			"faces": {
+				"west": { "uv": [ 2, 2, 14, 4 ], "texture": "#edge" }
+			}
+		},
+		{
+			"__comment": "border",
+			"from": [ 0, 0, 0 ],
+			"to": [ 16, 2, 16 ],
+			"faces": {
+				"down": { "uv": [ 16, 16, 0, 0 ], "texture": "#texture", "cullface": "down" },
+				"up": { "uv": [ 0, 0, 16, 16 ], "texture": "#texture" },
+				"north": { "uv": [ 0, 2, 16, 4 ], "texture": "#edge", "cullface": "north" },
+				"south": { "uv": [ 0, 2, 16, 4 ], "texture": "#edge", "cullface": "south" },
+				"west": { "uv": [ 0, 2, 16, 4 ], "texture": "#edge", "cullface": "west" },
+				"east": { "uv": [ 0, 2, 16, 4 ], "texture": "#edge", "cullface": "east" }
+			}
+		},
+		{
+			"__comment": "in1",
+			"from": [ 0, -0.875, 0 ],
+			"to": [ 16, 0.125, 16 ],
+			"faces": {
+				"up": { "uv": [ 16, 0, 0, 16 ], "texture": "#texture" }
+			}
+		},
+		{
+			"__comment": "in2",
+			"from": [ 0, 1.875, 0 ],
+			"to": [ 16, 2.875, 16 ],
+			"faces": {
+				"down": { "uv": [ 0, 16, 16, 0 ], "texture": "#texture", "cullface": "down" }
+			}
+		}
+	]
+}

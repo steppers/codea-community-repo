@@ -1,0 +1,17 @@
+{
+	"__comment": "Designed by Eskimojo14 with Cubik Studio - http://bdcraft.net",
+	"textures": {
+		"particle": "block/iron_bars",
+		"bars": "block/iron_bars"
+	},
+	"elements": [
+		{
+			"from": [ 7, 7, 7 ],
+			"to": [ 9, 9, 9 ],
+			"faces": {
+				"down": { "uv": [ 4, 7, 6, 9 ], "texture": "#bars" },
+				"up": { "uv": [ 4, 7, 6, 9 ], "texture": "#bars" }
+			}
+		}
+	]
+}

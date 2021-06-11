@@ -1,0 +1,21 @@
+{
+	"__comment": "Designed by Sphax with BDcraft Cubik PRO 0.75 Beta - http://bdcraft.net",
+	"parent": "block/block",
+	"ambientocclusion": false,
+	"textures": {
+		"particle": "block/cauldron_side",
+		"inside": "block/cauldron_inner",
+		"top": "block/cauldron_top",
+		"side": "block/cauldron_side",
+		"water": "block/water_still"
+	},
+	"elements": [ 	 
+		{
+			"from": [ 2, 12, 2 ],
+			"to": [ 14, 12.001, 14 ],
+			"faces": {
+				"up": { "uv": [ 2, 2, 14, 14 ], "texture": "#water", "tintindex": 0 }
+			}
+		}
+	]
+}

@@ -1,0 +1,34 @@
+{
+	"__comment": "Designed by Sphax with Cubik Studio - https://cubik.studio",
+	"textures": {
+		"particle": "#wall",
+		"wall_top": "#wall",
+		"wall": "#wall"
+	},
+	"elements": [ 	 
+		{
+			"__comment": "wall",
+			"from": [ 5, 0, 0 ],
+			"to": [ 11, 14, 8 ],
+			"faces": {
+				"down": { "uv": [ 5, 8, 11, 16 ], "texture": "#wall", "cullface": "down" },
+				"north": { "uv": [ 5, 2, 11, 16 ], "texture": "#wall", "cullface": "north" },
+				"west": { "uv": [ 0, 2, 8, 16 ], "texture": "#wall" },
+				"east": { "uv": [ 8, 2, 16, 16 ], "texture": "#wall" }
+			}
+		},
+		{
+			"__comment": "wall top",
+			"from": [ 4, 12, -0.0002 ],
+			"to": [ 12, 14, 8 ],
+			"faces": {
+				"down": { "uv": [ 4, 8, 12, 16 ], "texture": "#wall_top" },
+				"up": { "uv": [ 4, 0, 12, 8 ], "texture": "#wall_top" },
+				"north": { "uv": [ 4, 2, 12, 4 ], "texture": "#wall_top", "cullface": "north" },
+				"south": { "uv": [ 4, 2, 12, 4 ], "texture": "#wall_top" },
+				"west": { "uv": [ 0, 2, 8, 4 ], "texture": "#wall_top" },
+				"east": { "uv": [ 8, 2, 16, 4 ], "texture": "#wall_top" }
+			}
+		}
+	]
+}

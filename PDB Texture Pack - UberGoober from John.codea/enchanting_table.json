@@ -1,0 +1,76 @@
+{
+	"__comment": "Designed by Eskimojo14 with Cubik Studio - http://bdcraft.net",
+	"parent": "block/block",
+	"textures": {
+		"particle": "block/enchanting_table_bottom",
+		"bottom": "block/enchanting_table_bottom",
+		"top": "block/enchanting_table_top",
+		"side": "block/enchanting_table_side",
+		"book": "block/end_rod"
+	},
+	"elements": [
+		{
+			"from": [ 0, 0, 0 ],
+			"to": [ 16, 12, 16 ],
+			"faces": {
+				"down": { "uv": [ 0, 0, 16, 16 ], "texture": "#bottom", "cullface": "down" },
+				"up": { "uv": [ 0, 0, 16, 16 ], "texture": "#top" },
+				"north": { "uv": [ 0, 4, 16, 16 ], "texture": "#side", "cullface": "north" },
+				"south": { "uv": [ 0, 4, 16, 16 ], "texture": "#side", "cullface": "south" },
+				"west": { "uv": [ 0, 4, 16, 16 ], "texture": "#side", "cullface": "west" },
+				"east": { "uv": [ 0, 4, 16, 16 ], "texture": "#side", "cullface": "east" }
+			}
+		},
+		{
+			"__comment": "Cube9",
+			"from": [ 3.5, 13, 4 ],
+			"to": [ 11.5, 14, 9 ],
+			"rotation": { "origin": [ 2.5, 12, 9 ], "axis": "y", "angle": -22.5 },
+			"faces": {
+				"north": { "uv": [ 7, 8, 15, 9 ], "texture": "#book" },
+				"west": { "uv": [ 8, 9, 14, 10 ], "texture": "#book" },
+				"east": { "uv": [ 8, 9, 14, 10 ], "texture": "#book" }
+			}
+		},
+		{
+			"__comment": "Cube9",
+			"from": [ 3.5, 12, 4 ],
+			"to": [ 11.5, 13, 9 ],
+			"rotation": { "origin": [ 2.5, 12, 9 ], "axis": "y", "angle": -22.5 },
+			"faces": {
+				"north": { "uv": [ 7, 8, 15, 9 ], "texture": "#book" },
+				"west": { "uv": [ 8, 9, 14, 10 ], "texture": "#book" },
+				"east": { "uv": [ 8, 9, 14, 10 ], "texture": "#book" }
+			}
+		},
+		{
+			"__comment": "PlaneY12",
+			"from": [ 2.5, 12, 3 ],
+			"to": [ 12.5, 12.001, 9 ],
+			"rotation": { "origin": [ 2.5, 12, 9 ], "axis": "y", "angle": -22.5 },
+			"faces": {
+				"up": { "uv": [ 6, 16, 16, 10 ], "texture": "#book" }
+			}
+		},
+		{
+			"__comment": "PlaneY12",
+			"from": [ 2.5, 14, 3 ],
+			"to": [ 12.5, 14.001, 9 ],
+			"rotation": { "origin": [ 2.5, 12, 9 ], "axis": "y", "angle": -22.5 },
+			"faces": {
+				"down": { "uv": [ 6, 10, 16, 16 ], "texture": "#book" },
+				"up": { "uv": [ 6, 0, 16, 6 ], "texture": "#book" }
+			}
+		},
+		{
+			"__comment": "PlaneZ6",
+			"from": [ 2.5, 12, 9 ],
+			"to": [ 12.5, 14, 9.001 ],
+			"rotation": { "origin": [ 2.5, 12, 9 ], "axis": "y", "angle": -22.5 },
+			"faces": {
+				"north": { "uv": [ 6, 6, 16, 8 ], "texture": "#book" },
+				"south": { "uv": [ 16, 6, 6, 8 ], "texture": "#book" }
+			}
+		}
+	]
+}

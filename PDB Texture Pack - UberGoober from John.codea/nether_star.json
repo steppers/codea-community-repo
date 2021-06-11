@@ -1,0 +1,26 @@
+{
+	"__comment": "Designed by Sphax with Cubik for PureBDcraft",
+	"parent": "block/block",
+	"textures": {
+		"beacon": "block/beacon",
+		"beacon01": "block/_bdc/beacon_01",
+		"beacon02": "block/_bdc/beacon_02",
+		"beacon03": "block/_bdc/beacon_03",
+		"beacon04": "block/_bdc/beacon_04"
+	},
+	"elements": [
+		{
+			"__comment": "Inner beacon texture",
+			"from": [ 3, 3, 3 ],
+			"to": [ 13, 13, 13 ],
+			"faces": {
+				"down": { "uv": [ 3, 3, 13, 13 ], "texture": "#beacon04" },
+				"up": { "uv": [ 3, 3, 13, 13 ], "texture": "#beacon04" },
+				"north": { "uv": [ 3, 3, 13, 13 ], "texture": "#beacon" },
+				"south": { "uv": [ 3, 3, 13, 13 ], "texture": "#beacon01" },
+				"west": { "uv": [ 3, 3, 13, 13 ], "texture": "#beacon02" },
+				"east": { "uv": [ 3, 3, 13, 13 ], "texture": "#beacon03" }
+			}
+		}
+	]
+}

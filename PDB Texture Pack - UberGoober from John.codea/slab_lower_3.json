@@ -1,0 +1,45 @@
+{
+"__comment": "Designed by HanFox with BDcraft Cubik PRO 0.96 Beta - http://bdcraft.net",
+"textures": {
+    "particle": "#particle",
+    "plank": "#plank"
+},
+"elements": [ 
+{
+    "__comment": "SlabSideNorth",
+    "from": [ 1, 0, 0 ],
+    "to": [ 15, 8, 8 ],
+    "faces": {
+        "down":  { "uv": [ 15, 8, 1, 16 ], "texture": "#plank", "cullface": "down" },
+        "up":    { "uv": [ 1, 0, 15, 8 ], "texture": "#plank" },
+        "north": { "uv": [ 15, 8, 1, 16 ], "texture": "#plank", "cullface": "north" }
+    }
+},
+{
+    "__comment": "SlabSideSouth",
+    "from": [ 1, 0, 8 ],
+    "to": [ 15, 8, 16 ],
+    "faces": {
+        "down":  { "uv": [ 1, 0, 15, 8 ], "texture": "#plank", "cullface": "down" },
+        "up":    { "uv": [ 15, 8, 1, 16 ], "texture": "#plank" },
+        "south": { "uv": [ 15, 8, 1, 16 ], "texture": "#plank", "cullface": "south" }
+    }
+},
+{
+    "__comment": "SlabSideWest",
+    "from": [ 0, 0, 1 ],
+    "to": [ 1, 8, 15 ],
+    "faces": {
+        "west":  { "uv": [ 15, 8, 1, 16 ], "texture": "#plank", "cullface": "west" }
+    }
+},
+{
+    "__comment": "SlabSideEast",
+    "from": [ 15, 0, 1 ],
+    "to": [ 16, 8, 15 ],
+    "faces": {
+        "east":  { "uv": [ 15, 8, 1, 16 ], "texture": "#plank", "cullface": "east" }
+    }
+}
+]
+}

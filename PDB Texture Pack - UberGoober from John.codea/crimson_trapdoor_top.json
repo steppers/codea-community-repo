@@ -1,0 +1,82 @@
+{
+	"__comment": "Designed by Sphax with Cubik Studio for PureBDcraft - https://BDcraft.net",
+	"parent": "block/thin_block",
+	"ambientocclusion": false,
+	"textures": {
+		"particle": "#texture",
+		"texture": "block/crimson_trapdoor",
+		"side": "block/_bdc/crimson_warped_trapdoor_side"
+	},
+	"elements": [ 	 
+		{
+			"__comment": "Box1",
+			"from": [ 0, 14, 0 ],
+			"to": [ 16, 16, 3 ],
+			"faces": {
+				"down": { "uv": [ 0, 13, 16, 16 ], "texture": "#texture" },
+				"up": { "uv": [ 0, 0, 16, 3 ], "texture": "#texture" },
+				"north": { "uv": [ 0, 0, 16, 2 ], "texture": "#side" },
+				"south": { "uv": [ 16, 0, 0, 2 ], "texture": "#side" },
+				"west": { "uv": [ 0, 0, 3, 2 ], "texture": "#side" },
+				"east": { "uv": [ 13, 0, 16, 2 ], "texture": "#side" }
+			}
+		},
+		{
+			"__comment": "Box2",
+			"from": [ 0, 14, 13 ],
+			"to": [ 16, 16, 16 ],
+			"faces": {
+				"down": { "uv": [ 0, 0, 16, 3 ], "texture": "#texture" },
+				"up": { "uv": [ 0, 13, 16, 16 ], "texture": "#texture" },
+				"north": { "uv": [ 0, 0, 16, 2 ], "texture": "#side" },
+				"south": { "uv": [ 0, 0, 16, 2 ], "texture": "#side" },
+				"west": { "uv": [ 13, 0, 16, 2 ], "texture": "#side" },
+				"east": { "uv": [ 0, 0, 3, 2 ], "texture": "#side" }
+			}
+		},
+		{
+			"__comment": "Box3",
+			"from": [ 0, 14, 3 ],
+			"to": [ 3, 16, 13 ],
+			"faces": {
+				"down": { "uv": [ 0, 3, 3, 13 ], "texture": "#texture" },
+				"up": { "uv": [ 0, 3, 3, 13 ], "texture": "#texture" },
+				"west": { "uv": [ 3, 0, 13, 2 ], "texture": "#side" },
+				"east": { "uv": [ 3, 0, 13, 2 ], "texture": "#side" }
+			}
+		},
+		{
+			"__comment": "Box4",
+			"from": [ 13, 14, 3 ],
+			"to": [ 16, 16, 13 ],
+			"faces": {
+				"down": { "uv": [ 13, 3, 16, 13 ], "texture": "#texture" },
+				"up": { "uv": [ 13, 3, 16, 13 ], "texture": "#texture" },
+				"west": { "uv": [ 3, 0, 13, 2 ], "texture": "#side" },
+				"east": { "uv": [ 3, 0, 13, 2 ], "texture": "#side" }
+			}
+		},
+		{
+			"__comment": "Box7",
+			"from": [ 3, 14, 9 ],
+			"to": [ 13, 16, 12 ],
+			"faces": {
+				"down": { "uv": [ 3, 4, 13, 7 ], "texture": "#texture" },
+				"up": { "uv": [ 3, 9, 13, 12 ], "texture": "#texture" },
+				"north": { "uv": [ 13, 0, 3, 2 ], "texture": "#side" },
+				"south": { "uv": [ 13, 0, 3, 2 ], "texture": "#side" }
+			}
+		},
+		{
+			"__comment": "Box7",
+			"from": [ 3, 14, 4 ],
+			"to": [ 13, 16, 7 ],
+			"faces": {
+				"down": { "uv": [ 3, 9, 13, 12 ], "texture": "#texture" },
+				"up": { "uv": [ 3, 4, 13, 7 ], "texture": "#texture" },
+				"north": { "uv": [ 3, 0, 13, 2 ], "texture": "#side" },
+				"south": { "uv": [ 3, 0, 13, 2 ], "texture": "#side" }
+			}
+		}
+	]
+}

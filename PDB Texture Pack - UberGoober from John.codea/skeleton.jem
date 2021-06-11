@@ -1,0 +1,26 @@
+{
+  "models": 
+  [
+    {
+      "model": "quiver.jpm",
+      "part": "body", 
+	  "attach": true,
+      "translate": [2, 14, -3.98],
+      "rotate": [0, 0, 45]
+    },
+	{
+      "model": "quiver_pauldron.jpm",
+      "part": "left_arm", 
+	  "attach": true,
+      "translate": [8, 3, -8],
+      "rotate": [0, 0, 0]
+    },
+	{
+      "model": "quiver_strap.jpm",
+      "part": "body", 
+	  "attach": true,
+      "translate": [-8, 12, 8],
+      "rotate": [0, 180, 0]
+    }
+  ]
+}

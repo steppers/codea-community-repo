@@ -1,0 +1,6 @@
+{
+    "parent": "block/_bdc/backface",
+    "textures": {
+        "texture": "block/spawner"
+    }
+}

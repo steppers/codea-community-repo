@@ -1,0 +1,22 @@
+{   "parent": "block/thin_block",
+"textures": {
+	"particle": "block/_bdc/daylight_detector_bottom",
+    "side": "block/daylight_detector_side",
+    "up": "block/daylight_detector_top",
+    "down": "block/_bdc/daylight_detector_bottom"
+},
+"elements": [ 
+{
+    "from": [ 0, 0, 0 ],
+    "to": [ 16, 6, 16 ],
+    "faces": {
+        "down":  { "uv": [ 0, 0, 16, 16 ], "texture": "#down", "cullface": "down" },
+        "up":    { "uv": [ 0, 0, 16, 16 ], "texture": "#up" },
+        "north": { "uv": [ 0, 10, 16, 16 ], "texture": "#side", "cullface": "north" },
+        "south": { "uv": [ 0, 10, 16, 16 ], "texture": "#side", "cullface": "south" },
+        "west":  { "uv": [ 0, 10, 16, 16 ], "texture": "#side", "cullface": "west" },
+        "east":  { "uv": [ 0, 10, 16, 16 ], "texture": "#side", "cullface": "east" }
+    }
+}
+]
+}

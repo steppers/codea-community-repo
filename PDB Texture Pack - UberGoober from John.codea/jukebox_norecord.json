@@ -1,0 +1,7 @@
+{
+	"__comment": "Designed by Sphax with Cubik for PureBDcraft - http://bdcraft.net",
+	"parent": "block/jukebox",
+	"textures": {
+		"jukebox_top": "block/_bdc/jukebox_top_norecord"
+	}
+}

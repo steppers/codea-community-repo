@@ -1,0 +1,63 @@
+{
+  "comment": "Designed by Sphax with Cubik Studio - https://cubik.studio",
+  "createdWith": "Cubik Studio 2.5.320 Beta",
+  "textureSize": [1024,1024],
+  "submodels": [
+    {
+      "id": "screw_right_thread",
+      "translate": [-11.0,-6.0,6.00000048],
+      "boxes": [
+        {
+          "coordinates": [-2.0,-1.0,0.0,2.0,1.0,1.0],
+          "uvDown": [64,64,96,80],
+          "uvUp": [64,64,96,80],
+          "uvNorth": [64,64,96,80],
+          "uvSouth": [64,64,96,80]
+        }
+      ]
+    },
+    {
+      "id": "screw_right_head",
+      "translate": [-13.0,-5.5,5.5],
+      "boxes": [
+        {
+          "coordinates": [-0.5,-2.0,0.0,0.5,2.0,2.0],
+          "uvDown": [32,64,64,80],
+          "uvUp": [32,64,64,80],
+          "uvNorth": [32,64,64,80],
+          "uvSouth": [32,64,64,80],
+          "uvWest": [32,32,64,64],
+          "uvEast": [32,32,64,64]
+        }
+      ]
+    },
+    {
+      "id": "screw_left_thread",
+      "translate": [-3.0,-6.0,6.0],
+      "boxes": [
+        {
+          "coordinates": [-2.0,-1.0,0.0,2.0,1.0,1.0],
+          "uvDown": [64,64,96,80],
+          "uvUp": [64,64,96,80],
+          "uvNorth": [64,64,96,80],
+          "uvSouth": [64,64,96,80]
+        }
+      ]
+    },
+    {
+      "id": "screw_left_head",
+      "translate": [-2.5,-5.5,5.5],
+      "boxes": [
+        {
+          "coordinates": [-0.5,-2.0,0.0,0.5,2.0,2.0],
+          "uvDown": [32,64,64,80],
+          "uvUp": [32,64,64,80],
+          "uvNorth": [32,64,64,80],
+          "uvSouth": [32,64,64,80],
+          "uvWest": [32,32,64,64],
+          "uvEast": [32,32,64,64]
+        }
+      ]
+    }
+  ]
+}

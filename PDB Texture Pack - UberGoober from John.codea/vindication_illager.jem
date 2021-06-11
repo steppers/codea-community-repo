@@ -1,0 +1,12 @@
+{
+  "models": 
+  [
+    {
+      "model": "screws.jpm",
+      "part": "head", 
+	  "attach": true,
+      "translate": [8, 5, -7],
+      "rotate": [0, 0, 0]
+    }
+  ]
+}

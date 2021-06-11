@@ -1,0 +1,233 @@
+{
+	"__comment": "Designed by HanFox with Cubik Studio - http://bdcraft.net",
+	"parent": "item/_bdc/tilted_item",
+	"textures": {
+		"dial": "item/_bdc/clock_dial1",
+		"clock": "item/_bdc/clock"
+	},
+	"elements": [
+		{
+			"__comment": "TopLeftBottom",
+			"from": [ 1.5, 8, 7.5 ],
+			"to": [ 2.5, 12.97, 8.5 ],
+			"rotation": { "origin": [ 1.5, 8, 7.5 ], "axis": "z", "angle": -22.5 },
+			"faces": {
+				"down": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" },
+				"up": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" },
+				"north": { "uv": [ 1, 0, 0, 5 ], "texture": "#clock" },
+				"south": { "uv": [ 0, 0, 1, 5 ], "texture": "#clock" },
+				"west": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" },
+				"east": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" }
+			}
+		},
+		{
+			"__comment": "TopLeftTop",
+			"from": [ 3.03, 13.5, 7.501 ],
+			"to": [ 8, 14.5, 8.499 ],
+			"rotation": { "origin": [ 8, 14.5, 7.501 ], "axis": "z", "angle": 22.5 },
+			"faces": {
+				"down": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" },
+				"up": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" },
+				"north": { "uv": [ 1, 5, 2, 0 ], "texture": "#clock", "rotation": 90 },
+				"south": { "uv": [ 1, 0, 2, 5 ], "texture": "#clock", "rotation": 90 },
+				"west": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" },
+				"east": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" }
+			}
+		},
+		{
+			"__comment": "TopLeftBottom",
+			"from": [ 8, 13.5, 7.5 ],
+			"to": [ 12.97, 14.5, 8.5 ],
+			"rotation": { "origin": [ 8, 14.5, 7.5 ], "axis": "z", "angle": -22.5 },
+			"faces": {
+				"down": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" },
+				"up": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" },
+				"north": { "uv": [ 2, 5, 3, 0 ], "texture": "#clock", "rotation": 90 },
+				"south": { "uv": [ 2, 0, 3, 5 ], "texture": "#clock", "rotation": 90 },
+				"west": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" },
+				"east": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" }
+			}
+		},
+		{
+			"__comment": "TopLeftBottom",
+			"from": [ 13.5, 8, 7.501 ],
+			"to": [ 14.5, 12.97, 8.499 ],
+			"rotation": { "origin": [ 14.5, 8, 7.501 ], "axis": "z", "angle": 22.5 },
+			"faces": {
+				"down": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" },
+				"up": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" },
+				"north": { "uv": [ 3, 5, 4, 0 ], "texture": "#clock" },
+				"south": { "uv": [ 3, 0, 4, 5 ], "texture": "#clock", "rotation": 180 },
+				"west": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" },
+				"east": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" }
+			}
+		},
+		{
+			"__comment": "BottomRightTop",
+			"from": [ 13.5, 3.03, 7.5 ],
+			"to": [ 14.5, 8, 8.5 ],
+			"rotation": { "origin": [ 14.5, 8, 7.5 ], "axis": "z", "angle": -22.5 },
+			"faces": {
+				"down": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" },
+				"up": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" },
+				"north": { "uv": [ 0, 10, 1, 5 ], "texture": "#clock" },
+				"south": { "uv": [ 0, 5, 1, 10 ], "texture": "#clock", "rotation": 180 },
+				"west": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" },
+				"east": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" }
+			}
+		},
+		{
+			"__comment": "BottomRightBottom",
+			"from": [ 8, 1.5, 7.501 ],
+			"to": [ 12.97, 2.5, 8.499 ],
+			"rotation": { "origin": [ 8, 1.5, 7.501 ], "axis": "z", "angle": 22.5 },
+			"faces": {
+				"down": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" },
+				"up": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" },
+				"north": { "uv": [ 1, 10, 2, 5 ], "texture": "#clock", "rotation": 270 },
+				"south": { "uv": [ 1, 5, 2, 10 ], "texture": "#clock", "rotation": 270 },
+				"west": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" },
+				"east": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" }
+			}
+		},
+		{
+			"__comment": "BottomLeftBottom",
+			"from": [ 3.03, 1.5, 7.5 ],
+			"to": [ 8, 2.5, 8.5 ],
+			"rotation": { "origin": [ 8, 1.5, 7.5 ], "axis": "z", "angle": -22.5 },
+			"faces": {
+				"down": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" },
+				"up": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" },
+				"north": { "uv": [ 2, 10, 3, 5 ], "texture": "#clock", "rotation": 270 },
+				"south": { "uv": [ 2, 5, 3, 10 ], "texture": "#clock", "rotation": 270 },
+				"west": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" },
+				"east": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" }
+			}
+		},
+		{
+			"__comment": "BottomLeftTop",
+			"from": [ 1.5, 3.03, 7.501 ],
+			"to": [ 2.5, 8, 8.499 ],
+			"rotation": { "origin": [ 1.5, 8, 7.501 ], "axis": "z", "angle": 22.5 },
+			"faces": {
+				"down": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" },
+				"up": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" },
+				"north": { "uv": [ 3, 10, 4, 5 ], "texture": "#clock", "rotation": 180 },
+				"south": { "uv": [ 3, 5, 4, 10 ], "texture": "#clock" },
+				"west": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" },
+				"east": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" }
+			}
+		},
+		{
+			"__comment": "CentreBar",
+			"from": [ 2.5, 7.5, 7.502 ],
+			"to": [ 13.5, 8.5, 8.498 ],
+			"faces": {
+				"down": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" },
+				"up": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" },
+				"north": { "uv": [ 16, 2, 5, 3 ], "texture": "#clock" },
+				"south": { "uv": [ 5, 2, 16, 3 ], "texture": "#clock" },
+				"west": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" },
+				"east": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" }
+			}
+		},
+		{
+			"__comment": "MiddleSpindle",
+			"from": [ 7, 7, 7 ],
+			"to": [ 9, 9, 9 ],
+			"rotation": { "origin": [ 8, 8, 8 ], "axis": "z", "angle": -45 },
+			"faces": {
+				"down": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" },
+				"up": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" },
+				"north": { "uv": [ 16, 0, 14, 2 ], "texture": "#clock" },
+				"south": { "uv": [ 14, 0, 16, 2 ], "texture": "#clock" },
+				"west": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" },
+				"east": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" }
+			}
+		},
+		{
+			"__comment": "Dial",
+			"from": [ 0, 0, 8 ],
+			"to": [ 16, 16, 8.125 ],
+			"rotation": { "origin": [ 8, 8, 8 ], "axis": "z", "angle": 0 },
+			"faces": {
+				"south": { "uv": [ 0, 0, 16, 16 ], "texture": "#dial" }
+			}
+		},
+		{
+			"__comment": "Back",
+			"from": [ 2, 2, 8 ],
+			"to": [ 14, 14, 8 ],
+			"faces": {
+				"north": { "uv": [ 4, 4, 16, 16 ], "texture": "#clock" }
+			}
+		}
+	],
+	"overrides": [
+		{ "predicate": { "time": 0.0000000 }, "model": "item/clock" },
+		{ "predicate": { "time": 0.0078125 }, "model": "item/_bdc/clock/clock_01" },
+		{ "predicate": { "time": 0.0234375 }, "model": "item/_bdc/clock/clock_02" },
+		{ "predicate": { "time": 0.0390625 }, "model": "item/_bdc/clock/clock_03" },
+		{ "predicate": { "time": 0.0546875 }, "model": "item/_bdc/clock/clock_04" },
+		{ "predicate": { "time": 0.0703125 }, "model": "item/_bdc/clock/clock_05" },
+		{ "predicate": { "time": 0.0859375 }, "model": "item/_bdc/clock/clock_06" },
+		{ "predicate": { "time": 0.1015625 }, "model": "item/_bdc/clock/clock_07" },
+		{ "predicate": { "time": 0.1171875 }, "model": "item/_bdc/clock/clock_08" },
+		{ "predicate": { "time": 0.1328125 }, "model": "item/_bdc/clock/clock_09" },
+		{ "predicate": { "time": 0.1484375 }, "model": "item/_bdc/clock/clock_10" },
+		{ "predicate": { "time": 0.1640625 }, "model": "item/_bdc/clock/clock_11" },
+		{ "predicate": { "time": 0.1796875 }, "model": "item/_bdc/clock/clock_12" },
+		{ "predicate": { "time": 0.1953125 }, "model": "item/_bdc/clock/clock_13" },
+		{ "predicate": { "time": 0.2109375 }, "model": "item/_bdc/clock/clock_14" },
+		{ "predicate": { "time": 0.2265625 }, "model": "item/_bdc/clock/clock_15" },
+		{ "predicate": { "time": 0.2421875 }, "model": "item/_bdc/clock/clock_16" },
+		{ "predicate": { "time": 0.2578125 }, "model": "item/_bdc/clock/clock_17" },
+		{ "predicate": { "time": 0.2734375 }, "model": "item/_bdc/clock/clock_18" },
+		{ "predicate": { "time": 0.2890625 }, "model": "item/_bdc/clock/clock_19" },
+		{ "predicate": { "time": 0.3046875 }, "model": "item/_bdc/clock/clock_20" },
+		{ "predicate": { "time": 0.3203125 }, "model": "item/_bdc/clock/clock_21" },
+		{ "predicate": { "time": 0.3359375 }, "model": "item/_bdc/clock/clock_22" },
+		{ "predicate": { "time": 0.3515625 }, "model": "item/_bdc/clock/clock_23" },
+		{ "predicate": { "time": 0.3671875 }, "model": "item/_bdc/clock/clock_24" },
+		{ "predicate": { "time": 0.3828125 }, "model": "item/_bdc/clock/clock_25" },
+		{ "predicate": { "time": 0.3984375 }, "model": "item/_bdc/clock/clock_26" },
+		{ "predicate": { "time": 0.4140625 }, "model": "item/_bdc/clock/clock_27" },
+		{ "predicate": { "time": 0.4296875 }, "model": "item/_bdc/clock/clock_28" },
+		{ "predicate": { "time": 0.4453125 }, "model": "item/_bdc/clock/clock_29" },
+		{ "predicate": { "time": 0.4609375 }, "model": "item/_bdc/clock/clock_30" },
+		{ "predicate": { "time": 0.4765625 }, "model": "item/_bdc/clock/clock_31" },
+		{ "predicate": { "time": 0.4921875 }, "model": "item/_bdc/clock/clock_32" },
+		{ "predicate": { "time": 0.5078125 }, "model": "item/_bdc/clock/clock_33" },
+		{ "predicate": { "time": 0.5234375 }, "model": "item/_bdc/clock/clock_34" },
+		{ "predicate": { "time": 0.5390625 }, "model": "item/_bdc/clock/clock_35" },
+		{ "predicate": { "time": 0.5546875 }, "model": "item/_bdc/clock/clock_36" },
+		{ "predicate": { "time": 0.5703125 }, "model": "item/_bdc/clock/clock_37" },
+		{ "predicate": { "time": 0.5859375 }, "model": "item/_bdc/clock/clock_38" },
+		{ "predicate": { "time": 0.6015625 }, "model": "item/_bdc/clock/clock_39" },
+		{ "predicate": { "time": 0.6171875 }, "model": "item/_bdc/clock/clock_40" },
+		{ "predicate": { "time": 0.6328125 }, "model": "item/_bdc/clock/clock_41" },
+		{ "predicate": { "time": 0.6484375 }, "model": "item/_bdc/clock/clock_42" },
+		{ "predicate": { "time": 0.6640625 }, "model": "item/_bdc/clock/clock_43" },
+		{ "predicate": { "time": 0.6796875 }, "model": "item/_bdc/clock/clock_44" },
+		{ "predicate": { "time": 0.6953125 }, "model": "item/_bdc/clock/clock_45" },
+		{ "predicate": { "time": 0.7109375 }, "model": "item/_bdc/clock/clock_46" },
+		{ "predicate": { "time": 0.7265625 }, "model": "item/_bdc/clock/clock_47" },
+		{ "predicate": { "time": 0.7421875 }, "model": "item/_bdc/clock/clock_48" },
+		{ "predicate": { "time": 0.7578125 }, "model": "item/_bdc/clock/clock_49" },
+		{ "predicate": { "time": 0.7734375 }, "model": "item/_bdc/clock/clock_50" },
+		{ "predicate": { "time": 0.7890625 }, "model": "item/_bdc/clock/clock_51" },
+		{ "predicate": { "time": 0.8046875 }, "model": "item/_bdc/clock/clock_52" },
+		{ "predicate": { "time": 0.8203125 }, "model": "item/_bdc/clock/clock_53" },
+		{ "predicate": { "time": 0.8359375 }, "model": "item/_bdc/clock/clock_54" },
+		{ "predicate": { "time": 0.8515625 }, "model": "item/_bdc/clock/clock_55" },
+		{ "predicate": { "time": 0.8671875 }, "model": "item/_bdc/clock/clock_56" },
+		{ "predicate": { "time": 0.8828125 }, "model": "item/_bdc/clock/clock_57" },
+		{ "predicate": { "time": 0.8984375 }, "model": "item/_bdc/clock/clock_58" },
+		{ "predicate": { "time": 0.9140625 }, "model": "item/_bdc/clock/clock_59" },
+		{ "predicate": { "time": 0.9296875 }, "model": "item/_bdc/clock/clock_60" },
+		{ "predicate": { "time": 0.9453125 }, "model": "item/_bdc/clock/clock_61" },
+		{ "predicate": { "time": 0.9609375 }, "model": "item/_bdc/clock/clock_62" },
+		{ "predicate": { "time": 0.9765625 }, "model": "item/_bdc/clock/clock_63" },
+		{ "predicate": { "time": 0.9921875 }, "model": "item/clock" }
+	]
+}

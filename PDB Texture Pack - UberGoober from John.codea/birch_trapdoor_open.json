@@ -1,0 +1,108 @@
+{
+	"__comment": "Designed by Eskimojo14 with Cubik Studio - https://cubik.studio",
+	"parent": "block/thin_block",
+	"textures": {
+		"particle": "block/birch_trapdoor",
+		"texture": "block/birch_trapdoor"
+	},
+	"elements": [ 	 
+		{
+			"__comment": "Box1",
+			"from": [ 2, 2, 14.5 ],
+			"to": [ 14, 14, 15.5 ],
+			"faces": {
+				"north": { "uv": [ 2, 2, 14, 14 ], "texture": "#texture" },
+				"south": { "uv": [ 2, 2, 14, 14 ], "texture": "#texture" }
+			}
+		},
+		{
+			"__comment": "Box2",
+			"from": [ 4, -0.09999999, 13.5 ],
+			"to": [ 6, 2.1, 16.5 ],
+			"faces": {
+				"down": { "uv": [ 10, 15, 12, 15.5 ], "texture": "#texture" },
+				"up": { "uv": [ 12, 15.5, 10, 15 ], "texture": "#texture" },
+				"north": { "uv": [ 10, 14, 12, 16 ], "texture": "#texture" },
+				"south": { "uv": [ 4, 14, 6, 16 ], "texture": "#texture" },
+				"west": { "uv": [ 10, 15, 12, 15.5 ], "texture": "#texture", "rotation": 90 },
+				"east": { "uv": [ 10, 15, 12, 15.5 ], "texture": "#texture", "rotation": 270 }
+			}
+		},
+		{
+			"__comment": "Box3",
+			"from": [ 10, -0.09999999, 13.5 ],
+			"to": [ 12, 2.1, 16.5 ],
+			"faces": {
+				"down": { "uv": [ 10, 15, 12, 15.5 ], "texture": "#texture" },
+				"up": { "uv": [ 12, 15.5, 10, 15 ], "texture": "#texture" },
+				"north": { "uv": [ 4, 14, 6, 16 ], "texture": "#texture" },
+				"south": { "uv": [ 4, 14, 6, 16 ], "texture": "#texture" },
+				"west": { "uv": [ 10, 15, 12, 15.5 ], "texture": "#texture", "rotation": 90 },
+				"east": { "uv": [ 10, 15, 12, 15.5 ], "texture": "#texture", "rotation": 270 }
+			}
+		},
+		{
+			"__comment": "Box4",
+			"from": [ 0, 14, 14 ],
+			"to": [ 16, 16, 16 ],
+			"faces": {
+				"down": { "uv": [ 4, 0, 4.5, 2 ], "texture": "#texture" },
+				"up": { "uv": [ 4.5, 2, 4, 0 ], "texture": "#texture" },
+				"north": { "uv": [ 0, 0, 16, 2 ], "texture": "#texture" },
+				"south": { "uv": [ 0, 0, 16, 2 ], "texture": "#texture" },
+				"west": { "uv": [ 4, 0, 4.5, 2 ], "texture": "#texture", "rotation": 90 },
+				"east": { "uv": [ 4, 0, 4.5, 2 ], "texture": "#texture", "rotation": 270 }
+			}
+		},
+		{
+			"__comment": "Box5",
+			"from": [ 0, 2, 14 ],
+			"to": [ 2, 14, 16 ],
+			"faces": {
+				"down": { "uv": [ 4, 0, 4.5, 2 ], "texture": "#texture" },
+				"north": { "uv": [ 14, 2, 16, 14 ], "texture": "#texture" },
+				"south": { "uv": [ 0, 2, 2, 14 ], "texture": "#texture" },
+				"west": { "uv": [ 4, 0, 4.5, 2 ], "texture": "#texture", "rotation": 90 },
+				"east": { "uv": [ 4, 0, 4.5, 2 ], "texture": "#texture", "rotation": 270 }
+			}
+		},
+		{
+			"__comment": "Box6",
+			"from": [ 0, 0, 14 ],
+			"to": [ 16, 2, 16 ],
+			"faces": {
+				"down": { "uv": [ 0, 15.875, 16, 16 ], "texture": "#texture" },
+				"up": { "uv": [ 4.5, 2, 4, 0 ], "texture": "#texture" },
+				"north": { "uv": [ 0, 14, 16, 16 ], "texture": "#texture" },
+				"south": { "uv": [ 0, 14, 16, 16 ], "texture": "#texture" },
+				"west": { "uv": [ 4, 0, 4.5, 2 ], "texture": "#texture", "rotation": 90 },
+				"east": { "uv": [ 4, 0, 4.5, 2 ], "texture": "#texture", "rotation": 270 }
+			}
+		},
+		{
+			"__comment": "Box7",
+			"from": [ 14, 2, 14 ],
+			"to": [ 16, 14, 16 ],
+			"faces": {
+				"down": { "uv": [ 4, 0, 4.5, 2 ], "texture": "#texture" },
+				"north": { "uv": [ 0, 2, 2, 14 ], "texture": "#texture" },
+				"south": { "uv": [ 14, 2, 16, 14 ], "texture": "#texture" },
+				"west": { "uv": [ 4, 0, 4.5, 2 ], "texture": "#texture", "rotation": 90 },
+				"east": { "uv": [ 4, 0, 4.5, 2 ], "texture": "#texture", "rotation": 270 }
+			}
+		},
+		{
+			"__comment": "Box8",
+			"from": [ 6, 14.5, 13.5 ],
+			"to": [ 10, 15.5, 16.5 ],
+			"faces": {
+				"down": { "uv": [ 6, 0.5, 10, 1.5 ], "texture": "#texture" },
+				"up": { "uv": [ 10, 1.5, 6, 0.5 ], "texture": "#texture" },
+				"north": { "uv": [ 6, 0.5, 10, 1.5 ], "texture": "#texture" },
+				"south": { "uv": [ 6, 0.5, 10, 1.5 ], "texture": "#texture" },
+				"west": { "uv": [ 6, 0.5, 7, 1.5 ], "texture": "#texture", "rotation": 90 },
+				"east": { "uv": [ 9, 0.5, 10, 1.5 ], "texture": "#texture", "rotation": 270 }
+			}
+		}
+	]
+}

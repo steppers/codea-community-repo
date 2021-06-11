@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_column",
+    "textures": {
+        "end": "block/_bdc/smooth_stone_01",
+        "side": "block/smooth_stone_slab_side"
+    }
+}

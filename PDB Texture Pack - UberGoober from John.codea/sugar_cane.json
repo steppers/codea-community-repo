@@ -1,0 +1,70 @@
+{
+"__comment": "Designed by Sphax with Cubik for PureBDcraft - http://bdcraft.net",
+"ambientocclusion": false,
+"textures": {
+    "sugar_cane": "block/sugar_cane",
+    "particle": "block/sugar_cane"
+},
+"elements": [ 
+{
+    "from": [ 2, 0, 5 ],
+    "to": [ 4, 16, 7 ],
+    "faces": {
+        "down":  { "uv": [ 0, 2, 2, 0 ], "texture": "#sugar_cane", "cullface": "down" },
+        "up":    { "uv": [ 0, 0, 2, 2 ], "texture": "#sugar_cane" },
+        "north": { "uv": [ 4, 0, 2, 16 ], "texture": "#sugar_cane" },
+        "south": { "uv": [ 2, 0, 4, 16 ], "texture": "#sugar_cane" },
+        "west":  { "uv": [ 2, 0, 4, 16 ], "texture": "#sugar_cane" },
+        "east":  { "uv": [ 4, 0, 2, 16 ], "texture": "#sugar_cane" }
+    }
+},
+{
+    "from": [ 6, -2, 12 ],
+    "to": [ 7, 14, 13 ],
+    "faces": {
+        "down":  { "uv": [ 0, 2, 2, 0 ], "texture": "#sugar_cane", "cullface": "down" },
+        "up":    { "uv": [ 0, 0, 2, 2 ], "texture": "#sugar_cane" },
+        "north": { "uv": [ 7, 0, 6, 16 ], "texture": "#sugar_cane" },
+        "south": { "uv": [ 6, 0, 7, 16 ], "texture": "#sugar_cane" },
+        "west":  { "uv": [ 6, 0, 7, 16 ], "texture": "#sugar_cane" },
+        "east":  { "uv": [ 7, 0, 6, 16 ], "texture": "#sugar_cane" }
+    }
+},
+{
+    "from": [ 8, -4, 3 ],
+    "to": [ 9.5, 12, 4.5 ],
+    "faces": {
+        "down":  { "uv": [ 0, 2, 2, 0 ], "texture": "#sugar_cane", "cullface": "down" },
+        "up":    { "uv": [ 0, 0, 2, 2 ], "texture": "#sugar_cane" },
+        "north": { "uv": [ 9.5, 0, 8, 16 ], "texture": "#sugar_cane" },
+        "south": { "uv": [ 8, 0, 9.5, 16 ], "texture": "#sugar_cane" },
+        "west":  { "uv": [ 8, 0, 9.5, 16 ], "texture": "#sugar_cane" },
+        "east":  { "uv": [ 9.5, 0, 8, 16 ], "texture": "#sugar_cane" }
+    }
+},
+{
+    "from": [ 11, -6, 14 ],
+    "to": [ 12, 10, 15 ],
+    "faces": {
+        "down":  { "uv": [ 0, 2, 2, 0 ], "texture": "#sugar_cane", "cullface": "down" },
+        "up":    { "uv": [ 0, 0, 2, 2 ], "texture": "#sugar_cane" },
+        "north": { "uv": [ 12, 0, 11, 16 ], "texture": "#sugar_cane" },
+        "south": { "uv": [ 11, 0, 12, 16 ], "texture": "#sugar_cane" },
+        "west":  { "uv": [ 11, 0, 12, 16 ], "texture": "#sugar_cane" },
+        "east":  { "uv": [ 12, 0, 11, 16 ], "texture": "#sugar_cane" }
+    }
+},
+{
+    "from": [ 13, 0, 7 ],
+    "to": [ 14.5, 16, 8.5 ],
+    "faces": {
+        "down":  { "uv": [ 0, 2, 2, 0 ], "texture": "#sugar_cane", "cullface": "down" },
+        "up":    { "uv": [ 0, 0, 2, 2 ], "texture": "#sugar_cane" },
+        "north": { "uv": [ 14.5, 0, 13, 16 ], "texture": "#sugar_cane" },
+        "south": { "uv": [ 13, 0, 14.5, 16 ], "texture": "#sugar_cane" },
+        "west":  { "uv": [ 13, 0, 14.5, 16 ], "texture": "#sugar_cane" },
+        "east":  { "uv": [ 14.5, 0, 13, 16 ], "texture": "#sugar_cane" }
+    }
+}
+]
+}

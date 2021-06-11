@@ -1,0 +1,19 @@
+{
+    "multipart": [
+        {   
+            "apply": { "model": "block/_bdc/plank/warped/planks_warped_edges" }
+        },
+        {   
+            "apply": [
+				{ "model": "block/_bdc/plank/warped/planks_warped_1" },
+				{ "model": "block/_bdc/plank/warped/planks_warped_2" },
+				{ "model": "block/_bdc/plank/warped/planks_warped_3" },
+				{ "model": "block/_bdc/plank/warped/planks_warped_4" },
+				{ "model": "block/_bdc/plank/warped/planks_warped_5" },
+				{ "model": "block/_bdc/plank/warped/planks_warped_6" },
+				{ "model": "block/_bdc/plank/warped/planks_warped_7" },
+				{ "model": "block/_bdc/plank/warped/planks_warped_8" }
+			]
+        }
+    ]
+}

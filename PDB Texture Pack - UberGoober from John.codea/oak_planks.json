@@ -1,0 +1,19 @@
+{
+    "multipart": [
+        {   
+            "apply": { "model": "block/_bdc/plank/oak/planks_oak_edges" }
+        },
+        {   
+            "apply": [
+				{ "model": "block/_bdc/plank/oak/planks_oak_1" },
+				{ "model": "block/_bdc/plank/oak/planks_oak_2" },
+				{ "model": "block/_bdc/plank/oak/planks_oak_3" },
+				{ "model": "block/_bdc/plank/oak/planks_oak_4" },
+				{ "model": "block/_bdc/plank/oak/planks_oak_5" },
+				{ "model": "block/_bdc/plank/oak/planks_oak_6" },
+				{ "model": "block/_bdc/plank/oak/planks_oak_7" },
+				{ "model": "block/_bdc/plank/oak/planks_oak_8" }
+			]
+        }
+    ]
+}

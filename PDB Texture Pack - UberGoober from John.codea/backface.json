@@ -1,0 +1,72 @@
+{
+	"__comment": "Designed by Sphax with Cubik for PureBDcraft - http://bdcraft.net",
+	"parent": "block/block",
+	"ambientocclusion": false,
+	"textures": {
+		"particle": "#texture",
+		"texture": "#texture"
+	},
+	"elements": [ 	 
+		{
+			"__comment": "Inner",
+			"from": [ 0, 0, 0 ],
+			"to": [ 16, 16, 16 ],
+			"faces": {
+				"down": { "uv": [ 0, 0, 16, 16 ], "texture": "#texture", "cullface": "down" },
+				"up": { "uv": [ 0, 0, 16, 16 ], "texture": "#texture", "cullface": "up" },
+				"north": { "uv": [ 0, 0, 16, 16 ], "texture": "#texture", "cullface": "north" },
+				"south": { "uv": [ 0, 0, 16, 16 ], "texture": "#texture", "cullface": "south" },
+				"west": { "uv": [ 0, 0, 16, 16 ], "texture": "#texture", "cullface": "west" },
+				"east": { "uv": [ 0, 0, 16, 16 ], "texture": "#texture", "cullface": "east" }
+			}
+		},
+		{
+			"__comment": "Backface Bottom",
+			"from": [ 0, 0.0001, 0 ],
+			"to": [ 16, 0.0011, 16 ],
+			"faces": {
+				"up": { "uv": [ 0, 0, 16, 16 ], "texture": "#texture", "cullface": "down" }
+			}
+		},
+		{
+			"__comment": "Backface Top",
+			"from": [ 0, 15.999, 0 ],
+			"to": [ 16, 16, 16 ],
+			"faces": {
+				"down": { "uv": [ 0, 0, 16, 16 ], "texture": "#texture", "cullface": "up" }
+			}
+		},
+		{
+			"__comment": "Backface East",
+			"from": [ 15.999, 0, 0 ],
+			"to": [ 16, 16, 16 ],
+			"faces": {
+				"west": { "uv": [ 0, 0, 16, 16 ], "texture": "#texture", "cullface": "east" }
+			}
+		},
+		{
+			"__comment": "Backface West",
+			"from": [ 0.001, 0, 0 ],
+			"to": [ 0.002, 16, 16 ],
+			"faces": {
+				"east": { "uv": [ 0, 0, 16, 16 ], "texture": "#texture", "cullface": "west" }
+			}
+		},
+		{
+			"__comment": "Backface North",
+			"from": [ 0, 0, 0.0001 ],
+			"to": [ 16, 16, 0.0011 ],
+			"faces": {
+				"south": { "uv": [ 0, 0, 16, 16 ], "texture": "#texture", "cullface": "north" }
+			}
+		},
+		{
+			"__comment": "Backface South",
+			"from": [ 0, 0, 15.999 ],
+			"to": [ 16, 16, 16 ],
+			"faces": {
+				"north": { "uv": [ 0, 0, 16, 16 ], "texture": "#texture", "cullface": "south" }
+			}
+		}
+	]
+}

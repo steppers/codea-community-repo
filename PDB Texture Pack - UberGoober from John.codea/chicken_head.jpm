@@ -1,0 +1,36 @@
+{
+  "comment": "Designed by Eskimojo14 with Cubik Studio - https://cubik.studio",
+  "createdWith": "Cubik Studio 2.6.384 Beta",
+  "textureSize": [1024,512],
+  "submodels": [
+    {
+      "id": "Cube4",
+      "translate": [-6.0,0.0,5.0],
+      "boxes": [
+        {
+          "coordinates": [-4.0,-6.0,0.0,4.0,6.0,3.0],
+          "uvDown": [752,0,816,48],
+          "uvUp": [688,0,752,48],
+          "uvNorth": [799,48,863,144],
+          "uvSouth": [688,48,752,144],
+          "uvWest": [640,48,688,144],
+          "uvEast": [752,48,800,144]
+        }
+      ]
+    },
+    {
+      "id": "Cube2",
+      "translate": [-7.5,-5.5,5.009967],
+      "boxes": [
+        {
+          "coordinates": [-1.0,-2.0,0.0,1.0,2.0,2.98],
+          "uvUp": [688,224,704,272],
+          "uvNorth": [751,272,768,304],
+          "uvSouth": [688,272,704,304],
+          "uvWest": [640,272,688,304],
+          "uvEast": [704,272,752,304]
+        }
+      ]
+    }
+  ]
+}

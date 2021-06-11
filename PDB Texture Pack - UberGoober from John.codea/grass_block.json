@@ -1,0 +1,36 @@
+{
+	"__comment": "Designed by Sphax for PureBDcraft - http://bdcraft.net",
+    "multipart": [
+		{
+			"when": { "snowy": "false" },
+			"apply": [
+				{ "model": "block/_bdc/grass_block_01", "weight": 40 },
+				{ "model": "block/_bdc/grass_block_02", "weight": 40, "y": 90 },
+				{ "model": "block/_bdc/grass_block_03", "weight": 40, "y": 180 },
+				{ "model": "block/_bdc/grass_block_04", "weight": 40, "y": 270 },
+				{ "model": "block/_bdc/grass_block_05", "weight": 40 },
+				{ "model": "block/_bdc/grass_block_06", "weight": 40 }
+			]
+		},
+		{	"apply": { "model": "block/_bdc/grass_block_bottom" } },
+		{
+			"when": { "snowy": "false" },
+			"apply": [
+				{ "model": "block/_bdc/blank",	"weight": 160 },
+				{ "model": "block/_bdc/grass_overlay_01", "weight": 2 },
+				{ "model": "block/_bdc/grass_overlay_02", "weight": 1 }
+			]
+		},
+		{
+			"when": { "snowy": "true" },
+			"apply": [
+				{ "model": "block/_bdc/grass_block_snow_01", "weight": 40 },
+				{ "model": "block/_bdc/grass_block_snow_02", "weight": 40, "y": 90 },
+				{ "model": "block/_bdc/grass_block_snow_03", "weight": 40, "y": 180 },
+				{ "model": "block/_bdc/grass_block_snow_04", "weight": 40, "y": 270 },
+				{ "model": "block/_bdc/grass_block_snow_05", "weight": 40 },
+				{ "model": "block/_bdc/grass_block_snow_06", "weight": 40 }
+			]
+		}
+    ]
+}

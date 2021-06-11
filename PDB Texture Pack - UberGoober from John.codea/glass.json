@@ -1,0 +1,7 @@
+{
+	"__comment": "Designed by the resident Inuit with BDcraft Cubik Pro2 - http://bdcraft.net",
+	"parent": "block/_bdc/backface",
+	"textures": {
+		"texture": "block/glass"
+	}
+}

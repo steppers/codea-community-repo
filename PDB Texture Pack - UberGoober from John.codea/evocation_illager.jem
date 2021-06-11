@@ -1,0 +1,12 @@
+{
+  "models": 
+  [
+    {
+      "model": "cape.jpm",
+      "part": "body", 
+	  "attach": true,
+      "translate": [8, 6, -8],
+      "rotate": [0, 0, 0]
+    }
+  ]
+}

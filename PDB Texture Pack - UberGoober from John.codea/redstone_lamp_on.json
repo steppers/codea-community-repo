@@ -1,0 +1,22 @@
+{
+"__comment": "Designed by Sphax with Cubik for PureBDcraft - http://bdcraft.net",
+"textures": {
+    "particle": "block/redstone_lamp_on",
+    "side": "block/redstone_lamp_on",
+    "top": "block/_bdc/redstone_lamp_top_on"
+},
+"elements": [ 
+{
+    "from": [ 0, 0, 0 ],
+    "to": [ 16, 16, 16 ],
+    "faces": {
+        "down":  { "uv": [ 0, 16, 16, 0 ], "texture": "#top" },
+        "up":    { "uv": [ 0, 0, 16, 16 ], "texture": "#top" },
+        "north": { "uv": [ 16, 0, 0, 16 ], "texture": "#side" },
+        "south": { "uv": [ 0, 0, 16, 16 ], "texture": "#side" },
+        "west":  { "uv": [ 0, 0, 16, 16 ], "texture": "#side" },
+        "east":  { "uv": [ 16, 0, 0, 16 ], "texture": "#side" }
+    }
+}
+]
+}

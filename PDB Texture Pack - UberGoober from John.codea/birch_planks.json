@@ -1,0 +1,19 @@
+{
+    "multipart": [
+        {   
+            "apply": { "model": "block/_bdc/plank/birch/planks_birch_edges" }
+        },
+        {   
+            "apply": [
+				{ "model": "block/_bdc/plank/birch/planks_birch_1" },
+				{ "model": "block/_bdc/plank/birch/planks_birch_2" },
+				{ "model": "block/_bdc/plank/birch/planks_birch_3" },
+				{ "model": "block/_bdc/plank/birch/planks_birch_4" },
+				{ "model": "block/_bdc/plank/birch/planks_birch_5" },
+				{ "model": "block/_bdc/plank/birch/planks_birch_6" },
+				{ "model": "block/_bdc/plank/birch/planks_birch_7" },
+				{ "model": "block/_bdc/plank/birch/planks_birch_8" }
+			]
+        }
+    ]
+}

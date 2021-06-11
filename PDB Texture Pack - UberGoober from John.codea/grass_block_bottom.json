@@ -1,0 +1,15 @@
+{
+	"__comment": "Designed by Sphax for PureBDcraft - http://bdcraft.net",
+	"parent": "block/block",
+    "textures": {
+        "bottom": "block/_bdc/dirt_top_01"
+    },
+    "elements": [
+        {   "from": [ 0, 0, 0 ],
+            "to": [ 16, 16, 16 ],
+            "faces": {
+                "down":  { "uv": [ 0, 0, 16, 16 ], "texture": "#bottom", "cullface": "down" }
+            }
+        }
+    ]
+}

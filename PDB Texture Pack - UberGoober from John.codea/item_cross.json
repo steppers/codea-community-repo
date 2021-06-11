@@ -1,0 +1,52 @@
+{
+	"__comment": "Designed by Sphax for PureBDcraft - http://bdcraft.net",
+	"gui_light": "front",
+    "textures": {
+        "particle": "#layer0"
+    },
+    "elements": [
+        {   "from": [ 0.8, 0, 7.95 ],
+            "to": [ 15.2, 16, 8 ],
+            "shade": false,
+            "faces": {
+                "north": { "uv": [ 16, 0, 0, 16 ], "texture": "#layer0" },
+                "south": { "uv": [ 0, 0, 16, 16 ], "texture": "#layer0" }
+            }
+        },
+        {   "from": [ 7.95, 0, 0.8 ],
+            "to": [ 8, 16, 15.2 ],
+            "shade": false,
+            "faces": {
+                "west": { "uv": [ 0, 0, 16, 16 ], "texture": "#layer0" },
+                "east": { "uv": [ 16, 0, 0, 16 ], "texture": "#layer0" }
+            }
+        }
+    ],
+	"display": {
+		"fixed": {
+			"rotation": [ 0, 45, 0 ],
+			"translation": [ 0, 0, 1 ],
+			"scale": [ 1.25, 1, 1.25 ]
+		},
+		"thirdperson_righthand": {
+			"rotation": [ 0, 0, 0 ],
+			"translation": [ 0, 2, 0.75 ],
+			"scale": [ 0.5, 0.5, 0.5 ]
+		},
+		"firstperson_righthand": {
+			"rotation": [ 4, 0, 0 ],
+			"translation": [ 4, 2, -3 ],
+			"scale": [ 0.8, 0.8, 0.8 ]
+		},
+		"firstperson_lefthand": {
+			"rotation": [ 4, -90, 0 ],
+			"translation": [ 4, 2, -3 ],
+			"scale": [ 0.8, 0.8, 0.8 ]
+		},
+		"ground": {
+			"rotation": [ 0, 0, 0 ],
+			"translation": [ 0, 3, 0 ],
+			"scale": [ 0.5, 0.5, 0.5 ]
+		}
+	}
+}

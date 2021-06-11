@@ -1,0 +1,19 @@
+{
+  "models": 
+  [
+    {
+      "model": "shulker_base.jpm",
+      "part": "base", 
+	  "attach": false,
+      "translate": [8, 0, -8],
+      "rotate": [0, 0, 0]
+    },
+	{
+      "model": "shulker_lid.jpm",
+      "part": "lid", 
+	  "attach": false,
+      "translate": [8, 0, -8],
+      "rotate": [0, 0, 0]
+    }
+  ]
+}

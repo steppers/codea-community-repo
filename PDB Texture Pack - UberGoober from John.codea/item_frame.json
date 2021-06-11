@@ -1,0 +1,62 @@
+{
+"__comment": "Designed by Sphax with Cubik for PureBDcraft - http://bdcraft.net",
+"ambientocclusion": false,
+"textures": {
+    "particle": "block/item_frame",
+    "frame": "block/item_frame"
+},
+"elements": [ 
+{
+    "from": [ 12.75, 3.25, 15 ],
+    "to": [ 14, 12.75, 16 ],
+    "faces": {
+        "north": { "uv": [ 0, 1.75, 1.75, 14.25 ], "texture": "#frame" },
+        "south": { "uv": [ 14.25, 0.75, 16, 1.25 ], "texture": "#frame" },
+        "west":  { "uv": [ 1.5, 12.5, 1.75, 14.25 ], "texture": "#frame" },
+        "east":  { "uv": [ 1.75, 12.5, 0, 14.25 ], "texture": "#frame" }
+    }
+},
+{
+    "from": [ 2, 3.25, 15 ],
+    "to": [ 3.25, 12.75, 16 ],
+    "faces": {
+        "north": { "uv": [ 14.25, 1.75, 16, 14.25 ], "texture": "#frame" },
+        "south": { "uv": [ 0, 0.75, 1.75, 1.25 ], "texture": "#frame" },
+        "west":  { "uv": [ 14.25, 12.5, 16, 14.25 ], "texture": "#frame" },
+        "east":  { "uv": [ 1.25, 1.75, 1.75, 14.25 ], "texture": "#frame" }
+    }
+},
+{
+    "from": [ 2, 12.75, 15 ],
+    "to": [ 14, 14, 16 ],
+    "faces": {
+        "down":  { "uv": [ 1.75, 1.5, 14.25, 1.75 ], "texture": "#frame" },
+        "up":    { "uv": [ 12.5, 14.25, 14.25, 16 ], "texture": "#frame" },
+        "north": { "uv": [ 0, 0, 16, 1.75 ], "texture": "#frame" },
+        "south": { "uv": [ 0, 0, 16, 1.25 ], "texture": "#frame" },
+        "west":  { "uv": [ 14.25, 12.5, 16, 14.25 ], "texture": "#frame" },
+        "east":  { "uv": [ 1.75, 12.5, 0, 14.25 ], "texture": "#frame" }
+    }
+},
+{
+    "from": [ 2, 2, 15 ],
+    "to": [ 14, 3.25, 16 ],
+    "faces": {
+        "down":  { "uv": [ 1.75, 1.75, 3.5, 0 ], "texture": "#frame" },
+        "up":    { "uv": [ 1.75, 14.25, 14.25, 14.5 ], "texture": "#frame" },
+        "north": { "uv": [ 0, 14.25, 16, 16 ], "texture": "#frame" },
+        "south": { "uv": [ 0, 15, 16, 16 ], "texture": "#frame" },
+        "west":  { "uv": [ 14.25, 12.5, 16, 14.25 ], "texture": "#frame" },
+        "east":  { "uv": [ 1.75, 12.5, 0, 14.25 ], "texture": "#frame" }
+    }
+},
+{
+    "from": [ 3.25, 3.25, 15.5 ],
+    "to": [ 12.75, 12.75, 16 ],
+    "faces": {
+        "north": { "uv": [ 1.75, 1.75, 14.25, 14.25 ], "texture": "#frame" },
+        "south": { "uv": [ 1, 1, 1.25, 1.25 ], "texture": "#frame" }
+    }
+}
+]
+}

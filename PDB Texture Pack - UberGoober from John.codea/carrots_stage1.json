@@ -1,0 +1,63 @@
+{
+"__comment": "Model by Mickey Joe & Sphax for PureBDcraft - BDcraft.net.",
+"textures": {
+    "particle": "block/_bdc/carrots",
+    "crop": "block/_bdc/carrots"
+},
+"elements": [ 
+{
+    "from": [ 4, -4, 0 ],
+    "to": [ 4.0625, 12, 16 ],
+    "shade": false,
+    "faces": {
+        "west":  { "uv": [ 0, 0, 16, 16 ], "texture": "#crop" },
+        "east":  { "uv": [ 0, 0, 16, 16 ], "texture": "#crop" }
+    }
+},
+{
+    "from": [ 12, -4, 0 ],
+    "to": [ 12.0625, 12, 16 ],
+    "shade": false,
+    "faces": {
+        "west":  { "uv": [ 0, 0, 16, 16 ], "texture": "#crop" },
+        "east":  { "uv": [ 0, 0, 16, 16 ], "texture": "#crop" }
+    }
+},
+{
+    "from": [ 0, -4, 4 ],
+    "to": [ 16, 12, 4.0625 ],
+    "shade": false,
+    "faces": {
+        "north": { "uv": [ 0, 0, 16, 16 ], "texture": "#crop" },
+        "south": { "uv": [ 0, 0, 16, 16 ], "texture": "#crop" }
+    }
+},
+{
+    "from": [ 0, -4, 12 ],
+    "to": [ 16, 12, 12.0625 ],
+    "shade": false,
+    "faces": {
+        "north": { "uv": [ 0, 0, 16, 16 ], "texture": "#crop" },
+        "south": { "uv": [ 0, 0, 16, 16 ], "texture": "#crop" }
+    }
+},
+{
+    "from": [ 8, -4, 0 ],
+    "to": [ 8.0625, 12, 16 ],
+    "shade": false,
+    "faces": {
+        "west":  { "uv": [ 0, 1, 16, 16 ], "texture": "#crop" },
+        "east":  { "uv": [ 0, 1, 16, 16 ], "texture": "#crop" }
+    }
+},
+{
+    "from": [ 0, -4, 8 ],
+    "to": [ 16, 12, 8.0625 ],
+    "shade": false,
+    "faces": {
+        "north": { "uv": [ 0, 1, 16, 16 ], "texture": "#crop" },
+        "south": { "uv": [ 0, 1, 16, 16 ], "texture": "#crop" }
+    }
+}
+]
+}

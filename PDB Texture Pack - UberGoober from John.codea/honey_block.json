@@ -1,0 +1,34 @@
+{
+	"__comment": "Designed by Sphax with Cubik Studio - https://cubik.studio",
+	"parent": "block/block",
+	"textures": {
+		"particle": "block/honey_block_side",
+		"honey": "block/honey_block_side"
+	},
+	"elements": [ 	 
+		{
+			"from": [ 0, 0, 0 ],
+			"to": [ 16, 16, 16 ],
+			"faces": {
+				"down": { "uv": [ 0, 0, 16, 16 ], "texture": "#honey", "cullface": "down" },
+				"up": { "uv": [ 0, 0, 16, 16 ], "texture": "#honey", "cullface": "up" },
+				"north": { "uv": [ 0, 0, 16, 16 ], "texture": "#honey", "cullface": "north" },
+				"south": { "uv": [ 0, 0, 16, 16 ], "texture": "#honey", "cullface": "south" },
+				"west": { "uv": [ 0, 0, 16, 16 ], "texture": "#honey", "cullface": "west" },
+				"east": { "uv": [ 0, 0, 16, 16 ], "texture": "#honey", "cullface": "east" }
+			}
+		},
+		{
+			"from": [ 1, 1, 1 ],
+			"to": [ 15, 15, 15 ],
+			"faces": {
+				"down": { "uv": [ 15, 1, 1, 15 ], "texture": "#honey" },
+				"up": { "uv": [ 15, 1, 1, 15 ], "texture": "#honey" },
+				"north": { "uv": [ 15, 1, 1, 15 ], "texture": "#honey" },
+				"south": { "uv": [ 15, 1, 1, 15 ], "texture": "#honey" },
+				"west": { "uv": [ 15, 1, 1, 15 ], "texture": "#honey" },
+				"east": { "uv": [ 15, 1, 1, 15 ], "texture": "#honey" }
+			}
+		}
+	]
+}

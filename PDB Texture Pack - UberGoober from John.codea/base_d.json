@@ -1,0 +1,25 @@
+{
+	"textures": {
+		"particle": "block/piston_side",
+		"side": "block/piston_side",
+		"platform": "block/piston_top",
+		"bottom": "block/piston_bottom",
+		"side_d": "block/_bdc/piston_side_d",
+		"side_l": "block/_bdc/piston_side_l",
+		"side_r": "block/_bdc/piston_side_r"
+	},
+	"elements": [ 
+		{
+			"from": [ 0, 0, 0 ],
+			"to": [ 16, 16, 16 ],
+			"faces": {
+				"down":  { "uv": [ 0, 0, 16, 16 ], "texture": "#platform", "cullface": "down" },
+				"up":    { "uv": [ 0, 0, 16, 16 ], "texture": "#bottom", "cullface": "up" },
+				"north": { "uv": [ 0, 0, 16, 16 ], "texture": "#side_d", "cullface": "north" },
+				"south": { "uv": [ 0, 0, 16, 16 ], "texture": "#side_d", "cullface": "south" },
+				"west":  { "uv": [ 0, 0, 16, 16 ], "texture": "#side_d", "cullface": "west" },
+				"east":  { "uv": [ 0, 0, 16, 16 ], "texture": "#side_d", "cullface": "east" }
+			}
+		}
+	]
+}

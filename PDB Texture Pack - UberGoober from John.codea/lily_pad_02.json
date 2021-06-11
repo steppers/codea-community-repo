@@ -1,0 +1,30 @@
+{
+	"__comment": "Designed with BDcraft Cubik Virtuoso - http://BDcraft.net/cubik",
+	"parent": "block/block",
+	"textures": {
+		"particle": "block/lily_pad",
+		"lily_flower": "block/_bdc/lily_flower"
+	},
+	"elements": [
+		{
+			"__comment": "Element",
+			"from": [ 2.5, 0.3125, 2.5 ],
+			"to": [ 2.5625, 8.3125, 18.5 ],
+			"rotation": { "origin": [ 2.5, 0, 2.5 ], "axis": "y", "angle": 45 },
+			"faces": {
+				"west": { "uv": [ 0, 0, 16, 8 ], "texture": "#lily_flower" },
+				"east": { "uv": [ 0, 0, 16, 8 ], "texture": "#lily_flower" }
+			}
+		},
+		{
+			"__comment": "Element",
+			"from": [ 2.5, 0.3125, 13.5 ],
+			"to": [ 18.5, 8.3125, 13.5625 ],
+			"rotation": { "origin": [ 2.5, 0, 13.5 ], "axis": "y", "angle": 45 },
+			"faces": {
+				"north": { "uv": [ 0, 0, 16, 8 ], "texture": "#lily_flower" },
+				"south": { "uv": [ 0, 0, 16, 8 ], "texture": "#lily_flower" }
+			}
+		}
+	]
+}

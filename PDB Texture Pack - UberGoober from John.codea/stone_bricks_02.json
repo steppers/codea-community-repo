@@ -1,0 +1,7 @@
+{
+"__comment": "Model by Mickey Joe & Sphax for PureBDcraft - BDcraft.net.",
+    "parent": "block/cube_all",
+    "textures": {
+        "all": "block/_bdc/stone_bricks_02"
+    }
+}

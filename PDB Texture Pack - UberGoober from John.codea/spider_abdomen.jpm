@@ -1,0 +1,22 @@
+{
+  "comment": "Designed by Eskimojo14 with Cubik Studio - https://cubik.studio",
+  "createdWith": "Cubik Studio 2.6.384 Beta",
+  "textureSize": [1024,512],
+  "submodels": [
+    {
+      "id": "Cube5",
+      "translate": [-3.0,-1.0,2.0],
+      "boxes": [
+        {
+          "coordinates": [-10.0,-8.0,0.0,10.0,8.0,12.0],
+          "uvDown": [352,192,512,384],
+          "uvUp": [192,192,352,384],
+          "uvNorth": [544,384,704,512],
+          "uvSouth": [192,384,352,512],
+          "uvWest": [0,384,192,512],
+          "uvEast": [352,384,544,512]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+	"__comment": "Designed by HanFox with Cubik Studio - https://cubik.studio",
+	"textures": {
+		"particle": "#plank",
+		"plank": "#plank"
+	},
+	"elements": [ 	 
+		{
+			"__comment": "EdgeTopWest",
+			"from": [ 0, 8, 0 ],
+			"to": [ 1, 16, 8 ],
+			"faces": {
+				"up": { "uv": [ 0, 0, 1, 8 ], "texture": "#plank", "cullface": "up" },
+				"north": { "uv": [ 15, 0, 16, 8 ], "texture": "#plank", "cullface": "north" },
+				"south": { "uv": [ 0, 0, 1, 8 ], "texture": "#plank" }
+			}
+		},
+		{
+			"__comment": "EdgeBottomWest",
+			"from": [ 0, 0, 0 ],
+			"to": [ 1, 8, 16 ],
+			"faces": {
+				"down": { "uv": [ 0, 0, 1, 16 ], "texture": "#plank", "cullface": "down" },
+				"north": { "uv": [ 15, 8, 16, 16 ], "texture": "#plank", "cullface": "north" },
+				"south": { "uv": [ 0, 8, 1, 16 ], "texture": "#plank", "cullface": "south" }
+			}
+		},
+		{
+			"__comment": "EdgeTopEast",
+			"from": [ 15, 8, 0 ],
+			"to": [ 16, 16, 8 ],
+			"faces": {
+				"up": { "uv": [ 15, 0, 16, 8 ], "texture": "#plank", "cullface": "up" },
+				"north": { "uv": [ 0, 0, 1, 8 ], "texture": "#plank", "cullface": "north" },
+				"south": { "uv": [ 15, 0, 16, 8 ], "texture": "#plank" }
+			}
+		},
+		{
+			"__comment": "EdgeBottomWest",
+			"from": [ 15, 0, 0 ],
+			"to": [ 16, 8, 16 ],
+			"faces": {
+				"down": { "uv": [ 15, 0, 16, 16 ], "texture": "#plank", "cullface": "down" },
+				"north": { "uv": [ 0, 8, 1, 16 ], "texture": "#plank", "cullface": "north" },
+				"south": { "uv": [ 15, 8, 16, 16 ], "texture": "#plank", "cullface": "south" }
+			}
+		},
+		{
+			"__comment": "EdgeNorthSides",
+			"from": [ 0, 0, 0 ],
+			"to": [ 16, 16, 1 ],
+			"faces": {
+				"west": { "uv": [ 0, 0, 1, 16 ], "texture": "#plank", "cullface": "west" },
+				"east": { "uv": [ 15, 0, 16, 16 ], "texture": "#plank", "cullface": "east" }
+			}
+		},
+		{
+			"__comment": "EdgeSouthSides",
+			"from": [ 0, 0, 15 ],
+			"to": [ 16, 8, 16 ],
+			"faces": {
+				"west": { "uv": [ 15, 8, 16, 16 ], "texture": "#plank", "cullface": "west" },
+				"east": { "uv": [ 0, 8, 1, 16 ], "texture": "#plank", "cullface": "east" }
+			}
+		},
+		{
+			"__comment": "EdgeBottomStepTopW",
+			"from": [ 15, 0, 8 ],
+			"to": [ 16, 8, 16 ],
+			"faces": {
+				"up": { "uv": [ 15, 8, 16, 16 ], "texture": "#plank" }
+			}
+		},
+		{
+			"__comment": "EdgeBottomStepTopE",
+			"from": [ 0, 0, 8 ],
+			"to": [ 1, 8, 16 ],
+			"faces": {
+				"up": { "uv": [ 0, 8, 1, 16 ], "texture": "#plank" }
+			}
+		}
+	]
+}

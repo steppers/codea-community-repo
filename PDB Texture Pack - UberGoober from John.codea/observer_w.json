@@ -1,0 +1,27 @@
+{
+	"__comment": "Designed by Eskimojo14 with Cubik Studio - http://bdcraft.net",
+	"textures": {
+		"particle": "block/observer_front",
+		"front": "block/observer_front",
+		"back": "block/observer_back",
+		"d": "block/_bdc/observer_top_d",
+		"l": "block/_bdc/observer_top_l",
+		"r": "block/_bdc/observer_top_r",
+		"u": "block/_bdc/observer_top_u"
+	},
+	"elements": [
+		{
+			"__comment": "Cube1",
+			"from": [ 0, 0, 0 ],
+			"to": [ 16, 16, 16 ],
+			"faces": {
+				"down": { "uv": [ 0, 0, 16, 16 ], "texture": "#r", "cullface": "down" },
+				"up": { "uv": [ 0, 0, 16, 16 ], "texture": "#r", "cullface": "up" },
+				"north": { "uv": [ 0, 0, 16, 16 ], "texture": "#l", "cullface": "north" },
+				"south": { "uv": [ 0, 0, 16, 16 ], "texture": "#r", "cullface": "south" },
+				"west": { "uv": [ 0, 0, 16, 16 ], "texture": "#front", "cullface": "west" },
+				"east": { "uv": [ 0, 0, 16, 16 ], "texture": "#back", "cullface": "east" }
+			}
+		}
+	]
+}

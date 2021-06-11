@@ -1,0 +1,73 @@
+{
+	"__comment": "Designed by Sphax with Cubik Studio for PureBDcraft - https://BDcraft.net",
+	"parent": "block/thin_block",
+	"ambientocclusion": false,
+	"textures": {
+		"particle": "#texture",
+		"texture": "block/warped_trapdoor",
+		"edge": "block/_bdc/crimson_warped_trapdoor_side"
+	},
+	"elements": [ 	 
+		{
+			"__comment": "thickness",
+			"from": [ 0, 13, 14 ],
+			"to": [ 16, 16, 16 ],
+			"faces": {
+				"down": { "uv": [ 16, 4, 0, 2 ], "texture": "#edge" }
+			}
+		},
+		{
+			"__comment": "thickness1",
+			"from": [ 0, 0, 14 ],
+			"to": [ 16, 3, 16 ],
+			"faces": {
+				"up": { "uv": [ 0, 2, 16, 4 ], "texture": "#edge" }
+			}
+		},
+		{
+			"__comment": "thickness2",
+			"from": [ 13, 3, 14 ],
+			"to": [ 16, 13, 16 ],
+			"faces": {
+				"west": { "uv": [ 2, 2, 14, 4 ], "texture": "#edge", "rotation": 270 }
+			}
+		},
+		{
+			"__comment": "thickness3",
+			"from": [ 0, 3, 14 ],
+			"to": [ 3, 13, 16 ],
+			"faces": {
+				"east": { "uv": [ 2, 2, 14, 4 ], "texture": "#edge", "rotation": 90 }
+			}
+		},
+		{
+			"__comment": "border",
+			"from": [ 0, 0, 14 ],
+			"to": [ 16, 16, 16 ],
+			"faces": {
+				"down": { "uv": [ 16, 4, 0, 2 ], "texture": "#edge", "cullface": "down" },
+				"up": { "uv": [ 0, 2, 16, 4 ], "texture": "#edge", "cullface": "up" },
+				"north": { "uv": [ 16, 16, 0, 0 ], "texture": "#texture", "rotation": 180 },
+				"south": { "uv": [ 16, 16, 0, 0 ], "texture": "#texture", "cullface": "south", "rotation": 180 },
+				"west": { "uv": [ 0, 2, 16, 4 ], "texture": "#edge", "cullface": "east", "rotation": 270 },
+				"east": { "uv": [ 0, 2, 16, 4 ], "texture": "#edge", "cullface": "west", "rotation": 90 }
+			}
+		},
+		{
+			"__comment": "in1",
+			"from": [ 0, 0, 15.875 ],
+			"to": [ 16, 16, 16.875 ],
+			"faces": {
+				"north": { "uv": [ 0, 16, 16, 0 ], "texture": "#texture", "rotation": 180 }
+			}
+		},
+		{
+			"__comment": "in2",
+			"from": [ 0, 0, 13.125 ],
+			"to": [ 16, 16, 14.125 ],
+			"faces": {
+				"south": { "uv": [ 0, 16, 16, 0 ], "texture": "#texture", "rotation": 180 }
+			}
+		}
+	]
+}

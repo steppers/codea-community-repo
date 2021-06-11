@@ -1,0 +1,166 @@
+{
+	"__comment": "Designed by HanFox with Cubik Studio - http://bdcraft.net",
+	"parent": "item/_bdc/tilted_item",
+	"textures": {
+		"dial": "item/_bdc/clock_dial2",
+		"clock": "item/_bdc/clock"
+	},
+	"elements": [
+		{
+			"__comment": "TopLeftBottom",
+			"from": [ 1.5, 8, 7.5 ],
+			"to": [ 2.5, 12.97, 8.5 ],
+			"rotation": { "origin": [ 1.5, 8, 7.5 ], "axis": "z", "angle": -22.5 },
+			"faces": {
+				"down": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" },
+				"up": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" },
+				"north": { "uv": [ 1, 0, 0, 5 ], "texture": "#clock" },
+				"south": { "uv": [ 0, 0, 1, 5 ], "texture": "#clock" },
+				"west": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" },
+				"east": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" }
+			}
+		},
+		{
+			"__comment": "TopLeftTop",
+			"from": [ 3.03, 13.5, 7.501 ],
+			"to": [ 8, 14.5, 8.499 ],
+			"rotation": { "origin": [ 8, 14.5, 7.501 ], "axis": "z", "angle": 22.5 },
+			"faces": {
+				"down": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" },
+				"up": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" },
+				"north": { "uv": [ 1, 5, 2, 0 ], "texture": "#clock", "rotation": 90 },
+				"south": { "uv": [ 1, 0, 2, 5 ], "texture": "#clock", "rotation": 90 },
+				"west": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" },
+				"east": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" }
+			}
+		},
+		{
+			"__comment": "TopLeftBottom",
+			"from": [ 8, 13.5, 7.5 ],
+			"to": [ 12.97, 14.5, 8.5 ],
+			"rotation": { "origin": [ 8, 14.5, 7.5 ], "axis": "z", "angle": -22.5 },
+			"faces": {
+				"down": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" },
+				"up": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" },
+				"north": { "uv": [ 2, 5, 3, 0 ], "texture": "#clock", "rotation": 90 },
+				"south": { "uv": [ 2, 0, 3, 5 ], "texture": "#clock", "rotation": 90 },
+				"west": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" },
+				"east": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" }
+			}
+		},
+		{
+			"__comment": "TopLeftBottom",
+			"from": [ 13.5, 8, 7.501 ],
+			"to": [ 14.5, 12.97, 8.499 ],
+			"rotation": { "origin": [ 14.5, 8, 7.501 ], "axis": "z", "angle": 22.5 },
+			"faces": {
+				"down": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" },
+				"up": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" },
+				"north": { "uv": [ 3, 5, 4, 0 ], "texture": "#clock" },
+				"south": { "uv": [ 3, 0, 4, 5 ], "texture": "#clock", "rotation": 180 },
+				"west": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" },
+				"east": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" }
+			}
+		},
+		{
+			"__comment": "BottomRightTop",
+			"from": [ 13.5, 3.03, 7.5 ],
+			"to": [ 14.5, 8, 8.5 ],
+			"rotation": { "origin": [ 14.5, 8, 7.5 ], "axis": "z", "angle": -22.5 },
+			"faces": {
+				"down": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" },
+				"up": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" },
+				"north": { "uv": [ 0, 10, 1, 5 ], "texture": "#clock" },
+				"south": { "uv": [ 0, 5, 1, 10 ], "texture": "#clock", "rotation": 180 },
+				"west": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" },
+				"east": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" }
+			}
+		},
+		{
+			"__comment": "BottomRightBottom",
+			"from": [ 8, 1.5, 7.501 ],
+			"to": [ 12.97, 2.5, 8.499 ],
+			"rotation": { "origin": [ 8, 1.5, 7.501 ], "axis": "z", "angle": 22.5 },
+			"faces": {
+				"down": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" },
+				"up": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" },
+				"north": { "uv": [ 1, 10, 2, 5 ], "texture": "#clock", "rotation": 270 },
+				"south": { "uv": [ 1, 5, 2, 10 ], "texture": "#clock", "rotation": 270 },
+				"west": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" },
+				"east": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" }
+			}
+		},
+		{
+			"__comment": "BottomLeftBottom",
+			"from": [ 3.03, 1.5, 7.5 ],
+			"to": [ 8, 2.5, 8.5 ],
+			"rotation": { "origin": [ 8, 1.5, 7.5 ], "axis": "z", "angle": -22.5 },
+			"faces": {
+				"down": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" },
+				"up": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" },
+				"north": { "uv": [ 2, 10, 3, 5 ], "texture": "#clock", "rotation": 270 },
+				"south": { "uv": [ 2, 5, 3, 10 ], "texture": "#clock", "rotation": 270 },
+				"west": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" },
+				"east": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" }
+			}
+		},
+		{
+			"__comment": "BottomLeftTop",
+			"from": [ 1.5, 3.03, 7.501 ],
+			"to": [ 2.5, 8, 8.499 ],
+			"rotation": { "origin": [ 1.5, 8, 7.501 ], "axis": "z", "angle": 22.5 },
+			"faces": {
+				"down": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" },
+				"up": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" },
+				"north": { "uv": [ 3, 10, 4, 5 ], "texture": "#clock", "rotation": 180 },
+				"south": { "uv": [ 3, 5, 4, 10 ], "texture": "#clock" },
+				"west": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" },
+				"east": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" }
+			}
+		},
+		{
+			"__comment": "CentreBar",
+			"from": [ 2.5, 7.5, 7.502 ],
+			"to": [ 13.5, 8.5, 8.498 ],
+			"faces": {
+				"down": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" },
+				"up": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" },
+				"north": { "uv": [ 16, 2, 5, 3 ], "texture": "#clock" },
+				"south": { "uv": [ 5, 2, 16, 3 ], "texture": "#clock" },
+				"west": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" },
+				"east": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" }
+			}
+		},
+		{
+			"__comment": "MiddleSpindle",
+			"from": [ 7, 7, 7 ],
+			"to": [ 9, 9, 9 ],
+			"rotation": { "origin": [ 8, 8, 8 ], "axis": "z", "angle": -45 },
+			"faces": {
+				"down": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" },
+				"up": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" },
+				"north": { "uv": [ 16, 0, 14, 2 ], "texture": "#clock" },
+				"south": { "uv": [ 14, 0, 16, 2 ], "texture": "#clock" },
+				"west": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" },
+				"east": { "uv": [ 0, 15, 1, 16 ], "texture": "#clock" }
+			}
+		},
+		{
+			"__comment": "Dial",
+			"from": [ 0, 0, 8 ],
+			"to": [ 16, 16, 8.125 ],
+			"rotation": { "origin": [ 8, 8, 8 ], "axis": "z", "angle": 22.5 },
+			"faces": {
+				"south": { "uv": [ 0, 0, 16, 16 ], "texture": "#dial", "rotation": 180 }
+			}
+		},
+		{
+			"__comment": "Back",
+			"from": [ 2, 2, 8 ],
+			"to": [ 14, 14, 8 ],
+			"faces": {
+				"north": { "uv": [ 4, 4, 16, 16 ], "texture": "#clock" }
+			}
+		}
+	]
+}

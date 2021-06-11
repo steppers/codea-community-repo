@@ -1,0 +1,8 @@
+{
+"__comment": "Designed by HanFox with BDcraft Cubik PRO 0.96 Beta - http://bdcraft.net",
+"parent": "block/_bdc/plank/_all/slab_lower_4",
+"textures": {
+    "particle": "block/acacia_planks",
+    "plank": "block/acacia_planks"
+}
+}

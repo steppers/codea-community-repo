@@ -1,0 +1,183 @@
+{
+	"__comment": "Designed by Sphax with BDcraft Cubik PRO 0.75 Beta - http://bdcraft.net",
+	"ambientocclusion": false,
+	"textures": {
+		"particle": "item/redstone",
+		"torch": "block/redstone_torch"
+	},
+	"elements": [
+		{
+			"__comment": "torch_inner*",
+			"from": [ 6.5849, 11, 6.5867 ],
+			"to": [ 9.3849, 13, 9.3867 ],
+			"rotation": { "origin": [ 8, 11, 8 ], "axis": "y", "angle": -45 },
+			"shade": false,
+			"faces": {
+				"up": { "uv": [ 13.5, 4.5, 14, 5 ], "texture": "#torch" },
+				"north": { "uv": [ 14, 6, 14.75, 6.75 ], "texture": "#torch" },
+				"south": { "uv": [ 14, 6, 14.75, 6.75 ], "texture": "#torch" },
+				"west": { "uv": [ 14, 6, 14.75, 6.75 ], "texture": "#torch" },
+				"east": { "uv": [ 14, 6, 14.75, 6.75 ], "texture": "#torch" }
+			}
+		},
+		{
+			"from": [ 6, 11, 6 ],
+			"to": [ 10, 11.001, 10 ],
+			"shade": false,
+			"faces": {
+				"down": { "uv": [ 4, 14, 4.75, 14.75 ], "texture": "#torch" },
+				"up": { "uv": [ 14, 6, 14.75, 6.75 ], "texture": "#torch" }
+			}
+		},
+		{
+			"__comment": "torch_reverse",
+			"from": [ 6, 7.5, 6 ],
+			"to": [ 6.001, 13, 10 ],
+			"shade": false,
+			"faces": {
+				"east": { "uv": [ 12, 10, 16, 15.5 ], "texture": "#torch" }
+			}
+		},
+		{
+			"__comment": "ironV",
+			"from": [ 5.75, 7, 9.75 ],
+			"to": [ 6.25, 10, 10.25 ],
+			"faces": {
+				"down": { "uv": [ 0, 9, 0.5, 9.5 ], "texture": "#torch" },
+				"up": { "uv": [ 0.5, 9.5, 1, 10 ], "texture": "#torch" },
+				"north": { "uv": [ 5, 6, 5.5, 9 ], "texture": "#torch" },
+				"south": { "uv": [ 5, 6, 5.5, 9 ], "texture": "#torch" },
+				"west": { "uv": [ 5, 6, 5.5, 9 ], "texture": "#torch" },
+				"east": { "uv": [ 5, 6, 5.5, 9 ], "texture": "#torch" }
+			}
+		},
+		{
+			"__comment": "ironV",
+			"from": [ 9.75, 7, 9.75 ],
+			"to": [ 10.25, 10, 10.25 ],
+			"faces": {
+				"down": { "uv": [ 0, 9, 0.5, 9.5 ], "texture": "#torch" },
+				"up": { "uv": [ 0.5, 9.5, 1, 10 ], "texture": "#torch" },
+				"north": { "uv": [ 5, 6, 5.5, 9 ], "texture": "#torch" },
+				"south": { "uv": [ 5, 6, 5.5, 9 ], "texture": "#torch" },
+				"west": { "uv": [ 5, 6, 5.5, 9 ], "texture": "#torch" },
+				"east": { "uv": [ 5, 6, 5.5, 9 ], "texture": "#torch" }
+			}
+		},
+		{
+			"__comment": "ironV",
+			"from": [ 9.75, 7, 5.75 ],
+			"to": [ 10.25, 10, 6.25 ],
+			"faces": {
+				"down": { "uv": [ 0, 9, 0.5, 9.5 ], "texture": "#torch" },
+				"up": { "uv": [ 0.5, 9.5, 1, 10 ], "texture": "#torch" },
+				"north": { "uv": [ 5, 6, 5.5, 9 ], "texture": "#torch" },
+				"south": { "uv": [ 5, 6, 5.5, 9 ], "texture": "#torch" },
+				"west": { "uv": [ 5, 6, 5.5, 9 ], "texture": "#torch" },
+				"east": { "uv": [ 5, 6, 5.5, 9 ], "texture": "#torch" }
+			}
+		},
+		{
+			"__comment": "ironV",
+			"from": [ 5.75, 7, 5.75 ],
+			"to": [ 6.25, 10, 6.25 ],
+			"faces": {
+				"down": { "uv": [ 0, 9, 0.5, 9.5 ], "texture": "#torch" },
+				"up": { "uv": [ 0.5, 9.5, 1, 10 ], "texture": "#torch" },
+				"north": { "uv": [ 5, 6, 5.5, 9 ], "texture": "#torch" },
+				"south": { "uv": [ 5, 6, 5.5, 9 ], "texture": "#torch" },
+				"west": { "uv": [ 5, 6, 5.5, 9 ], "texture": "#torch" },
+				"east": { "uv": [ 5, 6, 5.5, 9 ], "texture": "#torch" }
+			}
+		},
+		{
+			"__comment": "ironB",
+			"from": [ 6.5, 2, 6.5 ],
+			"to": [ 9.5, 4, 9.5 ],
+			"faces": {
+				"down": { "uv": [ 0, 9, 3, 12 ], "texture": "#torch" },
+				"up": { "uv": [ 0, 9, 3, 12 ], "texture": "#torch" },
+				"north": { "uv": [ 6, 12, 10, 14 ], "texture": "#torch" },
+				"south": { "uv": [ 6, 12, 10, 14 ], "texture": "#torch" },
+				"west": { "uv": [ 6, 12, 10, 14 ], "texture": "#torch" },
+				"east": { "uv": [ 6, 12, 10, 14 ], "texture": "#torch" }
+			}
+		},
+		{
+			"__comment": "torch_inner",
+			"from": [ 6.5851, 7.5, 6.5864 ],
+			"to": [ 9.385099, 9.5, 9.3864 ],
+			"rotation": { "origin": [ 8, 7.5, 8 ], "axis": "y", "angle": -45 },
+			"shade": false,
+			"faces": {
+				"north": { "uv": [ 4, 14, 4.75, 14.75 ], "texture": "#torch" },
+				"south": { "uv": [ 4, 14, 4.75, 14.75 ], "texture": "#torch" },
+				"west": { "uv": [ 4, 14, 4.75, 14.75 ], "texture": "#torch" },
+				"east": { "uv": [ 4, 14, 4.75, 14.75 ], "texture": "#torch" }
+			}
+		},
+		{
+			"__comment": "torch",
+			"from": [ 6, 7.5, 6 ],
+			"to": [ 10, 13, 10 ],
+			"faces": {
+				"north": { "uv": [ 12, 3, 16, 8.5 ], "texture": "#torch" },
+				"south": { "uv": [ 12, 3, 16, 8.5 ], "texture": "#torch" },
+				"west": { "uv": [ 12, 3, 16, 8.5 ], "texture": "#torch" },
+				"east": { "uv": [ 12, 3, 16, 8.5 ], "texture": "#torch" }
+			}
+		},
+		{
+			"__comment": "iron_base",
+			"from": [ 6, 6.5, 6 ],
+			"to": [ 10, 7.5, 10 ],
+			"faces": {
+				"down": { "uv": [ 0, 9, 3, 12 ], "texture": "#torch" },
+				"up": { "uv": [ 0, 13, 3, 16 ], "texture": "#torch" },
+				"north": { "uv": [ 6.5, 8.5, 9.5, 9.5 ], "texture": "#torch" },
+				"south": { "uv": [ 6.5, 8.5, 9.5, 9.5 ], "texture": "#torch" },
+				"west": { "uv": [ 6.5, 8.5, 9.5, 9.5 ], "texture": "#torch" },
+				"east": { "uv": [ 6.5, 8.5, 9.5, 9.5 ], "texture": "#torch" }
+			}
+		},
+		{
+			"__comment": "wood",
+			"from": [ 7, 0, 7 ],
+			"to": [ 9, 6.5, 9 ],
+			"faces": {
+				"down": { "uv": [ 9, 14, 11, 16 ], "texture": "#torch" },
+				"north": { "uv": [ 7, 9.5, 9, 16 ], "texture": "#torch" },
+				"south": { "uv": [ 7, 9.5, 9, 16 ], "texture": "#torch" },
+				"west": { "uv": [ 7, 9.5, 9, 16 ], "texture": "#torch" },
+				"east": { "uv": [ 7, 9.5, 9, 16 ], "texture": "#torch" }
+			}
+		},
+		{
+			"__comment": "torch_reverse*",
+			"from": [ 10, 7.5, 6 ],
+			"to": [ 10.001, 13, 10 ],
+			"shade": false,
+			"faces": {
+				"west": { "uv": [ 12, 10, 16, 15.5 ], "texture": "#torch" }
+			}
+		},
+		{
+			"__comment": "torch_reverse*",
+			"from": [ 6, 7.5, 6 ],
+			"to": [ 10, 13, 6.001 ],
+			"shade": false,
+			"faces": {
+				"south": { "uv": [ 12, 10, 16, 15.5 ], "texture": "#torch" }
+			}
+		},
+		{
+			"__comment": "torch_reverse*",
+			"from": [ 6, 7.5, 10 ],
+			"to": [ 10, 13, 10.001 ],
+			"shade": false,
+			"faces": {
+				"north": { "uv": [ 12, 10, 16, 15.5 ], "texture": "#torch" }
+			}
+		}
+	]
+}

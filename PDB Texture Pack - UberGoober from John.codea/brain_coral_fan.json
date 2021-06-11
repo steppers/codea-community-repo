@@ -1,0 +1,6 @@
+{
+    "parent": "item/_bdc/item_cross",
+    "textures": {
+        "layer0": "block/brain_coral_fan"
+    }
+}

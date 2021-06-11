@@ -1,0 +1,18 @@
+{
+    "variants": {
+        "": [
+			{ "model": "block/smooth_stone", "weight": 120 },
+			{ "model": "block/_bdc/smooth_stone_01", "weight": 3 },
+			{ "model": "block/_bdc/smooth_stone_02", "weight": 3 },
+			{ "model": "block/_bdc/smooth_stone_03", "weight": 3 },
+			{ "model": "block/_bdc/smooth_stone_04", "weight": 3 },
+			{ "model": "block/_bdc/smooth_stone_05", "weight": 3 },
+			{ "model": "block/_bdc/smooth_stone_06", "weight": 3 },
+			{ "model": "block/_bdc/smooth_stone_07", "weight": 3 },
+			{ "model": "block/_bdc/smooth_stone_08", "weight": 3 },
+			{ "model": "block/_bdc/smooth_stone_09", "weight": 3 },
+			{ "model": "block/_bdc/smooth_stone_10", "weight": 3 },
+			{ "model": "block/_bdc/smooth_stone_11", "weight": 3 }
+		]
+    }
+}

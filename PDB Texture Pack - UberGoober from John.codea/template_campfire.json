@@ -1,0 +1,114 @@
+{
+	"__comment": "Designed by Sphax with Cubik Studio - https://cubik.studio",
+	"parent": "block/block",
+	"ambientocclusion": false,
+	"textures": {
+		"log": "block/campfire_log_lit",
+		"log_off": "block/campfire_log",
+		"fire2": "block/fire_0",
+		"fire2": "block/fire_1"
+	},
+	"elements": [ 	 
+		{
+			"from": [ -1.5001, 1, 6.5 ],
+			"to": [ 4.4999, 7, 14.5 ],
+			"rotation": { "origin": [ -1.5, 1, 14.5 ], "axis": "y", "angle": -22.5 },
+			"faces": {
+				"down": { "uv": [ 6, 0, 14, 6 ], "texture": "#log", "rotation": 90 },
+				"up": { "uv": [ 6, 0, 14, 6 ], "texture": "#log", "rotation": 270 },
+				"north": { "uv": [ 0, 0, 6, 6 ], "texture": "#log" },
+				"south": { "uv": [ 0, 0, 6, 6 ], "texture": "#log" },
+				"west": { "uv": [ 6, 6, 14, 0 ], "texture": "#log", "rotation": 180 },
+				"east": { "uv": [ 6, 0, 14, 6 ], "texture": "#log" }
+			}
+		},
+		{
+			"from": [ 0, 0, 8 ],
+			"to": [ 16, 1, 16 ],
+			"shade": false,
+			"faces": {
+				"down": { "uv": [ 0, 8, 16, 16 ], "texture": "#log_off", "cullface": "down" },
+				"up": { "uv": [ 0, 16, 16, 8 ], "texture": "#log" },
+				"south": { "uv": [ 0, 8, 16, 9 ], "texture": "#log_off", "cullface": "south" },
+				"west": { "uv": [ 0, 8, 1, 16 ], "texture": "#log_off", "rotation": 90 },
+				"east": { "uv": [ 15, 16, 16, 8 ], "texture": "#log_off", "rotation": 90 }
+			}
+		},
+		{
+			"from": [ 0, 0, 0 ],
+			"to": [ 16, 1, 8 ],
+			"shade": false,
+			"faces": {
+				"down": { "uv": [ 0, 16, 16, 8 ], "texture": "#log_off", "cullface": "down" },
+				"up": { "uv": [ 16, 8, 0, 16 ], "texture": "#log" },
+				"north": { "uv": [ 0, 8, 16, 9 ], "texture": "#log_off", "cullface": "north" },
+				"west": { "uv": [ 0, 16, 1, 8 ], "texture": "#log_off", "rotation": 90 },
+				"east": { "uv": [ 15, 8, 16, 16 ], "texture": "#log_off", "rotation": 90 }
+			}
+		},
+		{
+			"from": [ 2, 1, -1.0001 ],
+			"to": [ 10, 7, 4.9999 ],
+			"rotation": { "origin": [ 2, 1, -1 ], "axis": "y", "angle": -22.5 },
+			"faces": {
+				"down": { "uv": [ 6, 0, 14, 6 ], "texture": "#log" },
+				"up": { "uv": [ 6, 0, 14, 6 ], "texture": "#log" },
+				"north": { "uv": [ 6, 6, 14, 0 ], "texture": "#log", "rotation": 180 },
+				"south": { "uv": [ 6, 0, 14, 6 ], "texture": "#log" },
+				"west": { "uv": [ 0, 0, 6, 6 ], "texture": "#log" },
+				"east": { "uv": [ 0, 0, 6, 6 ], "texture": "#log" }
+			}
+		},
+		{
+			"from": [ 11.0001, 1, 3 ],
+			"to": [ 17.0001, 7, 11 ],
+			"rotation": { "origin": [ 17, 1, 3 ], "axis": "y", "angle": -22.5 },
+			"faces": {
+				"down": { "uv": [ 6, 0, 14, 6 ], "texture": "#log", "rotation": 270 },
+				"up": { "uv": [ 6, 0, 14, 6 ], "texture": "#log", "rotation": 90 },
+				"north": { "uv": [ 0, 0, 6, 6 ], "texture": "#log" },
+				"south": { "uv": [ 0, 0, 6, 6 ], "texture": "#log" },
+				"west": { "uv": [ 6, 0, 14, 6 ], "texture": "#log" },
+				"east": { "uv": [ 6, 6, 14, 0 ], "texture": "#log", "rotation": 180 }
+			}
+		},
+		{
+			"from": [ 5.5, 1, 11.5001 ],
+			"to": [ 13.5, 7, 17.5001 ],
+			"rotation": { "origin": [ 13.5, 1, 17.5 ], "axis": "y", "angle": -22.5 },
+			"faces": {
+				"down": { "uv": [ 6, 0, 14, 6 ], "texture": "#log", "rotation": 180 },
+				"up": { "uv": [ 6, 0, 14, 6 ], "texture": "#log", "rotation": 180 },
+				"north": { "uv": [ 6, 0, 14, 6 ], "texture": "#log" },
+				"south": { "uv": [ 6, 6, 14, 0 ], "texture": "#log", "rotation": 180 },
+				"west": { "uv": [ 0, 0, 6, 6 ], "texture": "#log" },
+				"east": { "uv": [ 0, 0, 6, 6 ], "texture": "#log" }
+			}
+		},
+		{
+			"from": [ 0, 1, 8.5 ],
+			"to": [ 16, 17, 8.501 ],
+			"rotation": { "origin": [ 8, 1, 8.5 ], "axis": "y", "angle": -22.5 },
+			"shade": false,
+			"faces": {
+				"north": { "uv": [ 0, 3, 16, 16 ], "texture": "#fire2" },
+				"south": { "uv": [ 0, 3, 16, 16 ], "texture": "#fire2" }
+			}
+		},
+		{
+			"from": [ 7.999, 1, 0.5 ],
+			"to": [ 8, 17, 16.5 ],
+			"rotation": { "origin": [ 8, 1, 8.5 ], "axis": "y", "angle": -22.5 },
+			"shade": false,
+			"faces": {
+				"west": { "uv": [ 0, 3, 16, 16 ], "texture": "#fire1" },
+				"east": { "uv": [ 0, 3, 16, 16 ], "texture": "#fire1" }
+			}
+		}
+	],
+	"display": {
+		"head": {
+			"translation":  [ 0, 10.5, 0 ]
+		}
+	}
+}

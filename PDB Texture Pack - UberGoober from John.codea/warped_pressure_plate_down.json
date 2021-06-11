@@ -1,0 +1,7 @@
+{   
+	"__comment": "Designed by Sphax with Cubik Studio - https://Cubik.Studio",
+	"parent": "block/_bdc/pressure_plate_down",
+	"textures": {
+		"pressure_plate": "block/_bdc/pressure_plate_warped"
+	}
+}

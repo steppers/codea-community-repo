@@ -1,0 +1,7 @@
+{
+	"__comment": "Designed by Sphax for PureBDcraft - http://bdcraft.net",
+    "parent": "item/_bdc/shovel",
+    "textures": {
+        "layer0": "item/wooden_shovel"
+    }
+}

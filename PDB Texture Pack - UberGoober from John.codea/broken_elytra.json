@@ -1,0 +1,7 @@
+{
+	"parent": "item/elytra",
+	"__comment": "Designed by the resident Inuit",
+	"textures": {
+		"texture": "item/broken_elytra"
+	}
+}

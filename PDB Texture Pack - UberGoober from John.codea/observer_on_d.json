@@ -1,0 +1,7 @@
+{
+    "parent": "block/_bdc/observer_d",
+    "textures": {
+        "back": "block/observer_back_on",
+		"front": "block/_bdc/observer_front_on"
+    }
+}

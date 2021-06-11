@@ -1,0 +1,19 @@
+{
+    "multipart": [
+        {   
+            "apply": { "model": "block/_bdc/plank/crimson/planks_crimson_edges" }
+        },
+        {   
+            "apply": [
+				{ "model": "block/_bdc/plank/crimson/planks_crimson_1" },
+				{ "model": "block/_bdc/plank/crimson/planks_crimson_2" },
+				{ "model": "block/_bdc/plank/crimson/planks_crimson_3" },
+				{ "model": "block/_bdc/plank/crimson/planks_crimson_4" },
+				{ "model": "block/_bdc/plank/crimson/planks_crimson_5" },
+				{ "model": "block/_bdc/plank/crimson/planks_crimson_6" },
+				{ "model": "block/_bdc/plank/crimson/planks_crimson_7" },
+				{ "model": "block/_bdc/plank/crimson/planks_crimson_8" }
+			]
+        }
+    ]
+}

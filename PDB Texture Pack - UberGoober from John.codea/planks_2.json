@@ -1,0 +1,77 @@
+{
+"__comment": "Designed by HanFox with BDcraft Cubik PRO 0.96 Beta - http://bdcraft.net",
+"textures": {
+    "particle": "#particle",
+    "plank": "#plank"
+},
+"elements": [ 
+{
+    "__comment": "PlankCornerTopN",
+    "from": [ 1, 8, 0 ],
+    "to": [ 15, 16, 8 ],
+    "faces": {
+        "up":    { "uv": [ 15, 0, 1, 8 ], "texture": "#plank", "cullface": "up" },
+        "north": { "uv": [ 15, 0, 1, 8 ], "texture": "#plank", "cullface": "north" }
+    }
+},
+{
+    "__comment": "PlankCornerTopS",
+    "from": [ 1, 8, 8 ],
+    "to": [ 15, 16, 16 ],
+    "faces": {
+        "up":    { "uv": [ 1, 8, 15, 16 ], "texture": "#plank", "cullface": "up" },
+        "south": { "uv": [ 15, 0, 1, 8 ], "texture": "#plank", "cullface": "south" }
+    }
+},
+{
+    "__comment": "PlankCornerBottomN",
+    "from": [ 1, 0, 0 ],
+    "to": [ 15, 8, 8 ],
+    "faces": {
+        "down":  { "uv": [ 1, 8, 15, 16 ], "texture": "#plank", "cullface": "down" },
+        "north": { "uv": [ 1, 8, 15, 16 ], "texture": "#plank", "cullface": "north" }
+    }
+},
+{
+    "__comment": "PlankCornerBottomS",
+    "from": [ 1, 0, 8 ],
+    "to": [ 15, 8, 16 ],
+    "faces": {
+        "down":  { "uv": [ 15, 0, 1, 8 ], "texture": "#plank", "cullface": "down" },
+        "south": { "uv": [ 1, 8, 15, 16 ], "texture": "#plank", "cullface": "south" }
+    }
+},
+{
+    "__comment": "PlankSideWestBottom",
+    "from": [ 0, 0, 1 ],
+    "to": [ 1, 8, 15 ],
+    "faces": {
+        "west":  { "uv": [ 1, 8, 15, 16 ], "texture": "#plank", "cullface": "west" }
+    }
+},
+{
+    "__comment": "PlankSideWestTop",
+    "from": [ 0, 8, 1 ],
+    "to": [ 1, 16, 15 ],
+    "faces": {
+        "west":  { "uv": [ 15, 0, 1, 8 ], "texture": "#plank", "cullface": "west" }
+    }
+},
+{
+    "__comment": "PlankSideEastTop",
+    "from": [ 15, 8, 1 ],
+    "to": [ 16, 16, 15 ],
+    "faces": {
+        "east":  { "uv": [ 15, 0, 1, 8 ], "texture": "#plank", "cullface": "east" }
+    }
+},
+{
+    "__comment": "PlankSideEastBottom",
+    "from": [ 15, 0, 1 ],
+    "to": [ 16, 8, 15 ],
+    "faces": {
+        "east":  { "uv": [ 1, 8, 15, 16 ], "texture": "#plank", "cullface": "east" }
+    }
+}
+]
+}

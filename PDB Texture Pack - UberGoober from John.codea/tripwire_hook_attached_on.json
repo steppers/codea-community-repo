@@ -1,0 +1,94 @@
+{
+	"__comment": "Designed with BDcraft Cubik Virtuoso - http://BDcraft.net/cubik",
+	"parent": "block/block",
+	"textures": {
+		"particle": "block/oak_planks",
+		"hook": "block/tripwire_hook",
+		"wood": "block/_bdc/switches",
+		"tripwire": "block/tripwire"
+	},
+	"elements": [
+		{
+			"__comment": "Wire",
+			"from": [ 7.75, 1.5, 0.5 ],
+			"to": [ 8.25, 1.501, 7.5 ],
+			"rotation": { "origin": [ 8, 0, 0.5 ], "axis": "x", "angle": -22.5, "rescale": true },
+			"faces": {
+				"down": { "uv": [ 0, 4, 16, 2 ], "texture": "#tripwire", "rotation": 90 },
+				"up": { "uv": [ 0, 2, 16, 4 ], "texture": "#tripwire", "rotation": 90 }
+			}
+		},
+		{
+			"__comment": "Element",
+			"from": [ 6.2, 3.4, 6.7 ],
+			"to": [ 9.8, 4.2, 10.3 ],
+			"faces": {
+				"down": { "uv": [ 5, 9, 11, 3 ], "texture": "#hook" },
+				"up": { "uv": [ 5, 3, 11, 9 ], "texture": "#hook" },
+				"north": { "uv": [ 11, 3, 5, 2 ], "texture": "#hook" },
+				"south": { "uv": [ 1, 16, 7, 15 ], "texture": "#hook" },
+				"west": { "uv": [ 11, 1, 5, 0 ], "texture": "#hook" },
+				"east": { "uv": [ 11, 1, 5, 0 ], "texture": "#hook" }
+			}
+		},
+		{
+			"__comment": "Element",
+			"from": [ 7.4, 3.4, 9.099999 ],
+			"to": [ 8.6, 4.2, 9.099999 ],
+			"faces": {
+				"north": { "uv": [ 9, 2, 7, 1 ], "texture": "#hook" }
+			}
+		},
+		{
+			"__comment": "Element",
+			"from": [ 7.4, 3.4, 7.9 ],
+			"to": [ 8.6, 4.2, 7.9 ],
+			"faces": {
+				"south": { "uv": [ 7, 3, 9, 2 ], "texture": "#hook" }
+			}
+		},
+		{
+			"__comment": "Element",
+			"from": [ 7.4, 3.4, 7.9 ],
+			"to": [ 7.4, 4.2, 9.1 ],
+			"faces": {
+				"east": { "uv": [ 9, 1, 7, 0 ], "texture": "#hook" }
+			}
+		},
+		{
+			"__comment": "Element",
+			"from": [ 8.599999, 3.4, 7.9 ],
+			"to": [ 8.599999, 4.2, 9.1 ],
+			"faces": {
+				"west": { "uv": [ 9, 1, 7, 0 ], "texture": "#hook" }
+			}
+		},
+		{
+			"__comment": "Element",
+			"from": [ 7.4, 5.2, 10 ],
+			"to": [ 8.799999, 6.8, 14 ],
+			"rotation": { "origin": [ 8, 6, 14 ], "axis": "x", "angle": -22.5 },
+			"faces": {
+				"down": { "uv": [ 7, 16, 9, 9 ], "texture": "#hook" },
+				"up": { "uv": [ 9, 16, 7, 9 ], "texture": "#hook" },
+				"north": { "uv": [ 9, 14, 11, 16 ], "texture": "#hook" },
+				"south": { "uv": [ 11, 14, 9, 16 ], "texture": "#hook" },
+				"west": { "uv": [ 7, 16, 9, 9 ], "texture": "#hook", "rotation": 90 },
+				"east": { "uv": [ 7, 16, 9, 9 ], "texture": "#hook", "rotation": 90 }
+			}
+		},
+		{
+			"__comment": "Element",
+			"from": [ 6, 1, 14 ],
+			"to": [ 10, 9, 16 ],
+			"faces": {
+				"down": { "uv": [ 10, 14, 6, 16 ], "texture": "#wood" },
+				"up": { "uv": [ 10, 16, 6, 14 ], "texture": "#wood" },
+				"north": { "uv": [ 0, 14, 6, 10 ], "texture": "#wood", "rotation": 90 },
+				"south": { "uv": [ 0, 10, 6, 14 ], "texture": "#wood", "cullface": "south", "rotation": 90 },
+				"west": { "uv": [ 0, 16, 6, 14 ], "texture": "#wood", "rotation": 90 },
+				"east": { "uv": [ 0, 16, 6, 14 ], "texture": "#wood", "rotation": 90 }
+			}
+		}
+	]
+}

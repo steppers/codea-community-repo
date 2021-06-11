@@ -1,0 +1,8 @@
+{
+"__comment": "Model by Mickey Joe & Sphax for PureBDcraft - BDcraft.net.",
+"parent": "block/carrots_stage0",
+"textures": {
+    "particle": "block/_bdc/potatoes",
+    "crop": "block/_bdc/potatoes"
+}
+}

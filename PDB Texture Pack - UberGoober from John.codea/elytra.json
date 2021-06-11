@@ -1,0 +1,82 @@
+{
+	"__comment": "Designed by the resident Inuit with BDcraft Cubik PRO 0.96 Beta - http://bdcraft.net",
+	"textures": {
+		"texture": "item/elytra"
+	},
+"elements": [
+		{
+			"from": [ 0, 0, 6 ],
+			"to": [ 20, 2, 16 ],
+			"faces": {
+				"down": { "uv": [ 4, 11, 9, 1 ], "texture": "#texture", "rotation": 270 },
+				"up": { "uv": [ 10, 11, 15, 1 ], "texture": "#texture", "rotation": 270 },
+				"north": { "uv": [ 3, 1, 4, 11 ], "texture": "#texture", "rotation": 90 },
+				"south": { "uv": [ 9, 11, 10, 1 ], "texture": "#texture", "rotation": 270 },
+				"west": { "uv": [ 14, 0, 9, 1 ], "texture": "#texture" },
+				"east": { "uv": [ 9, 0, 4, 1 ], "texture": "#texture" }
+			}
+		},
+		{
+			"from": [ -1.125, 2.0625, 6.8125 ],
+			"to": [ 18.875, 4.0625, 16.8125 ],
+			"rotation": { "origin": [ -1.125, 2.0625, 6.8125 ], "axis": "y", "angle": 22.5 },
+			"faces": {
+				"down": { "uv": [ 4, 1, 9, 11 ], "texture": "#texture", "rotation": 270 },
+				"up": { "uv": [ 10, 1, 15, 11 ], "texture": "#texture", "rotation": 270 },
+				"north": { "uv": [ 3, 1, 4, 11 ], "texture": "#texture", "rotation": 90 },
+				"south": { "uv": [ 9, 1, 10, 11 ], "texture": "#texture", "rotation": 270 },
+				"west": { "uv": [ 4, 0, 9, 1 ], "texture": "#texture" },
+				"east": { "uv": [ 14, 0, 9, 1 ], "texture": "#texture" }
+			}
+		}
+	],
+"overrides": [
+        {
+            "predicate": {
+                "broken": 1
+            },
+            "model": "item/broken_elytra"
+        }
+    ],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [ 180, 0, -90 ],
+			"translation": [ 4, 3.5, 2.8 ],
+			"scale": [ 0.7, 0.7, 0.7 ]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [ 180, 0, 90 ],
+			"translation": [ -4, 3.5, 2.8 ],
+			"scale": [ 0.7, 0.7, 0.7 ]
+		},
+		"head": {
+				"rotation":  [ 90, -135, 0 ],
+				"translation":  [ 3, -16, 11.5 ]
+			},
+		"ground": {
+			"rotation": [ 0, 0, 0 ],
+			"translation": [ 0, 2.5, 0 ],
+			"scale": [ 0.5, 0.5, 0.5 ]
+		},
+		"fixed": {
+			"rotation": [ 0, -90, -90 ],
+			"translation": [ 0, 1, 3.5 ],
+			"scale": [ 0.65, 0.65, 0.65 ]
+		},
+		"firstperson_righthand": {
+			"rotation": [ 145, 0, -90 ],
+			"translation": [ 9, -5, 0 ],
+			"scale": [ 1, 1, 1 ]
+		},
+		"firstperson_lefthand": {
+			"rotation": [ 145, 0, 90 ],
+			"translation": [ -2, -5, 0 ],
+			"scale": [ 1, 1, 1 ]
+		},
+		"gui": {
+			"rotation": [ 45, -135, 180 ],
+			"translation": [ -1, -4.5, 0 ],
+			"scale": [ 0.65, 0.65, 0.65 ]
+		}
+	}
+}

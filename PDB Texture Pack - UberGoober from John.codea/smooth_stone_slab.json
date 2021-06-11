@@ -1,0 +1,46 @@
+{
+    "variants": {
+        "type=bottom": [
+			{ "model": "block/smooth_stone_slab", "weight": 120 },
+			{ "model": "block/_bdc/smooth_stone_slab_01", "weight": 3 },
+			{ "model": "block/_bdc/smooth_stone_slab_02", "weight": 3 },
+			{ "model": "block/_bdc/smooth_stone_slab_03", "weight": 3 },
+			{ "model": "block/_bdc/smooth_stone_slab_04", "weight": 3 },
+			{ "model": "block/_bdc/smooth_stone_slab_05", "weight": 3 },
+			{ "model": "block/_bdc/smooth_stone_slab_06", "weight": 3 },
+			{ "model": "block/_bdc/smooth_stone_slab_07", "weight": 3 },
+			{ "model": "block/_bdc/smooth_stone_slab_08", "weight": 3 },
+			{ "model": "block/_bdc/smooth_stone_slab_09", "weight": 3 },
+			{ "model": "block/_bdc/smooth_stone_slab_10", "weight": 3 },
+			{ "model": "block/_bdc/smooth_stone_slab_11", "weight": 3 }
+		],
+        "type=top": [
+			{ "model": "block/smooth_stone_slab_top", "weight": 120 },
+			{ "model": "block/_bdc/smooth_stone_slab_top_01", "weight": 3 },
+			{ "model": "block/_bdc/smooth_stone_slab_top_02", "weight": 3 },
+			{ "model": "block/_bdc/smooth_stone_slab_top_03", "weight": 3 },
+			{ "model": "block/_bdc/smooth_stone_slab_top_04", "weight": 3 },
+			{ "model": "block/_bdc/smooth_stone_slab_top_05", "weight": 3 },
+			{ "model": "block/_bdc/smooth_stone_slab_top_06", "weight": 3 },
+			{ "model": "block/_bdc/smooth_stone_slab_top_07", "weight": 3 },
+			{ "model": "block/_bdc/smooth_stone_slab_top_08", "weight": 3 },
+			{ "model": "block/_bdc/smooth_stone_slab_top_09", "weight": 3 },
+			{ "model": "block/_bdc/smooth_stone_slab_top_10", "weight": 3 },
+			{ "model": "block/_bdc/smooth_stone_slab_top_11", "weight": 3 }
+		],
+        "type=double": [
+			{ "model": "block/smooth_stone_slab_double", "weight": 120 },
+			{ "model": "block/_bdc/smooth_stone_slab_double_01", "weight": 3 },
+			{ "model": "block/_bdc/smooth_stone_slab_double_02", "weight": 3 },
+			{ "model": "block/_bdc/smooth_stone_slab_double_03", "weight": 3 },
+			{ "model": "block/_bdc/smooth_stone_slab_double_04", "weight": 3 },
+			{ "model": "block/_bdc/smooth_stone_slab_double_05", "weight": 3 },
+			{ "model": "block/_bdc/smooth_stone_slab_double_06", "weight": 3 },
+			{ "model": "block/_bdc/smooth_stone_slab_double_07", "weight": 3 },
+			{ "model": "block/_bdc/smooth_stone_slab_double_08", "weight": 3 },
+			{ "model": "block/_bdc/smooth_stone_slab_double_09", "weight": 3 },
+			{ "model": "block/_bdc/smooth_stone_slab_double_10", "weight": 3 },
+			{ "model": "block/_bdc/smooth_stone_slab_double_11", "weight": 3 }
+		]
+    }
+}

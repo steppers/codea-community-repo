@@ -1,0 +1,15 @@
+{
+	"textures": {
+		"texture": "block/acacia_sapling"
+	},
+	"elements": [ 
+		{
+			"__comment": "What you looking at?",
+			"from": [ 0, 0, 0 ],
+			"to": [ 0.1, 0.1, 0.1 ],
+			"faces": {
+				"down":  { "uv": [ 0, 0, 0.1, 0.1 ], "texture": "#texture" }
+			}
+		}
+	]
+}

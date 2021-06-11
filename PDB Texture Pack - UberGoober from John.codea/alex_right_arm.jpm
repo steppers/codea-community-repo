@@ -1,0 +1,22 @@
+{
+  "comment": "Designed by Eskimojo14 with Cubik Studio - http://bdcraft.net",
+  "createdWith": "Cubik Studio 2.6.384 Beta",
+  "textureSize": [64,64],
+  "submodels": [
+    {
+      "id": "Cube1",
+      "translate": [-6.0,0.0,6.0],
+      "boxes": [
+        {
+          "coordinates": [-3.0,-12.0,0.0,3.0,12.0,4.0],
+          "uvDown": [47,32,50,36],
+          "uvUp": [44,32,47,36],
+          "uvNorth": [44,36,47,48],
+          "uvSouth": [51,36,54,48],
+          "uvWest": [47,36,51,48],
+          "uvEast": [40,36,44,48]
+        }
+      ]
+    }
+  ]
+}

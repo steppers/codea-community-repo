@@ -1,0 +1,16 @@
+{
+    "variants": {
+        "extended=false,facing=down": { "model": "block/_bdc/pistons/sticky_d" },
+        "extended=false,facing=up": { "model": "block/_bdc/pistons/sticky_u" },
+        "extended=false,facing=north": { "model": "block/_bdc/pistons/sticky_n" },
+        "extended=false,facing=south": { "model": "block/_bdc/pistons/sticky_s" },
+        "extended=false,facing=west": { "model": "block/_bdc/pistons/sticky_w" },
+        "extended=false,facing=east": { "model": "block/_bdc/pistons/sticky_e" },
+        "extended=true,facing=down": { "model": "block/_bdc/pistons/extended_d" },
+        "extended=true,facing=up": { "model": "block/_bdc/pistons/extended_u" },
+        "extended=true,facing=north": { "model": "block/_bdc/pistons/extended_n" },
+        "extended=true,facing=south": { "model": "block/_bdc/pistons/extended_s" },
+        "extended=true,facing=west": { "model": "block/_bdc/pistons/extended_w" },
+        "extended=true,facing=east": { "model": "block/_bdc/pistons/extended_e" }
+    }
+}

@@ -1,0 +1,21 @@
+{
+	"__comment": "Designed by the resident Inuit with BDcraft Cubik Pro - http://bdcraft.net",
+	"parent": "block/block",
+	"textures": {
+		"particle": "block/iron_bars",
+		"bars": "block/iron_bars"
+	},
+	"elements": [
+		{
+			"from": [ 6, 7, 7 ],
+			"to": [ 7, 9, 9 ],
+			"faces": {
+				"down": { "uv": [ 0, 0, 1, 2 ], "texture": "#bars" },
+				"up": { "uv": [ 0, 0, 1, 2 ], "texture": "#bars" },
+				"north": { "uv": [ 1, 0, 2, 2 ], "texture": "#bars" },
+				"south": { "uv": [ 0, 0, 1, 2 ], "texture": "#bars" },
+				"west": { "uv": [ 0, 0, 2, 2 ], "texture": "#bars" }
+			}
+		}
+	]
+}

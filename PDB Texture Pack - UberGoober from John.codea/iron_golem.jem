@@ -1,0 +1,12 @@
+{
+  "models": 
+  [
+    {
+      "model": "iron_golem_head.jpm",
+      "part": "head", 
+	  "attach": false,
+      "translate": [8, -2, -9.5],
+      "rotate": [0, 0, 0]
+    }
+  ]
+}

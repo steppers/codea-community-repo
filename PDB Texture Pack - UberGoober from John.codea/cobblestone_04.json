@@ -1,0 +1,7 @@
+{
+	"__comment": "Designed by Sphax for PureBDcraft - http://bdcraft.net",
+    "parent": "block/cube_all",
+    "textures": {
+        "all": "block/_bdc/cobblestone_04"
+    }
+}

@@ -1,0 +1,6 @@
+{
+    "parent": "block/_bdc/plank/_all/stairs_outer_steps_nw_se_2",
+    "textures": {
+        "plank": "block/jungle_planks"
+    }
+}
