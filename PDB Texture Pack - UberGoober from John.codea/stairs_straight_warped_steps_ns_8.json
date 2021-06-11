@@ -1,6 +1,0 @@
-{
-    "parent": "block/_bdc/plank/_all/stairs_straight_steps_ns_8",
-    "textures": {
-        "plank": "block/warped_planks"
-    }
-}

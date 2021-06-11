@@ -1,8 +1,0 @@
-{
-	"__comment": "Model by Sphax - BDcraft.net.",
-	"parent": "item/_bdc/sign",
-    "textures": {
-        "particle": "block/acacia_planks",
-		"texture": "item/acacia_sign"
-    }
-}

@@ -1,8 +1,0 @@
-{
-    "parent": "block/stairs",
-    "textures": {
-        "bottom": "block/_bdc/cobblestone_04",
-        "top": "block/_bdc/cobblestone_04",
-        "side": "block/_bdc/cobblestone_04"
-    }
-}

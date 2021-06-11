@@ -1,7 +1,0 @@
-{
-    "parent": "block/cube_column",
-    "textures": {
-        "end": "block/_bdc/smooth_stone_10",
-        "side": "block/smooth_stone_slab_side"
-    }
-}

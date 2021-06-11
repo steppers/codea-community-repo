@@ -1,6 +1,0 @@
-{
-    "parent": "block/_bdc/pistons/heads/normal_n",
-    "textures": {
-        "platform": "block/piston_top_sticky"
-    }
-}

@@ -1,6 +1,0 @@
-{
-	"parent": "block/_bdc/flame_wall",
-	"textures": {
-		"fire": "block/_bdc/soul_torch_flame"
-	}
-}

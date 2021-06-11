@@ -1,8 +1,0 @@
-{
-    "parent": "block/outer_stairs",
-    "textures": {
-        "bottom": "block/_bdc/stone_bricks_06",
-        "top": "block/_bdc/stone_bricks_06",
-        "side": "block/_bdc/stone_bricks_06"
-    }
-}

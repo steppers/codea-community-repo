@@ -1,6 +1,0 @@
-{
-    "variants": {
-        "snowy=false": { "model": "block/mycelium" },
-        "snowy=true": { "model": "block/_bdc/mycelium_snowed" }
-    }
-}

@@ -1,1 +1,0 @@
-{"selected":7,"slots":[{"block":"Red Cotton"},{"block":"Greysandy Greystone"},{"block":"Glass Frame"},{"block":"Track Corner"},{"block":"Cactus Top"},{"block":"Sign"},{"block":"TNT"},[]]}
