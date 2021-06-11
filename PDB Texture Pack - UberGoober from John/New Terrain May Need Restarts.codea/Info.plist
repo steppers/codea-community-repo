@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Buffer Order</key>
+	<array>
+		<string>Main</string>
+		<string>Generation</string>
+		<string>Cave</string>
+		<string>Deposit</string>
+	</array>
+	<key>Dependencies</key>
+	<array>
+		<string>Shapes 3D Test</string>
+		<string>Controls</string>
+		<string>Craft:Voxel Player</string>
+	</array>
+</dict>
+</plist>

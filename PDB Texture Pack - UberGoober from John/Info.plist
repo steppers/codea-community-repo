@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Name</key>
+	<string>PDB Texture Pack</string>
+	<key>Author</key>
+	<string>UberGoober from John</string>
+	<key>Description</key>
+	<string>New library, player, and landscape projects.</string>
+	<key>LongDescription</key>
+	<string>Textures adapted from PureBDcraft ResourcePack by https://bdcraft.net
+
+Complete re-skin. Uses all textures from original pack and creates blocks for ones that didn’t have blocks before.
+
+Includes completely new oven block plus carpets, vegetation, tracks, new trees-- including the use of the new trees in the tree generator--and more. </string>
+	<key>Version</key>
+	<string>1.0</string>
+	<key>Link</key>
+	<string>https://codea.io/talk/discussion/11843/is-this-the-first-more-than-complete-craft-texture-pack#latest</string>
+	<key>Bundle</key>
+	<true/>
+	<key>BundleExecutableProject</key>
+	<string>New Terrain May Need Restarts.codea</string>
+	<key>Library</key>
+	<false/>
+	<key>Executable</key>
+	<true/>
+	<key>Hidden</key>
+	<false/>
+	<key>Platform</key>
+	<string>ipad</string>
+	<key>Icon</key>
+	<string>Icon.png</string>
+</dict>
+</plist>

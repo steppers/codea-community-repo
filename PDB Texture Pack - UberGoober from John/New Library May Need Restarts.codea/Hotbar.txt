@@ -1,0 +1,1 @@
+{"selected":2,"slots":[{"block":"Cactus Trunk"},{"block":"Chest"},{"block":"Rock"},{"block":"Thin Trunk Bottom"},{"block":"Crafting Table"},{"block":"Ruby Ore"},{"block":"Birch"},[]]}

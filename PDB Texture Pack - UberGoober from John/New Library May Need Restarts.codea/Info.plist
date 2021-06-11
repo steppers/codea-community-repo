@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Addons</key>
+	<array>
+		<string>Craft</string>
+	</array>
+	<key>Author</key>
+	<string>John Millard</string>
+	<key>Buffer Order</key>
+	<array>
+		<string>Main</string>
+		<string>BlocksSetup</string>
+		<string>UniformBlocks</string>
+		<string>ToppedBlocks</string>
+		<string>SpecialBlocks</string>
+		<string>Plants</string>
+		<string>CottonCarpets</string>
+		<string>Generators</string>
+		<string>Sign</string>
+		<string>Fence</string>
+		<string>Oven</string>
+		<string>Piston</string>
+		<string>Chest</string>
+		<string>Sound</string>
+		<string>TNT</string>
+		<string>Blocks</string>
+		<string>BlockPreview</string>
+	</array>
+	<key>Dependencies</key>
+	<array>
+		<string>Craft:Touches</string>
+		<string>Craft:Cameras</string>
+		<string>Craft:UI</string>
+		<string>Craft:Voxel Player</string>
+	</array>
+	<key>Description</key>
+	<string>No description available</string>
+	<key>Icon</key>
+	<string>Icon.png</string>
+	<key>Introduced</key>
+	<integer>241</integer>
+	<key>Order</key>
+	<integer>7</integer>
+</dict>
+</plist>

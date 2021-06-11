@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Buffer Order</key>
+	<array>
+		<string>Main</string>
+		<string>FirstPersonTouch</string>
+		<string>NavigationPad</string>
+		<string>BlockInventory</string>
+		<string>BasicPlayer</string>
+	</array>
+	<key>Dependencies</key>
+	<array>
+		<string>Craft:UI</string>
+		<string>Craft:Touches</string>
+		<string>Craft:Cameras</string>
+	</array>
+</dict>
+</plist>
