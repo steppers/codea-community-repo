@@ -12,10 +12,10 @@
 	</array>
 	<key>Dependencies</key>
 	<array>
+		<string>PDB Texture Pack - UberGoober:Block Library - UberGoober</string>
 		<string>Craft:UI</string>
 		<string>Craft:Touches</string>
 		<string>Craft:Cameras</string>
-		<string>PDB Texture Pack - UberGoober:Block Library - UberGoober</string>
 	</array>
 </dict>
 </plist>
