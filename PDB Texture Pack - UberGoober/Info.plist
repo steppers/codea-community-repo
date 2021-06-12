@@ -21,7 +21,7 @@ Includes completely new oven block plus carpets, vegetation, tracks, new trees--
 	<key>Bundle</key>
 	<true/>
 	<key>BundleExecutableProject</key>
-	<string>New Terrain May Need Restarts.codea</string>
+	<string>Voxel Terrain - UberGoober.codea</string>
 	<key>Library</key>
 	<false/>
 	<key>Executable</key>
