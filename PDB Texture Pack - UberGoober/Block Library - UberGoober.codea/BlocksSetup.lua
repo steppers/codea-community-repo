@@ -4,8 +4,8 @@ function blocksSetup()
     -- Assets must be added to the voxel system for them to be available
     --  scene.voxels.blocks:addAssetPack("Blocks")
  --   packPrefix = "Blocks:"
-    scene.voxels.blocks:addAssetPack("NewBlocksPack")
-    packPrefix = "NewBlocksPack:"
+    scene.voxels.blocks:addAssetPack("PDB Blocks")
+    packPrefix = "PDB Blocks:"
 
     -- Add some helper functions to the block class
     local directions =

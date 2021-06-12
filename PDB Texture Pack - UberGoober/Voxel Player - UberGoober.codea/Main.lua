@@ -4,7 +4,7 @@ viewer.mode = FULLSCREEN
 
 function setup()
     scene = craft.scene()
-    scene.voxels.blocks:addAssetPack("NewBlocksPack")
+    scene.voxels.blocks:addAssetPack("PDB Blocks")
     -- Setup camera and lighting
     scene.sun.rotation = quat.eulerAngles(25, 125, 0)
     

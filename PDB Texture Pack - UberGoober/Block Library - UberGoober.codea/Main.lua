@@ -13,7 +13,7 @@ viewer.mode = FULLSCREEN
 
 function setup()
 
-    packPrefix = "NewBlocksPack:"
+    packPrefix = "PDB Blocks:"
     
     scene = craft.scene()
 
