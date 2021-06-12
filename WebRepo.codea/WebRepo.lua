@@ -62,8 +62,10 @@ function WebRepo:updateListings()
         
         for _,v in pairs(content) do
             
-            -- We only care about .codea project bundles
-            if string.find(v.name, ".codea") and v.type == "dir" then
+            local is_folder = (v.type == "dir")
+            
+            -- We only care about folders (.codea bundles are actually folders)
+            if is_folder then
                 
                 -- Check if we already have metadata for this project
                 local current_metadata = self.metadata[v.name]
@@ -87,8 +89,8 @@ function WebRepo:updateListings()
                     -- Download the Info.plist
                     self.api:getFile(v.path .. "/Info.plist", function(data)
                         if not data then
-                            self.connection_failure = true
-                            print("Failed to get Info.plist for " .. v.path)
+                            -- If we're unable to get the plist file, this probably isn't
+                            -- a project or multi-project bundle
                             return
                         end
                         
@@ -107,6 +109,8 @@ function WebRepo:updateListings()
                         metadata.hidden = data.Hidden or false
                         metadata.library = data.Library or false
                         metadata.executable = data.Executable or not metadata.library
+                        metadata.bundle = data.Bundle or false
+                        metadata.bundleexecproject = data.BundleExecutableProject or nil
                         metadata.platform = data.Platform or nil
                         metadata.icon_index = nil
                         metadata.icon_path = data.Icon or nil
@@ -117,7 +121,7 @@ function WebRepo:updateListings()
                         metadata.refresh = false
                         
                         -- Adjust icon name if we haven't explicitly specified in the plist
-                        if metadata.icon_path and string.sub(metadata.icon_path, -4, -1) ~= ".png" then
+                        if metadata.icon_path and string.sub(metadata.icon_path, -4, -1) ~= ".png" and string.sub(metadata.icon_path, -4, -1) ~= ".jpg" then
                             if ContentScaleFactor == 2 then
                                 metadata.icon_path = metadata.icon_path .. "@2x.png"
                             else
@@ -221,6 +225,8 @@ function WebRepo:downloadProject(project_meta)
         if not hasProject(editor_name) then
             createProject(editor_name)
         end
+        
+        createProject("TestFolder:SubFolder.HelloWorld")
         
         for _,e in pairs(content) do
             
