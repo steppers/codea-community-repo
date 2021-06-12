@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>Author</key>
-	<string>Author Name Here</string>
+	<string>UberGoober</string>
 	<key>Name</key>
-	<string>Test Pack</string>
+	<string>PDB Blocks - UberGoober</string>
 	<key>Icon</key>
 	<string>Icon</string>
 	<key>Vector</key>
@@ -13,11 +13,6 @@
 	<key>Types</key>
 	<array>
 		<string>sprites</string>
-		<string>shaders</string>
-		<string>sounds</string>
-		<string>music</string>
-		<string>text</string>
-		<string>models</string>
 	</array>
 </dict>
 </plist>

@@ -11,8 +11,6 @@
 	</array>
 	<key>Dependencies</key>
 	<array>
-		<string>Shapes 3D Test</string>
-		<string>Controls</string>
 		<string>PDB Texture Pack - UberGoober:Voxel Player - UberGoober</string>
 		<string>PDB Texture Pack - UberGoober:Block Library - UberGoober</string>
 	</array>
