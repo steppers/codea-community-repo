@@ -13,11 +13,15 @@ To top it all off, if there's an update to the WebRepo project, it'll update its
 
 ![iPad](https://github.com/steppers/codea-community-repo/raw/main/screenshots/1.2_ipad.PNG)
 
-# Submitting a project
+# Preparing a project for submission
 Please ensure you have set an icon for your project if you do not wish me to do it for you.
 
-To submit a project we require a .zip of the project (in Codea, press and hold on project -> export). 
+To submit a project we require a .zip of the project (in Codea, press and hold on project -> export).
 
+# Multi-project Bundles
+As of version 1.3 WebRepo now also supports multi-project bundles allowing users to download multiple Codea projects and asset packs from a single WebRepo project! To make use of this please ensure your `.codea` and `.assets` bundles are available at the root of your submitted zip file.
+
+# Submitting your project
 Please submit your project using the [Google form here](https://forms.gle/X7entVzHGQjB7kYx6) if you do not mind sharing the name associated with your Google account with me (Only me, and only the name so nothing to worry about). Projects uploaded using this form should be < 100MB currently but if there is ever demand I can increase that to 1GB.
 
 If this is a problem please use the [alternative form](https://forms.gle/ZvTWZ24y4rmj4HuD7) and provide a link where I can download the project from (Google Drive, Dropbox, etc.)
