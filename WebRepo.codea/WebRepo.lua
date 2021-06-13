@@ -1,11 +1,15 @@
 WebRepo = class()
 
+local webrepo = nil
+
 function WebRepo:init(api, delegate)
     self.api = api
     self.delegate = delegate
     self.metadata = {}
     self.icons = {}
     self.connection_failure = false
+    
+    webrepo = self
     
     -- Check status
     self.api:getFile("status.lua", function(data)
@@ -207,104 +211,176 @@ function WebRepo:flushMetadata()
     saveText(asset.documents .. "webrepocache.json", json.encode(self.metadata))
 end
 
+local download_in_progress = false
+local download_queue = {} -- Stores a separate queue for each project download in progress
+--[[
+{
+    [1] = { sha, asset_path }
+    [2] = { sha, asset_path }
+    [3] = { sha, asset_path }
+
+    num_files = 3,      -- Number of files currently queued
+    total_files = 3,    -- Total number of files in this project
+    valid = true,       -- True when we can start downloading
+    project_meta = metadata
+}
+]]--
+
+-- Called to begin processing the download queue 
+function WebRepo:doDownloads()
+    
+    local current_queue = download_queue[1]
+    
+    -- Start a download if one's available
+    if not download_in_progress and current_queue and current_queue.valid then
+        local next_download = table.remove(current_queue, 1)
+        self:downloadBlob(next_download, current_queue)
+        
+        download_in_progress = true
+    end
+end
+
+function WebRepo:downloadBlob(entry, queue)
+    
+    -- Get the blob
+    self.api:getBlob(entry.sha, function(data)
+        if data then
+            
+            -- Trigger the next file download
+            download_in_progress = false
+                
+            -- Write directly to the file
+            local file = io.open(entry.asset_path.path, "w")
+            file:write(data)
+            file:close()
+            
+            -- Log that we've completed a file download
+            queue.num_files = queue.num_files - 1
+            
+            -- Calculate a rough progress value        
+            queue.project_meta.download_progress = (queue.total_files - queue.num_files) / queue.total_files
+            
+            -- Check if we've completed the full project download
+            if queue.num_files == 0 then
+                
+                queue.project_meta.downloading = false
+                queue.project_meta.installed = true
+                queue.project_meta.update_available = false
+                queue.project_meta.download_progress = nil
+                self:flushMetadata()
+                
+                -- Inform the delegate
+                self.delegate.onProjectDownloaded(queue.project_meta)
+                
+                -- Remove the queue
+                table.remove(download_queue, 1)
+            end
+            
+            -- Trigger the next download now so we don't have to wait
+            -- for another frame
+            self:doDownloads()
+        else
+            
+            -- If we fail then abort the current download
+            self:abortProjectDownload()
+        end
+    end)
+end
+
+function WebRepo:newProjectDownload(project_meta)
+    local queue = {
+        num_files = 0,
+        total_files = 0,
+        valid = false,
+        project_meta = project_meta
+    }
+    table.insert(download_queue, queue)
+end
+
+function WebRepo:queueFileDownload(sha, asset_path)
+    local queue = download_queue[1]
+    queue.num_files = queue.num_files + 1
+    table.insert(queue, { sha = sha, asset_path = asset_path })
+end
+
+function WebRepo:startProjectDownload()
+    local queue = download_queue[1]
+    queue.total_files = queue.num_files
+    queue.valid = true
+    
+    -- Trigger the download processing
+    self:doDownloads()
+end
+
+function WebRepo:abortProjectDownload(webrepo)
+    local queue = download_queue[1]
+    queue.project_meta.downloading = false
+    queue.project_meta.installed = false
+    queue.project_meta.update_available = true
+    queue.project_meta.download_progress = nil
+    self:flushMetadata()
+            
+    download_in_progress = false
+    table.remove(download_queue, 1)
+end
+
 function WebRepo:downloadProject(project_meta)
     
     if not project_meta.update_available then
         return
     end
     
+    self:newProjectDownload(project_meta)
+    
     local editor_name = string.gsub(project_meta.path, ".codea", "")
     
-    local total_downloads = 0
-    local downloads = 0
-    local function downloadComplete()
-        downloads = downloads - 1
-
-        -- Calculate a rough progress value        
-        project_meta.download_progress = (total_downloads - downloads) / total_downloads
-
-        if downloads == 0 then
-            project_meta.downloading = false
-            project_meta.installed = true
-            project_meta.update_available = false
-            project_meta.download_progress = nil
-            self:flushMetadata()
-            
-            -- Inform the delegate
-            self.delegate.onProjectDownloaded(project_meta)
+    -- We should only actually start the download when we have no more
+    -- folder content requests waiting for a response
+    local contentRequestsWaiting = 0
+    local function startDownload()
+        contentRequestsWaiting = contentRequestsWaiting - 1
+        if contentRequestsWaiting == 0 then
+            self:startProjectDownload()
         end
-    end
-    
-    local function downloadFile(entry, asset_path)
-        downloads = downloads + 1
-        
-        -- Track the total number of downloads
-        total_downloads = total_downloads + 1
-                
-        -- Get the blob
-        self.api:getBlob(entry.sha, function(data)
-            if data and project_meta.downloading then
-                
-                -- Write directly to the file
-                local file = io.open(asset_path.path, "w")
-                file:write(data)
-                file:close()
-                        
-                downloadComplete()
-            else
-                self.connection_failure = true
-                project_meta.downloading = false
-            end
-        end)
     end
     
     local function downloadProject(entry)
         
-        local editor_name = project_meta.path .. ":" .. string.gsub(entry.name, ".codea", "")
-        
-        -- The bundle counts as a download
-        downloads = downloads + 1
-        
-        -- Track the total number of downloads
-        total_downloads = total_downloads + 1
-        
+        -- Get the list of project content
+        contentRequestsWaiting = contentRequestsWaiting + 1
         self.api:getContent(entry.path, function(content)
             if content == nil then
                 print("Failed to get project content. Please check your internet connection.")
                 self.connection_failure = true
-                project_meta.downloading = false
-                downloadComplete()
+                self:abortProjectDownload(self)
                 return    
             end
             
             -- Create the project if it doesn't exist already
+            local editor_name = project_meta.path .. ":" .. string.gsub(entry.name, ".codea", "")
             pcall(deleteProject, editor_name)
             createProject(editor_name)
             
             for _,e in pairs(content) do
                 if e.type == "file" then
-                    downloadFile(e, asset.documents .. project_meta.path .. "/" .. entry.name .. "/" .. e.name)
+                    self:queueFileDownload(e.sha, asset.documents .. project_meta.path .. "/" .. entry.name .. "/" .. e.name)
                 end
             end
             
-            downloadComplete()
+            -- Trigger the download if we're not waiting on any content requests
+            startDownload()
         end)
     end
     
     local function downloadAssetBundle(entry)
         
-        -- The bundle counts as a download
-        downloads = downloads + 1
-        
-        -- Track the total number of downloads
-        total_downloads = total_downloads + 1
-        
+        -- Get the content of the asset bundle
+        contentRequestsWaiting = contentRequestsWaiting + 1
         self.api:getContent(entry.path, function(content)
             if content == nil then
                 print("Failed to get asset bundle content. Please check your internet connection.")
                 self.connection_failure = true
-                project_meta.downloading = false
-                downloadComplete()
+                self:abortProjectDownload(self)
                 return    
             end
             
@@ -314,16 +390,18 @@ function WebRepo:downloadProject(project_meta)
             
             for _,e in pairs(content) do
                 if e.type == "file" then
-                    downloadFile(e, asset.documents .. entry.name .. "/" .. e.name)
+                    self:queueFileDownload(e.sha, asset.documents .. entry.name .. "/" .. e.name)
                 end
             end
             
-            downloadComplete()
+            -- Trigger the download if we're not waiting on any content requests
+            startDownload()
         end)
     end    
     project_meta.downloading = true
     
     -- Get the contents of the project
+    contentRequestsWaiting = contentRequestsWaiting + 1
     self.api:getContent(project_meta.path, function(content)
         if content == nil then
             print("Failed to get project content. Please check your internet connection.")
@@ -338,8 +416,8 @@ function WebRepo:downloadProject(project_meta)
             createProject(editor_name)
         end
         
-        for _,e in pairs(content) do
-            if project_meta.bundle then
+        if project_meta.bundle then
+            for _,e in pairs(content) do
                 if e.type == "dir" then
                     if string.match(e.name, ".asset") then
                         downloadAssetBundle(e)
@@ -347,10 +425,17 @@ function WebRepo:downloadProject(project_meta)
                         downloadProject(e) 
                     end
                 end
-            elseif e.type == "file" then
-                downloadFile(e, asset.documents .. e.path)
+            end 
+        else
+            for _,e in pairs(content) do
+                if e.type == "file" then
+                    self:queueFileDownload(e.sha, asset.documents .. e.path)
+                end
             end
         end
+        
+        -- Trigger the download if we're not waiting on any content requests
+        startDownload()
     end)
 end
 
