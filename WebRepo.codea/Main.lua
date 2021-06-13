@@ -21,7 +21,7 @@ end
 
 function webrepoDelegate.onProjectDownloaded(metadata)
     if metadata.bundle then
-        viewer.alert("Please restart Codea to ensure the bundled projects behave correctly.", metadata.name .. "Bundle Installed")
+        viewer.alert("Please restart Codea to ensure the bundled projects behave correctly.", metadata.name .. " Installed")
     end
     
     -- If we autoupdate ourself, close so we can reload
