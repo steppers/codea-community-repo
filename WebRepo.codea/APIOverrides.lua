@@ -12,6 +12,27 @@ local saveText_codea = saveText
 local readImage_codea = readImage
 local saveImage_codea = saveImage
 
+-- Local storage - writes to webrepo currently
+-- so not recommended
+local readLocalData_codea = readLocalData
+local saveLocalData_codea = saveLocalData
+local listLocalData_codea = listLocalData
+local clearLocalData_codea = clearLocalData -- currently unsupported
+
+-- Project storage - writes to webrepo currently
+-- so not recommended
+local saveProjectData_codea = saveProjectData
+local readProjectData_codea = readProjectData
+local saveProjectInfo_codea = saveProjectInfo
+local readProjectInfo_codea = readProjectInfo
+local listProjectData_codea = listProjectData
+local clearProjectData_codea = clearProjectData
+
+-- Project management
+local saveProjectTab_codea = saveProjectTab
+local readProjectTab_codea = readProjectTab
+local listProjectTabs_codea = listProjectTabs
+
 -- Handle storage API overrides
 local function doStorageAPI(path)
     
@@ -81,7 +102,7 @@ local function doStorageAPI(path)
     end
     
     -- Parse project Data.plist
-    local data_plist = readText(asset .. path .. "Data.plist")
+    local data_plist = readText(asset  .. "Data.plist")
     if data_plist ~= nil then
         data_plist = parsePList(data_plist)
     end
@@ -92,6 +113,23 @@ local function doStorageAPI(path)
     
     readProjectData = function(key, default)
         return data_plist[key] or default
+    end
+    
+    readProjectTab = function(key)
+        if string.match(key, ":") then
+            return readProjectTab_codea(key)
+        else
+            local data = readText(asset .. key .. ".lua")
+            if data then
+                return data
+            else
+                error('Project tab "' .. key .. '" not found!')
+            end
+        end
+    end
+    
+    saveProjectTab = function(key, value)
+        
     end
     
 end

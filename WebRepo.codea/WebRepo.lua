@@ -27,7 +27,7 @@ function WebRepo:init(api, delegate)
             
             -- Check the project is still installed
             local editor_name = string.gsub(v.path, ".codea", "")
-            if v.installed and not hasProject(editor_name) then
+            if v.installed and not v.bundle and not hasProject(editor_name) then
                 v.installed = false
                 v.sha = nil
             end
@@ -210,6 +210,95 @@ function WebRepo:downloadProject(project_meta)
         end
     end
     
+    local function downloadFile(entry, asset_path)
+        downloads = downloads + 1
+        
+        -- Track the total number of downloads
+        total_downloads = total_downloads + 1
+                
+        -- Get the blob
+        self.api:getBlob(entry.sha, function(data)
+            if data and project_meta.downloading then
+                
+                -- Write directly to the file
+                local file = io.open(asset_path.path, "w")
+                file:write(data)
+                file:close()
+                        
+                downloadComplete()
+            else
+                self.connection_failure = true
+                project_meta.downloading = false
+            end
+        end)
+    end
+    
+    local function downloadProject(entry)
+        local editor_name = project_meta.path .. ":" .. string.gsub(entry.name, ".codea", "")
+        
+        print("Download project:", editor_name)
+        
+        -- The bundle counts as a download
+        downloads = downloads + 1
+        
+        -- Track the total number of downloads
+        total_downloads = total_downloads + 1
+        
+        self.api:getContent(entry.path, function(content)
+            if content == nil then
+                print("Failed to get project content. Please check your internet connection.")
+                self.connection_failure = true
+                project_meta.downloading = false
+                downloadComplete()
+                return    
+            end
+            
+            -- Create the project if it doesn't exist already
+            if not hasProject(editor_name) then
+                createProject(editor_name)
+            end
+            
+            for _,e in pairs(content) do
+                if e.type == "file" then
+                    downloadFile(e, asset.documents .. project_meta.path .. "/" .. entry.name .. "/" .. e.name)
+                end
+            end
+            
+            downloadComplete()
+        end)
+    end
+    
+    local function downloadAssetBundle(entry)
+        print("Download asset bundle:", entry.name)
+        
+        -- The bundle counts as a download
+        downloads = downloads + 1
+        
+        -- Track the total number of downloads
+        total_downloads = total_downloads + 1
+        
+        self.api:getContent(entry.path, function(content)
+            if content == nil then
+                print("Failed to get asset bundle content. Please check your internet connection.")
+                self.connection_failure = true
+                project_meta.downloading = false
+                downloadComplete()
+                return    
+            end
+            
+            -- Doesn't appear to actually create the project but
+            -- it does create the correct .assets folder!
+            createProject(entry.name .. ":empty")
+            
+            for _,e in pairs(content) do
+                if e.type == "file" then
+                    downloadFile(e, asset.documents .. entry.name .. "/" .. e.name)
+                end
+            end
+            
+            downloadComplete()
+        end)
+    end    
     project_meta.downloading = true
     
     -- Get the contents of the project
@@ -221,40 +310,25 @@ function WebRepo:downloadProject(project_meta)
             return    
         end
         
-        -- Create the project if the first request succeeds
-        if not hasProject(editor_name) then
+        -- Create the project if the first request succeeds and this isn't
+        -- a multi-project bundle
+        if not hasProject(editor_name) and not project_meta.bundle then
             createProject(editor_name)
         end
         
-        createProject("TestFolder:SubFolder.HelloWorld")
-        
         for _,e in pairs(content) do
-            
-            -- Download all files at top level
-            if e.type == "file" then
-                downloads = downloads + 1
-                
-                -- Get the blob
-                self.api:getBlob(e.sha, function(data)
-                    if data then
-                        local asset_path = asset.documents .. e.path
-                        
-                        -- Write directly to the file
-                        local file = io.open(asset_path.path, "w")
-                        file:write(data)
-                        file:close()
-                        
-                        downloadComplete()
-                    else
-                        self.connection_failure = true
-                        project_meta.downloading = false
+            if project_meta.bundle then
+                if e.type == "dir" then
+                    if string.match(e.name, ".asset") then
+                        downloadAssetBundle(e)
+                    elseif string.match(e.name, ".codea") then
+                        downloadProject(e) 
                     end
-                end)
+                end
+            elseif e.type == "file" then
+                downloadFile(e, asset.documents .. e.path)
             end
         end
-        
-        -- Track the total number of downloads
-        total_downloads = downloads
     end)
 end
 
@@ -273,21 +347,32 @@ function WebRepo:deleteProject(project_meta)
 end
 
 function WebRepo:launchProject(project_meta)
+    
     if project_meta.installed and project_meta.executable then
+        
+        -- The editor name for the project being launched
+        local editor_name = string.gsub(project_meta.path, ".codea", "")
         
         -- Path to the project's bundle
         local project_path = project_meta.path .. "/"
         
+        -- If it's a multi-project bundle then we need to launch the specified project
+        if project_meta.bundle then
+            project_path = project_path .. project_meta.bundleexecproject .. ".codea/"
+            editor_name = project_meta.path .. ":" .. project_meta.bundleexecproject
+        end
+        
         -- Parse project Info.plist
         local plist = readText(asset.documents .. project_path .. "Info.plist")
         if plist == nil then
-            error("Unable to open Info.plist in " .. project_meta.name)
+            if project_meta.bundle then
+                error("Unable to open Info.plist in " .. project_meta.path .. ":" .. project_meta.bundleexecproject)
+            else
+                error("Unable to open Info.plist in " .. project_meta.name)
+            end
             return
         end
         plist = parsePList(plist)
-        
-        -- Override Codea API
-        overrideAPI(project_path)
         
         -- Clear parameters & log
         output.clear()
@@ -299,8 +384,19 @@ function WebRepo:launchProject(project_meta)
         -- Override Codea API
         overrideAPI(project_path)
         
+        -- All loaded projects so we don't recurse infinitely for some circular dependencies.
+        local loaded_projects = { editor_name }
+        
         -- Recursively loads a project and it's dependencies
         local function loadDependency(project)
+            
+            -- Only load a dependency once
+            for _,p in pairs(loaded_projects) do
+                if p == project then return end
+            end
+            
+            -- Consider this project loaded
+            table.insert(loaded_projects, project)
             
             -- Get the tabs of the dependency
             local tabs = listProjectTabs(project)
@@ -378,7 +474,8 @@ function WebRepo:initProjectIcon(project_meta)
     end
     
     -- If it's installed grab the icon from the installed project
-    if project_meta.installed then
+    -- unless it's a bundle, in which case we don't download it at install
+    if project_meta.installed and not project_meta.bundle then
         table.insert(self.icons, {
             icon = readImage(asset .. "/../" .. project_meta.path .. "/" ..project_meta.icon_path),
             meta = project_meta
