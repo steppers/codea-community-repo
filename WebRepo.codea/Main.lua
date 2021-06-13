@@ -20,6 +20,10 @@ function webrepoDelegate.onMetadataRemoved(metadata)
 end
 
 function webrepoDelegate.onProjectDownloaded(metadata)
+    if metadata.bundle then
+        viewer.alert("Please restart Codea to ensure the bundled projects behave correctly.", metadata.name .. "Bundle Installed")
+    end
+    
     -- If we autoupdate ourself, close so we can reload
     if metadata.path == "WebRepo.codea" then
         saveLocalData("shouldRefreshMetadata", true)

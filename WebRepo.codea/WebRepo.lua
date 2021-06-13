@@ -32,6 +32,20 @@ function WebRepo:init(api, delegate)
                 v.sha = nil
             end
             
+            -- Special check for projects in bundle's collection
+            -- we consider the bundle deleted if the collection
+            -- doesn't exist or there are no projects in it.
+            --
+            -- This may cause issues in the future if a bundle
+            -- only contains asset packs.
+            if v.installed and v.bundle then
+                local ran, n = pcall(listProjects, v.path)
+                if not ran or n == 0 then
+                    v.installed = false
+                    v.sha = nil
+                end
+            end
+            
             -- Clear values that should be reset at launch
             v.downloading = false
             v.icon_downloading = false
@@ -129,12 +143,23 @@ function WebRepo:updateListings()
                             end
                         end
                         
-                        if metadata.platform == "iphone" then
-                            metadata.name = metadata.name .. " (iPhone)"
-                        elseif metadata.platform == "ipad" then
-                            metadata.name = metadata.name .. " (iPad)"
+                        -- Extra name info
+                        if metadata.bundle then
+                            metadata.name = metadata.name .. " (Bundle)"
+                            
+                            if metadata.platform == "iphone" then
+                                metadata.name = metadata.name .. "(iPhone)"
+                            elseif metadata.platform == "ipad" then
+                                metadata.name = metadata.name .. "(iPad)"
+                            end
+                        else                        
+                            if metadata.platform == "iphone" then
+                                metadata.name = metadata.name .. " (iPhone)"
+                            elseif metadata.platform == "ipad" then
+                                metadata.name = metadata.name .. " (iPad)"
+                            end
                         end
-                        
+                            
                         -- Inform our delegate that the metadata has been added
                         -- if the metadata already exists we've just updated it above
                         -- so the project browser will update automatically
@@ -234,9 +259,8 @@ function WebRepo:downloadProject(project_meta)
     end
     
     local function downloadProject(entry)
-        local editor_name = project_meta.path .. ":" .. string.gsub(entry.name, ".codea", "")
         
-        print("Download project:", editor_name)
+        local editor_name = project_meta.path .. ":" .. string.gsub(entry.name, ".codea", "")
         
         -- The bundle counts as a download
         downloads = downloads + 1
@@ -254,9 +278,8 @@ function WebRepo:downloadProject(project_meta)
             end
             
             -- Create the project if it doesn't exist already
-            if not hasProject(editor_name) then
-                createProject(editor_name)
-            end
+            pcall(deleteProject, editor_name)
+            createProject(editor_name)
             
             for _,e in pairs(content) do
                 if e.type == "file" then
@@ -269,7 +292,6 @@ function WebRepo:downloadProject(project_meta)
     end
     
     local function downloadAssetBundle(entry)
-        print("Download asset bundle:", entry.name)
         
         -- The bundle counts as a download
         downloads = downloads + 1

@@ -80,7 +80,9 @@ function ProjectPanel:draw()
     
     -- Draw buttons
     local button_y = PANEL_H - (PADDING*2 + ICON_SIZE + 36)
-    if self.metadata.installed then
+    if self.metadata.downloading then
+        -- Render no buttons
+    elseif self.metadata.installed then
         
         -- Only allow launching if the project can be run standalone
         if self.metadata.executable then
@@ -95,6 +97,7 @@ function ProjectPanel:draw()
         end
     else
         -- Draw Install button
+        self.install_btn.str = "Install"
         self.install_btn:reinit(PADDING, button_y, BUTTON_WIDTH, 36)
         self.install_btn:draw()
     end
@@ -114,7 +117,7 @@ function ProjectPanel:draw()
         text(txt, PADDING, button_y - PADDING - th)
     end
     
-    -- Draw forum link button
+    -- Draw delete button if installed and not a bundle
     if self.metadata.installed then
         self.delete_btn:reinit(PANEL_W - BUTTON_WIDTH - PADDING, PADDING, BUTTON_WIDTH, 36)
         self.delete_btn:draw()
@@ -158,24 +161,28 @@ function ProjectPanel:tap(pos)
     pos.y = pos.y - (HEIGHT - PANEL_H)/2
     
     -- Check buttons in panel
-    if not self.metadata.installed and self.install_btn and self.install_btn:tap(pos) then
+    if not self.metadata.installed and not self.metadata.downloading and self.install_btn and self.install_btn:tap(pos) then
         self.webrepo:downloadProject(self.metadata, nil)
         return true
     end
     
-    if self.metadata.update_available and self.update_btn and self.update_btn:tap(pos) then
+    if self.metadata.update_available and not self.metadata.downloading and self.update_btn and self.update_btn:tap(pos) then
         self.webrepo:downloadProject(self.metadata, nil)
         return true
     end
     
-    if self.metadata.executable and self.launch_btn and self.launch_btn:tap(pos) then
+    if self.metadata.executable and not self.metadata.downloading and self.launch_btn and self.launch_btn:tap(pos) then
         -- This won't actually return
         self.webrepo:launchProject(self.metadata)
         return true
     end
     
-    if self.metadata.installed and self.delete_btn and self.delete_btn:tap(pos) then
-        self.webrepo:deleteProject(self.metadata)
+    if self.metadata.installed and not self.metadata.downloading and self.delete_btn and self.delete_btn:tap(pos) then
+        if self.metadata.bundle then
+            viewer.alert("Please delete manually in the iOS Files app.", "Unable to delete multi-project bundles")
+        else
+            self.webrepo:deleteProject(self.metadata)
+        end
         return true
     end
     
