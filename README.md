@@ -18,7 +18,7 @@ Please ensure you have set an icon for your project if you do not wish me to do 
 
 To submit a project we require a .zip of the project (in Codea, press and hold on project -> export).
 
-# Multi-project Bundles
+## Multi-project Bundles
 As of version 1.3 WebRepo now also supports multi-project bundles allowing users to download multiple Codea projects and asset packs from a single WebRepo project! To make use of this please ensure your `.codea` and `.assets` bundles are available at the root of your submitted zip file.
 
 # Submitting your project
