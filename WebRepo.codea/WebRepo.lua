@@ -410,7 +410,7 @@ function WebRepo:launchProject(project_meta)
         local loaded_projects = { editor_name }
         
         -- Recursively loads a project and it's dependencies
-        local function loadDependency(project)
+        local function loadDependency(project, parent)
             
             -- Only load a dependency once
             for _,p in pairs(loaded_projects) do
@@ -423,7 +423,8 @@ function WebRepo:launchProject(project_meta)
             -- Get the tabs of the dependency
             local tabs = listProjectTabs(project)
             if tabs == nil or #tabs == 0 then
-                error("Unable to load dependency " .. project)
+                pcall(error, "Unable to load dependency " .. project .. " for " .. parent)
+                return
             end
             
             -- Load the dependency's plist
@@ -438,7 +439,7 @@ function WebRepo:launchProject(project_meta)
             -- Load each sub dependency recursively
             if plist["Dependencies"] then
                 for _,dep in ipairs(plist["Dependencies"]) do
-                    loadDependency(dep)
+                    loadDependency(dep, project)
                 end
             end
                 
@@ -462,7 +463,7 @@ function WebRepo:launchProject(project_meta)
         -- Load dependencies in the project specified order
         if plist["Dependencies"] then
             for _,dep in ipairs(plist["Dependencies"]) do
-                loadDependency(dep)
+                loadDependency(dep, editor_name)
             end
         end
             
