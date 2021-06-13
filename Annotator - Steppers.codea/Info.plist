@@ -10,6 +10,7 @@
 	<string>Annotator for Machine Learning</string>
 	<key>LongDescription</key>
 	<string>Simple image annotator to generate the json data required by Apple's 'Create ML' application.
+
 On the first launch the project will create the folder 'AnnotatorImages' and the images to annotate will be read from here.
 
 Use the 'Export' button to generate a single 'meta.json' file in this folder.</string>
