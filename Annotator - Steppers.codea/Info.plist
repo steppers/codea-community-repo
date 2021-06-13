@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Name</key>
+	<string>Annotator</string>
+	<key>Author</key>
+	<string>Steppers</string>
+	<key>Description</key>
+	<string>Annotator for Machine Learning</string>
+	<key>LongDescription</key>
+	<string>Simple image annotator to generate the json data required by Apple's 'Create ML' application.\nOn the first launch the project will create the folder 'AnnotatorImages' and the images to annotate will be read from here.\n\nUse the 'Export' button to generate a single 'meta.json' file in this folder.</string>
+	<key>Version</key>
+	<string>1.0</string>
+	<key>Hidden</key>
+	<false/>
+	<key>Library</key>
+	<false/>
+	<key>Icon</key>
+	<string>Icon@2x.png</string>
+	<key>Buffer Order</key>
+	<array>
+		<string>Button</string>
+		<string>TextEntryField</string>
+		<string>Main</string>
+		<string>Gestures</string>
+	</array>
+</dict>
+</plist>
