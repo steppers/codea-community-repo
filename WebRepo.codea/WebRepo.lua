@@ -39,14 +39,26 @@ function WebRepo:init(api, delegate)
             -- Special check for projects in bundle's collection
             -- we consider the bundle deleted if the collection
             -- doesn't exist or there are no projects in it.
-            --
-            -- This may cause issues in the future if a bundle
-            -- only contains asset packs.
             if v.installed and v.bundle then
-                local ran, n = pcall(listProjects, v.path)
-                if not ran or n == 0 then
-                    v.installed = false
-                    v.sha = nil
+                for _,folder in pairs(v.bundle_folders) do
+                    root_folder, subfolder = string.match(folder, "(.-)/(.*)")
+                    
+                    if root_folder then
+                        -- Project in collection
+                        if asset.documents[root_folder] == nil or #asset.documents[root_folder][subfolder .. ".codea"].all == 0 then
+                            v.installed = false
+                            v.sha = nil
+                            break
+                        end
+                    else
+                        -- Asset pack
+                        folder = string.gsub(folder, " ", "_")
+                        if asset.documents[folder] == nil then
+                            v.installed = false
+                            v.sha = nil
+                            break
+                        end
+                    end
                 end
             end
             
@@ -137,6 +149,7 @@ function WebRepo:updateListings()
                         metadata.filtered = false
                         metadata.on_server = true
                         metadata.refresh = false
+                        metadata.bundle_folders = {}
                         
                         -- Adjust icon name if we haven't explicitly specified in the plist
                         if metadata.icon_path and string.sub(metadata.icon_path, -4, -1) ~= ".png" and string.sub(metadata.icon_path, -4, -1) ~= ".jpg" then
@@ -319,13 +332,13 @@ function WebRepo:newProjectDownload(project_meta)
 end
 
 function WebRepo:queueFileDownload(sha, asset_path)
-    local queue = download_queue[1]
+    local queue = download_queue[#download_queue]
     queue.num_files = queue.num_files + 1
     table.insert(queue, { sha = sha, asset_path = asset_path })
 end
 
 function WebRepo:startProjectDownload()
-    local queue = download_queue[1]
+    local queue = download_queue[#download_queue]
     queue.total_files = queue.num_files
     queue.valid = true
     
@@ -334,6 +347,7 @@ function WebRepo:startProjectDownload()
 end
 
 function WebRepo:abortProjectDownload(webrepo)
+    print("Aborting download of " .. queue.project_meta.path)
     local queue = download_queue[1]
     queue.project_meta.downloading = false
     queue.project_meta.installed = false
@@ -351,6 +365,10 @@ function WebRepo:downloadProject(project_meta)
         return
     end
     
+    if project_meta.bundle then
+        project_meta.bundle_folders = {}
+    end
+    
     self:newProjectDownload(project_meta)
     
     local editor_name = string.gsub(project_meta.path, ".codea", "")
@@ -361,11 +379,15 @@ function WebRepo:downloadProject(project_meta)
     local function startDownload()
         contentRequestsWaiting = contentRequestsWaiting - 1
         if contentRequestsWaiting == 0 then
+            project_meta.downloading = true
             self:startProjectDownload()
         end
     end
     
     local function downloadProject(entry)
+        
+        local editor_name = string.gsub(entry.path, ".codea", "")
+        table.insert(project_meta.bundle_folders, editor_name)
         
         -- Get the list of project content
         contentRequestsWaiting = contentRequestsWaiting + 1
@@ -394,6 +416,9 @@ function WebRepo:downloadProject(project_meta)
     end
     
     local function downloadAssetBundle(entry)
+        
+        local editor_name = string.gsub(entry.name, ".assets", "")
+        table.insert(project_meta.bundle_folders, editor_name)
         
         -- Get the content of the asset bundle
         contentRequestsWaiting = contentRequestsWaiting + 1
