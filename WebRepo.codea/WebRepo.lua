@@ -39,7 +39,7 @@ function WebRepo:init(api, delegate)
             -- Special check for projects in bundle's collection
             -- we consider the bundle deleted if the collection
             -- doesn't exist or there are no projects in it.
-            if v.installed and v.bundle then
+            if v.installed and v.bundle and v.bundle_folders then
                 for _,folder in pairs(v.bundle_folders) do
                     root_folder, subfolder = string.match(folder, "(.-)/(.*)")
                     
