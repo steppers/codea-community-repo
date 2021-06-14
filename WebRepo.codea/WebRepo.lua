@@ -55,7 +55,7 @@ function WebRepo:init(api, delegate)
             v.icon_downloading = false
             v.icon_index = nil
             v.filtered = false
-            v.executable = v.executable or not v.library
+            v.executable = v.executable or (not v.library and not v.bundle)
             
             -- Check if we should autoupdate
             if v.update_available and v.path == "WebRepo.codea" and GITHUB_BRANCH == "main" then
@@ -126,9 +126,9 @@ function WebRepo:updateListings()
                         metadata.version = data.Version or "1.0"
                         metadata.hidden = data.Hidden or false
                         metadata.library = data.Library or false
-                        metadata.executable = data.Executable or not metadata.library
                         metadata.bundle = data.Bundle or false
                         metadata.bundleexecproject = data.BundleExecutableProject or nil
+                        metadata.executable = data.Executable or (not metadata.library and not metadata.bundle)
                         metadata.platform = data.Platform or nil
                         metadata.icon_index = nil
                         metadata.icon_path = data.Icon or nil
@@ -211,7 +211,7 @@ function WebRepo:flushMetadata()
     saveText(asset.documents .. "webrepocache.json", json.encode(self.metadata))
 end
 
-local download_in_progress = false
+local downloads_in_progress = 0
 local download_queue = {} -- Stores a separate queue for each project download in progress
 --[[
 {
@@ -229,14 +229,31 @@ local download_queue = {} -- Stores a separate queue for each project download i
 -- Called to begin processing the download queue 
 function WebRepo:doDownloads()
     
+    -- Number of downloads that can be running in parallel 
+    local PARALLEL_DOWNLOADS = 8
+    
     local current_queue = download_queue[1]
     
-    -- Start a download if one's available
-    if not download_in_progress and current_queue and current_queue.valid then
-        local next_download = table.remove(current_queue, 1)
-        self:downloadBlob(next_download, current_queue)
+    if current_queue and current_queue.valid then
         
-        download_in_progress = true
+        -- The number of downloads that should be started
+        local downloads_to_start = PARALLEL_DOWNLOADS - downloads_in_progress
+        for i = 1, downloads_to_start do
+            
+            -- Grab the next download in the queue
+            local next_download = table.remove(current_queue, 1)
+            
+            -- If there are no more downloads in this queue, stop
+            if not next_download then
+                break
+            end
+            
+            -- Start the download
+            self:downloadBlob(next_download, current_queue)
+            
+            -- Increment the number of downloads in progress
+            downloads_in_progress = downloads_in_progress + 1
+        end 
     end
 end
 
@@ -244,11 +261,14 @@ function WebRepo:downloadBlob(entry, queue)
     
     -- Get the blob
     self.api:getBlob(entry.sha, function(data)
+        
+        -- Check if the download has been aborted
+        if not queue.project_meta.downloading then
+            return -- Don't write the data
+        end
+        
         if data then
-            
-            -- Trigger the next file download
-            download_in_progress = false
-                
+
             -- Write directly to the file
             local file = io.open(entry.asset_path.path, "w")
             file:write(data)
@@ -278,6 +298,7 @@ function WebRepo:downloadBlob(entry, queue)
             
             -- Trigger the next download now so we don't have to wait
             -- for another frame
+            downloads_in_progress = downloads_in_progress - 1
             self:doDownloads()
         else
             
@@ -319,8 +340,8 @@ function WebRepo:abortProjectDownload(webrepo)
     queue.project_meta.update_available = true
     queue.project_meta.download_progress = nil
     self:flushMetadata()
-            
-    download_in_progress = false
+    
+    downloads_in_progress = 0
     table.remove(download_queue, 1)
 end
 
