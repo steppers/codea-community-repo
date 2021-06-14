@@ -9,7 +9,7 @@
 	<key>Link</key>
 	<string>kenney.nl/assets/pixel-platformer</string>
 	<key>Icon</key>
-	<string>Icon</string>
+	<string>Icon.jpg</string>
 	<key>Types</key>
 	<array>
 		<string>sprites</string>
