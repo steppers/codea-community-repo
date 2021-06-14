@@ -3,17 +3,17 @@
 <plist version="1.0">
 <dict>
 	<key>Name</key>
-	<string>Pixel Platformer</string>
+	<string>1-Bit Platformer Pack</string>
 	<key>Author</key>
 	<string>Kenney</string>
 	<key>Description</key>
-	<string>Pixel Platformer Asset Pack</string>
+	<string>1-Bit Platformer Asset Pack</string>
 	<key>LongDescription</key>
 	<string>Asset Pack from kenney.nl</string>
 	<key>Version</key>
 	<string>1.0</string>
 	<key>Link</key>
-	<string>https://kenney.nl/assets/pixel-platformer</string>
+	<string>https://kenney.nl/assets/bit-platformer-pack</string>
 	<key>Bundle</key>
 	<true/>
 	<key>Library</key>
