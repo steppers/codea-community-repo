@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Author</key>
+    <string>Kenney</string>
+    <key>Name</key>
+    <string>Isometric Buildings #1</string>
+    <key>Link</key>
+    <string>kenney.nl/assets/isometric-buildings</string>
+    <key>Icon</key>
+    <string>Icon.png</string>
+    <key>Types</key>
+    <array>
+        <string>sprites</string>
+    </array>
+</dict>
+</plist>
