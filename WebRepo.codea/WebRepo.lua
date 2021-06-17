@@ -262,7 +262,7 @@ function WebRepo:doDownloads()
             end
             
             -- Start the download
-            self:downloadBlob(next_download, current_queue)
+            self:downloadFile(next_download, current_queue)
             
             -- Increment the number of downloads in progress
             downloads_in_progress = downloads_in_progress + 1
@@ -270,7 +270,7 @@ function WebRepo:doDownloads()
     end
 end
 
-function WebRepo:downloadBlob(entry, queue)
+function WebRepo:downloadFile(entry, queue)
     
     -- Get the blob
     self.api:getFile(entry.path, function(data)
@@ -480,7 +480,7 @@ function WebRepo:downloadProject(project_meta)
         else
             for _,e in pairs(content) do
                 if e.type == "file" then
-                    self:queueFileDownload(e.sha, asset.documents .. e.path)
+                    self:queueFileDownload(e, asset.documents .. e.path)
                 end
             end
         end
