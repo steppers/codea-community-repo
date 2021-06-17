@@ -273,7 +273,7 @@ end
 function WebRepo:downloadBlob(entry, queue)
     
     -- Get the blob
-    self.api:getBlob(entry.sha, function(data)
+    self.api:getFile(entry.path, function(data)
         
         -- Check if the download has been aborted
         if not queue.project_meta.downloading then
@@ -283,9 +283,13 @@ function WebRepo:downloadBlob(entry, queue)
         if data then
 
             -- Write directly to the file
-            local file = io.open(entry.asset_path.path, "w")
-            file:write(data)
-            file:close()
+            if type(data) == "userdata" then
+                saveImage(entry.asset_path, data)
+            else
+                local file = io.open(entry.asset_path.path, "w")
+                file:write(data)
+                file:close()
+            end
             
             -- Log that we've completed a file download
             queue.num_files = queue.num_files - 1
@@ -331,10 +335,10 @@ function WebRepo:newProjectDownload(project_meta)
     table.insert(download_queue, queue)
 end
 
-function WebRepo:queueFileDownload(sha, asset_path)
+function WebRepo:queueFileDownload(entry, asset_path)
     local queue = download_queue[#download_queue]
     queue.num_files = queue.num_files + 1
-    table.insert(queue, { sha = sha, asset_path = asset_path })
+    table.insert(queue, { path = entry.path, asset_path = asset_path })
 end
 
 function WebRepo:startProjectDownload()
@@ -347,6 +351,7 @@ function WebRepo:startProjectDownload()
 end
 
 function WebRepo:abortProjectDownload(webrepo)
+    local queue = download_queue[1]
     print("Aborting download of " .. queue.project_meta.path)
     local queue = download_queue[1]
     queue.project_meta.downloading = false
@@ -406,7 +411,7 @@ function WebRepo:downloadProject(project_meta)
             
             for _,e in pairs(content) do
                 if e.type == "file" then
-                    self:queueFileDownload(e.sha, asset.documents .. project_meta.path .. "/" .. entry.name .. "/" .. e.name)
+                    self:queueFileDownload(e, asset.documents .. project_meta.path .. "/" .. entry.name .. "/" .. e.name)
                 end
             end
             
@@ -436,7 +441,7 @@ function WebRepo:downloadProject(project_meta)
             
             for _,e in pairs(content) do
                 if e.type == "file" then
-                    self:queueFileDownload(e.sha, asset.documents .. entry.name .. "/" .. e.name)
+                    self:queueFileDownload(e, asset.documents .. entry.name .. "/" .. e.name)
                 end
             end
             
