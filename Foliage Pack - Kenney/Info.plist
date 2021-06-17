@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Name</key>
+	<string>Foliage Pack</string>
+	<key>Author</key>
+	<string>Kenney</string>
+	<key>Description</key>
+	<string>Kenney Asset Pack</string>
+	<key>LongDescription</key>
+	<string>Asset Pack from kenney.nl</string>
+	<key>Version</key>
+	<string>1.0</string>
+	<key>Link</key>
+	<string>https://kenney.nl/assets/foliage-pack</string>
+	<key>Bundle</key>
+	<true/>
+	<key>Library</key>
+	<false/>
+	<key>Executable</key>
+	<false/>
+	<key>Hidden</key>
+	<false/>
+	<key>Icon</key>
+	<string>Icon.png</string>
+</dict>
+</plist>
