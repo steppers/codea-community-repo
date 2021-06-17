@@ -53,6 +53,7 @@ function WebRepo:init(api, delegate)
                     else
                         -- Asset pack
                         folder = string.gsub(folder, " ", "_")
+                        folder = string.gsub(folder, "^(%d)", "_%1")
                         if asset.documents[folder] == nil then
                             v.installed = false
                             v.sha = nil
