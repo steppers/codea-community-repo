@@ -623,7 +623,9 @@ function WebRepo:launchProject(project_meta)
         end
         
         -- Run the loaded project's setup() function
-        setup()
+        if setup then
+            setup()
+        end
     end
 end
 
