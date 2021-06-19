@@ -532,6 +532,12 @@ function WebRepo:launchProject(project_meta)
             return
         end
         plist = parsePList(plist)
+
+        -- Clear the token and the github api object
+        -- so the launched project cannot access it
+        self.api.token = nil
+        self.api = nil
+        collectgarbage("collect")
         
         -- Clear parameters & log
         output.clear()

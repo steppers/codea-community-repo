@@ -100,13 +100,8 @@ end
 -- Starts the authorisation flow if no token has been received before
 -- and checks any token we already have to make sure it hasn't expired
 function getAccessToken(callback)
-    local access_token = readGlobalData("github_access_token")
-    
-    if access_token then
-        validateToken(access_token, callback)
-    else
-        newToken(callback)
-    end
+    saveGlobalData("github_access_token", nil) -- We should not be storing this anywhere
+    newToken(callback)
 end
 
 function updateAccessToken()
@@ -127,9 +122,6 @@ function updateAccessToken()
             access_token = j.access_token
             
             if access_token then
-                -- Save the token to disk
-                saveGlobalData("github_access_token", access_token)
-                
                 -- Inform the caller
                 poll_info.callback(access_token)
                 poll_info = nil
