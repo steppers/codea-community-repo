@@ -49,6 +49,12 @@ function drawWrapper()
     end
 end
 
+-- Asynchronous http request needs to be called on main thread
+local http_request_codea = http.request
+http.request = function(url, success, fail, params)
+    callOnMain(http_request_codea, url, success, fail, params)
+end
+
 -- Synchronous http request
 http.requestSync = function(url, params)
     
@@ -63,7 +69,7 @@ http.requestSync = function(url, params)
     end
     
     -- http.request must be called on the main thread
-    callOnMain(http.request, url, success, fail, params)
+    http.request(url, success, fail, params)
     
     -- Wait for the request to complete
     while result == nil do
