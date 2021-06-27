@@ -1,5 +1,8 @@
 -- VFS
 
+-- Show sidebar
+viewer.mode = STANDARD
+
 function setup()
     local vfs = VFS("demo")
     
@@ -62,5 +65,9 @@ function setup()
     
     -- Remove the second test file
     vfs:rm("/root_test.txt")
+end
+
+function draw()
+    background(32, 32, 32)
 end
 
