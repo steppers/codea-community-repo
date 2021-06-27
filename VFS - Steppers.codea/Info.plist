@@ -21,11 +21,11 @@
 	<key>Hidden</key>
 	<false/>
 	<key>Icon</key>
-	<string>Icon@2x.png</string>
+	<string>Icon.jpg</string>
 	<key>Buffer Order</key>
 	<array>
 		<string>Main</string>
-		<string>  VFS</string>
+		<string>VFS</string>
 		<string>Path</string>
 	</array>
 </dict>
