@@ -1,0 +1,12 @@
+[
+      {
+            "Name":"vfs",
+            "Path":"VFS - Steppers",
+            "Author":"Steppers",
+            "Description":"Virtual File System",
+            "LongDescription":"Library providing a simulated file system structure inside a single folder within the Codea documents folder.",
+            "Version":"1.0",
+            "Executable":true,
+            "Library":true
+      }
+]
