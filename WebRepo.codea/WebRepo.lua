@@ -701,6 +701,14 @@ end
 
 function WebRepo:getProjectIcon(project_meta)
     if project_meta.icon_index then
+        
+        if not self.icons[project_meta.icon_index].icon then
+            project_meta.icon_index = nil
+            project_meta.icon_downloading = false
+            
+            return asset.builtin.Blocks.Missing
+        end
+        
         return self.icons[project_meta.icon_index].icon
     else
         return asset.builtin.Blocks.Missing
