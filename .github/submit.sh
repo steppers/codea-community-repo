@@ -10,6 +10,8 @@ sub_zip_url=$(echo "$1" | jq -r '.zip_url')
 sub_library=$(echo "$1" | jq -r '.library')
 sub_hidden=$(echo "$1" | jq -r '.hidden')
 
-echo Processing ${sub_name}...
+echo Processing "${sub_name}"...
 
-echo $sub_authors
+curl "${sub_zip_url}" -o submission.zip && unzip submission.zip -d "${subname}.codea"
+
+ls "${subname}.codea"
