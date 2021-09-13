@@ -25,4 +25,4 @@ jobs:
 
       - name: submit.sh
         run:
-          bash "${GITHUB_WORKSPACE}/.github/submit.sh" ${{ github.event.inputs.metadata_json }}
+          bash "${GITHUB_WORKSPACE}/.github/submit.sh" '${{ github.event.inputs.metadata_json }}'
