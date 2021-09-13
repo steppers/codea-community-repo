@@ -7,8 +7,8 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:  
     inputs:
-      metadata_json:
-        description: 'Submission metadata json'
+      metadata_url:
+        description: 'Submission metadata url'
         required: true
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -23,6 +23,6 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - name: Run submit shell script
+      - name: submit.sh
         run:
-          bash "${GITHUB_WORKSPACE}/.github/submit.sh" "${{ github.event.inputs.metadata_json }}"
+          bash "${GITHUB_WORKSPACE}/.github/submit.sh" "${{ github.event.inputs.metadata_url }}"
