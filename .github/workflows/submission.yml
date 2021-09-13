@@ -23,12 +23,6 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo ${{ github.event.inputs.metadata_json }}
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+      - name: Run submit shell script
+        run:
+          bash "${GITHUB_WORKSPACE}/.github/submit.sh" "${{ github.event.inputs.metadata_json }}"
