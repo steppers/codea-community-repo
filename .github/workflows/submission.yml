@@ -8,7 +8,7 @@ on:
   workflow_dispatch:  
     inputs:
       metadata_url:
-        description: 'Submission metadata url'
+        description: 'Submission metadata json'
         required: true
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -29,4 +29,4 @@ jobs:
 
       - name: submit.sh
         run:
-          bash "${GITHUB_WORKSPACE}/.github/submit.sh" "${{ github.event.inputs.metadata_url }}"
+          bash "${GITHUB_WORKSPACE}/.github/submit.sh" "${{ github.event.inputs.metadata_json }}"
