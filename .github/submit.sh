@@ -1,4 +1,5 @@
 #!/bin/bash
 
-echo "I'm running from a bash script!"
-echo "Json = $1"
+sub_name=$(echo $1 | jq '.name')
+
+echo Processing ${sub_name}...
