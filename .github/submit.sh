@@ -15,7 +15,7 @@ echo Using "${sub_zip_url}"
 
 # Get the actual zip url by scraping the bayfiles page
 #sub_zip_url=$(curl -sS ${sub_zip_url} | sed -n 's/.*href="\(https\:\/\/cdn[^"]*\)".*/\1/p')
-sub_zip_url=$(curl -sS ${sub_zip_url})
+sub_zip_url=$(curl -bjsS ${sub_zip_url})
 echo ${sub_zip_url}
 
 # Download zip file
