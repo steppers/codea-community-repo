@@ -13,7 +13,7 @@ sub_hidden=$(echo "$1" | jq -r '.hidden')
 echo Processing "${sub_name}"...
 
 # Get the actual zip url by scraping the bayfiles page
-sub_zip_url=$(curl "${sub_zip_url}" | sed -n 's/.*href="\(https\:\/\/cdn[^"]*\)".*/\1/p')
+sub_zip_url=$(curl -sS "${sub_zip_url}" | sed -n 's/.*href="\(https\:\/\/cdn[^"]*\)".*/\1/p')
 echo $sub_zip_url
 
 # Download zip file
