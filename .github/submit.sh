@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Dependencies
-npm i -g bayfiles-cli
-
 sub_name=$(echo "$1" | jq -r '.name')
 sub_desc_short=$(echo "$1" | jq -r '.short_description')
 sub_desc_long=$(echo "$1" | jq -r '.description')
@@ -18,7 +15,7 @@ echo Using "${sub_zip_url}"
 
 # Get the actual zip url by scraping the bayfiles page
 #sub_zip_url=$(curl -sS ${sub_zip_url} | sed -n 's/.*href="\(https\:\/\/cdn[^"]*\)".*/\1/p')
-sub_zip_url=$(curl -bjsS ${sub_zip_url})
+sub_zip_url=$(curl -H "user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.182 Safari/537.36" -bjsS ${sub_zip_url})
 echo ${sub_zip_url}
 
 # Download zip file
