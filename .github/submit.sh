@@ -11,10 +11,11 @@ sub_library=$(echo "$1" | jq -r '.library')
 sub_hidden=$(echo "$1" | jq -r '.hidden')
 
 echo Processing "${sub_name}"...
+echo Using "${sub_zip_url}"
 
 # Get the actual zip url by scraping the bayfiles page
-sub_zip_url=$(curl -sS "${sub_zip_url}" | sed -n 's/.*href="\(https\:\/\/cdn[^"]*\)".*/\1/p')
-echo $sub_zip_url
+sub_zip_url=$(curl -sS ${sub_zip_url} | sed -n 's/.*href="\(https\:\/\/cdn[^"]*\)".*/\1/p')
+echo ${sub_zip_url}
 
 # Download zip file
 curl "${sub_zip_url}" -o submission.zip
