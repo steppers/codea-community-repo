@@ -14,7 +14,11 @@ pushover() {
     echo "Sending Pushover notification";
 }
 
-echo "$1" | jq -r '.name' || && errcho "Invalid metadata json!" && exit 1
+if echo "$1" | jq -r '.name'
+then
+    errcho "Invalid metadata json!"
+    exit 1
+fi
 
 sub_name=$(echo "$1" | jq -r '.name')
 sub_desc_short=$(echo "$1" | jq -r '.short_description')
