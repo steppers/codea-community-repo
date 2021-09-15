@@ -5,6 +5,7 @@ git_repo="${GITHUB_WORKSPACE}"
 # TODO:
 # - Add Error checking
 # - Only delete old project if the old project is marked for testing
+# - Thorough code injection checks
 
 errcho() {
     >&2 echo $@;
@@ -14,7 +15,7 @@ pushover() {
     echo "Sending Pushover notification";
     
     local payload='{"token":"'$PUSHOVER_APP_TOKEN'", "user":"'$PUSHOVER_GROUP_TOKEN'", "title":"'$1'", "message":"'$2'"}'
-    curl -d "${payload}" -H "Content-Type: application/json" -X POST https://api.pushover.net/1/messages.json
+    curl -s -d "${payload}" -H "Content-Type: application/json" -X POST https://api.pushover.net/1/messages.json
 }
 
 sub_name=$(echo "$1" | jq -r '.name')
@@ -28,8 +29,8 @@ sub_library=$(echo "$1" | jq -r '.library')
 sub_hidden=$(echo "$1" | jq -r '.hidden')
 
 # Replace spaces with underscores
-project_name=$(echo ${sub_name} | tr ' ' '_')
-project_ver=$(echo ${sub_version} | tr ' ' '_')
+project_name=$(echo "${sub_name}" | tr ' ' '_')
+project_ver=$(echo "${sub_version}" | tr ' ' '_')
 
 [[ -z "${project_name}" ]] && errcho "No project name!" && exit 1
 [[ -z "${project_ver}" ]] && errcho "No project version!" && exit 1
@@ -51,10 +52,10 @@ curl -s "${sub_zip_url}" -o ../submission.zip
 # Extract zip file
 unzip -q ../submission.zip -d "${project_dir}"
 
-# Rename project bundle
+# Rename project bundle if required
 bundle_name="${sub_name}.codea"
 cd "${project_dir}"
-mv *.codea "${bundle_name}"
+[[ ! -d "${bundle_name}" ]] && mv *.codea "${bundle_name}"
 
 # Generate manifest
 find "${bundle_name}" -type f > manifest.txt
