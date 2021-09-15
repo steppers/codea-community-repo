@@ -25,6 +25,7 @@ project_dir=${git_repo}/${project_name}/${project_ver}
 echo Processing "${sub_name}"...
 echo Using "${sub_zip_url}"
 echo Repo path = ${project_dir}
+pwd
 
 # Download zip file
 curl "${sub_zip_url}" -o submission.zip
