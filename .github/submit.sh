@@ -14,9 +14,15 @@ echo Processing "${sub_name}"...
 echo Using "${sub_zip_url}"
 
 # Download zip file
-curl -vv "${sub_zip_url}" -o submission.zip
+curl "${sub_zip_url}" -o submission.zip
 
 # Extract zip file
-unzip submission.zip -d "${subname}.codea"
+unzip submission.zip -d "${subname}"
 
-ls "${subname}.codea"
+# Sanitize .codea bundle name to match project name + authors
+
+# Adjust project metadata in Info.plist to match provided metadata
+
+# Commit project
+
+# Add to submission manifest file
