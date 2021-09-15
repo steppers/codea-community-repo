@@ -28,9 +28,9 @@ sub_hidden=$(echo "$1" | jq -r '.hidden')
 project_name=$(echo ${sub_name} | tr ' ' '_')
 project_ver=$(echo ${sub_version} | tr ' ' '_')
 
-[[ -z "${project_name}" ]] && errcho("No project name!") && exit
-[[ -z "${project_ver}" ]] && errcho("No project version!") && exit
-[[ -z "${sub_zip_url}" ]] && errcho("No zip url!") && exit
+[[ -z "${project_name}" ]] && errcho "No project name!" && exit
+[[ -z "${project_ver}" ]] && errcho "No project version!" && exit
+[[ -z "${sub_zip_url}" ]] && errcho "No zip url!" && exit
 
 # Directory where we're committing the project
 project_dir="${git_repo}/${project_name}/${project_ver}"
