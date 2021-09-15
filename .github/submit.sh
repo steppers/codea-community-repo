@@ -14,7 +14,7 @@ pushover() {
     echo "Sending Pushover notification";
 }
 
-if echo "$1" | jq -er '.name'
+if jq -er '.name' <<< "$1"
 then
     errcho "Invalid metadata json!"
     exit 1
