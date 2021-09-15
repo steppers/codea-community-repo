@@ -1,6 +1,6 @@
 #!/bin/bash
 
-git_repo=${GITHUB_WORKSPACE}
+git_repo="${GITHUB_WORKSPACE}"
 
 # TODO:
 # - Add Error checking
@@ -20,18 +20,19 @@ project_ver=$(echo ${sub_version} | tr ' ' '_')
 project_name=$(echo ${sub_name} | tr ' ' '_')
 
 # Directory where we're committing the project
-project_dir=${git_repo}/${project_name}/${project_ver}
+project_dir="${git_repo}/${project_name}/${project_ver}"
 
 echo Processing "${sub_name}"...
 echo Using "${sub_zip_url}"
-echo Repo path = ${project_dir}
-pwd
 
 # Download zip file
-curl "${sub_zip_url}" -o submission.zip
+curl "${sub_zip_url}" -o ../submission.zip
 
 # Extract zip file
-unzip submission.zip -d "${sub_name}"
+unzip -q ../submission.zip -d "${project_dir}"
+
+echo "${project_dir}"
+ls -l "${project_dir}"
 
 # Sanitize .codea bundle name to match project name + authors
 
