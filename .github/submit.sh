@@ -4,6 +4,7 @@ git_repo="${GITHUB_WORKSPACE}"
 
 # TODO:
 # - Add Error checking
+# - Only delete old project if the old project is marked for testing
 
 sub_name=$(echo "$1" | jq -r '.name')
 sub_desc_short=$(echo "$1" | jq -r '.short_description')
@@ -21,6 +22,10 @@ project_name=$(echo ${sub_name} | tr ' ' '_')
 
 # Directory where we're committing the project
 project_dir="${git_repo}/${project_name}/${project_ver}"
+
+# Delete old project version if it already exists
+[[ -d "${project_dir}" ]] && rm -rf "${project_dir}"
+mkdir -p "${project_dir}"
 
 echo Processing "${sub_name}"...
 echo Using "${sub_zip_url}"
