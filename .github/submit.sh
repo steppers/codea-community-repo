@@ -12,13 +12,10 @@ errcho() {
 
 pushover() {
     echo "Sending Pushover notification";
+    
+    local payload='{"token":"'$PUSHOVER_APP_TOKEN'", "user":"'$PUSHOVER_GROUP_TOKEN'", "title":"'$1'", "message":"'$2'"}'
+    curl -d "${payload}" -H "Content-Type: application/json" -X POST https://api.pushover.net/1/messages.json
 }
-
-if jq -er '.name' <<< "$1"
-then
-    errcho "Invalid metadata json!"
-    exit 1
-fi
 
 sub_name=$(echo "$1" | jq -r '.name')
 sub_desc_short=$(echo "$1" | jq -r '.short_description')
@@ -73,5 +70,7 @@ git config --global user.email "autosub@webrepo.com"
 git add -A
 git commit -m "${commit_message}"
 git push
+
+pushover "New Submission: ${sub_name}" "${sub_version} - ${sub_update_notes}"
 
 # Add to submission manifest file
