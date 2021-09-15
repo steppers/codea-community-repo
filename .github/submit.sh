@@ -50,6 +50,8 @@ find "${bundle_name}" -type f > manifest.txt
 
 # Commit project
 commit_message="Add $sub_name project for submission"
+git config --global user.name "${sub_authors}"
+git config --global user.email "autosub@webrepo.com"
 git add -A
 git commit -m "${commit_message}"
 git push
