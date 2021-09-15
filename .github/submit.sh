@@ -31,14 +31,18 @@ echo Processing "${sub_name}"...
 echo Using "${sub_zip_url}"
 
 # Download zip file
-curl "${sub_zip_url}" -o ../submission.zip
+curl -s "${sub_zip_url}" -o ../submission.zip
 
 # Extract zip file
 unzip -q ../submission.zip -d "${project_dir}"
 
-# Print contents
+# Rename project bundle
+bundle_name="${sub_name}.codea"
 cd "${project_dir}"
-find .
+mv *.codea "${bundle_name}"
+
+# Generate manifest
+find "${bundle_name}"
 
 # Sanitize .codea bundle name to match project name + authors
 
