@@ -11,7 +11,7 @@ errcho() {
 }
 
 pushover() {
-
+    echo "Sending Pushover notification";
 }
 
 sub_name=$(echo "$1" | jq -r '.name')
