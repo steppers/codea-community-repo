@@ -36,8 +36,9 @@ curl "${sub_zip_url}" -o ../submission.zip
 # Extract zip file
 unzip -q ../submission.zip -d "${project_dir}"
 
+# Print contents
 cd "${project_dir}"
-find "${project_dir}"
+find .
 
 # Sanitize .codea bundle name to match project name + authors
 
