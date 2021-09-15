@@ -6,6 +6,14 @@ git_repo="${GITHUB_WORKSPACE}"
 # - Add Error checking
 # - Only delete old project if the old project is marked for testing
 
+errcho() {
+    >&2 echo $@;
+}
+
+pushover() {
+
+}
+
 sub_name=$(echo "$1" | jq -r '.name')
 sub_desc_short=$(echo "$1" | jq -r '.short_description')
 sub_desc_long=$(echo "$1" | jq -r '.description')
@@ -17,8 +25,12 @@ sub_library=$(echo "$1" | jq -r '.library')
 sub_hidden=$(echo "$1" | jq -r '.hidden')
 
 # Replace spaces with underscores
-project_ver=$(echo ${sub_version} | tr ' ' '_')
 project_name=$(echo ${sub_name} | tr ' ' '_')
+project_ver=$(echo ${sub_version} | tr ' ' '_')
+
+[[ -z "${project_name}" ]] && errcho("No project name!") && exit
+[[ -z "${project_ver}" ]] && errcho("No project version!") && exit
+[[ -z "${sub_zip_url}" ]] && errcho("No zip url!") && exit
 
 # Directory where we're committing the project
 project_dir="${git_repo}/${project_name}/${project_ver}"
@@ -48,7 +60,7 @@ find "${bundle_name}" -type f > manifest.txt
 
 # Adjust project metadata in Info.plist to match provided metadata
 
-# Commit project
+# Commit project (We need to be damn sure that we're good to go here)
 commit_message="Add $sub_name project for submission"
 git config --global user.name "autosub"
 git config --global user.email "autosub@webrepo.com"
