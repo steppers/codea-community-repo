@@ -1,10 +1,9 @@
 import os
 import json
+import plistlib
 import urllib.request
 
-PUSHOVER_APP_TOKEN = os.environ.get('PUSHOVER_APP_TOKEN')
-PUSHOVER_GROUP_TOKEN = os.environ.get('PUSHOVER_GROUP_TOKEN')
-
+# Send a notification
 def pushover(title, message):
     payload = {
         "token": PUSHOVER_APP_TOKEN,
@@ -17,7 +16,28 @@ def pushover(title, message):
     req.add_header('Content-Type', 'application/json')
     response = urllib.request.urlopen(req, json.dumps(payload).encode('utf-8'))
     return
+    
+# Get environment variables
+PUSHOVER_APP_TOKEN = os.environ.get('PUSHOVER_APP_TOKEN')
+PUSHOVER_GROUP_TOKEN = os.environ.get('PUSHOVER_GROUP_TOKEN')
+SUB_METADATA = os.environ.get('SUB_METADATA')
+REPO_ROOT = os.environ.get('GITHUB_WORKSPACE')
 
-# print(os.environ.get('GITHUB_WORKSPACE'))
+# Parse metadata input
+md = json.loads(SUB_METADATA)
 
-pushover("Title", "Message")
+# Validate inputs
+if "name" not in md:
+    print(f"No project name provided!")
+    
+if "version" not in md:
+    print(f"No project version provided! ({md["name"]})")
+    
+print(f"Processing {md["name"]} - {md["version"]} ...")
+
+# Replace space with underscore
+md_repo_name = md["name"].replace(" ", "_")
+md_repo_ver  = md["version"].replace(" ", "_")
+
+# Send notification to admin
+pushover(f"New {"Review" if md["review"] else "Test"} Submission: {md["name"]}", f"{md["version"]} - {md["update_notes"}")
