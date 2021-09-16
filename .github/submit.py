@@ -42,4 +42,4 @@ md_repo_name = md["name"].replace(" ", "_")
 md_repo_ver  = md["version"].replace(" ", "_")
 
 # Send notification to admin
-pushover(f'New {"Review" if md["review"] else "Test"} Submission: {md["name"]}', f'{md["version"]} - {md["update_notes"}')
+pushover(f'New {"Review" if md["review"] else "Test"} Submission: {md["name"]}', f'{md["version"]} - {md["update_notes"]}')
