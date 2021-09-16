@@ -12,22 +12,9 @@ def pushover(title, message):
         "message": message
     }
 
-#    r = http.request_encode_body(
-#        'POST',
-#        'https://api.pushover.net/1/messages.json',
-#        headers={
-#            'Content-Type': 'application/json'
-#        },
-#        body=json.dumps(payload).encode('utf-8'))
-        
-    req = urllib.request.Request(
-        'https://api.pushover.net/1/messages.json',
-        data=json.dumps(payload).encode('utf-8')),
-        headers={
-            'Content-Type': 'application/json'
-        })
-        
-    r = urllib.request.urlopen(req)
+    req = urllib.request.Request('https://api.pushover.net/1/messages.json')
+    req.add_header('Content-Type', 'application/json')
+    response = urllib.request.urlopen(req, json.dumps(payload).encode('utf-8'))
     return
 
 # print(os.environ.get('GITHUB_WORKSPACE'))
