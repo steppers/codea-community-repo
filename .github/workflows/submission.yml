@@ -41,6 +41,6 @@ jobs:
         env:
           PUSHOVER_APP_TOKEN: ${{ secrets.PUSHOVER_APP_TOKEN }}
           PUSHOVER_GROUP_TOKEN: ${{ secrets.PUSHOVER_GROUP_TOKEN }}
+          SUB_METADATA: '{{ github.event.inputs.metadata_json }}'
         run:
-          python "${GITHUB_WORKSPACE}/.github/submit.py" '${{ github.event.inputs.metadata_json }}'
-          # bash "${GITHUB_WORKSPACE}/.github/submit.sh" '${{ github.event.inputs.metadata_json }}'
+          python "${GITHUB_WORKSPACE}/.github/submit.py"
