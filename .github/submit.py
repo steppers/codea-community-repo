@@ -28,16 +28,18 @@ md = json.loads(SUB_METADATA)
 
 # Validate inputs
 if "name" not in md:
-    print(f"No project name provided!")
+    print(f'No project name provided!')
+    sys.exit()
     
 if "version" not in md:
-    print(f"No project version provided! ({md["name"]})")
+    print(f'No project version provided! ({md_name})')
+    sys.exit()
     
-print(f"Processing {md["name"]} - {md["version"]} ...")
+print(f'Processing {md["name"]} - {md["version"]} ...')
 
 # Replace space with underscore
 md_repo_name = md["name"].replace(" ", "_")
 md_repo_ver  = md["version"].replace(" ", "_")
 
 # Send notification to admin
-pushover(f"New {"Review" if md["review"] else "Test"} Submission: {md["name"]}", f"{md["version"]} - {md["update_notes"}")
+pushover(f'New {"Review" if md["review"] else "Test"} Submission: {md["name"]}', f'{md["version"]} - {md["update_notes"}')
