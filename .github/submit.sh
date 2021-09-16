@@ -18,6 +18,8 @@ pushover() {
     curl -s -d "${payload}" -H "Content-Type: application/json" -X POST https://api.pushover.net/1/messages.json
 }
 
+metadata=$(echo "$1" | jq -r 'del(.zip_url)')
+
 sub_name=$(echo "$1" | jq -r '.name')
 sub_desc_short=$(echo "$1" | jq -r '.short_description')
 sub_desc_long=$(echo "$1" | jq -r '.description')
@@ -59,6 +61,9 @@ cd "${project_dir}"
 
 # Generate manifest
 find "${bundle_name}" -type f > manifest.txt
+
+# Save metadata
+echo "${metadata}" > metadata.json
 
 # Sanitize .codea bundle name to match project name + authors
 
