@@ -29,6 +29,7 @@ sub_update_notes=$(echo "$1" | jq -r '.update_notes')
 sub_zip_url=$(echo "$1" | jq -r '.zip_url')
 sub_library=$(echo "$1" | jq -r '.library')
 sub_hidden=$(echo "$1" | jq -r '.hidden')
+sub_review=$(echo "$1" | jq -r '.review')
 
 # Replace spaces with underscores
 project_name=$(echo "${sub_name}" | tr ' ' '_')
@@ -69,6 +70,13 @@ echo "${metadata}" > metadata.json
 
 # Adjust project metadata in Info.plist to match provided metadata
 
+# Add to submission manifest file
+cd "${git_repo}"
+submissions_manifest=manifest_sub.json
+[[ ! -f "${submissions_manifest}" ]] && echo "{}" > "${submissions_manifest}"
+jq -r '.["'${project_name}'"]["'${project_ver}'"] = '${sub_review} < "${submissions_manifest}" > _tmp.json
+mv _tmp.json "${submissions_manifest}"
+
 # Commit project (We need to be damn sure that we're good to go here)
 commit_message="Add $sub_name project for submission"
 git config --global user.name "autosub"
@@ -77,6 +85,6 @@ git add -A
 git commit -m "${commit_message}"
 git push
 
-pushover "New Submission: ${sub_name}" "${sub_version} - ${sub_update_notes}"
-
-# Add to submission manifest file
+# Send pushover notification
+review=$([[ $sub_review == "true" ]] && echo "Review" || echo "Test")
+pushover "New ${review} Submission: ${sub_name}" "${sub_version} - ${sub_update_notes}"
