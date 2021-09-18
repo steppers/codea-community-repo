@@ -194,6 +194,7 @@ def generate_metadata(project_path, metadata):
     md = copy.deepcopy(metadata)
     md.pop('zip_url', None)
     md.pop('review', None)
+    md.pop('key', None)
 
     # Change to project root
     wd = os.getcwd()
