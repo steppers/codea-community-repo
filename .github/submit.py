@@ -6,10 +6,7 @@ import plistlib
 import urllib.request
 
 # TODO:
-# - Guard against unauthorised submissions. Use private tokens in the AWS lambda.
 # - Maintain recently updated & newly added project lists
-# - Only delete old project if the old project is marked for testing
-# - Thorough code injection checks
 
 # Get environment variables
 PUSHOVER_APP_TOKEN = os.environ.get('PUSHOVER_APP_TOKEN')
