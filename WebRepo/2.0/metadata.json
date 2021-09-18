@@ -8,6 +8,6 @@
     "version": "2.0",
     "update_notes": "",
     "hidden": true,
-    "library": false,
-    "icon": "WebRepo.codea/Icon@2x.png"
+    "icon": "WebRepo.codea/Icon@2x.png",
+    "library": false
 }
