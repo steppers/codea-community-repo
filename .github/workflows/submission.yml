@@ -22,15 +22,19 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - name: Checkout
-        uses: actions/checkout@v2
-      
       # Allows submission actions to run 1 at a time by queuing them
       - name: Turnstyle
         uses: softprops/turnstyle@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Sparse Checkout
+        run: |
+          REPO="https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git"
+          git clone --filter=blob:none --no-checkout $REPO .
+          git sparse-checkout init --cone
+          git sparse-checkout set '.github'
+          git checkout
 
       - uses: actions/setup-python@v2
         with:
