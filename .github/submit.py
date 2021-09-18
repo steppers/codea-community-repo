@@ -18,13 +18,12 @@ SUB_METADATA = os.environ.get('SUB_METADATA')
 REPO_ROOT = os.environ.get('GITHUB_WORKSPACE')
 RESERVED_KEY = os.environ.get('RESERVED_KEY')
 
-
-
-reserved_names = {
+# Names of reserved projects
+reserved_names = [
     ".github",
+    "screenshots",
     "WebRepo"
-}
-
+]
 
 def validate_metadata(md):
     success = True
@@ -33,9 +32,10 @@ def validate_metadata(md):
         print(f'No project name provided!')
         success = False
     else:
-        if md['name'] == '.github':
-            print(f'The name .github is reserved!')
-            success = False
+        if md['name'] in reserved_names:
+            if md.get('key', None) != RESERVED_KEY:
+                print(f'Provided key is invalid!')
+                success = False
         
     if "version" not in md:
         print(f'No project version provided!')
