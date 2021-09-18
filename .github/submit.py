@@ -19,7 +19,7 @@ RESERVED_KEY = os.environ.get('RESERVED_KEY')
 reserved_names = [
     ".github",
     "screenshots",
-    "WebRepo"
+    #"WebRepo"
 ]
 
 def validate_metadata(md):
