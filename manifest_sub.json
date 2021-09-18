@@ -1,5 +1,8 @@
 {
-  "WebRepo": {
-    "2.0a1": false
-  }
+    "WebRepo": {
+        "2.0a1": false
+    },
+    "Foggy": {
+        "1.0": false
+    }
 }

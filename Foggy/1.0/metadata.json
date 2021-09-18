@@ -1,0 +1,14 @@
+{
+    "name": "Foggy",
+    "short_description": "Side Scroller Game",
+    "authors": [
+        "West",
+        "UberGoober"
+    ],
+    "version": "1.0",
+    "update_notes": "",
+    "hidden": false,
+    "icon": "Foggy.codea/Icon.png",
+    "library": false,
+    "description": "Side Scroller Game"
+}
