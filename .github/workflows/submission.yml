@@ -46,5 +46,6 @@ jobs:
           PUSHOVER_APP_TOKEN: ${{ secrets.PUSHOVER_APP_TOKEN }}
           PUSHOVER_GROUP_TOKEN: ${{ secrets.PUSHOVER_GROUP_TOKEN }}
           SUB_METADATA: '${{ github.event.inputs.metadata_json }}'
+          RESERVED_KEY: ${{ secrets.RESERVED_KEY }}
         run:
           python "${GITHUB_WORKSPACE}/.github/submit.py"

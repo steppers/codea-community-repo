@@ -11,12 +11,31 @@ import urllib.request
 # - Only delete old project if the old project is marked for testing
 # - Thorough code injection checks
 
+# Get environment variables
+PUSHOVER_APP_TOKEN = os.environ.get('PUSHOVER_APP_TOKEN')
+PUSHOVER_GROUP_TOKEN = os.environ.get('PUSHOVER_GROUP_TOKEN')
+SUB_METADATA = os.environ.get('SUB_METADATA')
+REPO_ROOT = os.environ.get('GITHUB_WORKSPACE')
+RESERVED_KEY = os.environ.get('RESERVED_KEY')
+
+
+
+reserved_names = {
+    ".github",
+    "WebRepo"
+}
+
+
 def validate_metadata(md):
     success = True
 
     if "name" not in md:
         print(f'No project name provided!')
         success = False
+    else:
+        if md['name'] == '.github':
+            print(f'The name .github is reserved!')
+            success = False
         
     if "version" not in md:
         print(f'No project version provided!')
@@ -237,12 +256,6 @@ def pushover(title, message):
 
 
 
-    
-# Get environment variables
-PUSHOVER_APP_TOKEN = os.environ.get('PUSHOVER_APP_TOKEN')
-PUSHOVER_GROUP_TOKEN = os.environ.get('PUSHOVER_GROUP_TOKEN')
-SUB_METADATA = os.environ.get('SUB_METADATA')
-REPO_ROOT = os.environ.get('GITHUB_WORKSPACE')
 
 # Parse metadata input
 md = json.loads(SUB_METADATA)
