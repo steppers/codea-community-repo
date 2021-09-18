@@ -199,7 +199,7 @@ def generate_metadata(project_path, metadata):
     
     # Generate manifest
     file = open('metadata.json', 'w')
-    md = json.dumps(md, indent=4)
+    md = json.dumps(md, indent=4, sort_keys=True)
     print(md)
     file.write(md)
     file.close()
