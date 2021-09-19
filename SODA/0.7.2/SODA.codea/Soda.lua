@@ -1,5 +1,5 @@
 Soda = {}
-Soda.version = "0.7"
+Soda.version = "0.7.2"
 SodaIsInstalled = true
 Soda.items = {} --holds all top-level ui elements (i.e. anything without a parent)
 
