@@ -1,0 +1,14 @@
+{
+    "authors": [
+        "Yojimbo2000",
+        "Steppers"
+    ],
+    "description": "Gorgeous and Powerful GUI Library",
+    "hidden": false,
+    "icon": "SODA.codea/Icon@2x.png",
+    "library": true,
+    "name": "SODA",
+    "short_description": "Gorgeous and Powerful GUI Library",
+    "update_notes": "-- Add support for texture backgrounds on frames & buttons",
+    "version": "0.7.3"
+}
