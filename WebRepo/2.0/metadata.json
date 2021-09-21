@@ -4,7 +4,7 @@
     ],
     "description": "Providing easy access to projects from the community!",
     "hidden": true,
-    "icon": "WebRepo.codea/Icon@2x.png",
+    "icon": "WebRepoSub.codea/Icon@2x.png",
     "library": false,
     "name": "WebRepo",
     "short_description": "Codea Community Repository",
