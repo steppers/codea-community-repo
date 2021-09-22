@@ -1,13 +1,13 @@
 {
-    "WebRepo": {
-        "2.0": false
-    },
-    "Foggy": {
-        "1.0": false
-    },
-    "SODA": {
-        "0.7.1": false,
-        "0.7.2": false,
-        "0.7.3": false
-    }
+	"WebRepo": [
+		{"id":"2.0", "review":false}
+	],
+	"Foggy": [
+		{"id":"1.0", "review":false}
+	],
+	"SODA": [
+		{"id":"0.7.1", "review":false},
+		{"id":"0.7.2", "review":false},
+		{"id":"0.7.3", "review":false}
+	]
 }
