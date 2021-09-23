@@ -5,7 +5,7 @@
     "description": "Providing easy access to projects from the community!",
     "hidden": true,
     "icon": "WebRepoSub.codea/Icon@2x.png",
-    "library": false,
+    "category": "App",
     "name": "WebRepo",
     "short_description": "Codea Community Repository",
     "update_notes": " - No release notes.",

@@ -2,10 +2,10 @@
     "authors": [
         "Yojimbo2000"
     ],
-    "description": "Gorgeous and Powerful GUI Library",
+    "description": "Gorgeous GUI Library",
     "hidden": false,
     "icon": "SODA.codea/Icon@2x.png",
-    "library": true,
+    "category": "Library",
     "name": "SODA",
     "short_description": "Gorgeous and Powerful GUI Library",
     "update_notes": " - Updated API usage to Codea 3.4.3",

@@ -9,6 +9,6 @@
     "update_notes": "",
     "hidden": false,
     "icon": "Foggy.codea/Icon.png",
-    "library": false,
+    "category": "Game",
     "description": "Side Scroller Game"
 }
