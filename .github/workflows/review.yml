@@ -1,0 +1,51 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Submission
+
+# Controls when the workflow will run
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:  
+    inputs:
+      metadata_json:
+        description: 'Submission metadata json'
+        required: true
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  main:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    
+    timeout-minutes: 1
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Allows submission actions to run 1 at a time by queuing them
+      - name: Turnstyle
+        uses: softprops/turnstyle@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Sparse Checkout
+        run: |
+          REPO="https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git"
+          git clone --filter=blob:none --no-checkout $REPO .
+          git sparse-checkout init --cone
+          git sparse-checkout set '.github'
+          git checkout
+
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+          architecture: 'x64'
+
+      - name: review.py
+        env:
+          PUSHOVER_APP_TOKEN: ${{ secrets.PUSHOVER_APP_TOKEN }}
+          PUSHOVER_GROUP_TOKEN: ${{ secrets.PUSHOVER_GROUP_TOKEN }}
+          SUB_METADATA: '${{ github.event.inputs.metadata_json }}'
+          RESERVED_KEY: ${{ secrets.RESERVED_KEY }}
+        run:
+          python "${GITHUB_WORKSPACE}/.github/review.py"
