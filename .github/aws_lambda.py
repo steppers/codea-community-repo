@@ -10,7 +10,7 @@ GITHUB_TOKEN="ghp_dshjknmcuadsbnSGuASgy8ughsAsg78uhjds"
 # REPLACE THESE
 GITHUB_REPO_OWNER="steppers"
 GITHUB_REPO_NAME="codea-community-repo"
-GITHUB_WORKFLOW_ID="13103272"
+GITHUB_WORKFLOW_ID="review.yml"
 #################################################################
 
 http = urllib3.PoolManager()
