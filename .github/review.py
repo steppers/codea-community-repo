@@ -79,15 +79,12 @@ def validate_metadata(md):
         print(f'No authors provided!')
         success = False
         
-    if "review" not in md:
-        md['review'] = False
-        
     if "icon" not in md:
         print(f'No icon path provided!')
         success = False
         
-    if md['review'] == True and "categories" not in md:
-        print(f'No categories provided! Please provide at least 1 category for approval.')
+    if "category" not in md:
+        print(f'No category provided!')
         success = False
         
     return success
