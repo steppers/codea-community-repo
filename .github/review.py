@@ -54,8 +54,8 @@ def validate_metadata(md):
         print(f'No project zip download link provided!')
         success = False
         
-    if "manifest_url" not in md:
-        print(f'No manifest download link provided!')
+    if "metadata_url" not in md:
+        print(f'No metadata download link provided!')
         success = False
 
     if "short_description" not in md:
@@ -154,7 +154,7 @@ def project_is_live(name, ver):
 
 
 
-def queue_for_review(name, version, zip_url, manifest_url):
+def queue_for_review(name, version, zip_url, metadata_url):
     print("Adding to WebRepo review queue...")
 
     # Change to repo root
@@ -169,20 +169,20 @@ def queue_for_review(name, version, zip_url, manifest_url):
 
     # Read current queue
     file = open('review_queue.json', 'r')
-    manifest = json.load(file)
+    queue = json.load(file)
     file.close()
     
     # Add new entry
-    manifest.append({
+    queue.append({
         "name": name,
         "version": version,
         "zip_url": zip_url,
-        "manifest_url": manifest_url
+        "metadata_url": metadata_url
     })
     
     # Write new queue
     file = open('review_queue.json', 'w')
-    file.write(json.dumps(manifest, indent=4))
+    file.write(json.dumps(queue, indent=4))
     file.close()
     
     # Return to original wd
@@ -262,7 +262,7 @@ if project_is_live(md_repo_name, md_repo_ver):
     sys.exit()
 
 # Add to review queue file
-queue_for_review(md_repo_name, md_repo_ver, md['zip_url'], md['manifest_url'])
+queue_for_review(md_repo_name, md_repo_ver, md['zip_url'], md['metadata_url'])
 
 # Commit all of our changes
 git_commit()
