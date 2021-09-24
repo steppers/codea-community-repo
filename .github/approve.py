@@ -255,4 +255,4 @@ git_commit()
 # Send notification to admin
 pushover(
     f'New Approval: {payload["name"]}-{payload["version"]}',
-    "")
+    "N/A")
