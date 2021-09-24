@@ -13,4 +13,3 @@ Foggy.codea/Enemy.lua
 Foggy.codea/Bonus.lua
 Foggy.codea/enemybullet@2x.png
 Foggy.codea/Icon.png
-metadata.json
