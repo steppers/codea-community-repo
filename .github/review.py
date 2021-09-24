@@ -201,7 +201,7 @@ def git_commit():
         f'git config --global user.name "autosub"\n'
         f'git config --global user.email "autosub@webrepo.com"\n'
         f'git add -A\n'
-        f'git commit -m "Queue {md["name"]}-{md["version"} project for review"\n'
+        f'git commit -m "Queue {md["name"]}-{md["version"]} project for review"\n'
         f'git push'
     )
     print(stream.read())
