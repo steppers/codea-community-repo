@@ -15,4 +15,3 @@ WebRepo.codea/APIOverrides.lua
 WebRepo.codea/Browser.lua
 WebRepo.codea/URL.lua
 WebRepo.codea/GithubAPI.lua
-metadata.json
