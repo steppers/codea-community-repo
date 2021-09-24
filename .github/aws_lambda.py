@@ -25,7 +25,7 @@ def lambda_handler(event, context):
     if 'type' in proj_metadata:
         if proj_metadata['type'] == 'approve':
             GITHUB_WORKFLOW_ID="approve.yml"
-        else if proj_metadata['type'] == 'reject':
+        elif proj_metadata['type'] == 'reject':
             GITHUB_WORKFLOW_ID="reject.yml"
         
     # The github workflow dispatch payload

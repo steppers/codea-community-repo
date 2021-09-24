@@ -24,7 +24,7 @@ REPO_ROOT = os.environ.get('GITHUB_WORKSPACE')
 ADMIN_KEY = os.environ.get('ADMIN_KEY')
 
 def is_admin(payload):
-    if 'key' not payload:
+    if not 'key' in payload:
         print(f'No admin key provided!')
         return False
     if payload['key'] != ADMIN_KEY:
