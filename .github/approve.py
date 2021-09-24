@@ -254,5 +254,5 @@ git_commit()
 
 # Send notification to admin
 pushover(
-    f'New Approval: {payload["name"]}',
-    f'{payload["version"]}:\n{payload["update_notes"]}')
+    f'New Approval: {payload["name"]}-{payload["version"]}',
+    "")
