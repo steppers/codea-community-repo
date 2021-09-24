@@ -126,6 +126,31 @@ def update_manifest(name, version):
     # Return to original wd
     os.chdir(wd)
     return
+    
+
+def remove_from_queue(name, ver):
+    # Change to repo root
+    wd = os.getcwd()
+    os.chdir(REPO_ROOT)
+        
+    # Decode manifest and determine if this version
+    # is already queued for review
+    file = open('review_queue.json', 'r')
+    queue = json.load(file)
+    for entry in queue:
+        if entry['name'] == name and entry['version'] == ver:
+            queue.remove(entry)
+            break
+    file.close()
+    
+    # Write new queue file
+    file = open('review_queue.json', 'w')
+    file.write(json.dumps(queue, indent=4))
+    file.close()
+    
+    # Return to original wd
+    os.chdir(wd)
+    return in_review
 
 
 def git_commit():
