@@ -1,0 +1,5 @@
+supportedOrientations.codea/Info.plist
+supportedOrientations.codea/Main.lua
+supportedOrientations.codea/supportedOrientations.lua
+supportedOrientations.codea/Icon@2x.png
+supportedOrientations.codea/GlobalOverrides.lua

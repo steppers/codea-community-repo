@@ -12,5 +12,8 @@
     ],
     "Async": [
         "1.0.0"
+    ],
+    "supportedOrientations": [
+        "1.0.0"
     ]
 }

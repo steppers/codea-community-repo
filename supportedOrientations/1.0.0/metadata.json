@@ -1,0 +1,11 @@
+{
+  "name":"supportedOrientations",
+  "short_description":"Backward Compatability",
+  "description":"REPLACE_ME",
+  "authors":["Steppers","UberGoober"],
+  "version":"1.0.0",
+  "update_notes":"- Initial Release",
+  "category":"Library",
+  "hidden":false,
+  "icon":"supportedOrientations.codea/Icon@2x.png"
+}
