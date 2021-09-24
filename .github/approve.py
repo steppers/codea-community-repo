@@ -164,7 +164,7 @@ def git_commit():
         f'git config --global user.name "autosub"\n'
         f'git config --global user.email "autosub@webrepo.com"\n'
         f'git add -A\n'
-        f'git commit -m "Approve & add {payload["name"]}"\n'
+        f'git commit -m "Approve & add {payload["name"]}-{payload["version"]}"\n'
         f'git push'
     )
     print(stream.read())
@@ -230,11 +230,6 @@ if not download(payload["zip_url"], '../submission.zip'):
     print(f'Failed to download submission zip from {payload["zip_url"]}')
     sys.exit()
     
-# Download metadata
-if not download(payload["metadata_url"], f'{project_dir}/metadata.json'):
-    print(f'Failed to download metadata from {payload["metadata_url"]}')
-    sys.exit()
-    
 # Unzip submission
 if (os.popen(f'unzip -q ../submission.zip -d "{project_dir}"').close() != None):
     print(f'Failed to unzip submission zip!')
@@ -242,6 +237,11 @@ if (os.popen(f'unzip -q ../submission.zip -d "{project_dir}"').close() != None):
 
 # Generate Manifest
 generate_project_manifest(project_dir)
+
+# Download metadata (after the manifest generation)
+if not download(payload["metadata_url"], f'{project_dir}/metadata.json'):
+    print(f'Failed to download metadata from {payload["metadata_url"]}')
+    sys.exit()
 
 # Add to manifest file
 update_manifest(repo_name, repo_ver)
