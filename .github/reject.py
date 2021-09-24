@@ -24,7 +24,7 @@ REPO_ROOT = os.environ.get('GITHUB_WORKSPACE')
 REVIEW_KEY = os.environ.get('REVIEW_KEY')
 
 def is_admin(payload):
-    if 'key' not payload:
+    if not 'key' in payload:
         print(f'No review key provided!')
         return False
     if payload['key'] != REVIEW_KEY:
