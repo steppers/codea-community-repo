@@ -161,7 +161,7 @@ def queue_for_review(name, version, zip_url, metadata_url):
     # Create blank file
     if not os.path.exists('review_queue.json'):
         file = open('review_queue.json', 'w')
-        file.write('{}')
+        file.write('[]')
         file.close()
 
     # Read current queue
