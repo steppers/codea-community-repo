@@ -1,0 +1,13 @@
+{
+  "name":"Async",
+  "short_description":"Async Helper Library",
+  "description":"Async provides a class that simplifies coordinating multiple dependent asynchronous tasks. This is the library used by WebRepo 2.0 to coordinate dependent HTTP requests. 2 demos are provided for usage reference. ",
+  "authors":["Steppers"],
+  "version":"1.0.0",
+  "update_notes":"- Initial Release",
+  "category":"Library",
+  "zip_url":"https://bayfiles.com/v468weJeuc",
+  "metadata_url":"https://bayfiles.com/z26awcJdu4",
+  "hidden":false,
+  "icon":"Async.codea/Icon@2x.png"
+}
