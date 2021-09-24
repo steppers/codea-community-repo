@@ -150,7 +150,7 @@ def remove_from_queue(name, ver):
     
     # Return to original wd
     os.chdir(wd)
-    return in_review
+    return
 
 
 def git_commit():
