@@ -95,7 +95,7 @@ def generate_project_manifest(project_path):
     return
 
 
-def update_manifest(name, version, should_review):
+def update_manifest(name, version):
     print("Adding to WebRepo manifest...")
 
     # Change to repo root
