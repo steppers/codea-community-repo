@@ -206,7 +206,7 @@ if not download(payload["zip_url"], '../submission.zip'):
     sys.exit()
     
 # Download metadata
-if not download(payload["metadata_url"], f'"{project_dir}/metadata.json"'):
+if not download(payload["metadata_url"], f'{project_dir}/metadata.json'):
     print(f'Failed to download metadata from {payload["metadata_url"]}')
     sys.exit()
     
