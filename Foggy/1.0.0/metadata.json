@@ -1,0 +1,13 @@
+{
+  "name":"Foggy",
+  "short_description":"Fast 2D Side Scroller",
+  "description":"Fast 2D Side Scroller",
+  "authors":"West,UberGoober",
+  "version":"1.0.0",
+  "update_notes":"",
+  "category":"Game",
+  "zip_url":"https://bayfiles.com/v468weJeuc",
+  "metadata_url":"https://bayfiles.com/z26awcJdu4",
+  "icon":"Foggy.codea/Icon.png",
+  "hidden":false
+}
