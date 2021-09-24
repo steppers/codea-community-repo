@@ -44,6 +44,6 @@ jobs:
           PUSHOVER_APP_TOKEN: ${{ secrets.PUSHOVER_APP_TOKEN }}
           PUSHOVER_GROUP_TOKEN: ${{ secrets.PUSHOVER_GROUP_TOKEN }}
           PAYLOAD: '${{ github.event.inputs.metadata_json }}'
-          ADMIN_KEY: ${{ secrets.RESERVED_KEY }}
+          REVIEW_KEY: ${{ secrets.REVIEW_KEY }}
         run:
           python "${GITHUB_WORKSPACE}/.github/approve.py"

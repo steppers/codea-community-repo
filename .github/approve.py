@@ -21,14 +21,14 @@ PUSHOVER_APP_TOKEN = os.environ.get('PUSHOVER_APP_TOKEN')
 PUSHOVER_GROUP_TOKEN = os.environ.get('PUSHOVER_GROUP_TOKEN')
 PAYLOAD = os.environ.get('PAYLOAD')
 REPO_ROOT = os.environ.get('GITHUB_WORKSPACE')
-ADMIN_KEY = os.environ.get('ADMIN_KEY')
+REVIEW_KEY = os.environ.get('REVIEW_KEY')
 
 def is_admin(payload):
     if not 'key' in payload:
-        print(f'No admin key provided!')
+        print(f'No review key provided!')
         return False
-    if payload['key'] != ADMIN_KEY:
-        print(f'Incorrect admin key provided!')
+    if payload['key'] != REVIEW_KEY:
+        print(f'Incorrect review key provided!')
         return False
     return True
     
@@ -197,8 +197,8 @@ def pushover(title, message):
 payload = json.loads(PAYLOAD)
 
 # Admin check
-#if not is_admin(payload):
-#    sys.exit()
+if not is_admin(payload):
+    sys.exit()
     
 # Specified project must be in review
 if not project_is_in_review(payload['name'], payload['version']):

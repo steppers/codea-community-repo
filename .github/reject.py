@@ -21,14 +21,14 @@ PUSHOVER_APP_TOKEN = os.environ.get('PUSHOVER_APP_TOKEN')
 PUSHOVER_GROUP_TOKEN = os.environ.get('PUSHOVER_GROUP_TOKEN')
 PAYLOAD = os.environ.get('PAYLOAD')
 REPO_ROOT = os.environ.get('GITHUB_WORKSPACE')
-ADMIN_KEY = os.environ.get('ADMIN_KEY')
+REVIEW_KEY = os.environ.get('REVIEW_KEY')
 
 def is_admin(payload):
     if 'key' not payload:
-        print(f'No admin key provided!')
+        print(f'No review key provided!')
         return False
-    if payload['key'] != ADMIN_KEY:
-        print(f'Incorrect admin key provided!')
+    if payload['key'] != REVIEW_KEY:
+        print(f'Incorrect review key provided!')
         return False
     return True
     
@@ -63,8 +63,6 @@ def remove_from_queue(name, ver):
     wd = os.getcwd()
     os.chdir(REPO_ROOT)
         
-    in_review = False
-        
     # Decode manifest and determine if this version
     # is already queued for review
     file = open('review_queue.json', 'r')
@@ -78,76 +76,6 @@ def remove_from_queue(name, ver):
     # Write new queue file
     file = open('review_queue.json', 'w')
     file.write(json.dumps(queue, indent=4))
-    file.close()
-    
-    # Return to original wd
-    os.chdir(wd)
-    return in_review
-    
-
-# Download a url to a file
-def download(url, filepath):
-    file = open(filepath, "wb")
-    with urllib.request.urlopen(url) as stream:
-        if stream.status != 200:
-            return False
-        while 1:
-            chunk = stream.read(1024*256) # 256K
-            if not chunk:
-                break
-            file.write(chunk)        
-        # TODO: Verify file size
-    file.close()
-    return True
-    
-
-def generate_project_manifest(project_path):
-    print("Generating project manifest:")
-
-    # Change to project root
-    wd = os.getcwd()
-    os.chdir(project_path)
-    
-    # Generate manifest
-    stream = os.popen("find -type f -printf '%P\n'")
-    manifest = stream.read()
-    stream.close()
-    print(manifest)
-    file = open('manifest.txt', 'w')
-    file.write(manifest)
-    file.close()
-    
-    # Return to original wd
-    os.chdir(wd)
-    return
-
-
-def update_manifest(name, version):
-    print("Adding to WebRepo manifest...")
-
-    # Change to repo root
-    wd = os.getcwd()
-    os.chdir(REPO_ROOT)
-    
-    # Create blank file
-    if not os.path.exists('manifest.json'):
-        file = open('manifest.json', 'w')
-        file.write('{}')
-        file.close()
-
-    # Read current manifest
-    file = open('manifest.json', 'r')
-    manifest = json.load(file)
-    file.close()
-    
-    # Add new entry
-    if not name in manifest:
-        manifest[name] = []
-    manifest[name].append(version)
-    
-    # Write new manifest file
-    file = open('manifest.json', 'w')
-    file.write(json.dumps(manifest, indent=4))
     file.close()
     
     # Return to original wd
@@ -199,15 +127,15 @@ def pushover(title, message):
 payload = json.loads(PAYLOAD)
 
 # Admin check
-#if not is_admin(payload):
-#    sys.exit()
+if not is_admin(payload):
+    sys.exit()
     
 # Specified project must be in review
 if not project_is_in_review(payload['name'], payload['version']):
     print(f'Project is not in review: {payload["name"]} - {payload["version"]} ...')
     sys.exit()
     
-print(f'Processing {md["name"]} - {md["version"]} ...')
+print(f'Processing {payload["name"]} - {payload["version"]} ...')
 
 # Finalise the sparse git clone
 stream = os.popen(f'git sparse-checkout set ".github" "{repo_name}" && git checkout')
@@ -217,10 +145,13 @@ stream.close()
 # Add to manifest file
 update_manifest(repo_name, repo_ver)
 
+# Remove from review queue
+remove_from_queue(payload['name'], payload['version'])
+
 # Commit all of our changes
 git_commit()
 
 # Send notification to admin
 pushover(
-    f'Rejected {md["name"]}-{md["version"]}',
+    f'Rejected {payload["name"]}-{payload["version"]}',
     "")
