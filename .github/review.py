@@ -249,17 +249,17 @@ print(stream.read())
 stream.close()
 
 # Ensure we have the right to overwrite a previous version
-if project_is_in_review(md_repo_name, md_repo_ver):
+if project_is_in_review(md["name"], md["version"]):
     print(f'Project version has already been submitted for review! Please submit with a new version specified.')
     sys.exit()
 
 # Ensure a project of the same name and version isn't already live
-if project_is_live(md_repo_name, md_repo_ver):
+if project_is_live(md["name"], md["version"]):
     print(f'Project version is already live! Please submit with a new version specified.')
     sys.exit()
 
 # Add to review queue file
-queue_for_review(md_repo_name, md_repo_ver, md['zip_url'], md['metadata_url'])
+queue_for_review(md["name"], md["version"], md['zip_url'], md['metadata_url'])
 
 # Commit all of our changes
 git_commit()
