@@ -138,12 +138,9 @@ if not project_is_in_review(payload['name'], payload['version']):
 print(f'Processing {payload["name"]} - {payload["version"]} ...')
 
 # Finalise the sparse git clone
-stream = os.popen(f'git sparse-checkout set ".github" "{repo_name}" && git checkout')
+stream = os.popen(f'git sparse-checkout set ".github" && git checkout')
 print(stream.read())
 stream.close()
-
-# Add to manifest file
-update_manifest(repo_name, repo_ver)
 
 # Remove from review queue
 remove_from_queue(payload['name'], payload['version'])
