@@ -149,6 +149,4 @@ remove_from_queue(payload['name'], payload['version'])
 git_commit()
 
 # Send notification to admin
-pushover(
-    f'Rejected {payload["name"]}-{payload["version"]}',
-    "")
+pushover(f'Rejected {payload["name"]}-{payload["version"]}', 'N/A')
