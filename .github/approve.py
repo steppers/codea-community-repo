@@ -180,7 +180,7 @@ if not project_is_in_review(payload['name'], payload['version']):
     print(f'Project is not in review: {payload["name"]} - {payload["version"]} ...')
     sys.exit()
     
-print(f'Processing {md["name"]} - {md["version"]} ...')
+print(f'Processing {payload["name"]} - {payload["version"]} ...')
 
 # Replace space with underscore
 repo_name = payload["name"].replace(" ", "_")
@@ -229,5 +229,5 @@ git_commit()
 
 # Send notification to admin
 pushover(
-    f'New Approval: {md["name"]}',
-    f'{md["version"]}:\n{md["update_notes"]}')
+    f'New Approval: {payload["name"]}',
+    f'{payload["version"]}:\n{payload["update_notes"]}')
