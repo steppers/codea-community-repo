@@ -4,10 +4,8 @@
   "description":"Easy access to the codea community repository",
   "authors":["Steppers"],
   "version":"1.3",
-  "update_notes":"\\n- Support for multi-project bundles",
+  "update_notes":"\n- Support for multi-project bundles",
   "category":"App",
-  "zip_url":"https://bayfiles.com/v468weJeuc",
-  "metadata_url":"https://bayfiles.com/z26awcJdu4",
   "icon":"WebRepo.codea/Icon@2x.png",
   "hidden":false
 }
