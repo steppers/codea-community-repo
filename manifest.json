@@ -15,5 +15,8 @@
     ],
     "supportedOrientations": [
         "1.0.0"
+    ],
+    "Zip": [
+        "1.0.0"
     ]
 }
