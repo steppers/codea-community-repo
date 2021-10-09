@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Buffer Order</key>
+	<array>
+		<string>Main</string>
+		<string>OIL</string>
+		<string>OILInput</string>
+		<string>Element</string>
+		<string>RenderComponent</string>
+		<string>Style</string>
+		<string>Rect</string>
+		<string>RoundedRect</string>
+		<string>Blur</string>
+		<string>Util</string>
+		<string>Text</string>
+		<string>Prefabs</string>
+	</array>
+</dict>
+</plist>
