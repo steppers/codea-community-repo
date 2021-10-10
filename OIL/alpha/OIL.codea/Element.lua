@@ -150,17 +150,44 @@ function OIL.Element:update_frame()
     if self.parent == nil then
         self.frame = {
             x = WIDTH/2, y = HEIGHT/2,
-            w = WIDTH, h = HEIGHT,
+            w = WIDTH, h = HEIGHT, w_raw = WIDTH, h_raw = HEIGHT,
             l = 0, r = WIDTH, b = 0, t = HEIGHT,
-            l_scrolled = 0, r_scrolled = WIDTH, b_scrolled = 0, t_scrolled = HEIGHT
+            l_scrolled = 0, r_scrolled = WIDTH, b_scrolled = 0, t_scrolled = HEIGHT,
+            scale = 1.0
         }
         return
     end
     
     local parent = self.parent.frame
+    local scl = (self:get_style("scale", true) or 1.0)
+    self.frame.scale = scl * parent.scale
     
-    self.frame.x, self.frame.w = parseCoordSize(self.x, self.w, parent.w)
-    self.frame.y, self.frame.h = parseCoordSize(self.y, self.h, parent.h)
+    local x, y, w, h = self.x, self.y, self.w, self.h
+    if self.frame.scale ~= 1.0 and parent.scale ~= 1.0 then
+        if x >= 1.0 or x < 0 then
+            x = x * self.frame.scale
+        end
+        if y >= 1.0 or y < 0 then
+            y = y * self.frame.scale
+        end
+        if w > 1.0 or w < 0 then
+            w = w * self.frame.scale
+        end
+        if h > 1.0 or h < 0 then
+            h = h * self.frame.scale
+        end
+    end
+    
+    self.frame.x, self.frame.w = parseCoordSize(x, w, parent.w)
+    self.frame.y, self.frame.h = parseCoordSize(y, h, parent.h)
+    
+    -- Use our own scale
+    self.frame.w = self.frame.w * scl
+    self.frame.h = self.frame.h * scl
+        
+    -- Get raw unscaled size
+    _, self.frame.w_raw = parseCoordSize(self.x, self.w, parent.w_raw)
+    _, self.frame.h_raw = parseCoordSize(self.y, self.h, parent.h_raw)
     
     -- Parent offset
     self.frame.x = self.frame.x + parent.l
@@ -210,12 +237,13 @@ function OIL.Element:draw(hidden)
     
     -- Translate for new frame
     translate(self.frame.l, self.frame.b)
+    scale(self.frame.scale)
     
     -- Element hidden?
     if not self.hidden then
         -- Draw render components in order
         for _,comp in ipairs(self.render_components) do
-            comp:draw(self.frame.w, self.frame.h)
+            comp:draw(self.frame.w_raw, self.frame.h_raw)
         end
     end
     
@@ -258,4 +286,41 @@ function OIL.Element:pos_is_inside(pos)
             self.frame.r >= pos.x and
             self.frame.b <= pos.y and
             self.frame.t >= pos.y
+end
+
+-- Searches for a style value by key in order:
+-- 1) Our style sheet is searched
+-- 2) Grandparent's style sheets are searched.
+-- 3) The global default style sheet is searched.
+-- 4) Polls a global function if it exists (e.g. fill())
+-- 5) Return nil
+function OIL.Element:get_style(k, this_element_only)
+    
+    -- Search element styles
+    local parent = self
+    while parent ~= nil do
+        style = parent.style
+        v = style and style[k]
+        if v ~= nil then return v end
+        
+        -- Early out if we only care about our own style
+        if this_element_only then
+            return nil
+        end
+        
+        -- Next parent
+        parent = parent.parent
+    end
+    
+    -- Search global default style sheet
+    style = OIL.Style.default
+    v = style and style[k]
+    if v ~= nil then return v end
+    
+    -- Poll global function
+    if type(_G[k]) == "function" then
+        return _G[k]()
+    end
+    
+    return nil
 end

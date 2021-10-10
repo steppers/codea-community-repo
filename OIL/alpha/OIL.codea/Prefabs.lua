@@ -8,6 +8,7 @@ function OIL.Button(label, callback, x, y, w, h)
             if self:pos_is_inside(event.pos) then
                 if event.type == OIL.ETTouchDown then
                     self.style.fill = self.render_components[1]:get_style("fillSelected")
+                    --tween(0.05, self.style, { scale = 0.95 })
                     return self
                 elseif event.type == OIL.ETTap then
                     if callback then callback(self) end
@@ -20,11 +21,13 @@ function OIL.Button(label, callback, x, y, w, h)
                     
             if event.type == OIL.ETTouchUp or event.type == OIL.ETHover or event.type == ETScroll then
                 self.style.fill = self.render_components[1]:get_style("fillUnselected")
+                --tween(0.05, self.style, { scale = 1.0 })
                 return nil
             end
         end,
         style = {
-            text=label
+            text = label,
+            scale = 1.0
         }
     }
     :add_render_component(OIL.RenderComponent.RoundedRect(), OIL.Style.button.bg)
@@ -65,6 +68,7 @@ end
 
 function OIL.Frame(x, y, w, h, priority, color, tex, blurred)
     return OIL.Element{
+        id="frame",
         x = x or 0.5, y = y or 0.5, w = w or 0.5, h = h or 0.5, priority = priority or 0,
         style = {
             fill = color,
@@ -153,7 +157,7 @@ function OIL.ScrollingContainer(x, y, w, h, priority)
     return e
 end
 
-function OIL.Text(txt, x, y, w, h, alignment, color, fontSize, priority)
+function OIL.Text(txt, x, y, w, h, alignment, color, fontSize, fit_parent, priority)
     local e = OIL.Element{
         x = x or 0.5, y = y or 0.5, w = w or 0.5, h = h or 0.5, priority = priority or 0,
         style = {
@@ -165,7 +169,9 @@ function OIL.Text(txt, x, y, w, h, alignment, color, fontSize, priority)
     }
     
     function e:update()
-        self.style.textWrapWidth = self.parent.frame.w - 10
+        if fit_parent == nil or fit_parent then
+            self.style.textWrapWidth = self.parent.frame.w - 10
+        end
     end
     
     e:add_render_component(OIL.RenderComponent(function(self, w, h)
@@ -198,6 +204,100 @@ function OIL.List(x, y, w, h, spacing, priority)
             child.y = y
             y = y - child.h - spacing
         end
+    end
+    
+    return e
+end
+
+function OIL.Toggle(x, y, callback, priority)
+    local e = OIL.Element{
+        x = x or 0.5, y = y or 0.5, w = 64, h = 36, priority = priority or 0,
+        style = OIL.Style.clone(OIL.Style.toggle.bg),
+        value = false
+    }
+    :add_render_component(OIL.RenderComponent.RoundedRect())
+    
+    local knob = OIL.Element{
+        x = 0.25, y = 0.5, w = 0.5625, h = 1.0,
+        style = OIL.Style.clone(OIL.Style.toggle.handle)
+    }
+    :add_render_component(OIL.RenderComponent.RoundedRect())
+    e:add_child(knob)
+    
+    function e:on_event(event)
+        if event.type == OIL.ETTap and self:pos_is_inside(event.pos) then
+            self.value = not self.value
+            if self.value then
+                self.style.fill = self:get_style("fillToggleOn")
+                tween(0.2, knob, {x = 0.75})
+            else
+                self.style.fill = self:get_style("fillToggleOff")
+                tween(0.2, knob, {x = 0.25})
+            end
+            
+            self.tween = tween.path(0.2, self.style, {
+                {scale = 1.0},
+                {scale = 0.8},
+                {scale = 1.0}
+            })
+            
+            if callback then callback(self.value) end
+        end
+    end
+    
+    return e
+end
+
+function OIL.Slider(x, y, w, min, max, callback, priority)
+    local e = OIL.Element{
+        x = x or 0.5, y = y or 0.5, w = w, h = 2, priority = priority or 0,
+        style = OIL.Style.clone(OIL.Style.slider.bar),
+        value = 0.0
+    }
+    :add_render_component(OIL.RenderComponent.Rect())
+    
+    local handle = OIL.Element{
+        x = 0.001, y = 0.5, w = 32, h = 32,
+        style = OIL.Style.clone(OIL.Style.slider.handle)
+    }
+    :add_render_component(OIL.RenderComponent.RoundedRect())
+    e:add_child(handle)
+    
+    local function over(self, pos)
+        return  self.frame.l <= pos.x and
+                self.frame.r >= pos.x and
+                self.frame.b-15 <= pos.y and
+                self.frame.t+15 >= pos.y
+    end
+    
+    function e:on_event(event)            
+        if event.type == OIL.ETPan and (over(self, event.pos) or self.dragging) then
+            local offset = math.min(math.max((event.pos.x - self.frame.l) / self.frame.w, 0.0), 1.0)
+            if offset == 0.0 then
+                handle.x = 0.001
+            elseif offset == 1.0 then
+                handle.x = 0.999
+            else
+                handle.x = offset
+            end
+            
+            if event.state == ENDED then
+                self.dragging = false
+                handle.style.fill = handle:get_style("fillNotDragging")
+            else
+                self.dragging = true
+                handle.style.fill = handle:get_style("fillDragging")
+            end
+            
+            self.value = min + (max-min)*offset
+            if callback then callback(self, self.value) end
+            
+            return self
+        end
+    end
+    
+    function e:get_handle()
+        return handle
     end
     
     return e

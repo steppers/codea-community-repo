@@ -88,7 +88,7 @@ function OIL.RenderComponent.RoundedRect:init(style)
             self.style.tex = nil
             self.blur_tex = nil
         end
-            
+        
         local m = self:get_mesh(w, h)
         if self.mesh_tex then
             m.shader.texture = self:get_style("tex", true)
