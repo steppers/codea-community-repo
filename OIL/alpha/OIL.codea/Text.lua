@@ -5,7 +5,9 @@ OIL.RenderComponent.Text = class(OIL.RenderComponent)
 function OIL.RenderComponent.Text:init(style)
     
     -- Render func
-    OIL.RenderComponent.init(self, function(self, w, h)
+    OIL.RenderComponent.init(self, function(self, w, h, do_draw)
+        if do_draw == false then return end -- skip rendering
+        
         textMode(CENTER)
         self:apply_style("fontSize")
         self:apply_style("fillText")

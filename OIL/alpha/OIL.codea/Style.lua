@@ -82,7 +82,26 @@ OIL.Style.slider = {
     }
 }
 
+OIL.Style.dropdown = {
+    fill = color(220),
+    fillText = color(96),
+    stroke = color(255),
+    strokeWidth = 2,
+    strokeSeparator = color(128)
+}
+
+OIL.Style.text_input = {
+    fill = color(220),
+    fillText = color(96),
+    stroke = color(255),
+    strokeWidth = 2
+}
+
 -- Custom Style Functions to avoid naming collisions
 function fillText(col)
     fill(col)
+end
+
+function strokeSeparator(col)
+    stroke(col)
 end

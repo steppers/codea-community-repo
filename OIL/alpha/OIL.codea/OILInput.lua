@@ -9,6 +9,7 @@ OIL.ETPan = 4
 OIL.ETPress = 5
 OIL.ETScroll = 6
 OIL.ETHover = 7
+OIL.ETKey = 8
 
 local function dispatch(event)
     OIL.handle_event(event)
@@ -143,4 +144,11 @@ end
 
 function OIL.pinch(gesture)
     
+end
+
+function OIL.keyboard(key)
+    dispatch{
+        type = OIL.ETKey,
+        key = key
+    }
 end

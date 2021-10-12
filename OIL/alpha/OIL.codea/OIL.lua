@@ -14,12 +14,12 @@ function OIL.setup()
     OIL.root = OIL.Element{ name = "root", x = 0, y = 0, w = WIDTH, h = HEIGHT, id = "root" }
 end
 
-function OIL.draw()
+function OIL.draw(do_render)
     -- Draw to OIL Framebuffer so we can access it for blur effects
     setContext(OIL.fb)
 
     local pm = projectionMatrix()
-    OIL.root:draw()
+    OIL.root:draw(nil, do_render)
     
     -- Blit OIL framebuffer to screen
     setContext()
@@ -54,7 +54,7 @@ function OIL.handle_event(event)
     end
     
     -- Let the current focus take priority
-    if input_focus and input_focus:handle_event(event) then
+    if input_focus and input_focus.parent and input_focus:handle_event(event) then
         return
     end
     

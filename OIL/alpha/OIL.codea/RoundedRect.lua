@@ -99,7 +99,9 @@ function OIL.RenderComponent.RoundedRect:init(style)
         m.shader.stroke = self:get_style("stroke")
         m.shader.strokeWidth = self:get_style("strokeWidth")
         m.shader.radius = self:get_style("radius")
-        m:draw() -- Draw the cached mesh
+        if do_draw == nil or do_draw then
+            m:draw() -- Draw the cached mesh
+        end
     end, style)
         
     -- Add destructor to deref the mesh in the cache

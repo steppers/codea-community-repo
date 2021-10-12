@@ -205,24 +205,24 @@ function OIL.Element:update_frame()
     self.frame.t = self.frame.b + self.frame.h
 end
 
-function OIL.Element:draw(hidden)
+function OIL.Element:draw(hidden, do_draw)
     -- Element enabled?
     if not self.enabled then
         return
     end
     
-    -- Call our update function
-    if self.update then
-        self:update()
+    -- Call our private update function
+    if self._update then
+        self:_update()
         
         -- If parent is nil then we've been removed
         -- from the element chain and should return.
         if self.parent == nil then return end
     end
     
-    -- Call our private update function
-    if self._update then
-        self:_update()
+    -- Call our update function
+    if self.update then
+        self:update()
         
         -- If parent is nil then we've been removed
         -- from the element chain and should return.
@@ -240,10 +240,10 @@ function OIL.Element:draw(hidden)
     scale(self.frame.scale)
     
     -- Element hidden?
-    if not self.hidden then
+    if not (self.hidden or hidden) then
         -- Draw render components in order
         for _,comp in ipairs(self.render_components) do
-            comp:draw(self.frame.w_raw, self.frame.h_raw)
+            comp:draw(self.frame.w_raw, self.frame.h_raw, do_draw)
         end
     end
     
@@ -251,18 +251,23 @@ function OIL.Element:draw(hidden)
     popMatrix()
     
     -- Draw children
-    self:draw_children(hidden)
+    self:draw_children(hidden, do_draw)
 end
 
 -- Allows for child draw overrides (E.g. scrolling containers)
-function OIL.Element:draw_children(hidden)
+function OIL.Element:draw_children(hidden, do_draw)
     for _,child in ipairs(self.children) do
-        child:draw(self.hidden or hidden)
+        child:draw(self.hidden or hidden, do_draw)
     end
 end
 
 -- Returns true if the event has been handled
 function OIL.Element:handle_event(event)
+    
+    -- Element enabled?
+    if not self.enabled then
+        return nil
+    end
     
     -- Pass to children first (in reverse order)
     for i = #self.children, 1, -1 do
@@ -282,10 +287,14 @@ function OIL.Element:handle_event(event)
 end
 
 function OIL.Element:pos_is_inside(pos)
-    return  self.frame.l <= pos.x and
+    return self:inframe(pos)
+end
+
+function OIL.Element:inframe(pos)
+    return  pos ~= nil and (self.frame.l <= pos.x and
             self.frame.r >= pos.x and
             self.frame.b <= pos.y and
-            self.frame.t >= pos.y
+            self.frame.t >= pos.y)
 end
 
 -- Searches for a style value by key in order:

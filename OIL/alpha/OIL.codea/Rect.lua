@@ -91,7 +91,9 @@ function OIL.RenderComponent.Rect:init(style)
         end
         m.shader.fill = self:get_style("fill")
         m.shader.stroke = self:get_style("stroke")
-        m:draw() -- Draw the cached mesh
+        if do_draw == nil or do_draw then
+            m:draw() -- Draw the cached mesh
+        end
     end, style)
         
     -- Add destructor to deref the mesh in the cache
