@@ -62,33 +62,29 @@ rmesh.vertices = coords
 rmesh.texCoords = coords
 rmesh.shader = shader(shader_src.vert, shader_src.frag)
 
-Oil.RectRenderer = class(Oil.Renderer)
-
-function Oil.RectRenderer:init(style)
-    Oil.Renderer.init(self, function(node, w, h)
-        -- Do blur effect
-        if Oil.styleGet("blur") then
-            self.blur_tex = self.blur_tex or Oil.BlurTexture(Oil.styleGet("blur_amount"), Oil.styleGet("blur_kernel_size"), Oil.styleGet("blur_downscale"))
-            self.blur_tex:update(Oil.fb, node.frame)
-            self.style.tex = self.blur_tex:get()
-        elseif self.blur_tex then
-            -- Ensure the blur textures can be freed
-            self.style.tex = nil
-            self.blur_tex = nil
-        end
+function Oil.RectRenderer(node, w, h)
+    -- Do blur effect
+    if node:get_style("blur") then
+        node.state.blur_tex = node.state.blur_tex or Oil.BlurTexture(node:get_style("blur_amount"), node:get_style("blur_kernel_size"), node:get_style("blur_downscale"))
+        node.state.blur_tex:update(Oil.fb, node.frame)
+        node.style.tex = node.state.blur_tex:get()
+    elseif node.state.blur_tex then
+        -- Ensure the blur textures can be freed
+        node.style.tex = nil
+        node.state.blur_tex = nil
+    end
         
-        -- Setup uniforms
-        rmesh.shader.rectSize = vec2(w, h)
-        rmesh.shader.texture = Oil.styleGetTop("tex") or blank_image
-        rmesh.shader.fill = Oil.styleGet("fill")
-        rmesh.shader.stroke = Oil.styleGet("stroke")
-        rmesh.shader.strokeWidth = Oil.styleGet("strokeWidth")
-        rmesh.shader.radius = Oil.styleGet("radius")
+    -- Setup uniforms
+    rmesh.shader.rectSize = vec2(w, h)
+    rmesh.shader.texture = node:get_style("tex") or blank_image
+    rmesh.shader.fill = node:get_style("fill")
+    rmesh.shader.stroke = node:get_style("stroke")
+    rmesh.shader.strokeWidth = node:get_style("strokeWidth")
+    rmesh.shader.radius = node:get_style("radius")
         
-        -- Draw
-        pushMatrix()
-        scale(w, h)
-        rmesh:draw()
-        popMatrix()
-    end, style)
+    -- Draw
+    pushMatrix()
+    scale(w, h)
+    rmesh:draw()
+    popMatrix()
 end

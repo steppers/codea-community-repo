@@ -10,10 +10,12 @@
 		<string>Prefabs</string>
 		<string>StyleSheets</string>
 		<string>Node</string>
-		<string>Renderer</string>
-		<string>Style</string>
 		<string>RectRenderer</string>
 		<string>Blur</string>
+	</array>
+	<key>Dependencies</key>
+	<array>
+		<string>Documents:FPSOverlay</string>
 	</array>
 </dict>
 </plist>

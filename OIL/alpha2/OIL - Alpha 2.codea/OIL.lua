@@ -16,7 +16,7 @@ function Oil.setup()
     
     -- Init root node
     Oil.root = Oil.Node(0, 0, WIDTH, HEIGHT)
-    Oil.root.style = Oil.style_default
+    Oil.root.style_default = Oil.style_default
 end
 
 function Oil.beginDraw()
@@ -29,6 +29,7 @@ function Oil.endDraw()
     
     -- Update nodes
     Oil.root:update()
+    Oil.root:post_update()
     
     -- Draw nodes
     setContext(Oil.fb)

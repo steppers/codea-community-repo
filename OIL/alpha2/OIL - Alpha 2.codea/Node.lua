@@ -37,8 +37,8 @@ end
 
 function Oil.Node:init(x, y, w, h, priority)
     -- General values
-    self.x = x or 0.0
-    self.y = y or 0.0
+    self.x = x or 0.5
+    self.y = y or 0.5
     self.w = w or 1.0
     self.h = h or 1.0
     self.scroll = vec2(0,0)
@@ -53,14 +53,15 @@ function Oil.Node:init(x, y, w, h, priority)
     -- Empty state table
     self.state = {}
     
-    -- Empty style table by default
+    -- Default style sheet
+    self.style_sheet = Oil.style_default
     self.style = {}
-    self.style_default = nil -- No default override
     
     -- Empty frame until first update
     self.frame = {}
     
     -- Empty component lists
+    self.pre_updaters = {}
     self.updaters = {}
     self.renderers = {}
     self.handlers = {}
@@ -82,9 +83,16 @@ function Oil.Node:init(x, y, w, h, priority)
     
     -- Calculate an initial frame
     self:calculate_frame()
+    self:calculate_frame_raw()
 end
 
 -- Called once per frame (when enabled)
+--
+-- Pre Update runs from leaf nodes up to the root.
+-- Use pre-update to adjust node frame sizes & positions
+-- based on children only.
+--
+-- Do not base changes on parent values
 function Oil.Node:update()
     
     -- Abort if disabled
@@ -98,49 +106,36 @@ function Oil.Node:update()
     -- Re-sort the children
     self:sort_children()
     
-    -- Apply style
-    Oil.stylePush(self.style_default, self.style)
+    -- Pre-Update children
+    for _,child in ipairs(self.children) do
+        child:update()
+    end
     
-    -- Update own updaters.
+    -- Update Pre-Updaters.
     -- We do this in reverse order so additional updaters
     -- added to prefabs are run first.
     for i = #self.updaters, 1, -1 do
         self.updaters[i](self)
     end
+end
+    
+-- Called once per frame (when enabled)
+--
+-- Update runs from the root node down to leaf nodes
+-- Use pre-update to adjust node frame sizes
+function Oil.Node:post_update()
+    
+    -- Abort if disabled
+    if not self.enabled then
+        return
+    end
+    
+    -- Calculate raw frame position
+    self:calculate_frame_raw()
     
     -- Update children
     for _,child in ipairs(self.children) do
-        child:update()
-    end
-    
-    -- Pop style
-    Oil.stylePop(2)
-end
-
--- Updates the current node and it's children without
--- calling updaters. Only the frames are calculated
--- using the Nodes' current states.
-function Oil.Node:update_minimal()
-    -- Calculate render frame
-    self:calculate_frame()
-    
-    -- Re-sort the children
-    self:sort_children()
-    
-    -- Update children
-    for _,child in ipairs(self.children) do
-        child:update_minimal()
-    end
-end
-
--- Same as update_minimal above but avoids
--- recalculating our own frame again.
--- This should only be called from within
--- an updater.
-function Oil.Node:update_children_minimal()
-    -- Update children's frames
-    for _,child in ipairs(self.children) do
-        child:update_minimal()
+        child:post_update()
     end
 end
 
@@ -156,14 +151,9 @@ function Oil.Node:draw()
     pushMatrix()
     translate(self.frame.x, self.frame.y)
     
-    -- Apply style
-    Oil.stylePush(self.style_default, self.style)
-    
     -- Draw own renderers
     for _,renderer in ipairs(self.renderers) do
-        Oil.stylePush(renderer.style) -- Push renderer style
-        renderer.func(self, self.frame.w, self.frame.h)
-        Oil.stylePop() -- Pop renderer style
+        renderer(self, self.frame.w, self.frame.h)
     end
     
     -- Translate children for scrolling
@@ -171,9 +161,6 @@ function Oil.Node:draw()
     
     -- Draw children
     self:draw_children()
-    
-    -- Pop style
-    Oil.stylePop(2)
     
     -- Revert translate
     popMatrix()
@@ -190,15 +177,11 @@ end
 -- Handle an event
 function Oil.Node:handle_event(event)
     
-    -- Apply style
-    Oil.stylePush(self.style_default, self.style)
-    
     -- Pass to children first
     for i = #self.children, 1, -1 do
         local child = self.children[i]
         local handler = child:handle_event(event)
         if handler then
-            Oil.stylePop() -- Pop renderer style
             return handler
         end
     end
@@ -206,13 +189,9 @@ function Oil.Node:handle_event(event)
     -- Pass to handlers
     for _,handler in ipairs(self.handlers) do
         if handler(self, event) then
-            Oil.stylePop() -- Pop renderer style
             return self
         end
     end
-    
-    -- Pop renderer style
-    Oil.stylePop(2)
     
     -- Not handled
     return nil
@@ -233,6 +212,18 @@ function Oil.Node:calculate_frame()
     -- Calculate our current frame
     self.frame.x, self.frame.w = parsePosSize(self.x, self.w, parent.w)
     self.frame.y, self.frame.h = parsePosSize(self.y, self.h, parent.h)
+end
+
+function Oil.Node:calculate_frame_raw()
+    
+    -- Root node uses the precalculated root frame
+    if self.parent == nil then
+        self.frame.x_raw = 0
+        self.frame.y_raw = 0
+        return
+    end
+    
+    local parent = self.parent.frame
     
     -- Raw pos (absolute screen pos)
     self.frame.x_raw = self.frame.x + parent.x_raw + self.parent.scroll.x
@@ -246,14 +237,51 @@ function Oil.Node:covers(pos)
             pos.y <= self.frame.y_raw + self.frame.h
 end
 
-function Oil.Node:set_style(style)
-    self.style = style
+function Oil.Node:set_style(style_or_key, value)
+    if value then
+        self.style[style_or_key] = value
+    elseif style_or_key ~= nil then
+        self.style = style_or_key
+    else
+        self.style = {}
+    end
     return self
 end
 
-function Oil.Node:set_default_style(style)
-    self.style_default = style
+function Oil.Node:add_style(style_or_key, value)
+    if value then 
+        self.style[style_or_key] = value
+    else
+        for k,v in pairs(style_or_key) do
+            self.style[k] = v
+        end
+    end
     return self
+end
+
+function Oil.Node:set_style_sheet(style_sheet)
+    self.style_sheet = style_sheet
+    return self
+end
+
+function Oil.Node:get_style(key)
+    return self.style[key] or self.style_sheet[key] or Oil.style_default[key]
+end
+
+-- Retrieves the style value for key and passes
+-- it to the provided function or a global function
+-- of the same name.
+function Oil.Node:apply_style(key, func)
+    local v = self:get_style(key)
+    assert(v, "No style value for key: " .. key)
+    
+    if func then
+        -- Call the func we're given
+        func(v)
+    else
+        -- Call global function by the same name
+        _G[key](v)
+    end
 end
 
 function Oil.Node:set_priority(p)
@@ -297,13 +325,8 @@ end
 
 -- Registers the function 'renderer' as a render function
 -- that will be called every frame (when the node is enabled & displayed on-screen)
-function Oil.Node:add_renderer(renderer, style)
-    if type(renderer) == "function" then
-        table.insert(self.renderers, Oil.Renderer(renderer, style))
-    else
-        renderer.style = style or renderer.style
-        table.insert(self.renderers, renderer) 
-    end
+function Oil.Node:add_renderer(renderer)
+    table.insert(self.renderers, renderer)
     return self
 end
 
