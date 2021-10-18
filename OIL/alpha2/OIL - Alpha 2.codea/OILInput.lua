@@ -13,15 +13,16 @@ local current_time = 0
 -- Dispatchers
 local last_handler = nil
 local function dispatch_event(event)
+    local handled = false
     
     -- Give the previous handler priority
     if last_handler then
-        last_handler = last_handler:handle_event(event)
+        handled, last_handler = last_handler:handle_event(event)
     end
     
     -- If nothing has handled it so far then pass it to root
-    if last_handler == nil and Oil.root then
-        last_handler = Oil.root:handle_event(event)
+    if not handled and Oil.root then
+        _, last_handler = Oil.root:handle_event(event)
     end
 end
 
@@ -36,22 +37,27 @@ end
 
 -- Convert a scroll gesture into a drag gesture
 function Oil.scroll(gesture)
+    local pos = gesture.location - gesture.translation
     if gesture.state == BEGAN then
         -- Send raw event
         dispatch_event{
-            type = "touchdown",
-            pos = gesture.location
+            type = "drag",
+            pos = pos,
+            delta = gesture.delta,
+            state = BEGAN
         }
     elseif gesture.state == CHANGED then
         dispatch_event{
             type = "drag",
-            pos = gesture.location,
-            delta = gesture.delta
+            pos = pos,
+            delta = gesture.delta,
+            state = CHANGED
         } 
     else
         dispatch_event{
-            type = "touchup",
-            pos = gesture.location
+            type = "drag",
+            pos = pos,
+            state = ENDED
         }
     end
 end

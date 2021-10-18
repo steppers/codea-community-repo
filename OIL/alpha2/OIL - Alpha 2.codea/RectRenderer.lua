@@ -28,6 +28,9 @@ local shader_src = {
         uniform vec4 stroke;
         uniform float radius;
         uniform float strokeWidth;
+        uniform bool shadow;
+        uniform float shadowWidth;
+        uniform float shadowIntensity;
         
         varying highp vec2 vUV;
     
@@ -40,11 +43,29 @@ local shader_src = {
         void main() 
         {
             vec2 pos = rectSize * vUV;
-            
-            float fDist = RectSDF(pos-rectSize/2.0, rectSize/2.0, radius);
-            float fBlendAmount = (strokeWidth > 0.0) ? smoothstep(0.0, 1.0, abs(fDist) - strokeWidth / 2.0) : 1.0;
-        
-            gl_FragColor = (fDist > 0.0) ? vec4(0.0) : mix(stroke, texture2D(texture, vUV) * fill, fBlendAmount);
+    
+            if (shadow)
+            {
+                float fDist = RectSDF(pos-rectSize/2.0, rectSize/2.0, radius + shadowWidth);
+                gl_FragColor = vec4(vec3(0.0), smoothstep(0.0, 1.0, (-fDist/(shadowWidth*2.0))) * shadowIntensity);
+            }
+            else
+            {
+                float fDist = RectSDF(pos-rectSize/2.0, rectSize/2.0, radius);
+                
+                // Not great from an optimisation standpoint I know, but
+                // it looks great.
+                if (fDist > -0.5)
+                {
+                    vec4 from = (strokeWidth > 0.0) ? stroke : texture2D(texture, vUV) * fill;
+                    gl_FragColor = mix(from, vec4(from.rgb, 0.0), smoothstep(0.0, 1.0, abs(fDist+0.5)));
+                }
+                else
+                {
+                    float fBlendAmount = (strokeWidth > 0.0) ? smoothstep(0.0, 1.0, abs(fDist) - strokeWidth/2.0) : 1.0;
+                    gl_FragColor = mix(stroke, texture2D(texture, vUV) * fill, fBlendAmount);
+                }
+            }
         }
     ]],
 }
@@ -73,16 +94,31 @@ function Oil.RectRenderer(node, w, h)
         node.style.tex = nil
         node.state.blur_tex = nil
     end
-        
+    
     -- Setup uniforms
-    rmesh.shader.rectSize = vec2(w, h)
     rmesh.shader.texture = node:get_style("tex") or blank_image
     rmesh.shader.fill = node:get_style("fill")
     rmesh.shader.stroke = node:get_style("stroke")
     rmesh.shader.strokeWidth = node:get_style("strokeWidth")
     rmesh.shader.radius = node:get_style("radius")
-        
-    -- Draw
+    
+    -- Draw shadow
+    if node:get_style("shadow") then
+        local shadowWidth = node:get_style("shadowWidth")
+        rmesh.shader.rectSize = vec2(w + shadowWidth*2, h + shadowWidth*2)
+        rmesh.shader.shadow = true
+        rmesh.shader.shadowWidth = shadowWidth
+        rmesh.shader.shadowIntensity = node:get_style("shadowIntensity")
+        pushMatrix()
+        translate(-shadowWidth, -shadowWidth)
+        scale(w+shadowWidth*2, h+shadowWidth*2)
+        rmesh:draw()
+        popMatrix()
+    end
+    
+    -- Draw Rect
+    rmesh.shader.rectSize = vec2(w, h)
+    rmesh.shader.shadow = false
     pushMatrix()
     scale(w, h)
     rmesh:draw()

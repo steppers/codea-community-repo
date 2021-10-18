@@ -12,11 +12,9 @@ local function parsePosSize(pos, size, parent_size)
             size = parent_size * size
         end
         
-        if pos%1 == 0 and pos >= 0 then
-            -- Standard coord
-        elseif pos < 0 then -- far edge offset
+        if pos < 0 then -- far edge offset
             pos = (parent_size + pos) - size
-        else -- Proportional pos
+        elseif pos < 1 and pos > 0 then -- Proportional pos
             pos = (parent_size * pos) - size/2
         end
     else -- negative size (far edge offset)
@@ -178,23 +176,33 @@ end
 function Oil.Node:handle_event(event)
     
     -- Pass to children first
+    local handled, handler = self:children_handle_event(event)
+    if handled then return handled, handler end
+    
+    -- Pass to handler functions
+    handled, handler = self:internal_handle_event(event)
+    
+    -- Return result
+    return handled, handler
+end
+
+function Oil.Node:internal_handle_event(event)
+    for _,handler in ipairs(self.handlers) do
+        handled, handler = handler(self, event)
+        if handled then
+            return handled, handler
+        end
+    end
+end
+
+function Oil.Node:children_handle_event(event)
     for i = #self.children, 1, -1 do
         local child = self.children[i]
-        local handler = child:handle_event(event)
-        if handler then
-            return handler
+        local handled, handler = child:handle_event(event)
+        if handled then
+            return handled, handler
         end
     end
-    
-    -- Pass to handlers
-    for _,handler in ipairs(self.handlers) do
-        if handler(self, event) then
-            return self
-        end
-    end
-    
-    -- Not handled
-    return nil
 end
 
 function Oil.Node:calculate_frame()
@@ -342,7 +350,7 @@ function Oil.Node:remove_child(child)
     for i,v in ipairs(self.children) do
         if v == child then
             table.remove(self.children, i)
-            v.parent = nil -- No parent now
+            child.parent = nil -- No parent now
             return
         end
     end
@@ -386,4 +394,21 @@ function Oil.Node:sort_children()
         end
         return a.priority < b.priority
     end)
+end
+
+-- Removes the node from its parent.
+-- Use this to delete nodes
+function Oil.Node:kill()
+    self.parent:remove_child(self)
+end
+
+-- Sets the debug name
+function Oil.Node:set_debug_name(name)
+    self.debug_name = name
+    return self
+end
+
+-- Gets a debug name if it's available
+function Oil.Node:get_debug_name()
+    return self.debug_name or "unnamed"
 end

@@ -3,7 +3,10 @@
 viewer.mode = FULLSCREEN_NO_BUTTONS
 
 local news_entry_style = {
-    radius = 30
+    radius = 30,
+    shadow = true,
+    shadowWidth = 14,
+    shadowIntensity = 0.6
 }
 
 local icon_style = {
@@ -12,56 +15,77 @@ local icon_style = {
     fill=color(255)
 }
 
+local function LabelledSwitch(x, y, label, callback, default)
+    return Oil.Switch(x, y, callback, default)
+        :add_child(Oil.Label(60, 0.5, 100, 32, label, LEFT))
+end
+
 function setup()
     Oil.setup()
     FPSOverlay.setup(60)
     
     --[[
-    Oil.VerticalSpreader(0.5, 0.5, 1.0, 1.0)
-    :set_style("align", CENTER)
-    :add_children(
-        Oil.Label(0.5, 0, 200, 50, "Label"),
-        Oil.Rect(0.5, 0, 200, 50),
-        Oil.Icon(0.5, 0, 50, 50, asset.builtin.Blocks.Dirt_Grass),
-        Oil.TextButton(0.5, 0, 200, 50, "TextButton"),
-        Oil.EmojiButton(0.5, 0, 50, 50, "🎮"),
-        Oil.IconButton(0.5, 0, 50, 50, asset.builtin.Blocks.Dirt_Grass),
-        Oil.Scroll(0.5, 200, 400, 200)
-            :set_style("clipAxis", AXIS_Y)
-            :set_style("scrollAxis", AXIS_Y)
-            :add_renderer(Oil.RectRenderer)
-            :add_children(
-                Oil.VerticalSpreader(0.5, -0.0001, 100, 410)
+    Oil.Scroll(0.5, 0.5, 1.0, 1.0)
+    :add_child(
+        Oil.List(0.5, 1.0, 1.0)
+        :add_children(
+            Oil.Label(0.5, 0, 200, 50, "I'm a scrolling list!"),
+            Oil.Rect(0.5, 0, 200, 30),
+            Oil.Icon(0.5, 0, 50, 50, asset.builtin.Blocks.Dirt_Grass),
+            Oil.TextButton(0.5, 0, 200, 30, "TextButton"),
+            Oil.EmojiButton(0.5, 0, 50, 50, "🎮"),
+            Oil.IconButton(0.5, 0, 50, 50, asset.builtin.Blocks.Dirt_Grass),
+            Oil.Scroll(0.5, 0, 400, 200)
+                :set_style("clipAxis", AXIS_Y)
+                :add_renderer(Oil.RectRenderer)
                 :add_children(
-                    Oil.Label(0.5, 0, 200, 50, "I can scroll!"),
-                    Oil.IconButton(0.5, 0, 50, 50, asset.builtin.Blocks.Dirt_Grass),
-                    Oil.Icon(0.5, 0, 50, 50, asset.builtin.Blocks.Dirt_Snow),
-                    Oil.Icon(0.5, 0, 50, 50, asset.builtin.Blocks.Dirt_Sand),
-                    Oil.Icon(0.5, 0, 50, 50, asset.builtin.Blocks.Brick_Red),
-                    Oil.Icon(0.5, 0, 50, 50, asset.builtin.Blocks.Cactus_Side),
-                    Oil.Icon(0.5, 0, 50, 50, asset.builtin.Blocks.Cotton_Red)
-                )
-            )
+                    Oil.List(0.5, -0.0001, 100)
+                    :add_children(
+                        Oil.Label(0.5, 0, 200, 50, "I can also scroll!"),
+                        Oil.IconButton(0.5, 0, 50, 50, asset.builtin.Blocks.Dirt_Grass),
+                        Oil.Icon(0.5, 0, 50, 50, asset.builtin.Blocks.Dirt_Snow),
+                        Oil.Icon(0.5, 0, 50, 50, asset.builtin.Blocks.Dirt_Sand),
+                        Oil.Icon(0.5, 0, 50, 50, asset.builtin.Blocks.Brick_Red),
+                        Oil.Icon(0.5, 0, 50, 50, asset.builtin.Blocks.Cactus_Side),
+                        Oil.Icon(0.5, 0, 50, 50, asset.builtin.Blocks.Cotton_Red)
+                    )
+                ),
+            Oil.Switch(0.5, 0),
+            Oil.Slider(0.5, 0, 400, 40, 4, 9, function(val)
+                -- Do something with the value here
+            end, 8)
+        )
     )
     ]]
     
     -- Scrolling news pane
-    local news = Oil.Scroll(0, 120, 1.0, -55)
+    local news = Oil.Scroll(0, 0, 1.0, -55)
+    :add_style("bufferBottom", 120)
     :add_updater(function(node)
         -- This updater arranges the children in a similar fashion
         -- to the iOS App Store's 'Today' tab.
         local wunit = ((node.frame.w - 90) / 5)
         local wsmall = wunit * 2
         local wlarge = wunit * 3
-        for i,child in ipairs(node.children) do
-            local i = i-1
-            local isLeft = ((i%2) == 0)
-            local isLarge = ((i%4)%3 == 0)
-            
-            child.x = (isLeft and 30) or -30
-            child.y = math.min(-0.0001,  -(i//2) * 430)
-            child.w = (isLarge and wlarge) or wsmall
-            child.h = 400 -- constant
+        
+        if wsmall > 300 then
+            for i,child in ipairs(node.children) do
+                local i = i-1
+                local isLeft = ((i%2) == 0)
+                local isLarge = ((i%4)%3 == 0)
+                
+                child.x = (isLeft and 30) or -30
+                child.y = math.min(-0.0001,  -(i//2) * 430)
+                child.w = (isLarge and wlarge) or wsmall
+                child.h = 400 -- constant
+            end
+        else
+            for i,child in ipairs(node.children) do
+                child.x = 30
+                child.y = math.min(-0.0001,  -(i-1) * 430)
+                child.w = node.frame.w - 60
+                child.h = 400 -- constant
+            end
         end
     end)
     
@@ -113,7 +137,7 @@ function setup()
         :add_style(news_entry_style)
         :add_style("fill", color(25, 127, 226))
         :add_children(
-            Oil.VerticalSpreader(0, 0, 1.0, 1.0)
+            Oil.VerticalStack(0, 0, 1.0, 1.0)
             :add_style("spacing", 20)
             :add_children(
                 Oil.Label(25, -15, -1, 30, "New Releases", LEFT)
@@ -142,8 +166,28 @@ function setup()
         )
     )
     
+    news:add_child(
+        Oil.Rect()
+        :add_style(news_entry_style)
+        :add_style("fill", color(223, 45, 63))
+        :add_children(
+            Oil.VerticalStack(10, 20, -10, -20)
+            :add_style("align", TOP)
+            :add_style("spacing", 20)
+            :add_children(
+                Oil.Label(25, 0, -1, 30, "New Features", LEFT)
+                :add_style({fontSize=32, fillText=color(255)}),
+    
+                LabelledSwitch(5, 0, "In-App Submissions & Approval?", nil, true),
+                LabelledSwitch(5, 0, "Light & Dark Themes?", nil, true),
+                LabelledSwitch(5, 0, "Slick new UI?", nil, true),
+                LabelledSwitch(5, 0, "Annoying Github login?", nil, false),
+                LabelledSwitch(5, 0, "Best Community Projects?", nil, true)
+            )
+        )
+    )
+    
     news:add_children(
-        Oil.Rect(30, -430, 430, 400):add_style(news_entry_style):add_style("fill", color(53, 174, 113)),
         Oil.Rect(490, -430, -30, 400):add_style(news_entry_style):add_style("fill", color(210, 73, 217))
     )
     
@@ -152,13 +196,14 @@ function setup()
     :set_priority(100)
     :add_handler(Oil.TouchBlocker)
     :add_children(
-        Oil.HorizontalSpreader()
+        Oil.HorizontalStack()
         :add_children(
             Oil.EmojiButton(0, -5, 50, 50, "📅"),
-            Oil.IconButton(0, -5, 50, 50, asset.builtin.Blocks.Brick_Red),
-            Oil.TextButton(0, -5, 200, 50, "We're all in a spreader"),
-            Oil.IconButton(0, -5, 50, 50, asset.builtin.Blocks.Grass_Top),
-            Oil.IconButton(0, -5, 50, 50, asset.builtin.Blocks.Ice)
+            Oil.EmojiButton(0, -5, 50, 50, "🎮"),
+            Oil.EmojiButton(0, -5, 50, 50, "🛠"),
+            Oil.EmojiButton(0, -5, 50, 50, "📚"),
+            Oil.EmojiButton(0, -5, 50, 50, "🎨"),
+            Oil.EmojiButton(0, -5, 50, 50, "🔍")
         )
     )
     
@@ -166,7 +211,7 @@ function setup()
     Oil.Node(0, -0.0001, 1.0, 55)
     :add_children(
         -- Top right button group
-        Oil.HorizontalSpreader(-10, 0, 1.0, 1.0)
+        Oil.HorizontalStack(-10, 0, 1.0, 1.0)
         :add_style("align", RIGHT)
         :add_children(
             Oil.TextButton(0, -10, 100, 35, "Review"),
@@ -175,7 +220,7 @@ function setup()
         ),
     
         -- Top left button group
-        Oil.HorizontalSpreader(10, 0, 1.0, 1.0)
+        Oil.HorizontalStack(10, 0, 1.0, 1.0)
         :add_style("align", LEFT)
         :add_children(
             Oil.EmojiButton(0, -10, 35, 35, "❌", function()

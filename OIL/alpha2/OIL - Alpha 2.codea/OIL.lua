@@ -17,6 +17,7 @@ function Oil.setup()
     -- Init root node
     Oil.root = Oil.Node(0, 0, WIDTH, HEIGHT)
     Oil.root.style_default = Oil.style_default
+    Oil.root:set_debug_name("root")
 end
 
 function Oil.beginDraw()

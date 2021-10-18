@@ -8,6 +8,9 @@ Oil.style_default = {
     
     -- Rectangle settings
     radius = 0,
+    shadow = false,
+    shadowWidth = 10,
+    shadowIntensity = 1.0,
     
     -- Text settings
     font = "Helvetica",
@@ -49,7 +52,7 @@ Oil.style_Rect = {
     blur = false,
     blur_amount = 1.0,
     blur_kernel_size = 16,
-    blur_downscale = 0.5,
+    blur_downscale = 0.5
 }
 
 Oil.style_Icon = {
@@ -124,12 +127,54 @@ Oil.style_IconButton = {
     fillButtonPressed = color(180),
 }
 
-Oil.style_HorizontalSpreader = {
+Oil.style_HorizontalStack = {
     spacing = 10,
     align = CENTER
 }
 
-Oil.style_VerticalSpreader = {
+Oil.style_VerticalStack = {
+    spacing = 10,
+    align = CENTER
+}
+
+Oil.style_Scroll = {
+    clipAxis = AXIS_NONE,
+    scrollAxis = AXIS_Y,
+    bufferTop = 0,
+    bufferBottom = 0,
+    bufferLeft = 0,
+    bufferRight = 0
+}
+
+Oil.style_Switch = {
+    fill = color(128),
+    fillOn = color(19, 207, 82),
+    fillOff = color(128),
+    radius = 16
+}
+
+Oil.style_SwitchHandle = {
+    fill = color(230),
+    radius = 14
+}
+
+Oil.style_Slider = {
+    fill = color(196),
+    fillActive = color(0, 118, 255),
+    strokeWidth = 0,
+    radius = 2
+}
+
+Oil.style_SliderHandle = {
+    fill = color(230),
+    strokeWidth = 1,
+    radius = 14,
+    shadow = true,
+    shadowWidth = 10,
+    shadowIntensity = 0.5
+}
+
+Oil.style_List = {
     spacing = 10,
     align = CENTER
 }

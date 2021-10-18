@@ -51,20 +51,7 @@ function Oil.ButtonHandler(callback, long_press_callback)
         end
     end
 end
-
-function Oil.ScrollHandler(node, event)
-    if node:covers(event.pos) or node.scrolling then
-        if event.type == "touchup" then
-            node.scrolling = false
-        elseif event.type == "drag" then
-            node.scrolling = true
-            node.scroll_velocity = event.delta / DeltaTime
-        end
-            
-        return true
-    end
-end
-
+    
 -- Blocks all incoming events that are inside the node
 function Oil.TouchBlocker(node, event)
     if node:covers(event.pos) then
@@ -127,9 +114,9 @@ function Oil.IconButton(x, y, w, h, texture, cb, press_cb)
 end
 
 -- Spreads children along it's width
-function Oil.HorizontalSpreader(x, y, w, h)
+function Oil.HorizontalStack(x, y, w, h)
     return Oil.Node(x, y, w, h)
-        :set_style_sheet(Oil.style_HorizontalSpreader)
+        :set_style_sheet(Oil.style_HorizontalStack)
         :add_updater(function(node)
             local num_children = #node.children
             local spacing = node:get_style("spacing")
@@ -159,16 +146,16 @@ end
 
 -- Spreads children along it's height.
 -- Children must use pixel heights.
-function Oil.VerticalSpreader(x, y, w, h)
+function Oil.VerticalStack(x, y, w, h)
     return Oil.Node(x, y, w, h)
-        :set_style_sheet(Oil.style_VerticalSpreader)
+        :set_style_sheet(Oil.style_VerticalStack)
         :add_updater(function(node)
             local num_children = #node.children
             local spacing = node:get_style("spacing")
             
             local children_total_height = 0
             for _,child in ipairs(node.children) do
-                children_total_height = children_total_height + child.h
+                children_total_height = children_total_height + child.frame.h
             end
             children_total_height = children_total_height + ((spacing or 0) * (num_children-1))
         
@@ -193,7 +180,25 @@ end
 -- Scroll
 function Oil.Scroll(x, y, w, h)
     local node = Oil.Node(x, y, w, h)
-        :add_handler(Oil.ScrollHandler)
+        :set_style_sheet(Oil.style_Scroll)
+        :add_handler(function(node, event)
+            if event.type == "drag" then
+                if event.state == BEGAN and node:covers(event.pos) then
+                    node.scroll_velocity = event.delta / DeltaTime
+                    node.scrolling = true
+                    return true, node
+                elseif event.state == CHANGED and node.scrolling then
+                    node.scroll_velocity = event.delta / DeltaTime
+                    return true, node
+                elseif event.state == ENDED then
+                    node.scrolling = false
+                    return true, nil
+                end
+            elseif node.scrolling then
+                return true, node
+            end
+            return false, nil
+        end)
         :add_updater(function(node)
             -- Scroll smoothing
             if node.scrolling then
@@ -211,9 +216,9 @@ function Oil.Scroll(x, y, w, h)
                 maxx = math.max(maxx, child.frame.x + child.frame.w)
                 maxy = math.max(maxy, child.frame.y + child.frame.h)
             end
-            
+        
             -- Default scroll axis is Y
-            local axis = (node:get_style("scrollAxis") or AXIS_Y)
+            local axis = node:get_style("scrollAxis")
             
             -- The desired scroll value
             local target = vec2(node.scroll:unpack())
@@ -223,8 +228,8 @@ function Oil.Scroll(x, y, w, h)
                 node.scroll.y = 0
                 target.y = 0
             else
-                maxy = maxy + (node:get_style("bufferTop") or 0)
-                miny = miny + (node:get_style("bufferBottom") or 0)
+                maxy = maxy + node:get_style("bufferTop")
+                miny = miny - node:get_style("bufferBottom")
                 local min_scroll = (node.frame.h - maxy)
                 local max_scroll = -miny
                 if (maxy-miny) < node.frame.h then
@@ -241,8 +246,8 @@ function Oil.Scroll(x, y, w, h)
                 node.scroll.x = 0
                 target.x = 0
             else
-                maxx = maxx + (node:get_style("bufferLeft") or 0)
-                minx = minx + (node:get_style("bufferRight") or 0)
+                maxx = maxx + node:get_style("bufferLeft")
+                minx = minx - node:get_style("bufferRight")
                 local min_scroll = (node.frame.w - maxx)
                 local max_scroll = -minx
                 if (maxx-minx) < node.frame.w then
@@ -259,7 +264,7 @@ function Oil.Scroll(x, y, w, h)
     
     -- Override draw_children to implement clipping
     function node:draw_children()
-        local axis = (node:get_style("clipAxis") or AXIS_NONE)
+        local axis = node:get_style("clipAxis")
         if axis == 0 then
             -- No clip
             Oil.Node.draw_children(self)
@@ -279,10 +284,143 @@ function Oil.Scroll(x, y, w, h)
     
     -- Block events that don't fall within the scroll node
     function node:handle_event(event)
-        if node.scrolling or (event.pos == nil) or node:covers(event.pos) then
-            Oil.Node.handle_event(self, event)
+        --print("handle_event: ", self:get_debug_name())
+        
+        -- Pass to children first
+        local handled, handler
+        
+        -- Only pass to children if we're not scrolling & the pos is
+        -- within the node.
+        if not node.scrolling and ((event.pos == nil) or node:covers(event.pos)) then
+            handled, handler = self:children_handle_event(event)
+            if handled then return handled, handler end
         end
+        
+        -- Pass to handler functions
+        handled, handler = self:internal_handle_event(event)
+        
+        -- Return result
+        return handled, handler
     end
+    
+    return node
+end
+
+function Oil.Switch(x, y, callback, default)
+    local node = Oil.Rect(x, y, 54, 32)
+        :set_style_sheet(Oil.style_Switch)
+        :add_handler(function(node, event)
+            if event.type == "tap" and node:covers(event.pos) then
+                node.state.value = not node.state.value
+                node.state.changed = true
+                if callback then callback(node, node.state.value) end
+                return true
+            end
+        end)
+    
+    local handle = Oil.Rect(2, 2, 28, 28)
+        :set_style_sheet(Oil.style_SwitchHandle)
+    node:add_child(handle)
+    
+    node:add_updater(function(node)
+            if node.state.changed then
+                if node.state.tween1 then
+                    tween.stop(node.state.tween1)
+                    tween.stop(node.state.tween2)
+                end
+            
+                node.state.tween1 = tween(0.15, handle, { x = (node.state.value and 24) or 2 })
+            
+                local col = (node.state.value and node:get_style("fillOn")) or node:get_style("fillOff")
+                node.state.tween2 = tween(0.15, node.style.fill, { r=col.r, g=col.g, b=col.b, a=col.a })
+            
+                node.state.changed = false
+            end
+        end)
+    
+    -- Default values
+    node.state.value = default or false
+    local col = (node.state.value and node:get_style("fillOn")) or node:get_style("fillOff")
+    node.style.fill = color(col.r, col.g, col.b, col.a)
+    handle.x = (node.state.value and 24) or 2
+    
+    return node
+end
+
+function Oil.Slider(x, y, w, h, min, max, callback, default)
+    local node = Oil.Node(x, y, w, h)
+    
+    local bar_active = Oil.Rect(0, 0.5, 0, 4)
+        :set_style_sheet(Oil.style_Slider)
+        :add_updater(function(node)
+            node:add_style("fill", node:get_style("fillActive"))
+        end)
+    
+    local handle = Oil.Rect(0, 0.5, 28, 28)
+        :set_style_sheet(Oil.style_SliderHandle)
+        :add_handler(function(handle, event)
+            if event.type == "drag" and (handle:covers(event.pos) or handle.state.dragging == true) then
+                local diff = math.min(math.max(0.0, (event.pos.x - node.frame.x_raw)), node.frame.w)
+                local f = diff / node.frame.w
+                handle.state.dragging = true
+                if handle.x ~= f then
+                    handle.x = f
+                    bar_active.x = f/2
+                    bar_active.w = f
+                    if callback then callback(min + (max-min)*f) end
+                end
+                return true
+            elseif event.type == "touchup" and handle.state.dragging == true then
+                handle.state.dragging = false
+                return true
+            end
+        end)
+    
+    local bar = Oil.Rect(0.5, 0.5, 1.0, 4)
+        :set_style_sheet(Oil.style_Slider)
+        :add_handler(function(bar, event)
+            if event.type == "tap" and node:covers(event.pos) then
+                local f = (event.pos.x - bar.frame.x_raw) / bar.frame.w
+                if handle.x ~= f then
+                    tween(0.15, handle, {x = f})
+                    tween(0.15, bar_active, {x = f/2, w = f})
+                    if callback then callback(min + (max-min)*f) end
+                end
+                return true
+            end
+        end)
+    
+    node:add_child(bar)
+    node:add_child(bar_active)
+    node:add_child(handle)
+    
+    -- Setup initial state
+    if default then
+        default = (default - min) / (max - min)
+        handle.x = default
+        bar_active.x = default/2
+        bar_active.w = default
+    end
+    
+    return node
+end
+
+function Oil.List(x, y, w)
+    local node = Oil.VerticalStack(x, y, w, 10)
+        :set_style_sheet(Oil.style_List)
+        :add_updater(function(node)
+            local num_children = #node.children
+            local spacing = node:get_style("spacing")
+            
+            local children_total_height = 0
+            for _,child in ipairs(node.children) do
+                children_total_height = children_total_height + child.frame.h
+            end
+            children_total_height = children_total_height + ((spacing or 0) * num_children)
+        
+            node.frame.y = node.frame.y - children_total_height
+            node.frame.h = children_total_height
+        end)
     
     return node
 end
