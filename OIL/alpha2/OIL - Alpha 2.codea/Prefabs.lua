@@ -190,7 +190,7 @@ function Oil.Scroll(x, y, w, h)
                 elseif event.state == CHANGED and node.scrolling then
                     node.scroll_velocity = event.delta / DeltaTime
                     return true, node
-                elseif event.state == ENDED then
+                elseif event.state == ENDED and node.scrolling then
                     node.scrolling = false
                     return true, nil
                 end
@@ -216,7 +216,7 @@ function Oil.Scroll(x, y, w, h)
                 maxx = math.max(maxx, child.frame.x + child.frame.w)
                 maxy = math.max(maxy, child.frame.y + child.frame.h)
             end
-        
+            
             -- Default scroll axis is Y
             local axis = node:get_style("scrollAxis")
             
@@ -259,7 +259,15 @@ function Oil.Scroll(x, y, w, h)
                 end
             end
             
-            node.scroll = node.scroll + (target - node.scroll)*DeltaTime*10
+            -- On the first update, we should set the scroll
+            -- value directly so scrolling lists aren't animating
+            -- when we run the project.
+            if node.initial_scroll_done then
+                node.scroll = node.scroll + (target - node.scroll)*DeltaTime*10
+            else
+                node.initial_scroll_done = true
+                node.scroll = target
+            end
         end)
     
     -- Override draw_children to implement clipping
@@ -284,7 +292,6 @@ function Oil.Scroll(x, y, w, h)
     
     -- Block events that don't fall within the scroll node
     function node:handle_event(event)
-        --print("handle_event: ", self:get_debug_name())
         
         -- Pass to children first
         local handled, handler
@@ -423,4 +430,123 @@ function Oil.List(x, y, w)
         end)
     
     return node
+end
+
+function Oil.Dropdown(x, y, w, h, label, max_size)
+    local ddroot = Oil.Node(x, y, w, h)
+    :set_style("text", label)
+    
+    -- Initialise state
+    ddroot.state.open = false
+    ddroot.state.tween = nil
+    ddroot.state.size = 0
+    
+    local frame = Oil.Rect(0, 0, w, h)
+    local header = Oil.Label(0, -0.0001, w, h)
+    local scroll = Oil.Scroll(0, -h, 1.0, 0)
+    local list = Oil.List(0, -0.0001, 1.0, 0)
+    local icon = Oil.Label(8, 0.5, 0, 0, "🔽", LEFT)
+    
+    local function transition(open)
+        -- Cancel the previous animation
+        if ddroot.state.tween then
+            tween.stop(ddroot.state.tween)
+        end
+        
+        ddroot.state.open = open
+        if open then
+            -- Set the icon
+            icon:set_style("text", "🔼")
+            
+            -- Move the frame to the Oil root
+            Oil.root:add_child(frame)
+            ddroot.state.tween = tween(0.2, ddroot.state, {
+                size = math.min(300, list.frame.h) -- TODO: use list size in here
+            })
+        else
+            -- Set the icon
+            icon:set_style("text", "🔽")
+            
+            ddroot.state.tween = tween(0.2, ddroot.state, {
+                size = 0
+            }, nil, function()
+                -- Add the frame back to the dropdown root
+                Oil.Node.add_child(ddroot, frame)
+                frame.x = 0
+                frame.y = 0
+                frame.h = h
+                scroll.h = 0
+            end)
+        end
+    end
+    
+    frame
+    :set_priority(1000) -- Over everything (hopefully)
+    :set_style_sheet(Oil.style_Dropdown)
+    :add_pre_updater(function(node)
+        -- While the dropdown is open it needs to be repositioned
+        -- to the dropdown root node.
+        if frame.parent == Oil.root then
+            frame.x = ddroot.frame.x_raw
+            frame.y = ddroot.frame.y_raw - ddroot.state.size
+            
+            -- Prevent the dropdown from going off the bottom
+            -- of the screen.
+            if frame.y < 0 then
+                frame.y = 0
+                ddroot.state.size = ddroot.frame.y_raw
+            end
+            
+            -- Resize frame and scroll
+            frame.h = ddroot.state.size + h
+            scroll.h = ddroot.state.size
+        end
+    end)
+    :add_handler(function(node, event)
+        -- Close the dropdown if we do anything outside of
+        -- the dropdown.
+        if frame.parent == Oil.root then
+            if event.pos ~= nil and node:covers(event.pos) then
+                return true
+            elseif event.type ~= "hover" then
+                transition(false)
+            end
+        end
+        return false
+    end)
+    :set_style(ddroot.style)
+    
+    -- The header controls the state of the dropdown
+    header
+    :set_style(ddroot.style)
+    :set_style_sheet(Oil.style_Dropdown)
+    :add_handler(function(node, event)
+        if event.type == "tap" and ddroot:covers(event.pos) then
+            -- Toggle the state
+            transition(not ddroot.state.open)
+            return true, nil
+        end
+    end)
+    :add_child(icon)
+    
+    -- Enable scroll clipping
+    scroll
+    :add_style("clipAxis", AXIS_Y)
+    
+    scroll:add_child(list)
+    frame:add_child(header)
+    frame:add_child(scroll)
+    ddroot:add_child(frame)
+    
+    function ddroot:add_child(child)
+        list:add_child(child)
+        return self
+    end
+    
+    function ddroot:add_children(...)
+        list:add_children(...)
+        return self
+    end
+    
+    return ddroot
 end

@@ -16,7 +16,8 @@ Oil.style_default = {
     font = "Helvetica",
     fontSize = 17,
     textAlign = CENTER,
-    textFill = color(64),
+    textFill = color(0),
+    text = "<undefined>",
     
     -- Blur settings
     blur = false,
@@ -176,5 +177,26 @@ Oil.style_SliderHandle = {
 
 Oil.style_List = {
     spacing = 10,
-    align = CENTER
+    align = TOP
+}
+
+Oil.style_Dropdown = {
+    -- General settings
+    fill = color(50, 150, 220),
+    stroke = color(255),
+    strokeWidth = 2,
+    
+    -- Rectangle settings
+    radius = 12,
+    
+    -- Text settings
+    font = "Helvetica",
+    fontSize = 17,
+    textAlign = CENTER,
+    textFill = color(255),
+    
+    -- Button presets
+    fillButtonNormal = color(50, 150, 220),
+    fillButtonHover = color(144, 184, 213),
+    fillButtonPressed = color(82, 119, 221),
 }

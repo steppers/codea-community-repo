@@ -24,7 +24,6 @@ function setup()
     Oil.setup()
     FPSOverlay.setup(60)
     
-    --[[
     Oil.Scroll(0.5, 0.5, 1.0, 1.0)
     :add_child(
         Oil.List(0.5, 1.0, 1.0)
@@ -32,9 +31,23 @@ function setup()
             Oil.Label(0.5, 0, 200, 50, "I'm a scrolling list!"),
             Oil.Rect(0.5, 0, 200, 30),
             Oil.Icon(0.5, 0, 50, 50, asset.builtin.Blocks.Dirt_Grass),
-            Oil.TextButton(0.5, 0, 200, 30, "TextButton"),
+            Oil.TextButton(0.5, 0, 300, 30, "TextButton"),
             Oil.EmojiButton(0.5, 0, 50, 50, "🎮"),
             Oil.IconButton(0.5, 0, 50, 50, asset.builtin.Blocks.Dirt_Grass),
+            Oil.Dropdown(0.5, 0, 200, 40, "Dropdown")
+                :add_children(
+                    Oil.Label(0.5, 0, 200, 50, "I can also scroll!"),
+                    Oil.IconButton(0.5, 0, 50, 50, asset.builtin.Blocks.Dirt_Grass),
+                    Oil.Icon(0.5, 0, 50, 50, asset.builtin.Blocks.Dirt_Snow),
+                    Oil.Icon(0.5, 0, 50, 50, asset.builtin.Blocks.Dirt_Sand),
+                    Oil.TextButton(0.5, 0, 180, 30, "Another button"),
+                    Oil.TextButton(0.5, 0, 180, 30, "And another! :)"),
+                    Oil.Icon(0.5, 0, 50, 50, asset.builtin.Blocks.Glass_Frame),
+                    Oil.Label(0.5, 0, 200, 60, "This button below\ncloses the app!", CENTER),
+                    Oil.EmojiButton(0.5, 0, 50, 50, "❌", function()
+                        viewer.close()
+                    end)
+                ),
             Oil.Scroll(0.5, 0, 400, 200)
                 :set_style("clipAxis", AXIS_Y)
                 :add_renderer(Oil.RectRenderer)
@@ -56,9 +69,9 @@ function setup()
             end, 8)
         )
     )
-    ]]
     
     -- Scrolling news pane
+    --[[
     local news = Oil.Scroll(0, 0, 1.0, -55)
     :add_style("bufferBottom", 120)
     :add_updater(function(node)
@@ -229,6 +242,7 @@ function setup()
             :set_style("fontSize", 24)
         )
     )
+    ]]
 end
 
 function draw()
