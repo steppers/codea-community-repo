@@ -88,13 +88,21 @@ function Oil.touch(touch)
     elseif touch.state == CHANGED then
         if current.state ~= StateDrag and current.pos:distSqr(touch.pos) > 25 then
             current.state = StateDrag
+            
+            dispatch_event{
+                type = "drag",
+                pos = touch.pos,
+                delta = touch.delta,
+                state = BEGAN
+            }
         end
         
         if current.state == StateDrag then
             dispatch_event{
                 type = "drag",
                 pos = touch.pos,
-                delta = touch.delta
+                delta = touch.delta,
+                state = CHANGED
             }
         end
     else
@@ -104,11 +112,17 @@ function Oil.touch(touch)
         }
         
         -- Dispatch tap/click event?
-        if touch.timestamp - current.time < press_duration then
+        if current.state == StateDown and touch.timestamp - current.time < press_duration then
             dispatch_event{
                 type = "tap",
                 pos = touch.pos,
                 is_click = (touch.type == POINTER)
+            }
+        elseif current.state == StateDrag then
+            dispatch_event{
+                type = "drag",
+                pos = touch.pos,
+                state = ENDED
             }
         end
         
