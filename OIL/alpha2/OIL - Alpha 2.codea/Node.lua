@@ -98,6 +98,13 @@ function Oil.Node:update()
         return
     end
     
+    -- Run pre-updaters.
+    -- We do this in reverse order so additional updaters
+    -- added to prefabs are run first.
+    for i = #self.pre_updaters, 1, -1 do
+        self.pre_updaters[i](self)
+    end
+    
     -- Calculate render frame
     self:calculate_frame()
     
@@ -109,7 +116,7 @@ function Oil.Node:update()
         child:update()
     end
     
-    -- Update Pre-Updaters.
+    -- Run updaters.
     -- We do this in reverse order so additional updaters
     -- added to prefabs are run first.
     for i = #self.updaters, 1, -1 do
@@ -326,6 +333,14 @@ end
 
 -- Registers the function 'updater' as an update function
 -- that will be called every frame (when the node is enabled)
+-- Pre-Updaters are called before calculating the frame.
+function Oil.Node:add_pre_updater(updater)
+    table.insert(self.pre_updaters, updater)
+    return self
+end
+
+-- Registers the function 'updater' as an update function
+-- that will be called every frame (when the node is enabled)
 function Oil.Node:add_updater(updater)
     table.insert(self.updaters, updater)
     return self
@@ -351,6 +366,16 @@ function Oil.Node:remove_child(child)
         if v == child then
             table.remove(self.children, i)
             child.parent = nil -- No parent now
+            return
+        end
+    end
+end
+
+-- Removes a pre-updater from this node
+function Oil.Node:remove_pre_updater(updater)
+    for i,v in ipairs(self.pre_updaters) do
+        if v == updater then
+            table.remove(self.pre_updaters, i)
             return
         end
     end
