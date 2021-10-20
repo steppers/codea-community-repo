@@ -29,6 +29,21 @@ Oil.style_default = {
     fillButtonNormal = color(255),
     fillButtonHover = color(220),
     fillButtonPressed = color(170, 209, 223),
+    
+    -- Scroll settings
+    clipAxis = AXIS_NONE,
+    scrollAxis = AXIS_Y,
+    bufferTop = 0,
+    bufferBottom = 0,
+    bufferLeft = 0,
+    bufferRight = 0,
+    
+    -- Text Entry settings
+    cursorWidth = 2,
+    cursorBlink = true,
+    textEntryInset = 5,
+    strokeFocus = color(0, 137, 255),
+    strokeNoFocus = color(255)
 }
 
 Oil.style_Label = {    
@@ -199,4 +214,29 @@ Oil.style_Dropdown = {
     fillButtonNormal = color(50, 150, 220),
     fillButtonHover = color(144, 184, 213),
     fillButtonPressed = color(82, 119, 221),
+}
+
+Oil.style_TextEntry = {
+    -- General settings
+    fill = color(210),
+    stroke = color(105, 133, 156),
+    strokeWidth = 3,
+    
+    -- Rectangle settings
+    radius = 8,
+    
+    -- Text settings
+    font = "Helvetica",
+    fontSize = 20,
+    textFill = color(32),
+    
+    -- Scroll settings
+    clipAxis = AXIS_Y,
+    
+    -- Text Entry settings
+    cursorWidth = 2,
+    cursorBlink = true,
+    textEntryInset = 7,
+    strokeFocus = color(0, 137, 255),
+    strokeNoFocus = color(105, 133, 156)
 }

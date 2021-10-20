@@ -25,13 +25,18 @@ function setup()
     FPSOverlay.setup(60)
     
     Oil.Scroll(0.5, 0.5, 1.0, 1.0)
+    :add_style("bufferBottom", 400) -- So we can get the text entry above the software keyboard
     :add_child(
         Oil.List(0.5, 1.0, 1.0)
         :add_children(
             Oil.Label(0.5, 0, 200, 50, "I'm a scrolling list!"),
             Oil.Rect(0.5, 0, 200, 30),
             Oil.Icon(0.5, 0, 50, 50, asset.builtin.Blocks.Dirt_Grass),
-            Oil.TextButton(0.5, 0, 300, 30, "TextButton"),
+            Oil.TextButton(0.5, 0, 300, 30, "TextButton", function()
+                print("Text Button tapped!")
+            end, function()
+                print("Text Button long-pressed!")
+            end),
             Oil.EmojiButton(0.5, 0, 50, 50, "🎮"),
             Oil.IconButton(0.5, 0, 50, 50, asset.builtin.Blocks.Dirt_Grass),
             Oil.Dropdown(0.5, 0, 200, 40, "Dropdown")
@@ -43,18 +48,19 @@ function setup()
                     Oil.TextButton(0.5, 0, 180, 30, "Another button"),
                     Oil.TextButton(0.5, 0, 180, 30, "And another! :)"),
                     Oil.Icon(0.5, 0, 50, 50, asset.builtin.Blocks.Glass_Frame),
-                    Oil.Label(0.5, 0, 200, 60, "This button below\ncloses the app!", CENTER),
+                    Oil.Label(0.5, 0, 200, 60, "This button below\ncloses the app!"),
                     Oil.EmojiButton(0.5, 0, 50, 50, "❌", function()
                         viewer.close()
                     end)
                 ),
+            Oil.TextEntry(0.5, 0.5, 400, 100, "I'm a scrolling text entry box!"),
             Oil.Scroll(0.5, 0, 400, 200)
                 :set_style("clipAxis", AXIS_Y)
                 :add_renderer(Oil.RectRenderer)
                 :add_children(
                     Oil.List(0.5, -0.0001, 100)
                     :add_children(
-                        Oil.Label(0.5, 0, 200, 50, "I can also scroll!"),
+                        Oil.Label(0.5, 0, 200, 50, "I'm also scrollable!"),
                         Oil.IconButton(0.5, 0, 50, 50, asset.builtin.Blocks.Dirt_Grass),
                         Oil.Icon(0.5, 0, 50, 50, asset.builtin.Blocks.Dirt_Snow),
                         Oil.Icon(0.5, 0, 50, 50, asset.builtin.Blocks.Dirt_Sand),
@@ -63,9 +69,11 @@ function setup()
                         Oil.Icon(0.5, 0, 50, 50, asset.builtin.Blocks.Cotton_Red)
                     )
                 ),
-            Oil.Switch(0.5, 0),
+            Oil.Switch(0.5, 0, function(val)
+                print("Switch value changed: " .. tostring(val))
+            end),
             Oil.Slider(0.5, 0, 400, 40, 4, 9, function(val)
-                -- Do something with the value here
+                print("Slider value changed: " .. val)
             end, 8)
         )
     )
@@ -267,4 +275,8 @@ end
 
 function touched(t)
     Oil.touch(t)
+end
+
+function keyboard(k)
+    Oil.keyboard(k)
 end

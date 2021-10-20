@@ -62,6 +62,13 @@ function Oil.scroll(gesture)
     end
 end
 
+function Oil.keyboard(key)
+    dispatch_event{
+        type = "key",
+        key = key
+    }
+end
+
 function Oil.touch(touch)
     -- Get current tracked touch
     local current = touches[touch.id]

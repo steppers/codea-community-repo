@@ -4,6 +4,7 @@ function Oil.TextRenderer(node, w, h)
     node:apply_style("textFill", fill)
     node:apply_style("font")
     node:apply_style("fontSize")
+    node:apply_style("textAlign")
         
     textMode(CORNER)
     local str = node:get_style("text") or ""
@@ -26,6 +27,10 @@ end
 -- Handlers
 function Oil.ButtonHandler(callback, long_press_callback)
     return function(node, event)
+        if event.pos == nil then
+            return false
+        end
+        
         if node:covers(event.pos) then
             node.style.fill = node:get_style("fillButtonHover")
             
@@ -216,7 +221,7 @@ function Oil.Scroll(x, y, w, h)
                 maxx = math.max(maxx, child.frame.x + child.frame.w)
                 maxy = math.max(maxy, child.frame.y + child.frame.h)
             end
-            
+     
             -- Default scroll axis is Y
             local axis = node:get_style("scrollAxis")
             
@@ -240,7 +245,7 @@ function Oil.Scroll(x, y, w, h)
                     target.y = max_scroll
                 end
             end
-            
+
             -- Calculate X Axis scroll
             if (axis & AXIS_X) == 0 then
                 node.scroll.x = 0
@@ -320,7 +325,7 @@ function Oil.Switch(x, y, callback, default)
             if event.type == "tap" and node:covers(event.pos) then
                 node.state.value = not node.state.value
                 node.state.changed = true
-                if callback then callback(node, node.state.value) end
+                if callback then callback(node.state.value) end
                 return true
             end
         end)
@@ -367,19 +372,21 @@ function Oil.Slider(x, y, w, h, min, max, callback, default)
         :set_style_sheet(Oil.style_SliderHandle)
         :add_handler(function(handle, event)
             if event.type == "drag" and (handle:covers(event.pos) or handle.state.dragging == true) then
-                local diff = math.min(math.max(0.0, (event.pos.x - node.frame.x_raw)), node.frame.w)
-                local f = diff / node.frame.w
-                handle.state.dragging = true
-                if handle.x ~= f then
-                    handle.x = f
-                    bar_active.x = f/2
-                    bar_active.w = f
-                    if callback then callback(min + (max-min)*f) end
+                if event.state ~= ENDED then
+                    local diff = math.min(math.max(0.0, (event.pos.x - node.frame.x_raw)), node.frame.w)
+                    local f = diff / node.frame.w
+                    handle.state.dragging = true
+                    if handle.x ~= f then
+                        handle.x = f
+                        bar_active.x = f/2
+                        bar_active.w = f
+                        if callback then callback(min + (max-min)*f) end
+                    end
+                    return true
+                else
+                    handle.state.dragging = false
+                    return true
                 end
-                return true
-            elseif event.type == "touchup" and handle.state.dragging == true then
-                handle.state.dragging = false
-                return true
             end
         end)
     
@@ -549,4 +556,227 @@ function Oil.Dropdown(x, y, w, h, label, max_size)
     end
     
     return ddroot
+end
+
+function Oil.TextEntry(x, y, w, h, default_text, callback)
+    local node = Oil.Rect(x, y, w, h)
+    local scroll = Oil.Scroll(0, 0, 1.0, 1.0)
+    local textbox = Oil.Node(0, -0.0001, 1.0, 100)
+    
+    node:add_style("text", default_text or "")
+    node:set_style_sheet(Oil.style_TextEntry)
+    scroll:set_style_sheet(Oil.style_TextEntry)
+    
+    -- Stores character position info
+    local char_info = {}
+    local char_info_requires_update = true
+    local cursor_index = 8
+    
+    -- Keeps the cursor within frame
+    local function goto_cursor(font_size)
+        local info = char_info[cursor_index]
+        
+        -- Convert the cursor coord into text entry coords
+        local y = info[2] - (textbox.h - scroll.frame.h) + scroll.scroll.y
+        
+        -- Snap the scroll y value if required to move the cursor into view
+        if y < 0 then
+            scroll.scroll.y = scroll.scroll.y - y
+        elseif y > (scroll.frame.h - font_size) then
+            scroll.scroll.y = scroll.scroll.y - (y-(scroll.frame.h - font_size))
+        end
+    end
+    
+    -- Apply inset values
+    scroll:add_pre_updater(function(_)
+        local inset = node:get_style("textEntryInset") or 5
+        scroll.x = inset
+        scroll.y = inset
+        scroll.w = ((inset > 0) and -inset) or 1.0
+        scroll.h = scroll.w
+    end)
+    
+    -- Calculate character positions
+    textbox:add_pre_updater(function(_)
+        if char_info_requires_update then
+            char_info_requires_update = false
+            
+            -- Set text parameters
+            local font_size = node:get_style("fontSize")
+            node:apply_style("font", font)
+            fontSize(font_size)
+            
+            -- Clear old char info
+            char_info = {}
+            
+            -- Add terminator so we can place the cursor
+            -- at the end of the final line.
+            local str = node:get_style("text") .. "\0"
+            
+            -- Position chars
+            local x, y, cw = 0, -font_size
+            for c in str:gmatch(".") do
+                cw, _ = textSize(c)
+                
+                -- Wrap or newline?
+                if x + cw > scroll.frame.w then
+                    x = 0
+                    y = y - font_size
+                end
+                
+                -- Add the char info
+                table.insert(char_info, {x, y, cw/2})
+                
+                -- Account for newlines
+                if c == "\n" then
+                    x = 0
+                    y = y - font_size
+                else
+                    x = x + cw
+                end
+            end
+            
+            -- Resize the text box and adjust char positions
+            textbox.h = -y
+            for i,v in ipairs(char_info) do
+                v[2] = v[2] - y
+            end
+            
+            goto_cursor(font_size)
+        end
+    end)
+    
+    -- Rendering goes here
+    textbox:add_renderer(function(_, w, h)
+        local str = node:get_style("text")
+        node:apply_style("textFill", fill)
+        node:apply_style("font", font)
+        local font_size = node:get_style("fontSize")
+        fontSize(font_size)
+        
+        -- Use corner mode
+        textMode(CORNER)
+        
+        -- Draw the text one character at a time
+        for i,info in ipairs(char_info) do
+            local c = str:sub(i,i)
+            text(c, info[1], info[2])
+        end
+        
+        -- Draw the cursor
+        local blink = node:get_style("cursorBlink")
+        if node.state.focus and (not blink or (blink and (ElapsedTime % 1.5) <= 0.75)) then
+            node:apply_style("textFill", stroke)
+            node:apply_style("cursorWidth", strokeWidth)
+            lineCapMode(ROUND)
+            local info = char_info[cursor_index]
+            line(info[1], info[2], info[1], info[2] + font_size)
+        end
+    end)
+    
+    -- Moves the cursor index to the nearest suitable
+    -- position
+    local function move_cursor(pos)
+        -- Get position in char_info coord-space
+        pos = pos - vec2(scroll.frame.x_raw, scroll.frame.y_raw) - scroll.scroll
+        pos = pos + vec2(textbox.frame.w - scroll.frame.w, textbox.frame.h - scroll.frame.h)
+        
+        -- Are we above the top row?
+        if pos.y >= textbox.h then
+            cursor_index = 1
+            return
+        end
+        
+        -- Are we below the bottom row?
+        if pos.y < 0 then
+            cursor_index = #char_info
+            return
+        end
+        
+        local font_size = node:get_style("fontSize")
+        
+        -- Find nearest char
+        local last_half_width = 0
+        local found_row = false
+        for i,info in ipairs(char_info) do
+            -- Are we on the correct row?
+            if pos.y < (info[2] + font_size) and pos.y >= info[2] then
+                -- Correct character?
+                if pos.x < info[1] + info[3] and pos.x >= info[1] - last_half_width then
+                    cursor_index = i
+                    return
+                end
+                last_half_width = info[3]
+                found_row = true
+                
+            -- If we fail to find a char on the same row,
+            -- go to the end of that row.
+            elseif found_row then
+                cursor_index = (i-1)
+                return
+            end
+        end
+        
+        -- Move to last char as we didn't find it in our iteration
+        cursor_index = #char_info
+    end
+    
+    node:add_handler(function(_, event)
+        if event.type == "tap" and node:covers(event.pos) then
+            showKeyboard()
+            node.state.focus = true
+            move_cursor(event.pos)
+            node:set_style("stroke", node:get_style("strokeFocus"))
+            
+            -- If the software keyboard is shown then we want to move the
+            -- text box above it.
+            -- DISABLED for now as isKeyboardShowing() doesn't accomodate this.
+            if isKeyboardShowing() and node.frame.y_raw < HEIGHT/2 then
+                --Oil.root.scroll.y = (HEIGHT/2) - node.frame.y_raw
+            end
+            return true, node
+        end
+        
+        if event.type ~= "hover" and event.pos and not node:covers(event.pos) then
+            hideKeyboard()
+            node.state.focus = false
+            Oil.root.scroll.y = 0
+            node:set_style("stroke", node:get_style("strokeNoFocus"))
+            
+            -- Trigger the callback when we lose focus
+            if callback then callback(node:get_style("text")) end
+            return false
+        end
+        
+        if node.state.focus and event.type == "key" then
+            local str = node:get_style("text")
+            
+            if event.key == BACKSPACE then
+                if cursor_index == 1 then
+                    return true, node
+                end
+                
+                -- Delete the char
+                node:set_style("text", str:sub(0,cursor_index-2) .. str:sub(cursor_index, -1))
+                
+                -- Move cursor backwards
+                cursor_index = cursor_index - 1
+            else
+                -- Insert the char
+                node:set_style("text", str:sub(0,cursor_index-1) .. event.key .. str:sub(cursor_index, -1))
+                
+                -- Move cursor along
+                cursor_index = cursor_index + 1
+            end
+            
+            -- Update the char info
+            char_info_requires_update = true
+            return true, node
+        end
+    end)
+    
+    scroll:add_child(textbox)
+    node:add_child(scroll)
+    
+    return node
 end
