@@ -1,0 +1,17 @@
+{
+    "name": "Foggy",
+    "short_description": "Fast 2D Side Scroller",
+    "description": "A Fast 2D Side Scroller",
+    "authors": [
+        "West",
+        " UberGoober"
+    ],
+    "version": "1.0.1",
+    "update_notes": "- Updated metadata with size & timestamp",
+    "category": "Game",
+    "forum_link": "https://codea.io/talk/",
+    "size": 1862816,
+    "hidden": false,
+    "icon": "Foggy.codea/Icon.png",
+    "timestamp": 1635377761
+}
