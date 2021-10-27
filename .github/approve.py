@@ -15,6 +15,7 @@ import json
 import copy
 import plistlib
 import urllib.request
+import time
 
 # Get environment variables
 PUSHOVER_APP_TOKEN = os.environ.get('PUSHOVER_APP_TOKEN')
@@ -92,6 +93,23 @@ def generate_project_manifest(project_path):
     
     # Return to original wd
     os.chdir(wd)
+    return
+    
+
+def add_timestamp(metadata_path):
+    # Read current metadata
+    file = open(metadata_path, 'r')
+    md = json.load(file)
+    file.close()
+    
+    # Add timestamp of approval
+    manifest["timestamp"] = int(time.time())
+    
+    # Write new metadata file
+    file = open(metadata_path, 'w')
+    file.write(json.dumps(md, indent=4))
+    file.close()
+    
     return
 
 
@@ -242,6 +260,9 @@ generate_project_manifest(project_dir)
 if not download(payload["metadata_url"], f'{project_dir}/metadata.json'):
     print(f'Failed to download metadata from {payload["metadata_url"]}')
     sys.exit()
+
+# Add unix timestamp to metadata
+add_timestamp(f'{project_dir}/metadata.json')
 
 # Add to manifest file
 update_manifest(repo_name, repo_ver)
