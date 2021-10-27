@@ -1,7 +1,0 @@
-WebRepoSub.codea/Info.plist
-WebRepoSub.codea/Main.lua
-WebRepoSub.codea/Icon@2x.png
-WebRepoSub.codea/struct.lua
-WebRepoSub.codea/Submission.lua
-WebRepoSub.codea/ZipArchive.lua
-WebRepoSub.codea/LibDeflate.lua
