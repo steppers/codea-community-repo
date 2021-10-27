@@ -5,8 +5,10 @@
   "authors":["Steppers"],
   "version":"1.0a3",
   "update_notes":"- Add test forum link",
+  "forum_link":"https://codea.io/talk",
   "category":"Library",
   "icon":"Oil.codea/Icon@2x.png",
   "hidden":false,
-  "size":95342
+  "size":95342,
+  "timestamp": 1635376791
 }

@@ -9,5 +9,6 @@
     "name": "SODA",
     "short_description": "Gorgeous and Powerful GUI Library",
     "update_notes": " - Updated API usage to Codea 3.4.3",
-    "version": "0.7.2"
+    "version": "0.7.2",
+    "timestamp": 1635376699
 }

@@ -10,5 +10,6 @@
     "name": "SODA",
     "short_description": "Gorgeous GUI Library",
     "update_notes": "-- Add support for texture backgrounds on frames & buttons",
-    "version": "0.7.3"
+    "version": "0.7.3",
+    "timestamp": 1635376700
 }

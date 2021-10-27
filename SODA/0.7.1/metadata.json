@@ -9,5 +9,6 @@
     "name": "SODA",
     "short_description": "Gorgeous GUI Library",
     "update_notes": " - As the orientationChanged function can in fact be called up to 3 times per device change, Soda makes sure all the elements only get resized once (not 3 times), making for much smoother orientation changes.\n\n - The Soda.drawing function where you put all of your drawing (needed for the blurred panels to work) is now just called drawing. This will need to be changed in your projects using Soda. Sorry about that!\n\n - New compact installer (created by the WorkingCopyCodeaClient).\n\n - Minor fixes.",
-    "version": "0.7.1"
+    "version": "0.7.1",
+    "timestamp": 1635376698
 }
