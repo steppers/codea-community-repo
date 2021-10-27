@@ -103,7 +103,7 @@ def add_timestamp(metadata_path):
     file.close()
     
     # Add timestamp of approval
-    manifest["timestamp"] = int(time.time())
+    md["timestamp"] = int(time.time())
     
     # Write new metadata file
     file = open(metadata_path, 'w')
