@@ -1,0 +1,16 @@
+{
+    "name": "supportedOrientations",
+    "short_description": "Backward Compatability",
+    "description": "An implementation of the old Codea API allowing projects to 'lock' the device in a specific orientation.\n\nAll you need to do is add this project as a dependency of your own project, et voila! supportedOrientations is available once again.",
+    "authors": [
+        "Steppers"
+    ],
+    "version": "1.0.1",
+    "update_notes": "- Updated metadata with size & timestamp",
+    "category": "Library",
+    "forum_link": "https://codea.io/talk",
+    "size": 19349,
+    "hidden": false,
+    "icon": "supportedOrientations.codea/Icon@2x.png",
+    "timestamp": 1635380143
+}
