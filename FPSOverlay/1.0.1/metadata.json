@@ -1,0 +1,16 @@
+{
+    "name": "FPSOverlay",
+    "short_description": "FPS Overlay Graph",
+    "description": "Displays the number of frames that have completed in the past second in a simple graph overlay.\n\nThis is far more useful than a simple '1/DeltaTime' calculation as it is not bound to the vsync interval.\n\nThe graph displays the framerate target value, current value and the minimum framerate seen.\n\nUsage:\n- In setup() -> FPSOverlay.setup(<fps_target_eg_60_or_120>)\n- In draw() -> FPSOverlay.draw()",
+    "authors": [
+        "Steppers"
+    ],
+    "version": "1.0.1",
+    "update_notes": "- Removed random file that made its way into the project somehow",
+    "category": "Library",
+    "forum_link": "https://codea.io/talk/discussion/12593",
+    "size": 10016,
+    "icon": "FPSOverlay.codea/Icon@2x.png",
+    "hidden": false,
+    "timestamp": 1635381916
+}
