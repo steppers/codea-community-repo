@@ -1,0 +1,6 @@
+Zip.codea/struct.lua
+Zip.codea/Info.plist
+Zip.codea/Zip.lua
+Zip.codea/LibDeflate.lua
+Zip.codea/Main.lua
+Zip.codea/Icon@2x.png
