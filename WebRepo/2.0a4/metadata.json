@@ -1,0 +1,15 @@
+{
+    "name": "WebRepo",
+    "short_description": "Codea Community Repository",
+    "description": "WebRepo provides easy access to projects from the community.\n\nWebRepo 2.0 ups the ante with a brand new UI and a simplified submission/review process all from within the app itself.\nNo more nasty Google forms!\n\nOther new features include:\n- Light & Dark Themes\n- Integrated Submit & Review\n- No more pesky Github login!\n- Support for multiple versions of a single project (only one version installed at a time)\n- Automatic dependency inclusion",
+    "authors": [
+        "Steppers"
+    ],
+    "version": "2.0a4",
+    "update_notes": "- Sort app list tabs by timestamp\n- Include dependencies of projects automatically when submitting\n- Fix news & app list project install buttons\n- Open forum links in Codea rather than opening the browser app\n- Remove redundant file\n- Add settings screen\n- Fix clipping issue with nested scrolls\n- Restore last submitted values when selecting a project on the submission screen",
+    "category": "App",
+    "forum_link": "https://codea.io/talk/discussion/11724",
+    "timestamp": 1635545947,
+    "icon": "WebRepo.codea/Icon@2x.png",
+    "hidden": false
+}
