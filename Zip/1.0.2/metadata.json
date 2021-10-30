@@ -1,0 +1,16 @@
+{
+    "name": "Zip",
+    "short_description": "Zip Archive Library",
+    "description": "Zip provides functions to read from and write to compressed .zip files. Note: Only DEFLATE compression is supported.",
+    "authors": [
+        "Steppers"
+    ],
+    "version": "1.0.2",
+    "update_notes": "- Track archive uncompressed size during archive writing",
+    "category": "Library",
+    "forum_link": "https://codea.io/talk",
+    "timestamp": 1635628346,
+    "hidden": false,
+    "size": 144125,
+    "icon": "Zip.codea/Icon@2x.png"
+}
