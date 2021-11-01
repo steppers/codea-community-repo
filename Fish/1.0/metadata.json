@@ -1,6 +1,6 @@
 {
     "name": "Fish",
-    "short_description": " Mesh Demo",
+    "short_description": "Mesh Demo",
     "description": "Mesh Demo. Tap to interact with the fish!",
     "authors": [
         "West"
