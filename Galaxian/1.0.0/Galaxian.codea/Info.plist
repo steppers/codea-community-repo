@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Author</key>
+	<string>ZuniSoft</string>
+	<key>Buffer Order</key>
+	<array>
+		<string>ExplosionPieceSprite</string>
+		<string>PlayerSprite</string>
+		<string>Global</string>
+		<string>Main</string>
+		<string>BadGuySprite</string>
+		<string>Button</string>
+		<string>Rectangle</string>
+		<string>EnemyMissileSprite</string>
+		<string>PlayerMissileSprite</string>
+		<string>Score300Sprite</string>
+	</array>
+	<key>Link</key>
+	<string>www.zunisoft.com</string>
+	<key>Name</key>
+	<string>Galaxian</string>
+	<key>Types</key>
+	<array>
+		<string>sprites</string>
+		<string>shaders</string>
+		<string>sounds</string>
+		<string>music</string>
+		<string>text</string>
+		<string>models</string>
+	</array>
+	<key>Vector</key>
+	<false/>
+	<key>Description</key>
+	<string>Galaxian Clone</string>
+	<key>Version</key>
+	<string>1.0</string>
+	<key>Hidden</key>
+	<false/>
+	<key>Library</key>
+	<false/>
+	<key>Icon</key>
+	<string>Icon</string>
+</dict>
+</plist>

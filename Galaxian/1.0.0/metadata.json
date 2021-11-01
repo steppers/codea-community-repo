@@ -1,0 +1,16 @@
+{
+    "name": "Galaxian",
+    "short_description": "Galaxian Clone",
+    "description": "A Galaxian Clone",
+    "authors": [
+        "ZuniSoft"
+    ],
+    "version": "1.0.0",
+    "update_notes": "- Initial Release",
+    "category": "App",
+    "forum_link": "www.zunisoft.com",
+    "hidden": false,
+    "size": 3617664,
+    "icon": "Galaxian.codea/Icon.png",
+    "timestamp": 1635755957
+}
