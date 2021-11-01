@@ -1,0 +1,16 @@
+{
+    "name": "Fish",
+    "short_description": " Mesh Demo",
+    "description": "Mesh Demo. Tap to interact with the fish!",
+    "authors": [
+        "West"
+    ],
+    "version": "1.0",
+    "update_notes": "- Initial Release",
+    "category": "App",
+    "forum_link": "https://codea.io/talk",
+    "hidden": false,
+    "size": 121308,
+    "timestamp": 1635729748,
+    "icon": "Fish.codea/Icon.png"
+}
