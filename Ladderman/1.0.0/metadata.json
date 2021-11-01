@@ -1,0 +1,16 @@
+{
+    "name": "Ladderman",
+    "short_description": "Race up the ladders!",
+    "description": "Race up the ladders! Beat the clock!\nBe sure to avoid the gaps lest you fall to an untimely death!",
+    "authors": [
+        "JakAttak"
+    ],
+    "version": "1.0.0",
+    "update_notes": "- Initial Release",
+    "category": "Game",
+    "forum_link": "https://codea.io/talk/discussion/5355/ladder-man",
+    "hidden": false,
+    "icon": "Ladderman.codea/Icon@2x.png",
+    "size": 96227,
+    "timestamp": 1635757775
+}
