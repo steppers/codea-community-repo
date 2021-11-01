@@ -1,0 +1,16 @@
+{
+    "name": "Packager",
+    "short_description": "Project Packager",
+    "description": "Allows projects to be prepared for distribution.\n\nThis is used by WebRepo 2.0 during the submission process to ensure that dependencies are always included in the submission.\n\nFeatures:\n- Package projects in binary form (with & without debug info).\n- Pack dependencies of a project inside the project itself.",
+    "authors": [
+        "Steppers"
+    ],
+    "version": "1.0.3",
+    "update_notes": "- Don't include stripped sub-dependencies in the table of contents.",
+    "category": "Library",
+    "forum_link": "https://codea.io/talk",
+    "hidden": false,
+    "size": 93964,
+    "icon": "Packager.codea/Icon@2x.png",
+    "timestamp": 1635727851
+}
