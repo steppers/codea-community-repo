@@ -1,0 +1,17 @@
+Fishtank.codea/tetrabody@2x.png
+Fishtank.codea/plant.png
+Fishtank.codea/tetra.png
+Fishtank.codea/waterbg2.png
+Fishtank.codea/zebrabody.png
+Fishtank.codea/Info.plist
+Fishtank.codea/tetrabody.png
+Fishtank.codea/plants2@2x.png
+Fishtank.codea/zebrabody@2x.png
+Fishtank.codea/tetra@2x.png
+Fishtank.codea/plants2.png
+Fishtank.codea/zebra@2x.png
+Fishtank.codea/Main.lua
+Fishtank.codea/Icon@2x.png
+Fishtank.codea/plants@2x.png
+Fishtank.codea/plants.png
+Fishtank.codea/zebra.png

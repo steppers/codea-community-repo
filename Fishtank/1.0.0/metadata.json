@@ -1,0 +1,16 @@
+{
+    "name": "Fishtank",
+    "short_description": "Multiplane Fishtank Demo",
+    "description": "Simple Multiplane Fishtank Demo. Utilising parallax background effects and motion control.",
+    "authors": [
+        "West"
+    ],
+    "version": "1.0.0",
+    "update_notes": "- Initial Release",
+    "category": "App",
+    "forum_link": "https://codea.io/talk/discussion/11682/fish",
+    "hidden": false,
+    "icon": "Fishtank.codea/Icon@2x.png",
+    "size": 7069053,
+    "timestamp": 1635754804
+}
