@@ -1,0 +1,16 @@
+{
+    "name": "Butterflies",
+    "short_description": " Mesh Demo",
+    "description": "Colorful Mesh Demo. Tap to interact with the butterflies!",
+    "authors": [
+        "Jmv38"
+    ],
+    "version": "1.0",
+    "update_notes": "- Initial Release",
+    "category": "App",
+    "forum_link": "https://codea.io/talk/discussion/9472/butterflies",
+    "hidden": false,
+    "size": 86584,
+    "icon": "Butterflies.codea/Icon@2x.png",
+    "timestamp": 1635729337
+}
