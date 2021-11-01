@@ -1,0 +1,16 @@
+{
+    "name": "Lightsaber",
+    "short_description": "Demo",
+    "description": "A Demo",
+    "authors": [
+        "Simeon"
+    ],
+    "version": "1.0.0",
+    "update_notes": "- Initial Release",
+    "category": "App",
+    "forum_link": "",
+    "size": 28811,
+    "hidden": false,
+    "icon": "Lightsaber.codea/Icon@2x.png",
+    "timestamp": 1635757056
+}
