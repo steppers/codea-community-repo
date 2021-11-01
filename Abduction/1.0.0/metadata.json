@@ -1,0 +1,17 @@
+{
+    "name": "Abduction",
+    "short_description": "Rescue the people of Earth!",
+    "description": "Good Abduction!\n\nRescue the last people on Earth from their inevitable demise and get them to safety.",
+    "authors": [
+        "juaxix"
+    ],
+    "version": "1.0.0",
+    "update_notes": "- Initial Release",
+    "category": "Game",
+    "forum_link": "https://codea.io/talk/discussion/84/abduction-game-source-code",
+    "size": 57852,
+    "platform": "iPad & iPhone",
+    "hidden": false,
+    "icon": "Abduction.codea/Icon@2x.png",
+    "timestamp": 1635773187
+}
