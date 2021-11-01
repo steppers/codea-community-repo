@@ -1,0 +1,16 @@
+{
+    "name": "3D Mesh Demo",
+    "short_description": "Pre-Craft Mesh Demo",
+    "description": "Builds a model from first principles and shows how to manipulate the model, also adds wire-framing.\nPre-Craft.",
+    "authors": [
+        "Loopspace"
+    ],
+    "version": "1.0.0",
+    "update_notes": "- Initial Release",
+    "category": "App",
+    "forum_link": "https://codea.io/talk",
+    "icon": "3D Mesh Demo.codea/Icon@2x.png",
+    "size": 112556,
+    "hidden": false,
+    "timestamp": 1635773119
+}
