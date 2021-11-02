@@ -1,0 +1,17 @@
+{
+    "name": "Captain Codea",
+    "short_description": "Pre-Craft 3D Animation",
+    "description": "3D Skeletal animation demo with model skinning.",
+    "authors": [
+        "Yojimbo2000"
+    ],
+    "version": "1.0.0",
+    "update_notes": "- Initial Release",
+    "category": "App",
+    "platform": "iPad & iPhone",
+    "forum_link": "https://codea.io/talk/discussion/6549/reproducing-blender-animations-in-codea-now-with-code-link-new-video",
+    "hidden": false,
+    "icon": "Captain Codea.codea/Icon.png",
+    "size": 378714,
+    "timestamp": 1635860661
+}
