@@ -41,10 +41,10 @@ jobs:
           
       - name: Hide payload key
         run: |
-          input=${{ github.event.inputs.metadata_json }}
-          secret=$(echo '$input' | jq -r '.key?')
+          secret=$(echo '${{ github.event.inputs.metadata_json }}' | jq -r '.key?')
           echo "My secret! $secret"
           echo "::add-mask::$secret"
+          echo "My secret! $secret"
 
       - name: approve.py
         env:
