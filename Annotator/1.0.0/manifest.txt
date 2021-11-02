@@ -1,0 +1,6 @@
+Annotator.codea/Info.plist
+Annotator.codea/TextEntryField.lua
+Annotator.codea/Gestures.lua
+Annotator.codea/Main.lua
+Annotator.codea/Icon@2x.png
+Annotator.codea/Button.lua

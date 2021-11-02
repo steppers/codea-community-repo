@@ -1,0 +1,17 @@
+{
+    "name": "Annotator",
+    "short_description": "Annotator for Machine Learning",
+    "description": "Simple image annotator to generate the json data required by Apple's 'Create ML' application.\n\nOn the first launch the project will create the folder 'AnnotatorImages' and the images to annotate will be read from here.\n\nUse the 'Export' button to generate a single 'meta.json' file in this folder.",
+    "authors": [
+        "Steppers"
+    ],
+    "version": "1.0.0",
+    "update_notes": "- Initial Release",
+    "category": "App",
+    "platform": "iPad Only",
+    "forum_link": "https://codea.io/talk/",
+    "hidden": false,
+    "size": 391148,
+    "icon": "Annotator.codea/Icon@2x.png",
+    "timestamp": 1635851924
+}
