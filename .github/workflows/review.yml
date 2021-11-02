@@ -38,6 +38,13 @@ jobs:
         with:
           python-version: '3.x'
           architecture: 'x64'
+          
+      - name: Hide payload key
+        run: |
+          PAYLOAD=$(jq -r '.inputs.metadata_json' $GITHUB_EVENT_PATH)
+          KEY_SECRET=$(echo "$PAYLOAD" | jq -r '.key?')
+          echo "::add-mask::"$KEY_SECRET
+          echo "Admin key (should be masked): $KEY_SECRET"
 
       - name: review.py
         env:
