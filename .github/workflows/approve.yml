@@ -41,10 +41,10 @@ jobs:
           
       - name: Hide payload key
         run: |
-          KEY_SECRET=$(jq -r '.inputs.metadata_json' $GITHUB_EVENT_PATH)
-          echo "My secret! $KEY_SECRET"
+          PAYLOAD=$(jq -r '.inputs.metadata_json' $GITHUB_EVENT_PATH)
+          KEY_SECRET=$(jq -r '.key?' $PAYLOAD)
           echo "::add-mask::"$KEY_SECRET
-          echo "My secret! $KEY_SECRET"
+          echo "Admin key (should be masked): $KEY_SECRET"
 
       - name: approve.py
         env:
