@@ -1,0 +1,17 @@
+{
+    "name": "Fett Assault",
+    "short_description": "Sidescroller Game",
+    "description": "Simple Star Wars themed sidescroller game",
+    "authors": [
+        "West"
+    ],
+    "version": "1.0.0",
+    "update_notes": "- Initial Release",
+    "category": "Game",
+    "platform": "iPad & iPhone",
+    "forum_link": "https://codea.io/talk/",
+    "icon": "Fett Assault.codea/Icon.png",
+    "hidden": false,
+    "size": 946385,
+    "timestamp": 1635870437
+}
