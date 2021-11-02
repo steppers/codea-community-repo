@@ -1,0 +1,17 @@
+{
+    "name": "Game7",
+    "short_description": "Craft Demo",
+    "description": "Craft Demo Game",
+    "authors": [
+        "dave1707"
+    ],
+    "version": "1.0.0",
+    "update_notes": "- Original dave1707 release",
+    "category": "Game",
+    "platform": "iPad & iPhone",
+    "forum_link": "https://codea.io/talk/",
+    "icon": "Game7.codea/Icon@2x.png",
+    "size": 199909,
+    "hidden": false,
+    "timestamp": 1635896432
+}

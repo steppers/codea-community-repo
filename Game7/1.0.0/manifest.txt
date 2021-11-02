@@ -1,0 +1,3 @@
+Game7.codea/Info.plist
+Game7.codea/Main.lua
+Game7.codea/Icon@2x.png
