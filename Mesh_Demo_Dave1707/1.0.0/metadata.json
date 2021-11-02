@@ -1,0 +1,17 @@
+{
+    "name": "Mesh Demo Dave1707",
+    "short_description": "Multi-Object Mesh Demo",
+    "description": "A different approach to the multiple mesh demo from Yojimbo2000",
+    "authors": [
+        "Dave1707"
+    ],
+    "version": "1.0.0",
+    "update_notes": "- Initial Release",
+    "category": "App",
+    "platform": "iPad & iPhone",
+    "forum_link": "https://codea.io/talk/discussion/6539/batch-drawing-shapes-on-one-mesh",
+    "hidden": false,
+    "size": 459515,
+    "icon": "Mesh Demo Dave1707.codea/Icon@2x.png",
+    "timestamp": 1635870299
+}

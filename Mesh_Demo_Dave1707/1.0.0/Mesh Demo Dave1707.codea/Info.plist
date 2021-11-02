@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Name</key>
+	<string>Dave1707MeshDemo</string>
+	<key>Author</key>
+	<string>Dave1707</string>
+	<key>Description</key>
+	<string>Multiple object Mesh Demo</string>
+	<key>LongDescription</key>
+	<string>A different approach to the multiple mesh demo from Yojimbo2000</string>
+	<key>Version</key>
+	<string>1.0</string>
+	<key>Link</key>
+	<string>https://codea.io/talk/discussion/6539/batch-drawing-shapes-on-one-mesh</string>
+	<key>Library</key>
+	<false/>
+	<key>Executable</key>
+	<true/>
+	<key>Hidden</key>
+	<false/>
+	<key>Platform</key>
+	<string>ipad</string>
+	<key>Icon</key>
+	<string>Icon@2x.png</string>
+	<key>Addons</key>
+	<array>
+		<string>Craft</string>
+	</array>
+	<key>Buffer Order</key>
+	<array>
+		<string>Main</string>
+	</array>
+</dict>
+</plist>
