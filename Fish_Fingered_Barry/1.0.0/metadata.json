@@ -1,0 +1,17 @@
+{
+    "name": "Fish Fingered Barry",
+    "short_description": "Stop fish getting squashed",
+    "description": "Stop the fish getting squashed. Underwater demo game",
+    "authors": [
+        "West"
+    ],
+    "version": "1.0.0",
+    "update_notes": "- Initial Release",
+    "category": "Game",
+    "platform": "iPad & iPhone",
+    "forum_link": "https://codea.io/talk/",
+    "size": 1406056,
+    "icon": "Fish Fingered Barry.codea/Icon@2x.png",
+    "hidden": false,
+    "timestamp": 1635895996
+}
