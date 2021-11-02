@@ -1,0 +1,3 @@
+Mesh Demo Yojimbo2000.codea/Info.plist
+Mesh Demo Yojimbo2000.codea/Main.lua
+Mesh Demo Yojimbo2000.codea/Icon@2x.png

@@ -1,0 +1,17 @@
+{
+    "name": "Mesh Demo Yojimbo2000",
+    "short_description": "Multi-Image Mesh Demo",
+    "description": "An early attempt to demonstrate the power of the mesh in creating, moving and rotating 5000 images - note delay in response at higher numbers.",
+    "authors": [
+        "Yojimbo2000"
+    ],
+    "version": "1.0.0",
+    "update_notes": "- Initial Release",
+    "category": "App",
+    "platform": "iPad Only",
+    "forum_link": "https://codea.io/talk/discussion/6539/batch-drawing-shapes-on-one-mesh",
+    "icon": "Mesh Demo Yojimbo2000.codea/Icon@2x.png",
+    "hidden": false,
+    "size": 368390,
+    "timestamp": 1635870376
+}
