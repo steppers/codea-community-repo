@@ -41,7 +41,8 @@ jobs:
           
       - name: Hide payload key
         run: |
-          secret=$(echo ${{ github.event.inputs.metadata_json }} | jq -r '.key')
+          input=${{ github.event.inputs.metadata_json }}
+          secret=$(echo '$input' | jq -r '.key?')
           echo "My secret! $secret"
           echo "::add-mask::$secret"
 
