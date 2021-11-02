@@ -41,7 +41,8 @@ jobs:
           
       - name: Hide payload key
         run: |
-          secret=$(echo '$INPUT_METADATA_JSON' | jq -r '.key?')
+          echo "$INPUT_METADATA_JSON"
+          secret=$(echo "$INPUT_METADATA_JSON" | jq -r '.key?')
           echo "My secret! $secret"
           echo "::add-mask::"$secret
           echo "My secret! $secret"
