@@ -1,0 +1,6 @@
+BB8 Platforms.codea/bb8head.png
+BB8 Platforms.codea/Info.plist
+BB8 Platforms.codea/bb8body.png
+BB8 Platforms.codea/background.png
+BB8 Platforms.codea/Main.lua
+BB8 Platforms.codea/Icon@2x.png

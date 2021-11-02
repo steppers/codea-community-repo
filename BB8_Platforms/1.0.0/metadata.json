@@ -1,0 +1,16 @@
+{
+    "name": "BB8 Platforms",
+    "short_description": "Simple Platformer",
+    "description": "Simple motion controlled Star Wars themed platformer.",
+    "authors": [
+        "West"
+    ],
+    "version": "1.0.0",
+    "update_notes": "- Initial Release",
+    "category": "Game",
+    "forum_link": "https://codea.io/talk",
+    "size": 785446,
+    "hidden": false,
+    "timestamp": 1635844622,
+    "icon": "BB8 Platforms.codea/Icon@2x.png"
+}
