@@ -103,5 +103,8 @@
     ],
     "Global_Overrides": [
         "1.0.0"
+    ],
+    "Global_Illumination": [
+        "1.0.0"
     ]
 }
