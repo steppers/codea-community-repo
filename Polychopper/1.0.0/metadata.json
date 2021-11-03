@@ -1,0 +1,17 @@
+{
+    "name": "Polychopper",
+    "short_description": "Mesh demo, swipe to cut",
+    "description": "Mesh demo, swipe to cut. A fruit ninja like mechanic",
+    "authors": [
+        "West"
+    ],
+    "version": "1.0.0",
+    "update_notes": "- Initial Release",
+    "category": "Game",
+    "platform": "iPad & iPhone",
+    "forum_link": "https://codea.io/talk/",
+    "size": 89703,
+    "icon": "Polychopper.codea/Icon@2x.png",
+    "hidden": false,
+    "timestamp": 1635980937
+}
