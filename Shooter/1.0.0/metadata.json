@@ -1,0 +1,17 @@
+{
+    "name": "Shooter",
+    "short_description": "Splitscreen Topdown Shooter",
+    "description": "Splitscreen Topdown shooter game.\n\nThe game starts in the map editor which should allow you to create your own maps.\nA demo map has been included however and should load when the project is run.",
+    "authors": [
+        "Xavier"
+    ],
+    "version": "1.0.0",
+    "update_notes": "- Initial Release",
+    "category": "Game",
+    "platform": "iPad Only",
+    "forum_link": "https://codea.io/talk/discussion/7554/topdown-shooter-splitscreen-multiplayer-full-code-art-shared-inside",
+    "icon": "Shooter.codea/Icon.png",
+    "hidden": false,
+    "size": 4087554,
+    "timestamp": 1635981054
+}
