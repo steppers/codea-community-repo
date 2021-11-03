@@ -1,0 +1,17 @@
+{
+    "name": "Wrigglies",
+    "short_description": "Diamond Munching Worms!",
+    "description": "Side scrolling diamond munching worm game",
+    "authors": [
+        "West"
+    ],
+    "version": "1.0.0",
+    "update_notes": "- Initial Release",
+    "category": "Game",
+    "platform": "iPad Only",
+    "forum_link": "https://codea.io/talk/",
+    "icon": "Wrigglies.codea/Icon@2x.png",
+    "size": 554216,
+    "hidden": false,
+    "timestamp": 1635981465
+}
