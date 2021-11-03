@@ -1,0 +1,17 @@
+{
+    "name": "TexturePacker",
+    "short_description": "Spritemap Generator",
+    "description": "A Spritemap Generator\n\nImages from the Codea documents folder will be available for selection.\n\nJust select the images you wish to pack, select the texture atlas size and tap on the result.\nYour new texture atlas will be saved as 'atlas.png' & 'atlas.json' in the documents folder again!\n\nNote: be sure to rename your texture atlas to avoid it being overwritten.",
+    "authors": [
+        "Steppers"
+    ],
+    "version": "1.0.0",
+    "update_notes": "- Initial Release",
+    "category": "App",
+    "platform": "iPad & iPhone",
+    "forum_link": "https://codea.io/talk/",
+    "icon": "TexturePacker.codea/Icon@2x.png",
+    "size": 57732,
+    "hidden": false,
+    "timestamp": 1635981229
+}

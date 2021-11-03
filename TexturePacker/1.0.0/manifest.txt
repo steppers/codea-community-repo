@@ -1,0 +1,7 @@
+TexturePacker.codea/Gestures.lua
+TexturePacker.codea/Rectangle.lua
+TexturePacker.codea/Icon@2x.png
+TexturePacker.codea/Info.plist
+TexturePacker.codea/Array.lua
+TexturePacker.codea/Main.lua
+TexturePacker.codea/PackedTexture.lua
