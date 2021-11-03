@@ -1,0 +1,17 @@
+{
+    "name": "Little Jumping Thing",
+    "short_description": "Tiny Wings Clone",
+    "description": "Tiny Wings Clone",
+    "authors": [
+        "pepinganos"
+    ],
+    "version": "1.0.0",
+    "update_notes": "- Initial Release",
+    "category": "Game",
+    "platform": "iPad & iPhone",
+    "forum_link": "https://codea.io/talk/discussion/1267/little-jumping-thing",
+    "hidden": false,
+    "size": 209622,
+    "icon": "Little Jumping Thing.codea/Icon@2x.png",
+    "timestamp": 1635968949
+}

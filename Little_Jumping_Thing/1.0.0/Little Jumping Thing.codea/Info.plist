@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Name</key>
+	<string>Little Jumping Thing</string>
+	<key>Author</key>
+	<string>pepinganos</string>
+	<key>Description</key>
+	<string>Tiny Wings type game</string>
+	<key>Version</key>
+	<string>1.0</string>
+	<key>Hidden</key>
+	<false/>
+	<key>Library</key>
+	<false/>
+	<key>Icon</key>
+	<string>Icon@2x.png</string>
+	<key>Link</key>
+	<string>https://codea.io/talk/discussion/1267/little-jumping-thing</string>
+	<key>Buffer Order</key>
+	<array>
+		<string>Main</string>
+		<string>BackHills</string>
+		<string>Hero</string>
+		<string>Hills</string>
+		<string>HillsTexture</string>
+		<string>Sky</string>
+		<string>Util</string>
+	</array>
+</dict>
+</plist>
