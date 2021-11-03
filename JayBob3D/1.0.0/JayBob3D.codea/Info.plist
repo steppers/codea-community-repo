@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Name</key>
+	<string>JayBob3D </string>
+	<key>Author</key>
+	<string>JayBob</string>
+	<key>Description</key>
+	<string>3D Demo</string>
+	<key>Version</key>
+	<string>1.0</string>
+	<key>Hidden</key>
+	<false/>
+	<key>Library</key>
+	<false/>
+	<key>Link</key>
+	<string>https://codea.io/talk/discussion/6386/3d-camera-class-controler</string>
+	<key>Addons</key>
+	<array>
+		<string>Craft</string>
+	</array>
+	<key>Buffer Order</key>
+	<array>
+		<string>Main</string>
+		<string>Camera</string>
+		<string>Stick</string>
+	</array>
+	<key>Icon</key>
+	<string>Icon@2x.png</string>
+</dict>
+</plist>

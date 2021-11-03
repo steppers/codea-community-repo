@@ -1,0 +1,17 @@
+{
+    "name": "JayBob3D",
+    "short_description": "3D Demo",
+    "description": "3D Demo",
+    "authors": [
+        "JayBob"
+    ],
+    "version": "1.0.0",
+    "update_notes": "- Initial Release",
+    "category": "App",
+    "platform": "iPad & iPhone",
+    "forum_link": "https://codea.io/talk/discussion/6386/3d-camera-class-controler",
+    "icon": "JayBob3D.codea/Icon@2x.png",
+    "size": 34070,
+    "hidden": false,
+    "timestamp": 1635968689
+}
