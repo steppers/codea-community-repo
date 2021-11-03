@@ -1,0 +1,17 @@
+{
+    "name": "Mirror Draw",
+    "short_description": "Make beautiful patterns!",
+    "description": "Make beautiful patterns with ease!",
+    "authors": [
+        "JakAttak"
+    ],
+    "version": "1.0.0",
+    "update_notes": "- Initial Release",
+    "category": "App",
+    "platform": "iPhone Only",
+    "forum_link": "https://codea.io/talk/",
+    "icon": "Mirror Draw.codea/Icon.png",
+    "hidden": false,
+    "size": 482973,
+    "timestamp": 1635969040
+}
