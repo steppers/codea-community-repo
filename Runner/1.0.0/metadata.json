@@ -1,0 +1,17 @@
+{
+    "name": "Runner",
+    "short_description": "Endless runner game",
+    "description": "Endless runner game",
+    "authors": [
+        "West"
+    ],
+    "version": "1.0.0",
+    "update_notes": "- Initial Release",
+    "category": "Game",
+    "platform": "iPad & iPhone",
+    "forum_link": "https://codea.io/talk/",
+    "size": 49372,
+    "hidden": false,
+    "icon": "Runner.codea/Icon@2x.png",
+    "timestamp": 1635980983
+}
