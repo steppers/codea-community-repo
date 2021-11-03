@@ -1,0 +1,3 @@
+World of Warships.codea/Icon@2x.png
+World of Warships.codea/Info.plist
+World of Warships.codea/Main.lua

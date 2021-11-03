@@ -1,0 +1,17 @@
+{
+    "name": "World of Warships",
+    "short_description": "3D Warship Combat",
+    "description": "3D Warship Combat Game",
+    "authors": [
+        "Ignatz"
+    ],
+    "version": "1.0.0",
+    "update_notes": "- Initial Release",
+    "category": "Game",
+    "platform": "iPad & iPhone",
+    "forum_link": "https://codea.io/talk/discussion/6752/world-of-warships-final",
+    "hidden": false,
+    "icon": "World of Warships.codea/Icon@2x.png",
+    "size": 135336,
+    "timestamp": 1635981368
+}
