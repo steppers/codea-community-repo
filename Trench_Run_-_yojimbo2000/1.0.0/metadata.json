@@ -1,0 +1,17 @@
+{
+    "name": "Trench Run - yojimbo2000",
+    "short_description": "X-Wing Trench Run",
+    "description": "X-Wing Trench Run Game",
+    "authors": [
+        "yojimbo2000"
+    ],
+    "version": "1.0.0",
+    "update_notes": "- Initial Release",
+    "category": "Game",
+    "platform": "iPad & iPhone",
+    "forum_link": "https://codea.io/talk/",
+    "size": 3145176,
+    "hidden": false,
+    "icon": "Trench Run - yojimbo2000.codea/Icon@2x.png",
+    "timestamp": 1635981317
+}
