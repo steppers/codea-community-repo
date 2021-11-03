@@ -1,0 +1,3 @@
+Rotating Thingy.codea/Icon@2x.png
+Rotating Thingy.codea/Info.plist
+Rotating Thingy.codea/Main.lua

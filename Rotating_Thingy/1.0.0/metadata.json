@@ -1,0 +1,17 @@
+{
+    "name": "Rotating Thingy",
+    "short_description": "Simple Demo",
+    "description": "A simple demo",
+    "authors": [
+        "Anatoly"
+    ],
+    "version": "1.0.0",
+    "update_notes": "- Initial Release",
+    "category": "App",
+    "platform": "iPad & iPhone",
+    "forum_link": "https://codea.io/talk/",
+    "icon": "Rotating Thingy.codea/Icon@2x.png",
+    "hidden": false,
+    "size": 72974,
+    "timestamp": 1635980960
+}
