@@ -1,0 +1,18 @@
+{
+    "name": "explodeyCraft",
+    "short_description": "Explode any Craft model",
+    "description": "A single function that takes any craft model and returns it with two new functions attached, one for exploding the model and one for reversing an explosion. \n\nMight cause slowdown with especially complex models.",
+    "authors": [
+        "dave1707",
+        " UberGoober"
+    ],
+    "version": "1.0.0",
+    "update_notes": "- Initial Release",
+    "category": "Library",
+    "platform": "iPad & iPhone",
+    "forum_link": "https://codea.io/talk/discussion/11803/explodeycraft-tool-for-exploding-any-craft-model",
+    "icon": "explodeyCraft.codea/Icon@2x.png",
+    "size": 475915,
+    "hidden": false,
+    "timestamp": 1635981582
+}
