@@ -1,0 +1,17 @@
+{
+    "name": "WorldGrid",
+    "short_description": "XYZ Grids for Craft",
+    "description": "Shouldn\u2019t Codea have a 3D grid?\nEverybody has a 3D grid! Don\u2019t let it feel left out.\n\nAdapted from built in grid class from Voxel Editor.",
+    "authors": [
+        "UberGoober"
+    ],
+    "version": "1.0.0",
+    "update_notes": "- Initial Release",
+    "category": "App",
+    "platform": "iPad & iPhone",
+    "forum_link": "https://codea.io/talk/discussion/11807/worldgrid-tool-for-adding-an-x-y-z-grid-along-craft-coordinates-to-help-with-positioning",
+    "hidden": false,
+    "size": 177475,
+    "icon": "WorldGrid.codea/Icon.png",
+    "timestamp": 1635981390
+}

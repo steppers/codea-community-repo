@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Name</key>
+	<string>WorldGrid</string>
+	<key>Author</key>
+	<string>UberGoober</string>
+	<key>Description</key>
+	<string>XYZ grids along Craft coordinates. </string>
+	<key>LongDescription</key>
+	<string>Shouldn’t Codea have a 3D grid? Everybody has a 3D grid! Don’t let it feel left out. Adapted from built in grid class from Voxel Editor.</string>
+	<key>Version</key>
+	<string>1.0</string>
+	<key>Link</key>
+	<string>https://codea.io/talk/discussion/11807/worldgrid-tool-for-adding-an-x-y-z-grid-along-craft-coordinates-to-help-with-positioning#latest</string>
+	<key>Library</key>
+	<true/>
+	<key>Executable</key>
+	<true/>
+	<key>Hidden</key>
+	<false/>
+	<key>Icon</key>
+	<string>Icon.png</string>
+	<key>Addons</key>
+	<array>
+		<string>Craft</string>
+	</array>
+	<key>Buffer Order</key>
+	<array>
+		<string>_dep_Craft:Touches</string>
+		<string>_dep_Craft:Cameras</string>
+		<string>Main</string>
+		<string>Grid</string>
+	</array>
+	</dict>
+</plist>
