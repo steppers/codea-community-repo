@@ -1,11 +1,5 @@
 [
     {
-        "name": "Oil",
-        "version": "1.0a8",
-        "zip_url": "https://bayfiles.com/j47ftdS7ue",
-        "metadata_url": "https://bayfiles.com/l471tbSfu3"
-    },
-    {
         "name": "WebRepo",
         "version": "2.0a10",
         "zip_url": "https://bayfiles.com/B584t9S9uf",

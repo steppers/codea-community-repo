@@ -1,0 +1,16 @@
+{
+    "name": "Oil",
+    "short_description": "Slick UI Library",
+    "description": "Oil is the UI Library used by WebRepo 2.0\n\nFeatures include:\n- Text Labels\n- Buttons\n- Toggle Switches\n- Sliders\n- Vertical & Horizontal stacks\n- Lists\n- Dropdowns\n- Text entry fields\n- Scrollable panels\n- Rectangles with various configurations, texture, blur, shadow etc.\n- Versatile style system allowing global 'themes' to be created.\n- Nested UI elements make creating complex interfaces a breeze.\n- Modal Alerts\n\nFull documentation is available via the forum link and is also included ('Docs' tab)",
+    "authors": [
+        "Steppers"
+    ],
+    "version": "1.0a8",
+    "update_notes": "- Inset dropdown header to allow right aligned header text to look good.",
+    "category": "Library",
+    "forum_link": "https://codea.io/talk/",
+    "timestamp": 1635898470,
+    "size": 96176,
+    "icon": "Oil.codea/Icon@2x.png",
+    "hidden": false
+}
