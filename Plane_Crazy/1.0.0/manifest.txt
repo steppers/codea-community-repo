@@ -1,0 +1,3 @@
+Plane Crazy.codea/Icon.png
+Plane Crazy.codea/Info.plist
+Plane Crazy.codea/Main.lua

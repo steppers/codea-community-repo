@@ -1,0 +1,17 @@
+{
+    "name": "Plane Crazy",
+    "short_description": "To fly or not to fly",
+    "description": "To fly or not to fly",
+    "authors": [
+        "Mark"
+    ],
+    "version": "1.0.0",
+    "update_notes": "- Initial Release",
+    "category": "Game",
+    "platform": "iPad & iPhone",
+    "forum_link": "https://codea.io/talk/",
+    "hidden": false,
+    "icon": "Plane Crazy.codea/Icon.png",
+    "size": 776515,
+    "timestamp": 1635980916
+}
