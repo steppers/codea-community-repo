@@ -1,0 +1,4 @@
+Wrigglers.codea/Icon@2x.png
+Wrigglers.codea/Info.plist
+Wrigglers.codea/W.lua
+Wrigglers.codea/Main.lua

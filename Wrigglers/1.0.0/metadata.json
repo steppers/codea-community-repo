@@ -1,0 +1,20 @@
+{
+    "name": "Wrigglers",
+    "short_description": "Swipe & Wriggle!",
+    "description": "Swipe around and watch them wriggle!",
+    "authors": [
+        "JakAttak",
+        " West",
+        " Jmv38",
+        " UberGoober"
+    ],
+    "version": "1.0.0",
+    "update_notes": "- Initial Release",
+    "category": "Game",
+    "platform": "iPad & iPhone",
+    "forum_link": "https://www.codea.io/talk/discussion/4760/reverse-bounce",
+    "size": 238849,
+    "hidden": false,
+    "icon": "Wrigglers.codea/Icon@2x.png",
+    "timestamp": 1635981424
+}
