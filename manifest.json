@@ -109,5 +109,8 @@
     ],
     "Global_Illumination": [
         "1.0.0"
+    ],
+    "Image_Carousel": [
+        "1.0.0"
     ]
 }

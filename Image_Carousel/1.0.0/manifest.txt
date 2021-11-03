@@ -1,0 +1,4 @@
+Image Carousel.codea/Icon.png
+Image Carousel.codea/Info.plist
+Image Carousel.codea/ImageCarousel.lua
+Image Carousel.codea/Main.lua
