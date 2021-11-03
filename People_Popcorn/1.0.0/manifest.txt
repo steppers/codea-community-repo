@@ -1,0 +1,3 @@
+People Popcorn.codea/Icon@2x.png
+People Popcorn.codea/Info.plist
+People Popcorn.codea/Main.lua
