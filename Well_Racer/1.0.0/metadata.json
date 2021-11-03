@@ -1,0 +1,17 @@
+{
+    "name": "Well Racer",
+    "short_description": "Codea Cook Off 2013",
+    "description": "Codea Cook Off 2013 Game\n\nRace to the bottom of the well!",
+    "authors": [
+        "West"
+    ],
+    "version": "1.0.0",
+    "update_notes": "- Initial Release",
+    "category": "Game",
+    "platform": "iPad & iPhone",
+    "forum_link": "https://codea.io/talk/",
+    "hidden": false,
+    "size": 57027,
+    "icon": "Well Racer.codea/Icon@2x.png",
+    "timestamp": 1635981345
+}
