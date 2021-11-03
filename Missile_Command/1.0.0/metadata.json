@@ -1,0 +1,17 @@
+{
+    "name": "Missile Command",
+    "short_description": "Missile Command style game",
+    "description": "Missile Command style game",
+    "authors": [
+        "West"
+    ],
+    "version": "1.0.0",
+    "update_notes": "- Initial Release",
+    "category": "Game",
+    "platform": "iPad & iPhone",
+    "forum_link": "https://codea.io/talk/",
+    "size": 58920,
+    "icon": "Missile Command.codea/Icon@2x.png",
+    "hidden": false,
+    "timestamp": 1635969106
+}
