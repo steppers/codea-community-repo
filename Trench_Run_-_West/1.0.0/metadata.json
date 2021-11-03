@@ -1,0 +1,17 @@
+{
+    "name": "Trench Run - West",
+    "short_description": "Tie-Fighter Trench Run",
+    "description": "Tie-Fighter Trench Run Game.",
+    "authors": [
+        "West"
+    ],
+    "version": "1.0.0",
+    "update_notes": "- Initial Release",
+    "category": "Game",
+    "platform": "iPad & iPhone",
+    "forum_link": "https://codea.io/talk/",
+    "icon": "Trench Run - West.codea/Icon@2x.png",
+    "size": 537310,
+    "hidden": false,
+    "timestamp": 1635981282
+}
