@@ -1,0 +1,7 @@
+Soft Shadows.codea/Cube.lua
+Soft Shadows.codea/Transform.lua
+Soft Shadows.codea/Plane.lua
+Soft Shadows.codea/Icon.png
+Soft Shadows.codea/Shaders.lua
+Soft Shadows.codea/Info.plist
+Soft Shadows.codea/Main.lua

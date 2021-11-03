@@ -1,0 +1,17 @@
+{
+    "name": "Soft Shadows",
+    "short_description": "Soft Shadows Demo",
+    "description": "A (pretty bad) soft shadow implementation using shadow maps encoded in Codea's RGBA framebuffer textures.",
+    "authors": [
+        "Steppers"
+    ],
+    "version": "1.0.0",
+    "update_notes": "- Initial Release",
+    "category": "App",
+    "platform": "iPad & iPhone",
+    "forum_link": "https://codea.io/talk/discussion/11746/soft-shadows-meshes-and-framebuffers",
+    "hidden": false,
+    "size": 290892,
+    "icon": "Soft Shadows.codea/Icon.png",
+    "timestamp": 1635981104
+}
