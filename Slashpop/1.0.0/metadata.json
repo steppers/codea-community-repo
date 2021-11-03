@@ -1,0 +1,17 @@
+{
+    "name": "Slashpop",
+    "short_description": "Slash, Pop, Spin & Squash!",
+    "description": "Slash, Pop, Spin & Squash!",
+    "authors": [
+        "West"
+    ],
+    "version": "1.0.0",
+    "update_notes": "- Initial Release",
+    "category": "Game",
+    "platform": "iPad & iPhone",
+    "forum_link": "https://codea.io/talk/",
+    "icon": "Slashpop.codea/Icon@2x.png",
+    "size": 55500,
+    "hidden": false,
+    "timestamp": 1635981082
+}

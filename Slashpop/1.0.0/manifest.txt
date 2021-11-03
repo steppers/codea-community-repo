@@ -1,0 +1,3 @@
+Slashpop.codea/Icon@2x.png
+Slashpop.codea/Info.plist
+Slashpop.codea/Main.lua
