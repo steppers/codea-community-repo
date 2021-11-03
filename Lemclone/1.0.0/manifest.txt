@@ -1,0 +1,3 @@
+Lemclone.codea/Icon@2x.png
+Lemclone.codea/Info.plist
+Lemclone.codea/Main.lua

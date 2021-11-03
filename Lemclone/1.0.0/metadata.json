@@ -1,0 +1,17 @@
+{
+    "name": "Lemclone",
+    "short_description": "Lemmings Clone",
+    "description": "Lemmings Clone",
+    "authors": [
+        "West"
+    ],
+    "version": "1.0.0",
+    "update_notes": "- Initial Release",
+    "category": "Game",
+    "platform": "iPad & iPhone",
+    "forum_link": "https://codea.io/talk/",
+    "icon": "Lemclone.codea/Icon@2x.png",
+    "hidden": false,
+    "size": 46620,
+    "timestamp": 1635968758
+}
