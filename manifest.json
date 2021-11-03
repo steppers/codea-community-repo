@@ -100,5 +100,8 @@
     "Game7": [
         "1.0.0",
         "UG_Edition."
+    ],
+    "Global_Overrides": [
+        "1.0.0"
     ]
 }

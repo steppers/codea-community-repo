@@ -1,0 +1,4 @@
+Global Overrides.codea/Info.plist
+Global Overrides.codea/GlobalOverrides.lua
+Global Overrides.codea/Main.lua
+Global Overrides.codea/Icon@2x.png

@@ -1,0 +1,17 @@
+{
+    "name": "Global Overrides",
+    "short_description": "Global variable intercepts",
+    "description": "Library enabling users to override global variables and wrap global functions.",
+    "authors": [
+        "Steppers"
+    ],
+    "version": "1.0.0",
+    "update_notes": "- Initial Release",
+    "category": "Library",
+    "platform": "iPad & iPhone",
+    "forum_link": "https://codea.io/talk/",
+    "size": 90730,
+    "hidden": false,
+    "icon": "Global Overrides.codea/Icon@2x.png",
+    "timestamp": 1635898395
+}
