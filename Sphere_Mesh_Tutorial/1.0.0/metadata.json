@@ -1,0 +1,17 @@
+{
+    "name": "Sphere Mesh Tutorial",
+    "short_description": "Sphere Mesh Tutorial",
+    "description": "Pre-Craft tutorial for generating spheres with texturing optimisations",
+    "authors": [
+        "Jmv38"
+    ],
+    "version": "1.0.0",
+    "update_notes": "- Initial Release",
+    "category": "App",
+    "platform": "iPad Only",
+    "forum_link": "https://codea.io/talk/discussion/10446/icosphere",
+    "icon": "Sphere Mesh Tutorial.codea/Icon@2x.png",
+    "size": 156167,
+    "hidden": false,
+    "timestamp": 1635981129
+}
