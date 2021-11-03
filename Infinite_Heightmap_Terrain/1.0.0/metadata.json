@@ -1,0 +1,17 @@
+{
+    "name": "Infinite Heightmap Terrain",
+    "short_description": "Heightmap Terrain",
+    "description": "Heightmap Terrain with good performance.",
+    "authors": [
+        "spacemonkey"
+    ],
+    "version": "1.0.0",
+    "update_notes": "- Initial Release",
+    "category": "App",
+    "platform": "iPad & iPhone",
+    "forum_link": "https://codea.io/talk/discussion/5786/heightfield-terrain-very-large-with-good-performance",
+    "size": 353907,
+    "hidden": false,
+    "icon": "Infinite Heightmap Terrain.codea/Icon@2x.png",
+    "timestamp": 1635968593
+}
