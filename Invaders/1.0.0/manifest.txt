@@ -1,0 +1,3 @@
+Invaders.codea/Icon@2x.png
+Invaders.codea/Info.plist
+Invaders.codea/Main.lua

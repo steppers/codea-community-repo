@@ -1,0 +1,17 @@
+{
+    "name": "Invaders",
+    "short_description": "Space Invaders Game",
+    "description": "Space Invaders Game",
+    "authors": [
+        "West"
+    ],
+    "version": "1.0.0",
+    "update_notes": "- Initial Release",
+    "category": "Game",
+    "platform": "iPad & iPhone",
+    "forum_link": "https://codea.io/talk/",
+    "size": 60052,
+    "icon": "Invaders.codea/Icon@2x.png",
+    "hidden": false,
+    "timestamp": 1635968621
+}
