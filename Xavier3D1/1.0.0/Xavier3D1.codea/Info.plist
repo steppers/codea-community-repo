@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Name</key>
+	<string>Xavier3D1</string>
+	<key>Author</key>
+	<string>Xavier</string>
+	<key>Description</key>
+	<string>3D Demo</string>
+	<key>Version</key>
+	<string>1.0</string>
+	<key>Hidden</key>
+	<false/>
+	<key>Library</key>
+	<false/>
+	<key>Link</key>
+	<string>https://codea.io/talk/discussion/658/3d-rendering-on-codea</string>
+	<key>Addons</key>
+	<array>
+		<string>Craft</string>
+	</array>
+	<key>Buffer Order</key>
+	<array>
+		<string>Main</string>
+		<string>Render</string>
+		<string>Params</string>
+		<string>Heightmap</string>
+		<string>Texturing</string>
+		<string>Touches</string>
+		<string>Types</string>
+	</array>
+	<key>Icon</key>
+	<string>Icon@2x.png</string>
+</dict>
+</plist>

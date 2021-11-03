@@ -1,0 +1,17 @@
+{
+    "name": "Xavier3D1",
+    "short_description": "3D Demo",
+    "description": "3D Demo",
+    "authors": [
+        "Xavier"
+    ],
+    "version": "1.0.0",
+    "update_notes": "- Initial Release",
+    "category": "App",
+    "platform": "iPad & iPhone",
+    "forum_link": "https://codea.io/talk/discussion/658/3d-rendering-on-codea",
+    "size": 190257,
+    "icon": "Xavier3D1.codea/Icon@2x.png",
+    "hidden": false,
+    "timestamp": 1635981500
+}
