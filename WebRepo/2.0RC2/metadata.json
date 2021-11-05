@@ -1,0 +1,16 @@
+{
+    "name": "WebRepo",
+    "short_description": "Codea Community Repository",
+    "description": "WebRepo provides easy access to projects from the community.\n\nWebRepo 2.0 ups the ante with a brand new UI and a simplified submission/review process all from within the app itself.\nNo more nasty Google forms!\n\nOther new features include:\n- Light & Dark Themes\n- Integrated Submit & Review\n- No more pesky Github login!\n- Support for multiple versions of a single project (only one version installed at a time)\n- Automatic dependency inclusion",
+    "authors": [
+        "Steppers"
+    ],
+    "version": "2.0RC2",
+    "update_notes": "- Fix review 'install' functionality.\n- Fix invisible review metadata in light theme.",
+    "category": "App",
+    "forum_link": "https://codea.io/talk/discussion/11724",
+    "timestamp": 1636143046,
+    "hidden": false,
+    "icon": "WebRepo.codea/Icon@2x.png",
+    "size": 736142
+}
