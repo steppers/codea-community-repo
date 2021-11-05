@@ -2,36 +2,26 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>Name</key>
-	<string>WebRepo</string>
-	<key>Author</key>
-	<string>Steppers</string>
-	<key>Description</key>
-	<string>Access to Codea Community Repository</string>
-	<key>Version</key>
-	<string>1.0</string>
-	<key>Hidden</key>
-	<true/>
-	<key>Library</key>
-	<false/>
-	<key>Icon</key>
-	<string>Icon@2x.png</string>
 	<key>Buffer Order</key>
 	<array>
+		<string>_dep_Documents:Oil</string>
+		<string>_dep_Documents:Zip</string>
+		<string>_dep_Documents:Packager</string>
 		<string>Main</string>
-		<string>WebRepo</string>
-		<string>GithubAPI</string>
-		<string>URL</string>
-		<string>Browser</string>
-		<string>ProjectPanel</string>
-		<string>Button</string>
-		<string>SearchBar</string>
-		<string>APIOverrides</string>
-		<string>GlobalOverrides</string>
-		<string>Gestures</string>
-		<string>supportedOrientations</string>
-		<string>PList</string>
-		<string>github_oauth</string>
+		<string>DB</string>
+		<string>Themes</string>
+		<string>UI</string>
+		<string>TabRow</string>
+		<string>News</string>
+		<string>AppList</string>
+		<string>AppWindow</string>
+		<string>SubmitWindow</string>
+		<string>ReviewWindow</string>
+		<string>SettingsWindow</string>
+		<string>Submission</string>
+		<string>VFS</string>
+		<string>Path</string>
+		<string>AsyncCoordinator</string>
 		<string>fzy</string>
 	</array>
 </dict>
