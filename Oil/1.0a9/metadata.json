@@ -1,0 +1,16 @@
+{
+    "name": "Oil",
+    "short_description": "Slick UI Library",
+    "description": "Oil is the UI Library used by WebRepo 2.0\n\nFeatures include:\n- Text Labels\n- Buttons\n- Toggle Switches\n- Sliders\n- Vertical & Horizontal stacks\n- Lists\n- Dropdowns\n- Text entry fields\n- Scrollable panels\n- Rectangles with various configurations, texture, blur, shadow etc.\n- Versatile style system allowing global 'themes' to be created.\n- Nested UI elements make creating complex interfaces a breeze.\n- Modal Alerts\n\nFull documentation is available via the forum link and is also included ('Docs' tab)",
+    "authors": [
+        "Steppers"
+    ],
+    "version": "1.0a9",
+    "update_notes": "- Add 'StatusModal' to display a string in a rect above everything else. Lifetime must be managed elsewhere.",
+    "category": "Library",
+    "forum_link": "https://codea.io/talk/",
+    "timestamp": 1636071856,
+    "hidden": false,
+    "size": 96755,
+    "icon": "Oil.codea/Icon@2x.png"
+}
