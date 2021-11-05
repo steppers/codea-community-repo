@@ -1,0 +1,17 @@
+{
+    "name": "Ignatz Dogfight",
+    "short_description": "some mighty fine code",
+    "description": "From the way-back glory days of Codea, when we didn\u2019t have no newfangled Craft API and we had to make every single mesh vertex by hand AND WE LIKED IT THAT WAY. :)\n\nignatz did some impressive magic here, though it shows its age in a few ways. Who knows, maybe some young firecracker will dust 'er off and update 'er for Craft...",
+    "authors": [
+        "ignatz"
+    ],
+    "version": "1.0.0",
+    "update_notes": "- Initial Release",
+    "category": "Game",
+    "platform": "iPad & iPhone",
+    "forum_link": "https://codea.io/talk/",
+    "hidden": false,
+    "icon": "Ignatz Dogfight.codea/Icon@2x.png",
+    "size": 10128437,
+    "timestamp": 1636139742
+}
