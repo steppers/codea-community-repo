@@ -63,16 +63,21 @@ def project_is_in_review(name, ver):
 def download(url, filepath):
     file = open(filepath, "wb")
     req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
-    with urllib.request.urlopen(req) as stream:
-        if stream.status != 200:
-            file.close()
-            return False
-        while 1:
-            chunk = stream.read(1024*256) # 256K
-            if not chunk:
-                break
-            file.write(chunk)        
-        # TODO: Verify file size
+    try:
+        with urllib.request.urlopen(req) as stream:
+            if stream.status != 200:
+                file.close()
+                return False
+            while 1:
+                chunk = stream.read(1024*256) # 256K
+                if not chunk:
+                    break
+                file.write(chunk)        
+            # TODO: Verify file size
+    except HTTPError as err:
+        print(url, err.reason)
+        file.close()
+        return False
     file.close()
     return True
     
@@ -209,7 +214,9 @@ def pushover(title, message):
     response = urllib.request.urlopen(req, json.dumps(payload).encode('utf-8'))
     return
 
-
+def fail(msg):
+    pushover("[FAIL] Approval", msg)
+    sys.exit()
 
 
 
@@ -218,12 +225,12 @@ payload = json.loads(PAYLOAD)
 
 # Admin check
 if not is_admin(payload):
+    fail(f'Admin key check failed: {payload["name"]} - {payload["version"]}')
     sys.exit()
     
 # Specified project must be in review
 if not project_is_in_review(payload['name'], payload['version']):
-    print(f'Project is not in review: {payload["name"]} - {payload["version"]} ...')
-    sys.exit()
+    fail(f'Project is not in review: {payload["name"]} - {payload["version"]} ...')
     
 print(f'Processing {payload["name"]} - {payload["version"]} ...')
 
@@ -241,27 +248,23 @@ project_dir=f'{REPO_ROOT}/{repo_name}/{repo_ver}'
 
 # Reject project version if it already exists
 if os.path.exists(project_dir):
-    print(f'Project already live! abort.')
-    sys.exit()
+    fail(f'Project already live! abort.')
 os.system(f'mkdir -p "{project_dir}"')
 
 # Download zip
 if not download(payload["zip_url"], '../submission.zip'):
-    print(f'Failed to download submission zip from {payload["zip_url"]}')
-    sys.exit()
+    fail(f'Failed to download submission zip from {payload["zip_url"]}')
     
 # Unzip submission
 if (os.popen(f'unzip -q ../submission.zip -d "{project_dir}"').close() != None):
-    print(f'Failed to unzip submission zip!')
-    sys.exit()
+    fail(f'Failed to unzip submission zip!')
 
 # Generate Manifest
 generate_project_manifest(project_dir)
 
 # Download metadata (after the manifest generation)
 if not download(payload["metadata_url"], f'{project_dir}/metadata.json'):
-    print(f'Failed to download metadata from {payload["metadata_url"]}')
-    sys.exit()
+    fail(f'Failed to download metadata from {payload["metadata_url"]}')
 
 # Add unix timestamp to metadata
 add_timestamp(f'{project_dir}/metadata.json')
@@ -276,6 +279,4 @@ remove_from_queue(payload['name'], payload['version'])
 git_commit()
 
 # Send notification to admin
-pushover(
-    f'New Approval: {payload["name"]}-{payload["version"]}',
-    "N/A")
+pushover("[SUCCESS] Approval", f'{payload["name"]}-{payload["version"]}')
