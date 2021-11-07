@@ -1,0 +1,14 @@
+Micro Console - Snake.codea/btn_up.png
+Micro Console - Snake.codea/btn_pause.png
+Micro Console - Snake.codea/console_portrait.png
+Micro Console - Snake.codea/btn_left.png
+Micro Console - Snake.codea/btn_down.png
+Micro Console - Snake.codea/btn_a.png
+Micro Console - Snake.codea/console_landscape.png
+Micro Console - Snake.codea/Icon@2x.png
+Micro Console - Snake.codea/_dep_Console:Dev Console.lua
+Micro Console - Snake.codea/Info.plist
+Micro Console - Snake.codea/btn_b.png
+Micro Console - Snake.codea/btn_right.png
+Micro Console - Snake.codea/Main.lua
+Micro Console - Snake.codea/btn_power.png

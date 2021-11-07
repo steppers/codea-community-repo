@@ -1,0 +1,17 @@
+{
+    "name": "Micro Console - Snake",
+    "short_description": "Snake on a console!",
+    "description": "Micro Console was my 'pre-Webrepo' repository based project allowing the 'Micro Console' to download small games on the fly.\n\nThough the original project has now been superseded by WebRepo I still have a couple of nice projects that can run standalone.\n\nThe other project is Micro Console - 'Camera'",
+    "authors": [
+        "Steppers"
+    ],
+    "version": "1.0.0",
+    "update_notes": "- Initial Release",
+    "category": "Game",
+    "platform": "iPhone Only",
+    "forum_link": "https://codea.io/talk/",
+    "hidden": false,
+    "size": 48618,
+    "icon": "Micro Console - Snake.codea/Icon@2x.png",
+    "timestamp": 1636248844
+}
