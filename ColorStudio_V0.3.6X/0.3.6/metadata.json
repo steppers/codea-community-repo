@@ -1,6 +1,6 @@
 {
     "name": "ColorStudio V0.3.6X",
-    "short_description": "Sweeeeet color\npicker",
+    "short_description": "Sweeeeet Color Picker",
     "description": "An obscure forum post contained this buried gem. Marcellino made this thing work great and look even better--in particular the code for the interactive spring-loaded color palette UI stands as a great example of using Codea to do professional-level work  The code's not the most modular ever written, so if you want that springy-palette UI in your own project it might take some digging.  But well worth the effort!",
     "authors": [
         "Louis Marcellino"
