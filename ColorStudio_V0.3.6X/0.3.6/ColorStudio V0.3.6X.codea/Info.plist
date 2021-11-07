@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Buffer Order</key>
+	<array>
+		<string>Main</string>
+		<string>ColorCard</string>
+		<string>ColorChooser</string>
+		<string>Picker</string>
+		<string>ColorConverter</string>
+		<string>GLSLCanvas</string>
+		<string>Vertex</string>
+		<string>Fragment</string>
+		<string>SingleSlider</string>
+		<string>MultiSlider</string>
+		<string>Collision</string>
+		<string>Shapes</string>
+		<string>Math</string>
+		<string>Timer</string>
+		<string>Spacer</string>
+		<string>Clip</string>
+	</array>
+	<key>Dependencies</key>
+	<array/>
+</dict>
+</plist>
