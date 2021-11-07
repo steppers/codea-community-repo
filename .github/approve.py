@@ -74,7 +74,7 @@ def download(url, filepath):
                     break
                 file.write(chunk)        
             # TODO: Verify file size
-    except HTTPError as err:
+    except urllib.error.HTTPError as err:
         print(url, err.reason)
         file.close()
         return False
