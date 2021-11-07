@@ -62,8 +62,9 @@ def project_is_in_review(name, ver):
 # Download a url to a file
 def download(url, filepath):
     file = open(filepath, "wb")
-    with urllib.request.urlopen(url) as stream:
+    with urllib.request.urlopen(url, headers={'User-Agent': 'Mozilla/5.0'}) as stream:
         if stream.status != 200:
+            file.close()
             return False
         while 1:
             chunk = stream.read(1024*256) # 256K
