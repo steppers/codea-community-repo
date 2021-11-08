@@ -1,4 +1,0 @@
-dave1707 Center In View.codea/Icon.png
-dave1707 Center In View.codea/Icon@2x.png
-dave1707 Center In View.codea/Info.plist
-dave1707 Center In View.codea/Main.lua

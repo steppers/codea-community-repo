@@ -1,5 +1,5 @@
 {
-    "name": "dave1707 Center In View",
+    "name": "Center In View",
     "short_description": "Demo of tilt controls",
     "description": "The forums are full of helpful one-tab projects that dave1707 made on the fly to show someone how to solve a problem. This is one of those. It demonstrates tilt controls on a Craft spaceship. You could make a cool space game using just this as a starting point.",
     "authors": [
@@ -11,7 +11,7 @@
     "platform": "iPad & iPhone",
     "forum_link": "https://codea.io/talk/",
     "hidden": false,
-    "icon": "dave1707 Center In View.codea/Icon@2x.png",
+    "icon": "Center In View.codea/Icon@2x.png",
     "size": 1109230,
     "timestamp": 1636396514
 }
