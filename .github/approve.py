@@ -252,8 +252,13 @@ if os.path.exists(project_dir):
 os.system(f'mkdir -p "{project_dir}"')
 
 # Download zip
-if not download(payload["zip_url"], '../submission.zip'):
-    fail(f'Failed to download submission zip from {payload["zip_url"]}')
+attempts = 5
+while not download(payload["zip_url"], '../submission.zip'):
+    attempts--
+    print("Failed to download submission zip, retrying...")
+    time.sleep(5)
+    if attempts == 0:
+        fail(f'Failed to download submission zip from {payload["zip_url"]}')
     
 # Unzip submission
 if (os.popen(f'unzip -q ../submission.zip -d "{project_dir}"').close() != None):
@@ -263,8 +268,13 @@ if (os.popen(f'unzip -q ../submission.zip -d "{project_dir}"').close() != None):
 generate_project_manifest(project_dir)
 
 # Download metadata (after the manifest generation)
-if not download(payload["metadata_url"], f'{project_dir}/metadata.json'):
-    fail(f'Failed to download metadata from {payload["metadata_url"]}')
+attempts = 5
+while not download(payload["metadata_url"], f'{project_dir}/metadata.json'):
+    attempts--
+    print("Failed to download metadata, retrying...")
+    time.sleep(5)
+    if attempts == 0:
+        fail(f'Failed to download metadata from {payload["metadata_url"]}')
 
 # Add unix timestamp to metadata
 add_timestamp(f'{project_dir}/metadata.json')
