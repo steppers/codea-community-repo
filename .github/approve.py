@@ -254,7 +254,7 @@ os.system(f'mkdir -p "{project_dir}"')
 # Download zip
 attempts = 5
 while not download(payload["zip_url"], '../submission.zip'):
-    attempts--
+    attempts -= 1
     print("Failed to download submission zip, retrying...")
     time.sleep(5)
     if attempts == 0:
@@ -270,7 +270,7 @@ generate_project_manifest(project_dir)
 # Download metadata (after the manifest generation)
 attempts = 5
 while not download(payload["metadata_url"], f'{project_dir}/metadata.json'):
-    attempts--
+    attempts -= 1
     print("Failed to download metadata, retrying...")
     time.sleep(5)
     if attempts == 0:
