@@ -1,0 +1,17 @@
+{
+    "name": "Debug Server",
+    "short_description": "Debug Web Server",
+    "description": "Serves a webpage to a connecting browser that is updated at ~60Hz to display variable values.\nThe webpage does not need to be reloaded when the Codea project is restarted.\n\nA demo is included.\n\n- DebugServer.start(port) starts the debug server at the specified port, or port 80 if nil.\n\n- DebugServer.watch(expr) behaves in the same way as parameter.watch(expr)\n\n- DebugServer.log(id, variable) only displays a variable value for the frame in which log is called.\n\n- DebugServer.update() should be called at the end of your draw() function.",
+    "authors": [
+        "Steppers"
+    ],
+    "version": "1.0.0",
+    "update_notes": "- Initial Release",
+    "category": "Library",
+    "platform": "iPad & iPhone",
+    "forum_link": "https://codea.io/talk/discussion/12718/simple-web-server",
+    "size": 11744,
+    "icon": "Debug Server.codea/Icon@2x.png",
+    "hidden": false,
+    "timestamp": 1636543644
+}

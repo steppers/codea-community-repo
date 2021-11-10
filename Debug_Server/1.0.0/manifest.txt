@@ -1,0 +1,6 @@
+Debug Server.codea/_dep_Documents:Web Server.lua
+Debug Server.codea/DebugServer.lua
+Debug Server.codea/HTMLSource.lua
+Debug Server.codea/Icon@2x.png
+Debug Server.codea/Info.plist
+Debug Server.codea/Main.lua
