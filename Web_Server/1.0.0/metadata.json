@@ -1,0 +1,17 @@
+{
+    "name": "Web Server",
+    "short_description": "Simple Web Server",
+    "description": "This Web Server supports HTTP GET requests and provides content from a specified asset folder.\n\nThe project contains a small demo & accompanying html source files.\n\nUsage is a single line to start the server:\n\nWebServer(asset.documents.WebSiteSourceFolder)",
+    "authors": [
+        "Steppers"
+    ],
+    "version": "1.0.0",
+    "update_notes": "- Initial Release",
+    "category": "Library",
+    "platform": "iPad & iPhone",
+    "forum_link": "https://codea.io/talk/discussion/12718/simple-web-server",
+    "hidden": false,
+    "size": 14696,
+    "icon": "Web Server.codea/Icon@2x.png",
+    "timestamp": 1636504793
+}
