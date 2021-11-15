@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Buffer Order</key>
+	<array>
+		<string>Main</string>
+		<string>sha1</string>
+		<string>WebServer</string>
+		<string>WebSocket</string>
+		<string>WebSocketClient</string>
+		<string>TweenMod</string>
+	</array>
+</dict>
+</plist>

@@ -1,0 +1,172 @@
+<html>
+<h1 id="codea-web-server-documentation">Codea Web Server Documentation</h1>
+<p>Thank you for checking out my Web Server for Codea!</p>
+<p>For an example of many of these concepts please look at the 'Main' tab of the 'Web Server Demo' project &amp; the corresponding 'Web Server Demo' asset pack for HTML/Javascript source.</p>
+<p>I hope this documentation provides a good resource to those who wish to use this in one of their own projects. If you have any questions, feel free to direct them at me (Steppers) over on the forum :)</p>
+<h3 id="warning-">WARNING:</h3>
+<p>This Web Server uses insecure HTTP and NOT the secure variant HTTPS. Do not use this for transmitting sensitive or private data across networks you do not fully trust. I take no responsibility for anything stupid you may decide to do...</p>
+<hr>
+<h2 id="features">Features</h2>
+<ul>
+<li>Super simple interface with one line server creation</li>
+<li>Support for multiple request types (GET, POST, HEAD, etc.)</li>
+<li>Server side lua scripting, embedded inside HTML sources</li>
+<li>Bi-directional WebSocket support</li>
+</ul>
+<h2 id="getting-started">Getting started</h2>
+<p>To create your own web server &amp; local website you need only 2 things; a folder for your website HTML to live &amp; a new project to run the server (with Web Server added as a dependency).</p>
+<p>In this example, we only need 3 lines in the entire project to start a web server:</p>
+<pre><code><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">setup</span><span class="hljs-params">()</span></span>
+    WebServer(asset.documents.Web_Server_Demo)
+<span class="hljs-keyword">end</span>
+</code></pre><p>That&#39;s it! The example above starts a web server that serves files found in the <code>Web Server Demo</code> folder in Codea&#39;s documents folder.</p>
+<p>If all you need is a web server to provide static content (HTML &amp; Javascript) then look no further, this is all you likely need.</p>
+<hr>
+<h2 id="custom-resources">Custom Resources</h2>
+<p>Resources definitions in this web server are all implemented using a simple interface. Once a WebServer object has been created, you may add additional resource definitions that are defined by a URL pattern &amp; a request handler function. The example below demonstrates the basic use of this:</p>
+<pre><code><span class="hljs-comment">-- Create our Web Server</span>
+server = WebServer(asset.documents.Web_Server_Demo)
+
+<span class="hljs-comment">-- Add a new resource definition</span>
+server:add_resource(<span class="hljs-string">"/codea_demo_resource"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(request)</span></span>
+
+    <span class="hljs-comment">-- Only GET supported on this resource</span>
+    <span class="hljs-keyword">if</span> request.method ~= <span class="hljs-string">"GET"</span> <span class="hljs-keyword">then</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-number">501</span> <span class="hljs-comment">-- Unsupported</span>
+    <span class="hljs-keyword">end</span>
+
+    <span class="hljs-comment">-- Return status code '200 OK' &amp; the response content to send to the client</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-number">200</span>, <span class="hljs-string">"Hello Codea!"</span>
+<span class="hljs-keyword">end</span>)
+</code></pre><p>In the example above, the url <code>http://localhost/codea_demo_resource</code> will match with this resource definition and as such, trigger its request handler.</p>
+<p>The request handler function is passed a single parameter by default, the <code>request</code> table which represents the current request being made by a client.</p>
+<p>A request table is formed like so:</p>
+<pre><code>request = {
+    uri,        <span class="hljs-comment">-- String - The full URL path component (E.g '/index.html')</span>
+    method,     <span class="hljs-comment">-- String - The request method (GET, POST, PUT, HEAD, etc.)</span>
+    <span class="hljs-keyword">body</span>,       <span class="hljs-comment">-- String - Any data provided by the client (common with POST &amp; PUT)</span>
+    headers,    <span class="hljs-comment">-- Table  - key-value headers provided with the request</span>
+    query       <span class="hljs-comment">-- Table  - Any query key-value pairs provided in the request</span>
+}
+</code></pre><p>Passed along with the request table are any captures defined in the URL pattern. For example <code>server:add_resource(&quot;/test/(.*)&quot;, function(request, path) ..</code> will pass the value captured in <code>(.*)</code> (that is, anything following /test/) to the request handler as <code>path</code>. If multiple captures are defined in the pattern, then the corresponding number of additional parameters are provided. This allows us to change behaviour depending on the URL used.</p>
+<p>Using this information from the request, many custom behaviours can be produced for web pages. For example, this resource definition returns HTML content displaying the custom uri path used:</p>
+<pre><code>server = WebServer(asset.documents.demo_site)
+
+server:add_resource(<span class="hljs-string">"/test/(.*)"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(request, path)</span></span>
+    <span class="hljs-comment">-- Only GET supported on this resource</span>
+    <span class="hljs-keyword">if</span> request.method ~= <span class="hljs-string">"GET"</span> <span class="hljs-keyword">then</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-number">501</span> <span class="hljs-comment">-- Unsupported</span>
+    <span class="hljs-keyword">end</span>
+
+    <span class="hljs-comment">-- Return the path used</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-number">200</span>, <span class="hljs-string">"&lt;html&gt;URL sub-path used: "</span> .. path .. <span class="hljs-string">"&lt;/html&gt;"</span>
+<span class="hljs-keyword">end</span>)
+</code></pre><h2 id="server-side-scripting">Server Side Scripting</h2>
+<p>The Web Server has support for server side Lua scripts embedded in HTML content.</p>
+<p>Any HTML content sent to clients can be pre-processed to detect <code>&lt;?lua ... ?&gt;</code> code blocks. These code blocks are executed and replaced by their produced output.</p>
+<p>The default resource definition (reading from the source folder) applies this pre-processing automatically. For user defined resources the pre-processing can be applied to any HTML source using <code>source = WebServer.preprocess_html(source)</code>.</p>
+<p>This HTML example will list all items in Codea&#39;s documents folder:</p>
+<pre><code>&lt;html&gt;
+<span class="hljs-meta">&lt;?</span>lua
+    <span class="hljs-built_in">local</span> <span class="hljs-keyword">items</span> = asset.documents.all
+
+    <span class="hljs-keyword">for</span> _,<span class="hljs-keyword">item</span> <span class="hljs-keyword">in</span> ipairs(<span class="hljs-keyword">items</span>) <span class="hljs-built_in">do</span>
+        print(<span class="hljs-keyword">item</span>.name .. <span class="hljs-string">"&lt;br&gt;"</span>)
+    <span class="hljs-function"><span class="hljs-keyword">end</span>
+?&gt;</span>
+&lt;/html&gt;
+</code></pre><h2 id="web-sockets">Web Sockets</h2>
+<p>The Web Server also has WebSocket support, providing a bi-directional communications link between a connected browser &amp; Codea.</p>
+<p>A WebSocket sends data between devices in the form of messages. A message can be either a UTF-8 string or arbitrary binary data.</p>
+<p>When using WebSockets in your Codea project you have 3 objects at your disposal:</p>
+<ul>
+<li>Endpoint Definitions</li>
+<li>WebSocketClient</li>
+<li>WebSocketClientGroup</li>
+</ul>
+<h3 id="endpoints">Endpoints</h3>
+<p>In order to start using WebSockets we first need to define the endpoint that will be used to start a connection.</p>
+<p>Similarly to how we define custom resources we define a URI to match against. We also provide a callback function used to handle new client connections:</p>
+<pre><code>server = WebServer(asset.documents.demo_site)
+
+server:add_websocket(<span class="hljs-string">"/updates"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(new_client)</span></span>
+
+    <span class="hljs-comment">-- Add a message handler</span>
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">new_client:on_message</span><span class="hljs-params">(msg)</span></span>
+        <span class="hljs-built_in">print</span>(msg)
+    <span class="hljs-keyword">end</span>
+
+    <span class="hljs-comment">-- Send a connection message</span>
+    new_client:send(<span class="hljs-string">"Connected!"</span>)
+<span class="hljs-keyword">end</span>)
+</code></pre><p>Lets walk through the example above one piece at a time.</p>
+<pre><code>server = WebServer(asset<span class="hljs-selector-class">.documents</span><span class="hljs-selector-class">.demo_site</span>)
+</code></pre><p>creates our WebServer instance, serving files from the <code>demo_site</code> folder.
+<br><br></p>
+<pre><code>server:<span class="hljs-type">add_websocket</span>(<span class="hljs-string">"/updates"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span></span>(<span class="hljs-keyword">new</span><span class="hljs-type">_client</span>)
+</code></pre><p>defines a new WebSocket endpoint. This means that a WebSocket connection can be made using the URL <code>ws://localhost/updates</code> from the same device or <code>ws://192.168.0.9/updates</code> (in my case) from other devices on the local network.
+The function provided is intended to alert the application to new connections.
+<br><br></p>
+<pre><code><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">new_client:on_message</span><span class="hljs-params">(msg)</span></span>
+    <span class="hljs-built_in">print</span>(msg)
+<span class="hljs-keyword">end</span>
+</code></pre><p>overrides the default blank message handler used by all new client connections. This allows us to define a custom message handler function that will be called whenever a message is sent from a client to the server. In this case, we print all received messages to the console.
+<br><br></p>
+<pre><code><span class="hljs-keyword">new</span><span class="hljs-type">_client</span>:send(<span class="hljs-string">"Connected!"</span>)
+</code></pre><p>sends a simple UTF-8 string message to the newly connected client. If the data to be sent consisted of a binary string then the function should be called like so; <code>new_client:send(binary_data_str, true)</code> where the &#39;true&#39; indicates that this should be treated as binary data by the Javascript client.</p>
+<h3 id="javascript-side">Javascript side</h3>
+<p>In order to use WebSockets a little Javascript is required in your HTML source to connect to an endpoint defined in Lua. <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSocket">JS WebSocket API documentation</a> is also available.</p>
+<p>The example below is what is used by the provided Web Server Demo site. It initiates a WebSocket connection, defines its message handler callback (<code>onmessage</code>) and provides automatic reconnection when a connection is lost.</p>
+<p>Note that this example is intended to be embedded in a HTML source file, as a result <code>location.host</code> provides the server address the enclosing HTML file was received from.</p>
+<pre><code><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span>&gt;</span><span class="javascript">
+    <span class="hljs-keyword">let</span> ws = <span class="hljs-literal">null</span>;
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">connect</span>(<span class="hljs-params">ws_url, onmessage</span>)</span>{
+        ws = <span class="hljs-keyword">new</span> WebSocket(ws_url);
+
+        ws.onmessage = onmessage;
+
+        ws.onopen = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>)
+        </span>{
+            <span class="hljs-comment">// Change status to connected</span>
+            <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"server_message"</span>).innerHTML=<span class="hljs-string">"Connected"</span>;
+
+            <span class="hljs-comment">// Send a test message</span>
+            ws.send(<span class="hljs-string">"Browser says hello!"</span>);
+        };
+
+        ws.onclose = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)
+        </span>{
+            <span class="hljs-comment">// Change status to disconnected</span>
+            <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"server_message"</span>).innerHTML=<span class="hljs-string">"Waiting for connection..."</span>;
+
+            <span class="hljs-comment">// Try to reconnect every second</span>
+            setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+                connect(ws_url, onmessage)
+            }, <span class="hljs-number">1000</span>);
+        };
+    }
+
+    <span class="hljs-comment">// Connect to the websocket</span>
+    connect(<span class="hljs-string">"ws://"</span> + location.host + <span class="hljs-string">"/updates"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">message</span>) </span>{
+        <span class="hljs-comment">// Change status message</span>
+        <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"server_message"</span>).innerHTML=message.data;
+      })
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre><h3 id="websocketclientgroup">WebSocketClientGroup</h3>
+<p>To help with broadcasting to multiple connected clients at once, <code>WebSocketClientGroup</code> stores <code>WebSocketClient</code> references and allows clients to be added &amp; removed from the group at will.</p>
+<p>The number of clients in the group can be obtained using the <code>WebSocketClientGroup:size()</code> function.</p>
+<p>A WebSocketClientGroup is created:</p>
+<pre><code><span class="hljs-attr">clients</span> = WebSocketClientGroup()
+</code></pre><p><br></p>
+<p>New connection clients are added to the group:</p>
+<pre><code>server:add_websocket(<span class="hljs-string">"/updates"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-title">client</span>)</span>
+    ...
+    clients:<span class="hljs-built_in">add</span>(client)
+    ...
+<span class="hljs-keyword">end</span>)
+</code></pre><p><br></p>
+<p>Elsewhere within your Codea project a message can be sent to all connected clients using:</p>
+<pre><code>clients:broadcast("I'm <span class="hljs-selector-tag">a</span> broadcast!")
+</code></pre>
+</html>

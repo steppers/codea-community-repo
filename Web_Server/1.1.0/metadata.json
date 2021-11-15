@@ -1,0 +1,17 @@
+{
+    "name": "Web Server",
+    "short_description": "Advanced Web Server",
+    "description": "An easy to use Web Server you can use to develop static websites.\n\nWith a single line you'll be on your way!\n\nFor more advanced users the Web Server also supports:\n- Multiple HTTP methods (GET, POST, HEAD, etc.)\n- Server side scripting (Lua embedded in HTML source)\n- Bi-directional WebSocket support.\n\nWhen the 'Web Server' project is run and navigated to in a browser, the full documentation will be made available to you.",
+    "authors": [
+        "Steppers"
+    ],
+    "version": "1.1.0",
+    "update_notes": "- Major rewrite\n- WebSocket support\n- Server-side scripting\n- Improved API",
+    "category": "Library",
+    "platform": "iPad & iPhone",
+    "forum_link": "https://codea.io/talk/discussion/12718/simple-web-debug-server",
+    "hidden": false,
+    "icon": "Web Server.codea/Icon@2x.png",
+    "size": 87549,
+    "timestamp": 1636937897
+}
