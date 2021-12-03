@@ -1,0 +1,17 @@
+{
+    "name": "bitmapFont",
+    "short_description": "Use meshes to display text",
+    "description": "This project uses meshes to create a bitmap font and then render text to the screen.\nIncludes a couple shaders to showcase the effects that can be used with text and any font.\nOne demo font is included, new font png images must be made.",
+    "authors": [
+        "skar"
+    ],
+    "version": "1.0.0",
+    "update_notes": "- Initial Release",
+    "category": "App",
+    "platform": "iPad & iPhone",
+    "forum_link": "https://codea.io/talk/",
+    "icon": "bitmapFont.codea/Icon@2x.png",
+    "hidden": false,
+    "size": 3575222,
+    "timestamp": 1638525030
+}
