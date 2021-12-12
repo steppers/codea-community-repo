@@ -1,0 +1,17 @@
+{
+    "name": "2D Lights",
+    "short_description": "Lighting effect for 2DMesh",
+    "description": "This project shows how to add light effects to 2D meshes.\n\nSupports:\nmultiple lights\nmoving meshes x,y position\nmoving lights position\nrelative vs global lights\ncolors\nsizes\nother small tweaks to light settings",
+    "authors": [
+        "skar"
+    ],
+    "version": "1.1",
+    "update_notes": "- Camera zooming issues fixed\n- Global vs relative light issues fixed",
+    "category": "App",
+    "platform": "iPad & iPhone",
+    "forum_link": "https://codea.io/talk/discussion/11681/2d-lights",
+    "hidden": false,
+    "icon": "2D Lights.codea/Icon@2x.png",
+    "size": 3598308,
+    "timestamp": 1639301120
+}
