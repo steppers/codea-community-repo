@@ -1,0 +1,17 @@
+{
+    "name": "2D Lights",
+    "short_description": "Lighting effect for 2DMesh",
+    "description": "This project shows how to add light effects to 2D meshes.\n\nSupports:\nmultiple lights\nmoving meshes x,y position\nmoving lights position\nrelative vs global lights\ncolors\nsizes\nother small tweaks to light settings",
+    "authors": [
+        "skar"
+    ],
+    "version": "1.2",
+    "update_notes": "- Added phong \n- Added Ambient Occlusion support (requires texture map)\n- Touch the screen for dynamic asset swap",
+    "category": "App",
+    "platform": "iPad & iPhone",
+    "forum_link": "https://codea.io/talk/discussion/11681/2d-lights",
+    "icon": "2D Lights.codea/Icon@2x.png",
+    "hidden": false,
+    "size": 1153133,
+    "timestamp": 1639387136
+}
