@@ -1,0 +1,17 @@
+{
+    "name": "Lemmings V2",
+    "short_description": "classic game",
+    "description": "Your mission is to take the lemmings to the door, in order to achive it you need to select the type of lemming in the lower menu, (miner, climber, bomber\u2026.) and then click on the lemming to do it. \nIn this version there are more levels (8), music, scrollable screen and some fixes.",
+    "authors": [
+        "Domingo"
+    ],
+    "version": "2.0.0",
+    "update_notes": "- Initial Release",
+    "category": "Game",
+    "platform": "iPad Only",
+    "forum_link": "https://codea.io/talk/lemmings",
+    "size": 10005370,
+    "icon": "Lemmings V2.codea/Icon@2x.png",
+    "hidden": false,
+    "timestamp": 1640640698
+}
