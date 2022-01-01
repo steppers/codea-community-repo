@@ -1,0 +1,117 @@
+<html>
+
+<head>
+    <title>Codea AirCode 2.0</title>
+    <style>
+        body
+        {
+            font-family: "Myriad Pro", "Helvetica Neue", "Helvetica", sans-serif;
+            font-size: larger;
+        }
+
+        a
+        {
+            color: #54817e;
+            text-decoration: none;
+        }
+        
+        h2
+        {
+            text-align: center;
+        }
+        
+        h4
+        {
+            text-align: center;
+        }
+
+        a:hover
+        {
+            color: #303736;
+        }
+
+        .content
+        {
+            margin-left: auto;
+            margin-right: auto;
+            width: 600px;
+        }
+
+        .project
+        {
+            background-color: #eaefef;
+            display: inline-block;
+            margin: 10px;
+            padding: 10px;
+            width: 150px;
+            height: 200px;
+            text-align: center;
+            border-radius: 4px;
+            background: -webkit-linear-gradient(top, #eff3f2 0%,#ebf1f0 41%,#e9efee 44%,#e3e9e8 100%); /* Chrome10+,Safari5.1+ */
+            background: -o-linear-gradient(top, #eff3f2 0%,#ebf1f0 41%,#e9efee 44%,#e3e9e8 100%); /* Opera 11.10+ */
+            background: -ms-linear-gradient(top, #eff3f2 0%,#ebf1f0 41%,#e9efee 44%,#e3e9e8 100%); /* IE10+ */
+            background: linear-gradient(to bottom, #eff3f2 0%,#ebf1f0 41%,#e9efee 44%,#e3e9e8 100%); /* W3C */ 
+            border-style: solid;
+            border-width: 1px;
+            border-color: #c4d0d0;
+            overflow: scroll;
+        }
+
+        .project:hover
+        {
+            box-shadow: inset 0px 3px 15px 7px rgba(0,0,0,0.06);
+            border-color: #abb7b7;    
+        }
+
+        .project-title
+        {
+            padding-top: 10px;
+        }
+
+        .project-icon
+        {
+            margin: 20px;
+            margin-top: 40px;
+            border-style: solid;
+            border-width: 3px;
+            border-color: white;
+            box-shadow: 0px 4px 5px rgba(0,0,0,0.16);    
+        }
+
+        ul
+        {
+            list-style-type: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="content">
+	
+<?lua
+	local projects = listProjects()
+	for _,proj in ipairs(projects) do
+		local collection, name = proj:match("(.-):(.*)")
+		local tabs = listProjectTabs(proj)
+		
+		local source = string.format([[
+			<a href="/editor.html?project=%s&tab=%s"><div class="project">
+				<img class="project-icon" src="project/%s/icon.png" width="90px" height="90px"/>
+				<div class="project-title">%s</div>
+			</div></a>
+		]],
+		proj,
+		tabs[1],
+		proj,
+		name)
+		
+		print(source)
+	end
+?>
+
+</div>
+
+</body>
+
+</html>

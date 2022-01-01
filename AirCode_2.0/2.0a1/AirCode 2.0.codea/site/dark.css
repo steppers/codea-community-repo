@@ -1,0 +1,62 @@
+.tabs
+{
+}
+
+.tabbar
+{
+    background: #0d1e1f;
+}
+
+ul.tabs a
+{
+    color: #68838e;                      
+}   
+     
+ul.tabs li
+{
+    background-color: #1d2f38;                        
+}
+
+ul.tabs li:hover
+{
+    color: #fff;   
+    background-color: #223741;
+}        
+
+ul.tabs li.backarrow
+{
+    color: #3caf99;
+    background-color: #0d1e1f;            
+}
+
+ul.tabs li.backarrow:hover
+{
+    color: #fff;        
+}
+
+ul.tabs li.selected
+{
+    background-color: #234b50;                          
+    color: #fff;            
+}
+
+ul.tabs li.selected:hover
+{                                                    
+}
+
+ul.tabs a li.selected
+{
+    color: #fff;                  
+}           
+
+.header
+{
+    background-color: rgba(255, 255, 255, 0);
+    opacity: 0.75;                    
+    color: #637c80;
+}   
+
+.shortcut
+{
+    color: #3caf99;            
+}   

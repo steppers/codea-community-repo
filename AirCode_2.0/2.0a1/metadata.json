@@ -1,0 +1,17 @@
+{
+    "name": "AirCode 2.0",
+    "short_description": "AirCode 2.0",
+    "description": "Currently in an Alpha state.\n\nThis aims to mimic the behaviour of Codea's built-in 'AirCode' system to provide editing capability from a web browser.\n\nThe bonus with a setup like this is that we can then make our own modifications to AirCode!",
+    "authors": [
+        "Steppers"
+    ],
+    "version": "2.0a1",
+    "update_notes": "- Initial Release",
+    "category": "App",
+    "platform": "iPad & iPhone",
+    "forum_link": "https://codea.io/talk/",
+    "size": 4299595,
+    "icon": "AirCode 2.0.codea/Icon@2x.png",
+    "hidden": false,
+    "timestamp": 1641045443
+}

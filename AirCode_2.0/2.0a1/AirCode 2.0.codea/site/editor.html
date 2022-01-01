@@ -1,0 +1,292 @@
+<html>
+<head>
+    <link rel="stylesheet" href="/fontawesome/css/fontawesome.min.css">
+    <title>Editing <?lua
+        if request.query.tab then    
+            print(request.query.tab)
+            return
+        end
+        local tabs = listProjectTabs(request.query.project)
+        print(tabs[1])
+    ?></title>
+    <style type="text/css" media="screen">
+        body
+        {
+            padding: 0;
+            margin: 0;
+        }
+        #editor 
+        { 
+            position: absolute;
+            top: 37px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+
+        .tabbar
+        {
+            font-family: "Myriad Pro", "Helvetica Neue", "Helvetica", sans-serif;
+            padding: 5px;
+            padding-left: 0px;
+            padding-top: 0px;            
+            overflow-x: scroll;
+            overflow-y: hidden;
+            white-space:nowrap; !important
+        }
+    
+        .light
+        {
+            color: #0b0b0a;
+            background-color: #7e735e;
+        }
+    
+        .dark
+        {
+            color: #7e735e;
+            background-color: #0b0b0a;
+        }
+    
+        .tabs
+        {
+            list-style: none;
+            padding: 0px;
+            margin-top: 0px;
+        }
+
+        ul.tabs a
+        {
+            color: #7e735e;
+            text-decoration: none;            
+        }   
+             
+        ul.tabs li
+        {
+            display: inline-block;
+            margin-left: 0px;
+            margin-right: 2px;            
+            padding-left: 10px;            
+            padding-right: 10px;      
+            padding-bottom: 8px; 
+            padding-top: 12px;  
+            background-color: #1f1d1a;                        
+        }
+        
+        ul.tabs li:hover
+        {
+            background-color: #443e35; 
+            color: #ab9e87;              
+        }        
+
+        ul.tabs li.backarrow
+        {
+            background-color: #0b0b0a; 
+            padding-left: 22px;
+            padding-right: 14px;
+        }
+        
+        ul.tabs li.selected
+        {
+            background-color: #2d2e27;                          
+            color: #dfd6c9;            
+        }
+        
+        ul.tabs a li.selected
+        {
+            color: #dfd6c9;            
+            text-decoration: none;            
+        }           
+        
+        .header
+        {
+            color: #7e735e;
+            font-family: "Myriad Pro", "Helvetica Neue", "Helvetica", sans-serif;
+            font-size: small;
+            z-index: 10;            
+            text-align: right;
+            padding: 5px;
+            background-color: #2d2e27;            
+            height: 12px;
+            position: relative;
+            top: -22px;            
+            -webkit-text-size-adjust:none;
+        }   
+        
+        .shortcut
+        {
+            color: #c6ab6e;            
+        }     
+    </style>
+    <link rel="stylesheet" href="/dark.css">
+    <script>
+        function $(e){if(typeof e=='string')e=document.getElementById(e);return e};
+        function collect(a,f){var n=[];for(var i=0;i<a.length;i++){var v=f(a[i]);if(v!=null)n.push(v)}return n};
+        
+        ajax={};
+        ajax.x=function(){try{return new ActiveXObject('Msxml2.XMLHTTP')}catch(e){try{return new ActiveXObject('Microsoft.XMLHTTP')}catch(e){return new XMLHttpRequest()}}};
+        ajax.serialize=function(f){var g=function(n){return f.getElementsByTagName(n)};var nv=function(e){if(e.name)return encodeURIComponent(e.name)+'='+encodeURIComponent(e.value);else return ''};var i=collect(g('input'),function(i){if((i.type!='radio'&&i.type!='checkbox')||i.checked)return nv(i)});var s=collect(g('select'),nv);var t=collect(g('textarea'),nv);return i.concat(s).concat(t).join('&');};
+        ajax.send=function(u,f,m,a){var x=ajax.x();x.open(m,u,true);x.onreadystatechange=function(){if(x.readyState==4)f(x.responseText)};if(m=='POST')x.setRequestHeader('Content-type','application/x-www-form-urlencoded');x.send(a)};
+        ajax.get=function(url,func){ajax.send(url,func,'GET')};
+        ajax.gets=function(url){var x=ajax.x();x.open('GET',url,false);x.send(null);return x.responseText};
+        ajax.post=function(url,func,args){ajax.send(url,func,'POST',args)};
+        ajax.update=function(url,elm){var e=$(elm);var f=function(r){e.innerHTML=r};ajax.get(url,f)};
+        ajax.submit=function(url,elm,frm){var e=$(elm);var f=function(r){e.innerHTML=r};ajax.post(url,f,ajax.serialize(frm))};
+    </script>
+    
+    <script src="/js/jquery-1.10.1.min.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+
+<div class="tabbar">
+    <ul class="tabs">
+        <a href="/">
+            <li class="backarrow"><i class="fa fa-chevron-left"></i></li>
+        </a>
+        
+        <!-- Generate tabs for the current project -->
+        <?lua
+            local tabs = listProjectTabs(request.query.project)
+            local selected = request.query.tab
+            for i,tab in ipairs(tabs) do
+                if request.query.tab == tab or (request.query.tab == nil and i == 0) then
+                    print(string.format('<a href="/editor.html?project=%s&tab=%s"><li class="selected">%s</li></a>', request.query.project, tab, tab))
+                else
+                    print(string.format('<a href="/editor.html?project=%s&tab=%s"><li>%s</li></a>', request.query.project, tab, tab))
+                end
+            end
+        ?>
+    </ul>
+</div>
+
+<div class="header">Codea is updating live. Press <span class="shortcut">&#8984;&#8679;R</span> or <span class="shortcut">Ctrl+R</span> to restart your project</div>
+
+<!-- Populate the editor with the relevant tab content -->
+<div id="editor"><?lua
+	local proj = request.query.project
+	if proj:match("^Documents:") then
+		proj = proj:gsub("^Documents:", "")
+	end
+	proj = proj:gsub(":", "/", 1)
+
+	local tab = request.query.tab or "Main"
+	local content = readText(asset.documents .. proj .. ".codea/" .. tab .. ".lua")
+	print(content)
+?></div>
+    
+<script src="/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="/ace/ext-language_tools.js" type="text/javascript" charset="utf-8"></script>    
+<script>
+    ace.require("ace/ext/language_tools");
+    ace.require("ace/snippets/lua");
+    
+    var timer = null;
+    var editor = ace.edit("editor");
+    var ws = null;
+	
+	function send(data)
+	{
+		ws.send(JSON.stringify(data));
+	}
+	
+	function debug_msg(msg)
+	{
+		send({
+			type : "debug",
+			content : msg
+		});
+	}
+	
+	function connect(ws_url){
+		ws = new WebSocket(ws_url);
+		ws.onmessage = function(msg) {
+			msg = JSON.parse(msg.data);
+			if (msg.type === "content")
+			{
+				editor.setValue(msg.content, -1);
+			}
+		};
+		ws.onopen = function() {
+			send({
+				type : "get_tab",
+				project : "<?lua
+					local proj = request.query.project
+					if proj:match("^Documents:") then
+						proj = proj:gsub("^Documents:", "")
+					end
+					proj = proj:gsub(":", "/", 1)
+					print(proj)
+				?>",
+				tab: "<?lua print(request.query.tab)?>"
+			});
+		};
+		ws.onclose = function()
+		{
+			// Try to reconnect every second
+			setTimeout(function(){
+				connect(ws_url, onmessage)
+			}, 1000);
+		};
+	}
+	
+	// Connect to the websocket
+	connect("ws://" + location.host + "/updates")
+    
+    editor.setOptions({
+        enableBasicAutocompletion: true,
+        enableSnippets: true,
+        enableLiveAutocompletion: true
+    });
+    editor.on("change", function(e)
+    {
+        if( timer )
+        {
+            clearTimeout(timer);
+            timer = null;
+        }
+
+		timer = setTimeout(function()
+		{
+			send({
+				type : "save",
+				project : "<?lua
+					local proj = request.query.project
+					if proj:match("^Documents:") then
+						proj = proj:gsub("^Documents:", "")
+					end
+					proj = proj:gsub(":", "/", 1)
+					print(proj)
+				?>",
+				tab: "<?lua print(request.query.tab)?>",
+				content : editor.getValue()
+			});
+		}, 500);
+	});
+	editor.setTheme("ace/theme/solarized_dark");
+	editor.getSession().setMode("ace/mode/lua");
+	
+	editor.commands.addCommand({
+		name: 'Restart',
+		bindKey: {win: 'Ctrl-R',  mac: 'Command-Shift-R'},
+		exec: function(editor) {
+			send({
+				type : "restart"
+			});
+		},
+		readOnly: false
+	});
+	
+    
+    $(document).ready(function() {
+        var offsets = $("li.selected").offset(); 
+        var tabbar = $(".tabbar");
+        var w = $(document).width();
+        
+        if( offsets.left > w )
+        {
+            tabbar.animate( {scrollLeft: (offsets.left - w/2)}, {duration: 350} );            
+        }
+        
+    });
+</script>
+</body>
+</html>
