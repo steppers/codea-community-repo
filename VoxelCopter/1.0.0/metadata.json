@@ -1,0 +1,17 @@
+{
+    "name": "VoxelCopter",
+    "short_description": "cute little blocky copter",
+    "description": "Animated helicopter using the voxel engine. Eight separate voxel models used for frames. Plus a pretty background skybox contributed by Bri_G.",
+    "authors": [
+        "UberGoober"
+    ],
+    "version": "1.0.0",
+    "update_notes": "- Initial Release",
+    "category": "App",
+    "platform": "iPad & iPhone",
+    "forum_link": "https://codea.io/talk/",
+    "size": 1866657,
+    "icon": "VoxelCopter.codea/Icon@2x.png",
+    "hidden": false,
+    "timestamp": 1641143305
+}

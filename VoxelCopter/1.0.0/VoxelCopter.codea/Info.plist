@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Addons</key>
+	<array>
+		<string>Craft</string>
+	</array>
+	<key>Author</key>
+	<string>John Millard</string>
+	<key>Buffer Order</key>
+	<array>
+		<string>_dep_Craft:Touches</string>
+		<string>_dep_Craft:Cameras</string>
+		<string>Main</string>
+		<string>VoxelCopter</string>
+	</array>
+		<key>Description</key>
+	<string>No description available</string>
+</dict>
+</plist>
