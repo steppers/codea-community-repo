@@ -1,0 +1,17 @@
+{
+    "name": "MKInput",
+    "short_description": "Mouse & Keyboard Input Lib",
+    "description": "Requires Codea 3.5 (>323)\n\nProvides advanced mouse & keyboard input callbacks:\n- mouseup(button)\n- mousedown(button)\n- mousemove(deltaX, deltaY)\n- keydown(key)\n- keyup(key)\n\nPolling is also available:\n- iskeydown(key)\n- ismousedown(button)\n\nCursor hiding:\n- hidecursor(shouldHide)",
+    "authors": [
+        "Steppers"
+    ],
+    "version": "1.1.1",
+    "update_notes": "- Update ObjC usage for 323",
+    "category": "Library",
+    "platform": "iPad & iPhone",
+    "forum_link": "https://codea.io/talk/",
+    "hidden": false,
+    "icon": "MKInput.codea/Icon@2x.png",
+    "size": 7984,
+    "timestamp": 1641344263
+}
