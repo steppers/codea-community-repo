@@ -1,0 +1,4 @@
+FPSOverlay.codea/FPSOverlay.lua
+FPSOverlay.codea/Main.lua
+FPSOverlay.codea/Info.plist
+FPSOverlay.codea/Icon@2x.png
