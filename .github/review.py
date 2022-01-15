@@ -71,7 +71,7 @@ def validate_metadata(md):
     elif "description" not in md:
         print(f'No long description provided!')
         success = False
-    elif len(md['description']) > 1024:
+    elif len(md['description']) > 2048:
         print(f'Long description is too long! (>1024 characters)')
         success = False
         
