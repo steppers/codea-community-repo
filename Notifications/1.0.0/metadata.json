@@ -1,0 +1,17 @@
+{
+    "name": "Notifications",
+    "short_description": "Local Notification Library",
+    "description": "'Notifications'... What more is there to say?\n\nOnly local notifications are currently supported so no remote push-notifications for now.\n\nNotifications can be given a title & description to be displayed on the notification along with a userinfo table for use by your project. All notifications much specify the delay in seconds before they will be displayed.\n\nAPI (All functions are preceeded by 'Notifications.'):\n\n- setup(function(hasPermission))\n    Must be called first. Will present the notifications permission dialog if necessary.\n\n- scheduleNotification(title, desc, delay, userinfo)\n    Schedules a notification to be sent after the specified number of seconds. \n    Returns the identifier of the notification.\n\n- cancelNotifications(identifier | [identifier])\n    Cancels notifications matching the provided identifiers.\n\n- cancelAllNotifications()\n    Cancels all notifications scheduled by the current project.\n\n- getPendingNotifications(function(notifications))\n    Returns to the callback a key-value table with notification identifiers as keys and userinfo tables as values.\n",
+    "authors": [
+        "Steppers"
+    ],
+    "version": "1.0.0",
+    "update_notes": "- Initial Release",
+    "category": "Library",
+    "platform": "iPad & iPhone",
+    "forum_link": "https://codea.io/talk/",
+    "hidden": false,
+    "size": 11265,
+    "icon": "Notifications.codea/Icon@2x.png",
+    "timestamp": 1642208553
+}
