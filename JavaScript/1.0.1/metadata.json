@@ -1,0 +1,17 @@
+{
+    "name": "JavaScript",
+    "short_description": "JavaScript & HTML Wrapper",
+    "description": "'JavaScript' provides easy access to iOS's fast JavaScript environment.\n\nA 'WebView' object is the source of all of the libraries capabilities.\n\nPlease see the included demos for usage examples.\n\nFeatures:\n- HTML & JavaScript loading from string variables or file.\n- Imported Lua functions available to JavaScript.\n- JavaScript functions easily callable from Lua.\n- Fullscreen viewing of the WebView (call WebView:show() )",
+    "authors": [
+        "Steppers"
+    ],
+    "version": "1.0.1",
+    "update_notes": "- Change WebView.register() to WebView.import() to better reflect behaviour.",
+    "category": "Library",
+    "platform": "iPad & iPhone",
+    "forum_link": "https://codea.io/talk/",
+    "size": 56516,
+    "hidden": false,
+    "icon": "JavaScript.codea/Icon@2x.png",
+    "timestamp": 1645737036
+}
