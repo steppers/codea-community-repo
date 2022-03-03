@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+	<center>
+		<br/>
+		<br/>
+		Hello Codea!
+	</center>
+	
+	<script>
+		function htmlTest() {
+			print("Hello from HTML!");
+			
+			get().then( r => print(r) )
+		}
+		
+		async function get() {
+			var response = await fetch('codea://' + encodeURIComponent('Icon@2x.png'));
+			const text = await response.text();
+			print("done");
+			return text;
+		}
+	</script>
+</body>
+
+</html>
