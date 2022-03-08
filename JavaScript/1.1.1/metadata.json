@@ -1,0 +1,17 @@
+{
+    "name": "JavaScript",
+    "short_description": "JavaScript & HTML Wrapper",
+    "description": "'JavaScript' provides easy access to iOS's fast JavaScript environment.\n\nA 'WebView' object is the source of all of the libraries capabilities.\n\nPlease see the included demos for usage examples.\n\nFeatures:\n- HTML & JavaScript loading from string variables or file.\n- Imported Lua functions available to JavaScript.\n- JavaScript functions easily callable from Lua.\n- JavaScript ES module support.\n- JavaScript proxy objects to let Lua know when a value has been set.\n- Full documentation powered by LDoc.\n- Fullscreen viewing of the WebView (call WebView:show() )",
+    "authors": [
+        "Steppers"
+    ],
+    "version": "1.1.1",
+    "update_notes": "- Add support for loading JavaScript from a url using loadJS()",
+    "category": "Library",
+    "platform": "iPad & iPhone",
+    "forum_link": "https://codea.io/talk/discussion/13300/javascript-library-also-on-webrepo",
+    "icon": "JavaScript.codea/Icon@2x.png",
+    "size": 84059,
+    "hidden": false,
+    "timestamp": 1646753891
+}
