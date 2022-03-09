@@ -1,0 +1,413 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Codea JavaScript</title>
+    <link rel="stylesheet" href="ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>Codea JavaScript</h1>
+
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Class_WebView">Class WebView </a></li>
+</ul>
+</div>
+
+<div id="content">
+
+<p></p>
+
+<h2><a href="#Class_WebView">Class WebView </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#WebView">WebView (htmlAsset)</a></td>
+	<td class="summary">Create a new WebView.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#WebView:loadJS">WebView:loadJS (obj, async)</a></td>
+	<td class="summary">Evaluate JavaScript in the current page's JavaScript environment.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#WebView:loadHTML">WebView:loadHTML (obj)</a></td>
+	<td class="summary">Load HTML content into the WebView
+ Note: This resets the JavaScript environment.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#WebView:callAsync">WebView:callAsync (funcName, ...)</a></td>
+	<td class="summary">Call a JavaScript function asynchronously.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#WebView:call">WebView:call (funcName, ...)</a></td>
+	<td class="summary">Call a JavaScript function.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#WebView:import">WebView:import (name, func)</a></td>
+	<td class="summary">Import Lua functions, tables or values into the JavaScript environment</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#WebView:proxy">WebView:proxy (name)</a></td>
+	<td class="summary">Proxies assignments to a JavaScript table of the same name through
+ to the global table of the same name in Lua.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#WebView:importJSModule">WebView:importJSModule (url, parts, as)</a></td>
+	<td class="summary">Imports a JavaScript ES Module into the JavaScript environment</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#WebView:show">WebView:show ()</a></td>
+	<td class="summary">Display the content of the WebView.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#WebView:hide">WebView:hide ()</a></td>
+	<td class="summary">Hide the content of the WebView.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#WebView:enableInputHandling">WebView:enableInputHandling (enabled)</a></td>
+	<td class="summary">Enables or Disables input handling for the WKWebView.</td>
+	</tr>
+</table>
+
+<br/>
+		
+</dl>
+    <h2 class="section-header has-description"><a name="Class_WebView"></a>Class WebView </h2>
+
+          <div class="section-description">
+          Object representing a single WKWebView.
+          </div>
+    <dl class="function">
+	<dt>
+    <a name = "WebView"></a>
+    <strong>WebView (htmlAsset)</strong>
+    </dt>
+    <dd>
+    Create a new WebView.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">htmlAsset</span>
+         (optional) HTML string or Codea asset to load immediately
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        new WebView instance
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <li><pre class="example"><span class="keyword">local</span> webview = WebView()</pre></li>
+        <li><pre class="example"><span class="keyword">local</span> webview = WebView(<span class="string">[[
+&lt;body&gt;
+	Hello World!
+&lt;/body&gt;
+]]</span>)</pre></li>
+        <li><pre class="example"><span class="keyword">local</span> webview = WebView(asset.index_html)</pre></li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "WebView:loadJS"></a>
+    <strong>WebView:loadJS (obj, async)</strong>
+    </dt>
+    <dd>
+    Evaluate JavaScript in the current page's JavaScript environment.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">obj</span>
+         JavaScript URL, source string or Codea asset containing JavaScript source to evaluate
+        </li>
+        <li><span class="parameter">async</span>
+         If true, returns immediately after handing JavaScript to WKWebView.
+ 		If false, returns only when the JavaScript is fully evaluated.
+ 		(default false)
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "WebView:loadHTML"></a>
+    <strong>WebView:loadHTML (obj)</strong>
+    </dt>
+    <dd>
+    Load HTML content into the WebView
+ Note: This resets the JavaScript environment.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">obj</span>
+         HTML source or Codea asset containing HTML source
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "WebView:callAsync"></a>
+    <strong>WebView:callAsync (funcName, ...)</strong>
+    </dt>
+    <dd>
+    Call a JavaScript function asynchronously.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">funcName</span>
+         name of the JavaScript function to call
+        </li>
+        <li><span class="parameter">...</span>
+         parameters to provide to the JavaScript function
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        Promise object that will return the result of the call once complete
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "WebView:call"></a>
+    <strong>WebView:call (funcName, ...)</strong>
+    </dt>
+    <dd>
+    Call a JavaScript function.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">funcName</span>
+         name of the JavaScript function to call
+        </li>
+        <li><span class="parameter">...</span>
+         parameters to provide to the JavaScript function
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        The result of the call
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "WebView:import"></a>
+    <strong>WebView:import (name, func)</strong>
+    </dt>
+    <dd>
+    Import Lua functions, tables or values into the JavaScript environment  Lua userdata types cannot be passed to JavaScript
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">name</span>
+         Name to give to the corresponsing object in JavaScript
+ OR table of key-value pairs representing the values to import.
+        </li>
+        <li><span class="parameter">func</span>
+         Function, Value or Table to assign to the given object in JavaScript.
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <li><pre class="example">webview:import(<span class="string">"print"</span>, <span class="keyword">function</span>(...)
+	<span class="global">print</span>(...)
+<span class="keyword">end</span>)</pre></li>
+        <li><pre class="example">webview:import(<span class="string">"WIDTH"</span>, WIDTH)</pre></li>
+        <li><pre class="example">webview:import(<span class="string">"RESOLUTION"</span>, {
+	WIDTH = WIDTH,
+	HEIGHT = HEIGHT
+})</pre></li>
+        <li><pre class="example">webview:import(<span class="string">"ContentScaleFactor"</span>, ContentScaleFactor)</pre></li>
+        <li><pre class="example">webview:import({
+	RESOLUTION = {
+		WIDTH = WIDTH,
+		HEIGHT = HEIGHT
+	},
+	ContentScaleFactor = ContentScaleFactor,
+	<span class="global">print</span> = <span class="keyword">function</span>(...)
+		<span class="global">print</span>(...)
+	<span class="keyword">end</span>
+})</pre></li>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "WebView:proxy"></a>
+    <strong>WebView:proxy (name)</strong>
+    </dt>
+    <dd>
+    Proxies assignments to a JavaScript table of the same name through
+ to the global table of the same name in Lua.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">name</span>
+         Name of the global Lua table to proxy
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">-- I add a proxy for 'viewer' in JS.
+</span><span class="comment">-- This allows JS code to do the following: viewer.mode = 2; // (for FULLSCREEN)
+</span>webview:proxy(viewer)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "WebView:importJSModule"></a>
+    <strong>WebView:importJSModule (url, parts, as)</strong>
+    </dt>
+    <dd>
+    Imports a JavaScript ES Module into the JavaScript environment
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">url</span>
+         The URL of the module to import.
+        </li>
+        <li><span class="parameter">parts</span>
+         (optional) Array of module exports to be imported.
+        </li>
+        <li><span class="parameter">as</span>
+         (optional) Array of names that will refer to the names imports in 'parts' OR string to name entire import.
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <li><pre class="example">webview:importJSModule(<span class="string">'https://cdn.skypack.dev/three@0.136.0'</span>, <span class="keyword">nil</span>, <span class="string">'THREE'</span>)</pre></li>
+        <li><pre class="example">webview:importJSModule(<span class="string">'https://cdn.skypack.dev/three@0.136.0/examples/jsm/controls/OrbitControls.js'</span>, { <span class="string">'OrbitControls'</span> })</pre></li>
+        <li><pre class="example"><span class="comment">-- Rename the exported 'OrbitControls' to 'OrbControls':
+</span>webview:importJSModule(<span class="string">'https://cdn.skypack.dev/three@0.136.0/examples/jsm/controls/OrbitControls.js'</span>, { <span class="string">'OrbitControls'</span> }, { <span class="string">'OrbControls'</span> })</pre></li>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "WebView:show"></a>
+    <strong>WebView:show ()</strong>
+    </dt>
+    <dd>
+    Display the content of the WebView.
+<p> This places our WKWebView over Codea's OpenGL based EAGLView
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "WebView:hide"></a>
+    <strong>WebView:hide ()</strong>
+    </dt>
+    <dd>
+    Hide the content of the WebView.
+<p> This removes our WebView from the UIView hierarchy
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "WebView:enableInputHandling"></a>
+    <strong>WebView:enableInputHandling (enabled)</strong>
+    </dt>
+    <dd>
+    Enables or Disables input handling for the WKWebView.
+ When input handling is DISABLED, Codea's usual touch & gesture callbacks are still triggered.
+ These can then be passed onto JavaScript as necessary.
+<p> When input handling is ENABLED, Codea's usual touch & gesture callbacks are not triggered.
+ This allows the Web content to register its own input handlers as it would in a browser.
+<p> Note: By default, input handling is ENABLED
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">enabled</span>
+         true or false
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2022-03-03 16:11:02 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>
