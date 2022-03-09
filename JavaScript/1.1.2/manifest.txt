@@ -1,0 +1,8 @@
+JavaScript.codea/Info.plist
+JavaScript.codea/core.html
+JavaScript.codea/Icon@2x.png
+JavaScript.codea/Main.lua
+JavaScript.codea/_dep_Documents:STLib.lua
+JavaScript.codea/doc/ldoc.css
+JavaScript.codea/doc/index.html
+JavaScript.codea/WebView.lua
