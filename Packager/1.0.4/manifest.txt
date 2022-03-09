@@ -1,0 +1,5 @@
+Packager.codea/Info.plist
+Packager.codea/Icon@2x.png
+Packager.codea/_dep_Documents:Oil.lua
+Packager.codea/Main.lua
+Packager.codea/Packager.lua
