@@ -1,0 +1,17 @@
+{
+    "name": "Three.js",
+    "short_description": "Three.js Demo / Template",
+    "description": "A Three.js demo of the 'animation / keyframes' example.\n\nThis uses the 'JavaScript' library to manage the WebView used.",
+    "authors": [
+        "Steppers"
+    ],
+    "version": "1.0.3",
+    "update_notes": "- Upgrade 'JavaScript' lib to v1.1.2 to support JS service workers.",
+    "category": "App",
+    "platform": "iPad & iPhone",
+    "forum_link": "https://codea.io/talk/discussion/13300/javascript-library-also-on-webrepo",
+    "size": 109695,
+    "hidden": false,
+    "icon": "Three.js.codea/Icon.png",
+    "timestamp": 1646836913
+}
