@@ -1,0 +1,8 @@
+AssemblyScript.codea/Info.plist
+AssemblyScript.codea/_dep_Documents:JavaScript.lua
+AssemblyScript.codea/ASCompiler.lua
+AssemblyScript.codea/ASSource.lua
+AssemblyScript.codea/Main.lua
+AssemblyScript.codea/_dep_Documents:STLib.lua
+AssemblyScript.codea/ASBinary.lua
+AssemblyScript.codea/Icon.png

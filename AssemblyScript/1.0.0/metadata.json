@@ -1,0 +1,17 @@
+{
+    "name": "AssemblyScript",
+    "short_description": "AssemblyScript Toolchain",
+    "description": "Interface for AssemblyScript's compiler toolchain.\n\nFeatures include:\n- AssemblyScript compilation\n- Dependency management\n- JavaScript based imports allowing AssemblyScript to call back into JS & Lua.\n- Load compiled AssemblyScript into a WebView.\n- Call exported functions of a loaded AssemblyScript module.\n- Save compiled AssemblyScript to disk.\n- Load pre-compiled AssemblyScript from disk.\n\nNote: Due to the nature of the JavaScript libraries involved this requires an internet connection while compiling AssemblyScript. Loading precompiled AssemblyScript does not though!",
+    "authors": [
+        "Steppers"
+    ],
+    "version": "1.0.0",
+    "update_notes": "- Initial Release",
+    "category": "Library",
+    "platform": "iPad & iPhone",
+    "forum_link": "https://codea.io/talk/",
+    "size": 79079,
+    "icon": "AssemblyScript.codea/Icon.png",
+    "hidden": false,
+    "timestamp": 1647048972
+}
