@@ -284,5 +284,8 @@
     ],
     "AssemblyScript": [
         "1.0.0"
+    ],
+    "WebGL_AS": [
+        "0.1a1"
     ]
 }

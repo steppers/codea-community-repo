@@ -1,0 +1,38 @@
+{
+  "user":[],
+  "glas_util":[],
+  "glas":{
+    "GL_FRAGMENT_SHADER":"return WebGLRenderingContext.FRAGMENT_SHADER;",
+    "glDisable":"return e=>{gl.disable(e)};",
+    "glClearColor":"return(r,l,e,o)=>{gl.clearColor(r,l,e,o)};",
+    "glClear":"return r=>{gl.clear(r)};",
+    "glViewport":"return(r,e,t,g)=>{gl.viewport(r,e,t,g)};",
+    "GL_STENCIL_TEST":"return WebGLRenderingContext.STENCIL_TEST;",
+    "glas_init() : bool":"return()=>{document.body.height=\"100vh\",document.body.style.margin=\"0px\",document.body.style.overflow=\"hidden\";const e=document.createElement(\"canvas\");e.width=screen.availWidth,e.height=screen.availHeight,document.body.appendChild(e);const n=e.getContext(\"webgl\");if(null===n)return console.warning(\"[GLAS] Unable to initialize WebGL. Your browser or machine may not support it.\"),!1;Object.defineProperty(window,\"gl\",{value:n,configurable:!1,writable:!1});let t=[],o=[];return n.__getObject=function(e){let n=e&0xFFFFFFn<<40n,o=t[0xFFFFFFFFFFn&e];if(void 0===o||o.gen!=n)throw new Error(\"[GL] Object does not exist!\");return o.obj},n.__track=function(e){let n;if(o.length>0){n=o.pop(),t[0xFFFFFFFFFFn&n].obj=e,n+=0x000001n<<40n}else n=BigInt(t.push({gen:0,obj:e})-1);return n},n.__release=function(e){let n=0xFFFFFFFFFFn&e,F=e&0xFFFFFFn<<40n,r=t[n];if(void 0===r)throw new Error(\"[GL] Object does not exist!\");if(r.gen!=F)throw new Error(\"[GL] Double free!\");t[n].gen=16777215&++t[n].gen,o.push(e)},n.clearColor(0,0,0,1),n.clear(n.COLOR_BUFFER_BIT),console.log(\"[GLAS] Initialised\"),!0};",
+    "GL_VERTEX_SHADER":"return WebGLRenderingContext.VERTEX_SHADER;",
+    "GL_BLEND":"return WebGLRenderingContext.BLEND;",
+    "GL_SAMPLE_ALPHA_TO_COVERAGE":"return WebGLRenderingContext.SAMPLE_ALPHA_TO_COVERAGE;",
+    "GL_DEPTH_BUFFER_BIT":"return WebGLRenderingContext.DEPTH_BUFFER_BIT;",
+    "GL_SAMPLE_COVERAGE":"return WebGLRenderingContext.SAMPLE_COVERAGE;",
+    "GL_DEPTH_TEST":"return WebGLRenderingContext.DEPTH_TEST;",
+    "GL_RASTERIZER_DISCARD":"return WebGLRenderingContext.RASTERIZER_DISCARD;",
+    "GL_POLYGON_OFFSET_FILL":"return WebGLRenderingContext.POLYGON_OFFSET_FILL;",
+    "glDeleteShader(shader: u64)":"return e=>{gl.deleteShader(gl.__getObject(e)),gl.__release(e)};",
+    "glScissor":"return(r,s,c,e)=>{gl.scissor(r,s,c,e)};",
+    "_glas_internal.getDisplayHeight(): u32":"return()=>screen.availHeight;",
+    "GL_COLOR_BUFFER_BIT":"return WebGLRenderingContext.COLOR_BUFFER_BIT;",
+    "GL_SCISSOR_TEST":"return WebGLRenderingContext.SCISSOR_TEST;",
+    "GL_STENCIL_BUFFER_BIT":"return WebGLRenderingContext.STENCIL_BUFFER_BIT;",
+    "_glas_internal.getDisplayWidth(): u32":"return()=>screen.availWidth;",
+    "glCreateShader(type: u32): u64":"return r=>gl.__track(gl.createShader(r));",
+    "GL_DITHER":"return WebGLRenderingContext.DITHER;",
+    "glas_setLoopFunction(fn: function) : void":"return t=>{window.requestAnimationFrame((function a(e){e*=.001,void 0===a.lastTimestamp&&(a.lastTimestamp=e);let i=e-a.lastTimestamp;a.lastTimestamp=e,t(i),window.requestAnimationFrame(a)}))};",
+    "glEnable":"return e=>{gl.enable(e)};",
+    "GL_CULL_FACE":"return WebGLRenderingContext.CULL_FACE;"
+  },
+  "codea":{
+    "error(msg: string): void":"return console.log;",
+    "warning(msg: string): void":"return console.log;",
+    "print(msg: string): void":"return console.log;"
+  }
+}

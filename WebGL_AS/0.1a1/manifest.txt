@@ -1,0 +1,10 @@
+WebGL AS.codea/Info.plist
+WebGL AS.codea/_dep_Documents:JavaScript.lua
+WebGL AS.codea/Main.lua
+WebGL AS.codea/app.wasm
+WebGL AS.codea/_dep_Documents:STLib.lua
+WebGL AS.codea/app.wasm_jsimports
+WebGL AS.codea/GLAS_Util.lua
+WebGL AS.codea/Icon.png
+WebGL AS.codea/GLAS.lua
+WebGL AS.codea/_dep_Documents:AssemblyScript.lua
