@@ -1,0 +1,18 @@
+{
+    "name": "marufight",
+    "short_description": "Neural-net evolution wars!",
+    "description": "A fun and simple AI-evolution simulation. Original code by someone named Zach aka groverburger, found at github/groverburger/marufight. This version offers real-time adjustmen of all kinds of parameters including organism lifespan, food availability, maximum and minimum organism size, etc.",
+    "authors": [
+        "UberGoober",
+        " groverburger"
+    ],
+    "version": "1.0.0",
+    "update_notes": "- Initial Release",
+    "category": "Game",
+    "platform": "iPad & iPhone",
+    "forum_link": "https://codea.io/talk/",
+    "size": 168323,
+    "icon": "marufight.codea/Icon@2x.png",
+    "hidden": false,
+    "timestamp": 1649789155
+}

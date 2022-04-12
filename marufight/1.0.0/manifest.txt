@@ -1,0 +1,9 @@
+marufight.codea/Info.plist
+marufight.codea/Main.lua
+marufight.codea/Icon@2x.png
+marufight.codea/creature.lua
+marufight.codea/SerializationTests.lua
+marufight.codea/README.lua
+marufight.codea/CodeaUnit.lua
+marufight.codea/environment.lua
+marufight.codea/brain.lua
