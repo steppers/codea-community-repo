@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Buffer Order</key>
+	<array>
+		<string>_dep_Craft:Touches</string>
+		<string>_dep_Craft:Cameras</string>
+		<string>_dep_Craft:UI</string>
+		<string>_dep_Craft:Voxel Player</string>
+		<string>_dep_Craft:Block Library</string>
+		<string>_dep_Documents:Joystick Player</string>
+		<string>Main</string>
+		<string>settings</string>
+		<string>hasDependencies</string>
+		<string>setParameters</string>
+		<string>arrangeScene</string>
+		<string>volume_handling</string>
+		<string>vertices_handling</string>
+		<string>vertColorsBasedOnHeight</string>
+	</array>
+	</dict>
+</plist>
