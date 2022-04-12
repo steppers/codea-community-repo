@@ -1,0 +1,18 @@
+{
+    "name": "bbProcTree Kit",
+    "short_description": "procedural tree generation",
+    "description": "Play around with procedural tree generation!",
+    "authors": [
+        "binaryblues",
+        " UberGoober"
+    ],
+    "version": "1.0.1",
+    "update_notes": "- Initial Release",
+    "category": "App",
+    "platform": "iPad & iPhone",
+    "forum_link": "https://codea.io/talk/discussion/13407/proctree-in-codea",
+    "timestamp": 1649774547,
+    "icon": "bbProcTree Kit.codea/Icon@2x.png",
+    "hidden": false,
+    "size": 1632601
+}
