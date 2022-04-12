@@ -1,0 +1,18 @@
+{
+    "name": "bbProcTree Kit",
+    "short_description": "procedural tree generation",
+    "description": "Play around with procedural tree generation! Requires the JS project as a dependency.",
+    "authors": [
+        "binaryblues",
+        " UberGoober"
+    ],
+    "version": "1.0.0",
+    "update_notes": "- Initial Release",
+    "category": "App",
+    "platform": "iPad & iPhone",
+    "forum_link": "https://codea.io/talk/",
+    "size": 1632585,
+    "hidden": false,
+    "icon": "bbProcTree Kit.codea/Icon@2x.png",
+    "timestamp": 1649773676
+}
