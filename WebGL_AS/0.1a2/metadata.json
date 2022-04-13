@@ -1,0 +1,17 @@
+{
+    "name": "WebGL AS",
+    "short_description": "WebGL in AssemblyScript",
+    "description": "WebGL AssemblyScript\n==================================\n\nThis a WIP example project utilising some\nof the more advanced features available to\nthe AssemblyScript Codea project.\n\n-----------------------------------------------\n\nI hope to make this available eventually as a\ncomplete WebGL binding for AssemblyScript.\n\n-----------------------------------------------\n    \nIcon from https://icons8.com",
+    "authors": [
+        "Steppers"
+    ],
+    "version": "0.1a2",
+    "update_notes": "- Move AssemblyScript code to separate file assets.\n- Implement some more WebGL functions\n- Convert AssemblyScript imports to inline JS definitions within the AS files.",
+    "category": "App",
+    "platform": "iPad & iPhone",
+    "forum_link": "https://codea.io/talk/",
+    "size": 82434,
+    "hidden": false,
+    "timestamp": 1649886291,
+    "icon": "WebGL AS.codea/Icon.png"
+}
