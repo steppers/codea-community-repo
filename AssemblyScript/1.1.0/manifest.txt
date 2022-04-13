@@ -1,0 +1,11 @@
+AssemblyScript.codea/Info.plist
+AssemblyScript.codea/ASBinary.lua
+AssemblyScript.codea/Main.lua
+AssemblyScript.codea/Icon.png
+AssemblyScript.codea/js/compiler.js
+AssemblyScript.codea/libs/codea.cts
+AssemblyScript.codea/ASSource.lua
+AssemblyScript.codea/ASCompiler.lua
+AssemblyScript.codea/_dep_Documents_JavaScript.lua
+AssemblyScript.codea/_dep_Documents:STLib.lua
+AssemblyScript.codea/html/index.html

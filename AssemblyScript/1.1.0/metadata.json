@@ -1,0 +1,17 @@
+{
+    "name": "AssemblyScript",
+    "short_description": "AssemblyScript Toolchain",
+    "description": "Interface for AssemblyScript's compiler toolchain.\n\nFeatures include:\n- AssemblyScript compilation\n- Dependency management\n- JavaScript based imports allowing AssemblyScript to call back into JS & Lua.\n- Inline JS function definitions inside AssemblyScript code.\n- Load compiled AssemblyScript into a WebView.\n- Call exported functions of a loaded AssemblyScript module.\n- Save compiled AssemblyScript to disk.\n- Load pre-compiled AssemblyScript from disk.\n\nNote: Due to the nature of the JavaScript libraries involved this requires an internet connection while compiling AssemblyScript. Loading precompiled AssemblyScript does not though!",
+    "authors": [
+        "Steppers"
+    ],
+    "version": "1.1.0",
+    "update_notes": "- Update AssemblyScript compiler backend to latest version (0.20.4)\n- Using the new compiler, JS bindings are generated automatically to ease communication between JS & AssemblyScript.\n- Support inline JS imports using @js_import & @js_end annotations in AssemblyScript code (example in 'Main' tab).",
+    "category": "Library",
+    "platform": "iPad & iPhone",
+    "forum_link": "https://codea.io/talk/discussion/13300/javascript-library-available-on-webrepo",
+    "timestamp": 1649855037,
+    "icon": "AssemblyScript.codea/Icon.png",
+    "size": 74779,
+    "hidden": false
+}

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Buffer Order</key>
+	<array>
+		<string>_dep_Documents:STLib</string>
+		<string>_dep_Documents_JavaScript</string>
+		<string>Main</string>
+		<string>ASSource</string>
+		<string>ASCompiler</string>
+		<string>ASBinary</string>
+	</array>
+	</dict>
+</plist>
