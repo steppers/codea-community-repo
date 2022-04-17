@@ -46,7 +46,7 @@ jobs:
           echo "Admin key (should be masked): $KEY_SECRET"
 
       - name: approve.py
-        timeout-minutes: 15
+        timeout-minutes: 60
         env:
           PUSHOVER_APP_TOKEN: ${{ secrets.PUSHOVER_APP_TOKEN }}
           PUSHOVER_GROUP_TOKEN: ${{ secrets.PUSHOVER_GROUP_TOKEN }}
