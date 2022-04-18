@@ -1,0 +1,17 @@
+{
+    "name": "CraftSpaceX",
+    "short_description": "3D FPS Movement Demo",
+    "description": "Project demonstrates 3D First Person Shooter (FPS) type movement in Codea. User controls an astronaut on an un-tethered space walk near a space station. Credit and thanks goes to dave1707 for creating the 3D FPS movement code. Link to where this project discussed included in WebRepo submission. ",
+    "authors": [
+        "SugarRay"
+    ],
+    "version": "1.0.0",
+    "update_notes": "- Initial Release",
+    "category": "Game",
+    "platform": "iPad & iPhone",
+    "forum_link": "https://codeo.io/talk/discussion/13329/3d-fps-movement-code-improved",
+    "icon": "CraftSpaceX.codea/Icon@2x.png",
+    "size": 127922902,
+    "hidden": false,
+    "timestamp": 1650268905
+}

@@ -1,0 +1,85 @@
+newmtl material_0
+d 0.29870132
+Kd 0.24705882 0.49803922 0.49803922
+
+newmtl material_1
+d 0.29870132
+Kd 0.24705882 0.49803922 0.49803922
+
+newmtl material_2
+d 1
+Kd 1 1 1
+map_Kd solar-panels4.jpg
+
+newmtl material_3
+d 1
+Kd 0.8392157 0.8392157 0.8392157
+map_Kd K_AM_old_Zink_height.jpg
+
+newmtl material_4
+d 1
+Kd 0.73333335 0.73333335 0.73333335
+map_Kd Hull2.jpg
+
+newmtl material_5
+d 1
+Kd 0.68235296 0.68235296 0.68235296
+map_Kd Hull2.jpg
+
+newmtl material_6
+d 0.29870132
+Kd 0.27843139 0.56470591 0.56470591
+
+newmtl material_7
+d 0.995
+Kd 0.72941178 0.72941178 0.72941178
+map_Kd K_AM_MetalScratchedheavyl_Metallic.jpg
+
+newmtl material_8
+d 1
+Kd 1 0.99215686 1
+map_Kd Hull2.jpg
+
+newmtl material_9
+d 1
+Kd 1 1 1
+map_Kd K_AM_old_Zink_height.jpg
+
+newmtl material_10
+d 1
+Kd 0.85490197 0.85490197 0.85490197
+map_Kd DSC_5791.JPG
+
+newmtl material_11
+d 1
+Kd 1 1 1
+map_Kd 6metal_texture_big_100405.jpg
+
+newmtl material_12
+d 1
+Kd 0.78431374 0.78431374 0.78431374
+map_Kd iron_texture4004.jpg
+
+newmtl material_13
+d 0.995
+Kd 0.72941178 0.72941178 0.72941178
+
+newmtl material_14
+d 1
+Kd 1 1 1
+map_Kd metal_grill_lozenge_shapes_6222752.JPG
+
+newmtl material_15
+d 1
+Kd 1 1 1
+map_Kd LBlue.jpg
+
+newmtl material_16
+d 1
+Kd 1 1 1
+map_Kd AirlockDoor1.jpg
+
+newmtl material_17
+d 0.995
+Kd 0.72941178 0.72941178 0.72941178
+
