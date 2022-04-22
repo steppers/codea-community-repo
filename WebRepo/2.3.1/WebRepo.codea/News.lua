@@ -120,16 +120,24 @@ local function newsProject(info)
                 bttn:set_style("text", "...")
                 DB.downloadApp(info.app, function(success, err)
                     if success then
-                        DB.installApp(info.app.name, info.app.version)
-                        update_button_text(bttn)
+                        bttn:add_style("text", "INSTALLING")
+                        ST.Thread(function()
+                            DB.installApp(info.app.name, info.app.version)
+                            update_button_text(bttn)
+                        end)
                     else
                         print(err)
                         bttn:set_style("text", "GET")
                     end
+                end, function(progress)
+                    bttn:add_style("text", tostring(math.ceil(progress * 100)) .. "%")
                 end)
             elseif not DB.isAppInstalled(info.app.name, info.app.version) then
-                DB.installApp(info.app.name, info.app.version)
-                update_button_text(bttn)
+                bttn:add_style("text", "INSTALLING")
+                ST.Thread(function()
+                    DB.installApp(info.app.name, info.app.version)
+                    update_button_text(bttn)
+                end)
             end
         end
     end)

@@ -133,16 +133,23 @@ function AppWindow(app)
             bttn:set_style("text", "...")
             DB.downloadApp(app, function(success, err)
                 if success then
-                    DB.installApp(app.name, app.version)
-                    update_button_text(bttn)
+                    bttn:add_style("text", "INSTALLING")
+                    ST.Thread(function()
+                        DB.installApp(app.name, app.version)
+                        update_button_text(bttn)
+                    end)
                 else
                     print(err)
                     bttn:set_style("text", "GET")
                 end
+            end, function(progress)
+                bttn:add_style("text", tostring(math.ceil(progress * 100)) .. "%")
             end)
         else
-            DB.installApp(app.name, app.version)
-            update_button_text(bttn)
+            ST.Thread(function()
+                DB.installApp(app.name, app.version)
+                update_button_text(bttn)
+            end)
         end
     end)
     :set_style_sheet(UI.THEME.button)

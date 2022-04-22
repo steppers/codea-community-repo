@@ -23,6 +23,10 @@
 -- (DONE) Remove .version during submission
 -- (DONE) What's New strings
 
+function main()
+    
+end
+
 function setup()
     
     viewer.mode = FULLSCREEN_NO_BUTTONS
@@ -107,8 +111,10 @@ function setup()
                             local status = Oil.StatusModal("Updating", UI.THEME.alert)
                             DB.downloadApp(webrepo_app, function(success, err)
                                 if success then
-                                    DB.installApp(webrepo_app.name, webrepo_app.version)
-                                    viewer.restart()
+                                    ST.Thread(function()
+                                        DB.installApp(webrepo_app.name, webrepo_app.version)
+                                        viewer.close()
+                                    end)
                                 else
                                     status:kill()
                                 end

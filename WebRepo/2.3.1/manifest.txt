@@ -3,7 +3,8 @@ WebRepo.codea/IconDefaultLib.png
 WebRepo.codea/Info.plist
 WebRepo.codea/Path.lua
 WebRepo.codea/Main.lua
-WebRepo.codea/_dep_Documents:Oil.lua
+WebRepo.codea/_dep_Documents_Oil.lua
+WebRepo.codea/_dep_Documents_STLib.lua
 WebRepo.codea/SubmitWindow.lua
 WebRepo.codea/ReviewWindow.lua
 WebRepo.codea/DB.lua

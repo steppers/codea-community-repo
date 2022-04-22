@@ -190,8 +190,10 @@ function SubmitWindow()
                     local status = Oil.StatusModal("Updating", UI.THEME.alert)
                     DB.downloadApp(webrepo_app, function(success, err)
                         if success then
-                            DB.installApp(webrepo_app.name, webrepo_app.version)
-                            viewer.restart()
+                            ST.Thread(function()
+                                DB.installApp(webrepo_app.name, webrepo_app.version)
+                                viewer.close()
+                            end)
                         else
                             status:kill()
                         end
@@ -389,7 +391,7 @@ function SubmitWindow()
             end)
             :set_style_sheet(UI.THEME.text_entry),
     
-            Oil.LabelResize(10, 0, -10, 25, "Following submission an admin will review your project to ensure it meets guidelines before being made available. Any concerns with your submission will be raised on the WebRepo forum discussion.\n\nNote: Please allow approx. 5 minutes for your submission to appear in the review menu.")
+            Oil.LabelResize(10, 0, -10, 25, "Following submission an admin will review your project to ensure it meets guidelines before being made available. Any concerns with your submission will be raised on the WebRepo forum discussion.")
             :set_style_sheet(UI.THEME.news_internal)
             :add_style("textWrapWidth", 0.7),
             Oil.TextButton(0.5, 0, 250, 40, "Upload & Submit", function(bttn)

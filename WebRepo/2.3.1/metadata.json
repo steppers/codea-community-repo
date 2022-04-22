@@ -5,9 +5,8 @@
     "authors": [
         "Steppers"
     ],
-    "version": "2.2.0",
-    "update_notes": "- Swap to Node.js based backend.\n- Projects are downloaded as zip 
-files and extracted.",
+    "version": "2.3.1",
+    "update_notes": "- Split large files in project submissions to avoid memory issues during project installation",
     "category": "App",
     "forum_link": "https://codea.io/talk/discussion/11724",
     "hidden": false,

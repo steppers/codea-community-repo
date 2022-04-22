@@ -4,11 +4,11 @@
 <dict>
 	<key>Buffer Order</key>
 	<array>
-		<string>_dep_Documents:Oil</string>
+		<string>_dep_Documents_STLib</string>
+		<string>_dep_Documents_Oil</string>
 		<string>_dep_Documents:Packager</string>
 		<string>_dep_Documents:Zip</string>
 		<string>Main</string>
-		<string>ProjectSplit</string>
 		<string>DB</string>
 		<string>Themes</string>
 		<string>UI</string>
@@ -24,6 +24,7 @@
 		<string>Path</string>
 		<string>AsyncCoordinator</string>
 		<string>fzy</string>
+		<string>ProjectSplit</string>
 	</array>
 </dict>
 </plist>

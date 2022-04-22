@@ -436,3 +436,20 @@ function VFS:rm(path)
         end
     end
 end
+
+-- Move nodes
+function VFS:mv(src, dst)
+    local src = self:toAbsolute(src)
+    local dst = self:toAbsolute(dst)
+    
+    local srcParentNode = getNode(self, src:parent())
+    local srcNode = getNode(self, src)
+    local dstNode = getNode(self, dst:parent())
+    
+    dstNode.data[dst:leaf().val] = srcNode
+    srcParentNode.data[src:leaf().val] = nil
+    
+    if self.autoflush then
+        self:flush()
+    end
+end
